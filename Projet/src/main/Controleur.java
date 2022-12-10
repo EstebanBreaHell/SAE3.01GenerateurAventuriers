@@ -9,6 +9,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 import java.awt.Image;
+import java.util.Optional;
 import java.awt.Font;
 
 public class Controleur 
@@ -45,6 +46,13 @@ public class Controleur
     }
 
     public Font getFont(){return this.ihm.getDefautFont();}
+
+    public Optional<String> getExtension(String filename) {
+		return Optional.ofNullable(filename)
+		  .filter(f -> f.contains("."))
+		  .map(f -> f.substring(filename.lastIndexOf(".") + 1));
+	  }
+
 
     public static void main(String[] args)
     {
