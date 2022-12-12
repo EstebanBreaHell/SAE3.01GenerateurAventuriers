@@ -1,3 +1,5 @@
+package metier;
+
 public class Noeud
 {
     private String nom;
