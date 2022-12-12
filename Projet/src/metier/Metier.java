@@ -2,49 +2,42 @@ package metier;
 
 import main.Controleur;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Metier
 {
     
-    public Controleur ctrl;
+    private Controleur ctrl;
+
+	private List<Noeud> lstNoeud;
 
     public Metier( Controleur ctrl )
     {
         this.ctrl = ctrl;
+		this.lstNoeud = new ArrayList<Noeud>();
     }
 
     public void ecrireXml()
 	{
 		try
 		{
-			PrintWriter pw = new PrintWriter ( new FileOutputStream( "/sortie/DepartementV3.xml") );
-			String regAct = ensDept.get ( 0 ).getNomRegion ();
+			PrintWriter pw = new PrintWriter( new FileOutputStream( "./sortie/carteTest.xml") );
 
-			pw.println ( "<liste>" );
-			pw.println ( "\t<region nom=\"" + regAct + "\">" );
+			pw.println ( "<mappe>" );
 
-			for( Dept d : ensDept )
+			for( Noeud n : lstNoeud )
 			{
-				if( ! regAct.equals ( d.getNomRegion () ))
-				{
-					pw.println ("</region>");
-					regAct = d.getNomRegion ();
-					pw.println ( "\t<region nom=\"" + regAct + "\">" );
+				pw.println ( "\t<noeud nom=\"" + n.getNom() + "\">" );
 
-				}
-				if( regAct.equals ( d.getNomRegion () ))
-				{
-					pw.println ( "\t\t<dept numero=\"" + d.getNumero () + "\">" );
-					pw.println ( "\t\t\t<coordonees x=\"" + d.getX () + "\" y=\"" + d.getY () + "\"/>" );
-					pw.println ( "\t\t\t<nomDept>" + d.getNomDept () + " </nomDept>" );
-					pw.println ( "\t\t\t<prefecture>" + d.getNomPrefecture () + " </prefecture>" );
-					pw.println ( "\t\t\t<population>" + d.getPopulation () + " </population>" );
-					pw.println ( "\t\t\t<superficie>" + d.getSuperficie () + " </superficie>" );
-					pw.println ("\t\t</dept>");
-				}
+
+				pw.println ("</noeud>");
 
 			}
-			pw.println ("</region>");
-			pw.println ( " </liste>" );
+			pw.println ( " </mappe>" );
 			pw.close();
 
 		}
@@ -52,8 +45,9 @@ public class Metier
 			e.printStackTrace();
 		}
 
-
 	}
+
+
 
 
 }

@@ -24,6 +24,9 @@ public class Arrete {
         this.ville2 = ville2;
         this.couleur = couleur;
         this.wagon = wagon;
+
+        this.ville .addArrete(this);
+        this.ville2.addArrete(this);
     }
 
     public Noeud getVille() {

@@ -21,8 +21,8 @@ public class PanelChoixMode extends JPanel implements ActionListener
 
 	public PanelChoixMode(Controleur ctrl)
 	{
-		Icon iconCree 	= Controleur.imageToIcon("Projet\\src\\donnee\\creer.png");
-		Icon iconImport = Controleur.imageToIcon("Projet\\src\\donnee\\importer.png");
+		Icon iconCree 	= Controleur.imageToIcon("Projet/donnee/chemin.png");
+		Icon iconImport = Controleur.imageToIcon("Projet/donnee/importer.png");
 
 		this.ctrl = ctrl;
 		Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();

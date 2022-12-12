@@ -1,10 +1,14 @@
 package metier;
 
+import java.util.ArrayList;
+
 public class Noeud
 {
     private String nom;
     private int x;
     private int y;
+
+    private ArrayList<Arrete> alArrete;
 
     /**
         * Constructeur de la classe noeud
@@ -17,8 +21,17 @@ public class Noeud
         this.nom = nom;
         this.x = x;
         this.y = y;
+
+        alArrete = new ArrayList<Arrete>();
     }
 
+    public void addArrete(Arrete arrete){
+        alArrete.add(arrete);
+    }
+
+    public ArrayList getArrayArrete(){
+        return this.alArrete;
+    }
     /**
         * Retourne le nom de la noeud
         * @return le nom de la noeud

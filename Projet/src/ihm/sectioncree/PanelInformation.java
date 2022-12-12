@@ -22,6 +22,7 @@ public class PanelInformation extends JPanel
 	private JButton 		btnGenereGraph;
 	private JList<String> 	listHistorique;
 
+
 	public PanelInformation(Controleur ctrl)
 	{
 		this.ctrl = ctrl;
@@ -32,11 +33,11 @@ public class PanelInformation extends JPanel
 		JPanel panelDispoHistorique = new JPanel(new BorderLayout());
 
 
-		Icon iconGomme 			= Controleur.imageToIcon("Projet\\src\\donnee\\gomme.png"			);
-		Icon iconGenere 		= Controleur.imageToIcon("Projet\\src\\donnee\\genere.png"		);
-		Icon iconInformation 	= Controleur.imageToIcon("Projet\\src\\donnee\\information.png"	);
-		Icon iconVille 			= Controleur.imageToIcon("Projet\\src\\donnee\\ville.png"			);
-		Icon iconChemin 		= Controleur.imageToIcon("Projet\\src\\donnee\\chemin.png"		);
+		Icon iconGomme 			= Controleur.imageToIcon("./gomme.png"			);
+		Icon iconGenere 		= Controleur.imageToIcon("./genere.png"		);
+		Icon iconInformation 	= Controleur.imageToIcon("./information.png"	);
+		Icon iconVille 			= Controleur.imageToIcon("./ville.png"			);
+		Icon iconChemin 		= Controleur.imageToIcon("./chemin.png"		);
 
 		this.btnInfoGraph 		= new JButton("Information graphe",iconInformation);
 		//this.btnInfoGraph.setIcon();
