@@ -45,7 +45,6 @@ public class PanelGraphique extends JPanel implements ActionListener
 	public void paint(Graphics g)
 	{
 		super.paint(g);
-		
 	}
 
 
@@ -53,9 +52,6 @@ public class PanelGraphique extends JPanel implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
-		
-
-
 		if(e.getSource() == this.btnImportImg)
 		{
 			JFileChooser jFileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
