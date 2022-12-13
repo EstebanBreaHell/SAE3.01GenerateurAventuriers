@@ -16,15 +16,15 @@ public class CarteObjectif {
     }
 
     public Noeud getNoeud1() {
-        return noeud1;
+        return this.noeud1;
     }
 
     public Noeud getNoeud2() {
-        return noeud2;
+        return this.noeud2;
     }
 
     public int getNbPoints() {
-        return nbPoints;
+        return this.nbPoints;
     }
 
 
