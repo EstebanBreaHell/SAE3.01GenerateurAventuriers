@@ -7,6 +7,8 @@ public class Noeud
     private String nom;
     private int x;
     private int y;
+    private int nomX;
+    private int nomY;
 
     private ArrayList<Arrete> alArrete;
 
@@ -16,21 +18,23 @@ public class Noeud
         * @param x la coordonnée x de la Noeud
         * @param y la coordonnée y de la noeud
      */
-    public Noeud(String nom, int x, int y)
+    public Noeud(String nom, int x, int y, int nomX, int nomY)
     {
         this.nom = nom;
         this.x = x;
         this.y = y;
+        this.nomX = nomX;
+        this.nomY = nomY;
 
-        alArrete = new ArrayList<Arrete>();
+        this.alArrete = new ArrayList<Arrete>();
     }
 
     public void addArrete(Arrete arrete){
-        alArrete.add(arrete);
+        this.alArrete.add(arrete);
     }
 
     public void removeArrete(Arrete arrete){
-        alArrete.remove(arrete);
+        this.alArrete.remove(arrete);
     }
 
     public ArrayList<Arrete> getArrayArrete(){
@@ -42,7 +46,7 @@ public class Noeud
      */
     public String getNom()
     {
-        return nom;
+        return this.nom;
     }
     /**
         * Retourne la coordonnée x de la noeud
@@ -50,7 +54,7 @@ public class Noeud
      */
     public int getX()
     {
-        return x;
+        return this.x;
     }
     /**
         * Retourne la coordonnée y de la noeud
@@ -58,8 +62,25 @@ public class Noeud
      */
     public int getY()
     {
-        return y;
+        return this.y;
     }
+    /**
+        * Retourne la coordonnée x du nom de la noeud
+        * @return la coordonnée x du nom de la noeud
+     */
+    public int getNomX()
+    {
+        return this.nomX;
+    }
+    /**
+        * Retourne la coordonnée y du nom de la noeud
+        * @return la coordonnée y du nom de la noeud
+     */
+    public int getNomY()
+    {
+        return this.nomY;
+    }
+    
 
     /**
         *Retourne l'objet sous forme String
@@ -68,6 +89,6 @@ public class Noeud
     @Override
     public String toString()
     {
-        return nom + " (" + x + "," + y + ")";
+        return this.nom + " (" + x + "," + y + ")";
     }
 }
