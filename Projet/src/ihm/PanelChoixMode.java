@@ -20,7 +20,6 @@ public class PanelChoixMode extends JPanel implements ActionListener
 	private JButton btnImporter;
 	private JButton btnEditer;
 	private JButton btnQuitter;
-	private JScrollBar scrollBar;
 	private JScrollPane scrollPane;
 
 	public PanelChoixMode(Controleur ctrl)
@@ -56,8 +55,12 @@ public class PanelChoixMode extends JPanel implements ActionListener
 		this.btnEditer.setBorder(border);
 		this.btnQuitter.setBorder(border);
 
-		this.scrollBar = new JScrollBar(JScrollBar.VERTICAL, 0, 10, 0, 100);
-		this.scrollPane = new JScrollPane(this.scrollBar);
+		this.btnImporter.setBackground(Color.WHITE);
+		this.btnEditer.setBackground(Color.WHITE);
+		this.btnQuitter.setBackground(Color.WHITE);
+		
+
+		this.scrollPane = new JScrollPane(panelImages, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
 		panelDispoBtn.setBorder(espacement);
 		panelDispoBtn.add(this.btnImporter);
@@ -65,20 +68,20 @@ public class PanelChoixMode extends JPanel implements ActionListener
 		panelDispoBtn.add(this.btnQuitter);
 
 		JPanel panelTitre = new JPanel(new GridLayout(1,3));
-		JPanel panelListe  = new JPanel(new GridLayout(20,1));
+		JPanel panelListe  = new JPanel(new GridLayout(70,1));
 
 		panelTitre.add(new JLabel());
 		panelTitre.add(lblTitre);
 		panelTitre.add(new JLabel());
 
 
-		for(int i = 0; i < 20; i++)
+		for(int i = 0; i < 70; i++)
 		{
 			panelListe.add(new JLabel("Image " + i, JLabel.CENTER));
-	
+		}
+
 		panelImages.add(panelTitre, BorderLayout.NORTH);
 		panelImages.add(panelListe, BorderLayout.CENTER);
-		panelImages.add(this.scrollPane, BorderLayout.WEST);
 
 
 		this.add(panelDispoBtn);
@@ -120,5 +123,4 @@ public class PanelChoixMode extends JPanel implements ActionListener
 			System.exit(0);
 		/*----------------------------*/
 	}
-	
 }
