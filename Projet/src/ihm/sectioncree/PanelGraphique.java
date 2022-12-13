@@ -17,7 +17,6 @@ public class PanelGraphique extends JPanel implements ActionListener
 	private Controleur ctrl;
 	private JButton btnImportImg;
 
-	
 	public PanelGraphique(Controleur ctrl)
 	{
 		this.ctrl = ctrl;
@@ -38,16 +37,12 @@ public class PanelGraphique extends JPanel implements ActionListener
 		this.add(panelDispoBtn);
 
 		this.btnImportImg.addActionListener(this);
-
-
 	}
 
 	public void paint(Graphics g)
 	{
 		super.paint(g);
 	}
-
-
 
 	@Override
 	public void actionPerformed(ActionEvent e) 
@@ -72,12 +67,7 @@ public class PanelGraphique extends JPanel implements ActionListener
 						e1.printStackTrace();
 					}
 				}
-					
-
 			}
-
-			
 		}
-		
 	}	
 }
