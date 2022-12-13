@@ -29,6 +29,10 @@ public class Noeud
         alArrete.add(arrete);
     }
 
+    public void removeArrete(Arrete arrete){
+        alArrete.remove(arrete);
+    }
+
     public ArrayList<Arrete> getArrayArrete(){
         return this.alArrete;
     }

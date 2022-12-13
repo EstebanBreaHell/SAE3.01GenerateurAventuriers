@@ -28,7 +28,10 @@ public class Arrete {
         this.ville .addArrete(this);
         this.ville2.addArrete(this);
     }
-
+    public void removeArrete() {
+        this.ville .removeArrete(this);
+        this.ville2.removeArrete(this);
+    }
     public Noeud getVille() {
         return this.ville;
     }
@@ -60,6 +63,8 @@ public class Arrete {
     public void setWagon(int wagon) {
         this.wagon = wagon;
     }
+
+    
 
 
 }

@@ -62,7 +62,7 @@ public class Metier
 	public void creeArrete(Noeud noeud1 , Noeud noeud2 , Color couleur, int wagon )
 	{
 		Color c = couleur;
-		
+
 		Arrete a = new Arrete( noeud1, noeud2, c ,wagon);
 
 		lstArrete.add( a );
@@ -78,18 +78,23 @@ public class Metier
 	}
 
 
-	//PAS SUFFISATAN
-	// TODO Faut le supprimé partout car il a encore des arrete qui pointe vers lui
-	public void suppNoeud( Noeud n )
-	{
-		lstNoeud.remove( n );
-	}
-
-	//PAS SUFFISATAN
-	// TODO Faut le supprimé partout car il a encore des Noeud qui pointe vers lui
+	
 	public void suppArrete( Arrete a )
 	{
+		a.removeArrete();
 		lstArrete.remove( a );
+	}
+
+	public void suppNoeud( Noeud n )
+	{
+		List<Arrete> arayListArretSupp = n.getArrayArrete();
+
+		for( Arrete a : arayListArretSupp )
+		{
+			suppArrete( a );
+		}
+		
+		lstNoeud.remove( n );
 	}
 
 
