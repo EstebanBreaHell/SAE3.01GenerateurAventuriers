@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.awt.Color;
+
 
 public class Metier
 {
@@ -15,7 +15,7 @@ public class Metier
     private Controleur ctrl;
 
 	private List<Noeud> lstNoeud;
-	private List<Arrete> lstArrete;
+	private List<Arete> lstArete;
 
 	private int nbJoueurMax, nbJoueurMin;
 
@@ -23,7 +23,7 @@ public class Metier
     {
         this.ctrl = ctrl;
 		this.lstNoeud = new ArrayList<Noeud>();
-		this.lstArrete = new ArrayList<Arrete>();
+		this.lstArete = new ArrayList<Arete>();
 
 		this.nbJoueurMax = 0;
 		this.nbJoueurMin = 0;
@@ -88,37 +88,37 @@ public class Metier
 	
 
 	//En partant sur la base que l'on utilise une liste déroulante pour la couleur ET pour les ville
-	public void creeArrete(Noeud n1 , Noeud n2 , Color c, int nbW )
+	public void creeArete(Noeud n1 , Noeud n2 , String c, int nbW )
 	{
-		Arrete a = new Arrete( n1, n2, c ,nbW);
+		Arete a = new Arete( n1, n2, c ,nbW);
 
-		this.lstArrete.add( a );
+		this.lstArete.add( a );
 	}
 	public ArrayList<Noeud> getLstNoeud()
 	{
 		return (ArrayList<Noeud>) this.lstNoeud;
 	}
 
-	public ArrayList<Arrete> getLstArrete()
+	public ArrayList<Arete> getLstArete()
 	{
-		return (ArrayList<Arrete>) this.lstArrete;
+		return (ArrayList<Arete>) this.lstArete;
 	}
 
 
 	
-	public void supprArrete( Arrete a )
+	public void supprArete( Arete a )
 	{
-		a.supprArrete();
-		this.lstArrete.remove( a );
+		a.supprArete();
+		this.lstArete.remove( a );
 	}
 
 	public void supprNoeud( Noeud n )
 	{
-		List<Arrete> arayListArretSupp = n.getArrayArrete();
+		List<Arete> arayListArretSupp = n.getArrayArete();
 
-		for( Arrete a : arayListArretSupp )
+		for( Arete a : arayListArretSupp )
 		{
-			supprArrete( a );
+			supprArete( a );
 		}
 		
 		this.lstNoeud.remove( n );
