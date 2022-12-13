@@ -28,7 +28,17 @@ public class PanelChoixMode extends JPanel implements ActionListener
 		JPanel panelDispoBtn = new JPanel(new GridLayout(3,1, 30, 30));
 		JLabel lblTitre = new JLabel("Images importées", JLabel.CENTER);
 		Border border = BorderFactory.createLineBorder(Color.BLACK, 2);
-		Border espacement = BorderFactory.createEmptyBorder(350, 350, 350, 350);
+
+		Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
+		int width = (int)tailleMoniteur.getWidth()/4;
+		int length =(int)tailleMoniteur.getHeight()/2;
+
+		System.out.println(" Longueur " + length);
+		System.out.println(" Largeur " + width);
+
+
+		Border espacement = BorderFactory.createEmptyBorder(length, width, width, length);
+
 		JPanel panelImages = new JPanel(new BorderLayout());
 
 		this.ctrl = ctrl;

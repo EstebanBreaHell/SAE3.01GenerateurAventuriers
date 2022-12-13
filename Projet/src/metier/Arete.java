@@ -1,13 +1,13 @@
 package metier;
 
-
+import java.awt.Color;
 
 public class Arete {
 
     private Noeud noeudDep;
     private Noeud noeudArr;
 
-    private String couleur;
+    private Color couleur;
     private int   nbWagon;
 
 
@@ -21,7 +21,7 @@ public class Arete {
 
 
     //ON RAPPELLE QUE noeudDep 1 -----> noeudDep 2
-    public Arete(Noeud noeudDep, Noeud noeudArr, String couleur, int nbWagon) {
+    public Arete(Noeud noeudDep, Noeud noeudArr, Color couleur, int nbWagon) {
         this.noeudDep   = noeudDep;
         this.noeudArr   = noeudArr;
         this.couleur    = couleur;
@@ -44,7 +44,7 @@ public class Arete {
         return this.noeudArr;
     }
 
-    public String getCouleur() {
+    public Color getCouleur() {
         return this.couleur;
     }
 
@@ -60,7 +60,7 @@ public class Arete {
         this.noeudArr = noeudArr;
     }
 
-    public void setCouleur(String couleur) {
+    public void setCouleur(Color couleur) {
         this.couleur = couleur;
     }
 
