@@ -1,6 +1,8 @@
 package ihm;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+
 import java.awt.*;
 
 import java.awt.event.*;
@@ -15,65 +17,81 @@ import main.Controleur;
 public class PanelChoixMode extends JPanel implements ActionListener
 {
 	private Controleur ctrl;
-	private JButton btnImport;
-	private JButton btnCree;
-	private JButton btnTester;
+	private JButton btnImporter;
+	private JButton btnEditer;
+	private JButton btnQuitter;
 
 	public PanelChoixMode(Controleur ctrl)
 	{
 		Icon iconCree 	= Controleur.imageToIcon("Projet/donnee/chemin.png");
 		Icon iconImport = Controleur.imageToIcon("Projet/donnee/importer.png");
+		JPanel panelDispoBtn = new JPanel(new GridLayout(3,1, 30, 30));
+		JLabel lblTitre = new JLabel("Images importées", JLabel.CENTER);
+		Border border = BorderFactory.createLineBorder(Color.BLACK, 2);
+		Border espacement = BorderFactory.createEmptyBorder(350, 350, 350, 350);
+		JPanel panelImages = new JPanel(new BorderLayout());
 
 		this.ctrl = ctrl;
-		Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
-		int hauteur  = tailleMoniteur.height - (int) (tailleMoniteur.height*0.06);
-
-		this.setLayout(new BorderLayout(hauteur/4,0));
-		
+		this.setLayout(new BorderLayout());
 	
-		JPanel panelDispoBtn = new JPanel(new GridLayout(3,1,0,50));
+		panelImages.setBorder(border);
 
-		this.btnImport = new JButton("Import",iconImport);
-		this.btnImport.setFont(Frame.POLICE_DEFAUT);
+		this.btnImporter = new JButton("Importer",iconImport);
+		this.btnEditer = new JButton("Editer",iconCree);
+		this.btnQuitter = new JButton("Quitter");
 
-		this.btnCree = new JButton("Créer",iconCree);
-		this.btnCree.setFont(Frame.POLICE_DEFAUT);
+		this.btnImporter.setBorder(border);
+		this.btnEditer.setBorder(border);
+		this.btnQuitter.setBorder(border);
 
-		this.btnTester = new JButton("Tester");
-		this.btnTester.setFont(Frame.POLICE_DEFAUT);
+		panelDispoBtn.setBorder(espacement);
+
+		panelDispoBtn.add(this.btnImporter);
+		panelDispoBtn.add(this.btnEditer);
+		panelDispoBtn.add(this.btnQuitter);
+
+		JPanel panelTitre = new JPanel(new GridLayout(1,3));
+		JPanel panelListe  = new JPanel(new GridLayout(10,1));
+
+		panelTitre.add(new JLabel());
+		panelTitre.add(lblTitre);
+		panelTitre.add(new JLabel());
+
+		panelListe.add(new JLabel("Image 1", JLabel.CENTER));
+		panelListe.add(new JLabel("Image 2", JLabel.CENTER));
+		panelListe.add(new JLabel("Image 3", JLabel.CENTER));
+		panelListe.add(new JLabel("Image 4", JLabel.CENTER));
+		panelListe.add(new JLabel("Image 5", JLabel.CENTER));
+
+
+		panelImages.add(panelTitre, BorderLayout.NORTH);
+		panelImages.add(panelListe, BorderLayout.CENTER);
 	
-		panelDispoBtn.add(this.btnImport);
-		panelDispoBtn.add(this.btnCree);
-		panelDispoBtn.add(this.btnTester);
+		this.add(panelDispoBtn);
+		this.add(panelImages,BorderLayout.EAST);
+
+		this.btnEditer.addActionListener(this);
+		this.btnImporter.addActionListener(this);
+		this.btnQuitter.addActionListener(this);
 		
-		this.add(panelDispoBtn,BorderLayout.CENTER);
-		this.add(new JLabel(" "),BorderLayout.EAST);
-		this.add(new JLabel(" "),BorderLayout.WEST);
-		this.add(new JLabel(" "),BorderLayout.NORTH);
-		this.add(new JLabel(" "),BorderLayout.SOUTH);
-
-		this.btnCree.addActionListener(this);
-
-
-
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
-		if(e.getSource() == this.btnCree)
+		if(e.getSource() == this.btnEditer)
 		{
-			this.ctrl.changerPanel("cree");
+			this.ctrl.changerPanel("editer");
 		}
 
-		if(e.getSource() == this.btnImport)
+		if(e.getSource() == this.btnImporter)
 		{
 
 		}
 		
-		if(e.getSource() == this.btnTester)
+		if(e.getSource() == this.btnQuitter)
 		{
-
+			System.exit(0);
 		}
 
 		
