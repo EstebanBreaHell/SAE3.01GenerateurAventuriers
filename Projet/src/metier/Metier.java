@@ -56,37 +56,43 @@ public class Metier
 		lstNoeud.add( n );
 	}
 
-	public boolean creeArrete(String noeud1 , String noeud2 , String couleur, int wagon )
+	
+
+	//En partant sur la base que l'on utilise une liste déroulante pour la couleur ET pour les ville
+	public void creeArrete(Noeud noeud1 , Noeud noeud2 , Color couleur, int wagon )
 	{
-		Noeud n1 = null;
-		Noeud n2 = null;
-
-		//TODO Faut regarder pour géré la couleur (Vus que les couleur sont déterminé de base dans le jeu on peux faire une liste déroulante dans l'ihm)
-		Color c = Color.BLACK;
+		Color c = couleur;
 		
+		Arrete a = new Arrete( noeud1, noeud2, c ,wagon);
 
-		/*
-		*Vus que le joueur nous donne juste les Nom en string on vas regarder si ils éxiste dans la liste des noeud
-		*TODO car j'ai la flemme peux être voir pour faire une liste déroulante dans l'ihm
-		*/
-		for( Noeud n : lstNoeud )
-		{
-			if( n.getNom().equals( noeud1 ) )
-				n1 = n;
-			if( n.getNom().equals( noeud2 ) )
-				n2 = n;
-		}
-
-		if( n1 != null && n2 != null )
-		{
-			Arrete a = new Arrete( n1, n2, c ,wagon);
-			lstArrete.add( a );
-
-			return true;
-		}
-		else
-			return false;
+		lstArrete.add( a );
 	}
+	public ArrayList<Noeud> getLstNoeud()
+	{
+		return (ArrayList<Noeud>) lstNoeud;
+	}
+
+	public ArrayList<Arrete> getLstArrete()
+	{
+		return (ArrayList<Arrete>) lstArrete;
+	}
+
+
+	//PAS SUFFISATAN
+	// TODO Faut le supprimé partout car il a encore des arrete qui pointe vers lui
+	public void suppNoeud( Noeud n )
+	{
+		lstNoeud.remove( n );
+	}
+
+	//PAS SUFFISATAN
+	// TODO Faut le supprimé partout car il a encore des Noeud qui pointe vers lui
+	public void suppArrete( Arrete a )
+	{
+		lstArrete.remove( a );
+	}
+
+
 
 
 

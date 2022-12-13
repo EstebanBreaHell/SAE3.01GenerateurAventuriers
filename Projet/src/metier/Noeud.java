@@ -29,7 +29,7 @@ public class Noeud
         alArrete.add(arrete);
     }
 
-    public ArrayList getArrayArrete(){
+    public ArrayList<Arrete> getArrayArrete(){
         return this.alArrete;
     }
     /**
