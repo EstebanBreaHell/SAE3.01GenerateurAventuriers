@@ -88,9 +88,9 @@ public class Metier
 	
 
 	//En partant sur la base que l'on utilise une liste déroulante pour la couleur ET pour les ville
-	public void creeArrete(Noeud noeud1 , Noeud noeud2 , Color couleur, int wagon )
+	public void creeArrete(Noeud n1 , Noeud n2 , Color c, int nbW )
 	{
-		Arrete a = new Arrete( noeud1, noeud2, couleur ,wagon);
+		Arrete a = new Arrete( n1, n2, c ,nbW);
 
 		this.lstArrete.add( a );
 	}
@@ -106,19 +106,19 @@ public class Metier
 
 
 	
-	public void suppArrete( Arrete a )
+	public void supprArrete( Arrete a )
 	{
 		a.removeArrete();
 		this.lstArrete.remove( a );
 	}
 
-	public void suppNoeud( Noeud n )
+	public void supprNoeud( Noeud n )
 	{
 		List<Arrete> arayListArretSupp = n.getArrayArrete();
 
 		for( Arrete a : arayListArretSupp )
 		{
-			suppArrete( a );
+			supprArrete( a );
 		}
 		
 		this.lstNoeud.remove( n );
