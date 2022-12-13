@@ -5,35 +5,35 @@ import java.util.ArrayList;
 public class Noeud
 {
     private String nom;
-    private int x;
-    private int y;
+    private int posX;
+    private int posY;
     private int nomX;
     private int nomY;
 
     private ArrayList<Arrete> alArrete;
 
     /**
-        * Constructeur de la classe noeud
-        * @param nom le nom de la noeud
-        * @param x la coordonnée x de la Noeud
-        * @param y la coordonnée y de la noeud
+     * Constructeur de la classe noeud
+     * @param nom  le nom de la noeud
+     * @param posX la coordonnée posX de la Noeud
+     * @param posY la coordonnée posY de la noeud
      */
-    public Noeud(String nom, int x, int y, int nomX, int nomY)
+    public Noeud(String nom, int posX, int posY, int nomX, int nomY)
     {
-        this.nom = nom;
-        this.x = x;
-        this.y = y;
+        this.nom  = nom;
+        this.posX = posX;
+        this.posY = posY;
         this.nomX = nomX;
         this.nomY = nomY;
 
         this.alArrete = new ArrayList<Arrete>();
     }
 
-    public void addArrete(Arrete arrete){
+    public void ajoutArrete(Arrete arrete){
         this.alArrete.add(arrete);
     }
 
-    public void removeArrete(Arrete arrete){
+    public void supprArrete(Arrete arrete){
         this.alArrete.remove(arrete);
     }
 
@@ -49,38 +49,38 @@ public class Noeud
         return this.nom;
     }
     /**
-        * Retourne la coordonnée x de la noeud
-        * @return la coordonnée x de la noeud
+        * Retourne la coordonnée posX de la noeud
+        * @return la coordonnée posX de la noeud
      */
     public int getX()
     {
-        return this.x;
+        return this.posX;
     }
     /**
-        * Retourne la coordonnée y de la noeud
-        * @return la coordonnée y de la noeud
+        * Retourne la coordonnée posY de la noeud
+        * @return la coordonnée posY de la noeud
      */
     public int getY()
     {
-        return this.y;
+        return this.posY;
     }
     /**
-        * Retourne la coordonnée x du nom de la noeud
-        * @return la coordonnée x du nom de la noeud
+        * Retourne la coordonnée posX du nom de la noeud
+        * @return la coordonnée posX du nom de la noeud
      */
     public int getNomX()
     {
         return this.nomX;
     }
     /**
-        * Retourne la coordonnée y du nom de la noeud
-        * @return la coordonnée y du nom de la noeud
+        * Retourne la coordonnée posY du nom de la noeud
+        * @return la coordonnée posY du nom de la noeud
      */
     public int getNomY()
     {
         return this.nomY;
     }
-    
+
 
     /**
         *Retourne l'objet sous forme String
@@ -89,6 +89,6 @@ public class Noeud
     @Override
     public String toString()
     {
-        return this.nom + " (" + x + "," + y + ")";
+        return this.nom + " (" + posX + "," + posY + ")";
     }
 }

@@ -27,12 +27,12 @@ public class Arrete {
         this.couleur    = couleur;
         this.nbWagon      = nbWagon;
 
-        this.noeudDep.addArrete(this);
-        this.noeudArr.addArrete(this);
+        this.noeudDep.ajoutArrete(this);
+        this.noeudArr.ajoutArrete(this);
     }
     public void supprArrete() {
-        this.noeudDep.removeArrete(this);
-        this.noeudArr.removeArrete(this);
+        this.noeudDep.supprArrete(this);
+        this.noeudArr.supprArrete(this);
 
         
     }
