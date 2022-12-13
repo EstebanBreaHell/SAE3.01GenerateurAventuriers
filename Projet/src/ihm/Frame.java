@@ -25,7 +25,7 @@ public class Frame extends JFrame
 		this.longueur = this.tailleMoniteur.width  - (int) (this.tailleMoniteur.width*0.01) ;
 		this.hauteur  = this.tailleMoniteur.height - (int) (this.tailleMoniteur.height*0.06);
 
-        this.setTitle("Générateur de graphe");
+        this.setTitle("Générateur de plateau de jeu");
         this.setSize(longueur, hauteur);
         this.setLayout(new BorderLayout());
         this.setLocation(0,0);
@@ -33,7 +33,6 @@ public class Frame extends JFrame
         this.changerPanel(nomPanel);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setJMenuBar(new MaBarreMenu(this,this.ctrl));
 
         this.setVisible(true);
     }
@@ -42,7 +41,7 @@ public class Frame extends JFrame
     {
 
         switch (nomPanel) {
-            case "cree":
+            case "editer":
                 System.out.println("Bien recu pour crée");
                 this.panelCree = new PanelCree(this.ctrl);
                 this.add(this.panelCree);                
