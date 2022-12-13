@@ -2,11 +2,13 @@ package ihm;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.filechooser.FileSystemView;
 
 import java.awt.*;
 
 import java.awt.event.*;
-
+import java.io.File;
+import java.io.IOException;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -86,7 +88,22 @@ public class PanelChoixMode extends JPanel implements ActionListener
 
 		if(e.getSource() == this.btnImporter)
 		{
+			JFileChooser jFileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 
+			int res = jFileChooser.showOpenDialog(null);
+
+			if(res == JFileChooser.APPROVE_OPTION)
+			{
+				File file = jFileChooser.getSelectedFile();
+
+				if(this.ctrl.getExtension(file.getName()).get().equals("png") );
+				{
+					Desktop desktop = Desktop.getDesktop();
+					try {
+						desktop.open(file);
+					} catch (IOException e1) { e1.printStackTrace();}
+				}
+			}
 		}
 		
 		if(e.getSource() == this.btnQuitter)
