@@ -30,7 +30,7 @@ public class Arrete {
         this.noeudDep.addArrete(this);
         this.noeudArr.addArrete(this);
     }
-    public void removeArrete() {
+    public void supprArrete() {
         this.noeudDep.removeArrete(this);
         this.noeudArr.removeArrete(this);
 

@@ -108,7 +108,7 @@ public class Metier
 	
 	public void supprArrete( Arrete a )
 	{
-		a.removeArrete();
+		a.supprArrete();
 		this.lstArrete.remove( a );
 	}
 
