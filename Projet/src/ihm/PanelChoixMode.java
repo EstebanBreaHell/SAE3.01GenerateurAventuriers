@@ -11,8 +11,6 @@ import java.io.File;
 import java.io.IOException;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.awt.Image;
-
 
 import main.Controleur;
 
@@ -22,11 +20,11 @@ public class PanelChoixMode extends JPanel implements ActionListener
 	private JButton btnImporter;
 	private JButton btnEditer;
 	private JButton btnQuitter;
+	private JScrollBar scrollBar;
 
 	public PanelChoixMode(Controleur ctrl)
 	{
-		Icon iconCree 	= Controleur.imageToIcon("Projet/donnee/chemin.png");
-		Icon iconImport = Controleur.imageToIcon("Projet/donnee/importer.png");
+		Icon iconCree 	= Controleur.imageToIcon("donnee\\chemin.png");
 		JPanel panelDispoBtn = new JPanel(new GridLayout(3,1, 30, 30));
 		JLabel lblTitre = new JLabel("Images importées", JLabel.CENTER);
 		Border border = BorderFactory.createLineBorder(Color.BLACK, 2);
@@ -44,13 +42,15 @@ public class PanelChoixMode extends JPanel implements ActionListener
 	
 		panelImages.setBorder(border);
 
-		this.btnImporter = new JButton("Importer",iconImport);
+		this.btnImporter = new JButton("Importer");
 		this.btnEditer = new JButton("Editer",iconCree);
 		this.btnQuitter = new JButton("Quitter");
 
 		this.btnImporter.setBorder(border);
 		this.btnEditer.setBorder(border);
 		this.btnQuitter.setBorder(border);
+
+		this.scrollBar = new JScrollBar(JScrollBar.VERTICAL, 0, 10, 0, 100);
 
 		panelDispoBtn.setBorder(espacement);
 
@@ -59,22 +59,23 @@ public class PanelChoixMode extends JPanel implements ActionListener
 		panelDispoBtn.add(this.btnQuitter);
 
 		JPanel panelTitre = new JPanel(new GridLayout(1,3));
-		JPanel panelListe  = new JPanel(new GridLayout(10,1));
+		JPanel panelListe  = new JPanel(new GridLayout(20,1));
 
 		panelTitre.add(new JLabel());
 		panelTitre.add(lblTitre);
 		panelTitre.add(new JLabel());
 
-		panelListe.add(new JLabel("Image 1", JLabel.CENTER));
-		panelListe.add(new JLabel("Image 2", JLabel.CENTER));
-		panelListe.add(new JLabel("Image 3", JLabel.CENTER));
-		panelListe.add(new JLabel("Image 4", JLabel.CENTER));
-		panelListe.add(new JLabel("Image 5", JLabel.CENTER));
 
-
+		for(int i = 0; i < 20; i++)
+		{
+			panelListe.add(new JLabel("Image " + i, JLabel.CENTER));
+		}
+	
 		panelImages.add(panelTitre, BorderLayout.NORTH);
 		panelImages.add(panelListe, BorderLayout.CENTER);
-	
+		panelImages.add(this.scrollBar, BorderLayout.WEST);
+
+
 		this.add(panelDispoBtn);
 		this.add(panelImages,BorderLayout.EAST);
 
