@@ -32,14 +32,10 @@ public class PanelChoixMode extends JPanel implements ActionListener
 		Border border = BorderFactory.createLineBorder(Color.BLACK, 2);
 
 		Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
-		int width = (int)tailleMoniteur.getWidth()/4;
-		int length =(int)tailleMoniteur.getHeight()/2;
+		int width = (int)(double)(tailleMoniteur.getWidth()/6);
+		int length =(int)(double)(tailleMoniteur.getHeight()/2.5);
 
-		System.out.println(" Longueur " + length);
-		System.out.println(" Largeur " + width);
-
-
-		Border espacement = BorderFactory.createEmptyBorder(length, width, width, length);
+		Border espacement = BorderFactory.createEmptyBorder(width,length,width,length);
 
 		JPanel panelImages = new JPanel(new BorderLayout());
 
