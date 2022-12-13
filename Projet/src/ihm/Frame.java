@@ -39,7 +39,7 @@ public class Frame extends JFrame
 
     public void changerPanel(String nomPanel)
     {
-
+        /* Gère le changement de panel */
         switch (nomPanel) {
             case "editer":
                 System.out.println("Bien recu pour crée");
@@ -59,11 +59,19 @@ public class Frame extends JFrame
                 this.add(this.panelChoixMode);
 
             break;
-        
         }
+        /*-----------------------------*/
     }
 
-    public void fermeFrame(){this.dispose();}
-    public Font getDefautFont() {return Frame.POLICE_DEFAUT;}
-    public Dimension getDimensionEcran() {return new Dimension(this.longueur,this.hauteur);}
+    public void fermeFrame(){
+        this.dispose();
+    }
+
+    public Font getDefautFont(){
+        return Frame.POLICE_DEFAUT;
+    }
+
+    public Dimension getDimensionEcran(){
+        return new Dimension(this.longueur, this.hauteur);
+    }
 }
