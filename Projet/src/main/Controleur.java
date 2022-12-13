@@ -2,6 +2,7 @@ package main;
 
 import ihm.*;
 //import metier.*;
+import metier.Arete;
 
 import java.awt.Dimension;
 
@@ -11,11 +12,13 @@ import javax.swing.ImageIcon;
 import java.awt.Image;
 import java.util.Optional;
 import java.awt.Font;
+import java.awt.Color;
 
 public class Controleur 
 {
     //private Metier metier;
     private Frame ihm;
+
 
     public Controleur()
     {
@@ -51,7 +54,12 @@ public class Controleur
 		return Optional.ofNullable(filename)
 		  .filter(f -> f.contains("."))
 		  .map(f -> f.substring(filename.lastIndexOf(".") + 1));
-	  }
+	}
+
+    public Color getCouleurArrete(Arete arete)
+    {
+        return new Color( arete.getCouleur() );
+    }
 
 
     public static void main(String[] args)
