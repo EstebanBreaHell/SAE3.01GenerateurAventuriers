@@ -1,47 +1,47 @@
 package metier;
 
-import java.awt.*;
+import java.awt.Color;
 
 public class Arrete {
 
-    private Noeud ville;
-    private Noeud ville2;
+    private Noeud noeudDep;
+    private Noeud noeudArr;
 
     private Color couleur;
-    private int   wagon;
+    private int   nbWagon;
 
 
     /**
     * Constructeur de la classe arrete
-    * @param ville la ville de départ
-    * @param ville2 la ville d'arrivée
+    * @param noeudDep la noeudDep de départ
+    * @param noeudArr la noeudDep d'arrivée
     * @param couleur la couleur de l'arrete
-    * @param wagon le nombre de wagon
+    * @param nbWagon le nombre de nbWagon
     */
 
 
-    //ON RAPPELLE QUE VILLE 1 -----> VILLE 2
-    public Arrete(Noeud ville, Noeud ville2, Color couleur, int wagon) {
-        this.ville = ville;
-        this.ville2 = ville2;
-        this.couleur = couleur;
-        this.wagon = wagon;
+    //ON RAPPELLE QUE noeudDep 1 -----> noeudDep 2
+    public Arrete(Noeud noeudDep, Noeud noeudArr, Color couleur, int nbWagon) {
+        this.noeudDep   = noeudDep;
+        this.noeudArr   = noeudArr;
+        this.couleur    = couleur;
+        this.nbWagon      = nbWagon;
 
-        this.ville .addArrete(this);
-        this.ville2.addArrete(this);
+        this.noeudDep.addArrete(this);
+        this.noeudArr.addArrete(this);
     }
     public void removeArrete() {
-        this.ville .removeArrete(this);
-        this.ville2.removeArrete(this);
+        this.noeudDep.removeArrete(this);
+        this.noeudArr.removeArrete(this);
 
         
     }
-    public Noeud getVille() {
-        return this.ville;
+    public Noeud getNoeud() {
+        return this.noeudDep;
     }
 
-    public Noeud getVille2() {
-        return this.ville2;
+    public Noeud getNoeud2() {
+        return this.noeudArr;
     }
 
     public Color getCouleur() {
@@ -49,23 +49,23 @@ public class Arrete {
     }
 
     public int getWagon() {
-        return this.wagon;
+        return this.nbWagon;
     }
 
-    public void setVille(Noeud ville) {
-        this.ville = ville;
+    public void setNoeud(Noeud noeudDep) {
+        this.noeudDep = noeudDep;
     }
 
-    public void setVille2(Noeud ville2) {
-        this.ville2 = ville2;
+    public void setNoeud2(Noeud noeudArr) {
+        this.noeudArr = noeudArr;
     }
 
     public void setCouleur(Color couleur) {
         this.couleur = couleur;
     }
 
-    public void setWagon(int wagon) {
-        this.wagon = wagon;
+    public void setWagon(int nbWagon) {
+        this.nbWagon = nbWagon;
     }
 
     
