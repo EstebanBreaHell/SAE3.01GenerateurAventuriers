@@ -10,7 +10,7 @@ public class Noeud
     private int nomX;
     private int nomY;
 
-    private ArrayList<Arrete> alArrete;
+    private ArrayList<Arete> alArrete;
 
     /**
      * Constructeur de la classe noeud
@@ -26,18 +26,25 @@ public class Noeud
         this.nomX = nomX;
         this.nomY = nomY;
 
-        this.alArrete = new ArrayList<Arrete>();
+        this.alArrete = new ArrayList<Arete>();
     }
 
-    public void ajoutArrete(Arrete arrete){
+    /**
+     * Ajoute les arrete qui appartienne aux noeud
+     * @param arrete
+     */
+    public void ajoutArete(Arete arrete){
         this.alArrete.add(arrete);
     }
-
-    public void supprArrete(Arrete arrete){
+    /**
+     * Supprime une 
+     * @param arrete
+     */
+    public void supprArete(Arete arrete){
         this.alArrete.remove(arrete);
     }
 
-    public ArrayList<Arrete> getArrayArrete(){
+    public ArrayList<Arete> getArrayArete(){
         return this.alArrete;
     }
     /**
