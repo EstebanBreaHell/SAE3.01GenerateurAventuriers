@@ -15,11 +15,11 @@ public class PanelInformation extends JPanel
 														  "|Ville : b 		| Action : Ajout 		| numeroMouvement : 2	|",
 														  "|Chemain : a-b 	| Action : Ajout 		| numeroMouvement : 3 	|",
 														  "|Chemain : a-b   | Action : Supp			| numeroMouvement : 4 	|"};
-	private JButton  btnInfoGraph;
-	private JButton	 btnGenereVille;
-	private JButton	 btnGenereChemin;
-	private JButton	 btnSupp;
-	private JButton	 btnGenereGraph;
+	private JButton btnInfoGraph;
+	private JButton	btnGenereVille;
+	private JButton	btnGenereChemin;
+	private JButton	btnSupp;
+	private JButton	btnGenereGraph;
 
 	private JList<String>listHistorique;
 

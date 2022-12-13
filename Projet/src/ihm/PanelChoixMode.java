@@ -17,22 +17,23 @@ import main.Controleur;
 public class PanelChoixMode extends JPanel implements ActionListener
 {
 	private Controleur ctrl;
-	private JButton btnImporter;
-	private JButton btnEditer;
-	private JButton btnQuitter;
-	private JScrollBar scrollBar;
+
+	private JButton     btnImporter;
+	private JButton     btnEditer;
+	private JButton     btnQuitter;
+	private JScrollBar  scrollBar;
 	private JScrollPane scrollPane;
 
 	public PanelChoixMode(Controleur ctrl)
 	{
-		Icon iconCree 	= Controleur.imageToIcon("donnee\\chemin.png");
+		Icon iconCree 	     = Controleur.imageToIcon("donnee\\chemin.png");
 		JPanel panelDispoBtn = new JPanel(new GridLayout(3,1, 30, 30));
-		JLabel lblTitre = new JLabel("Images importées", JLabel.CENTER);
-		Border border = BorderFactory.createLineBorder(Color.BLACK, 2);
+		JLabel lblTitre      = new JLabel("Images importées", JLabel.CENTER);
+		Border border        = BorderFactory.createLineBorder(Color.BLACK, 2);
 
 		Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
-		int width = (int)(double)(tailleMoniteur.getWidth()/6);
-		int length =(int)(double)(tailleMoniteur.getHeight()/2.5);
+		int width  = (int)(double)(tailleMoniteur.getWidth ()/6  );
+		int length = (int)(double)(tailleMoniteur.getHeight()/2.5);
 
 		Border espacement = BorderFactory.createEmptyBorder(length, width, width, length);
 
@@ -44,14 +45,14 @@ public class PanelChoixMode extends JPanel implements ActionListener
 		panelImages.setBorder(border);
 
 		this.btnImporter = new JButton("Importer");
-		this.btnEditer = new JButton("Editer",iconCree);
-		this.btnQuitter = new JButton("Quitter");
+		this.btnEditer   = new JButton("Editer",iconCree);
+		this.btnQuitter  = new JButton("Quitter");
 
 		this.btnImporter.setBorder(border);
-		this.btnEditer.setBorder(border);
-		this.btnQuitter.setBorder(border);
+		this.btnEditer  .setBorder(border);
+		this.btnQuitter .setBorder(border);
 
-		this.scrollBar = new JScrollBar(JScrollBar.VERTICAL, 0, 10, 0, 100);
+		this.scrollBar  = new JScrollBar (JScrollBar.VERTICAL, 0, 10, 0, 100);
 		this.scrollPane = new JScrollPane(this.scrollBar);
 
 		panelDispoBtn.setBorder(espacement);
@@ -61,7 +62,7 @@ public class PanelChoixMode extends JPanel implements ActionListener
 		panelDispoBtn.add(this.btnQuitter);
 
 		JPanel panelTitre = new JPanel(new GridLayout(1,3));
-		JPanel panelListe  = new JPanel(new GridLayout(20,1));
+		JPanel panelListe = new JPanel(new GridLayout(20,1));
 
 		panelTitre.add(new JLabel());
 		panelTitre.add(lblTitre);
