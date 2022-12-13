@@ -3,7 +3,6 @@ package main;
 import ihm.*;
 //import metier.*;
 import metier.Arete;
-
 import java.awt.Dimension;
 
 import javax.swing.Icon;
