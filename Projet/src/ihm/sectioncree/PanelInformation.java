@@ -44,7 +44,7 @@ public class PanelInformation extends JPanel
 
 		this.btnGenereVille 		= new JButton("Généré ville",iconVille);
 		this.btnGenereChemin		= new JButton("Généré chemin",iconChemin);
- 		this.btnSupp 			= new JButton("Supprimer",iconGomme);
+ 		this.btnSupp 			    = new JButton("Supprimer",iconGomme);
 		this.btnGenereGraph 		= new JButton("Généré graphe",iconGenere);
 		this.listHistorique 		= new JList<String>(TAB_EXPLIQUATION_HISTORIQUE);
 
