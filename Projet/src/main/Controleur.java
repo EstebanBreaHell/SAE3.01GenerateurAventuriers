@@ -57,7 +57,7 @@ public class Controleur
 
     public Color getCouleurArrete(Arete arete)
     {
-        return null; 
+        return arete.getCouleur();
     }
 
 
