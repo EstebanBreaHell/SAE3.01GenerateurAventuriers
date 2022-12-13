@@ -19,6 +19,8 @@ public class Arrete {
     * @param wagon le nombre de wagon
     */
 
+
+    //ON RAPPELLE QUE VILLE 1 -----> VILLE 2
     public Arrete(Noeud ville, Noeud ville2, Color couleur, int wagon) {
         this.ville = ville;
         this.ville2 = ville2;
@@ -31,6 +33,8 @@ public class Arrete {
     public void removeArrete() {
         this.ville .removeArrete(this);
         this.ville2.removeArrete(this);
+
+        
     }
     public Noeud getVille() {
         return this.ville;
