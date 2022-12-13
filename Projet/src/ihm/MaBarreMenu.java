@@ -8,21 +8,21 @@ import java.awt.event.*;
 
 public class MaBarreMenu extends JMenuBar implements ActionListener
 {
-	private JFrame frame;
-
 	private Controleur ctrl;
 
-	private JMenuItem     menuiFichierOuvrir;
-	private JMenuItem	  menuiFichierFermer;
-	private JMenuItem	  menuiFichierEnregistrer;
-	private JMenuItem	  menuiFichierEnregistrerSous;
-	private JMenuItem     menuiFichierQuitter;
+	private JFrame frame;
 
-	private JMenuItem	  menuiEditionAnnuler;
-	private JMenuItem	  menuiEditionRefaire;
-	private JMenuItem	  menuiEditionCopier;
-	private JMenuItem	  menuiEditionColler;
-	private JMenuItem	  menuiEditionCouper;
+	private JMenuItem menuiFichierOuvrir;
+	private JMenuItem menuiFichierFermer;
+	private JMenuItem menuiFichierEnregistrer;
+	private JMenuItem menuiFichierEnregistrerSous;
+	private JMenuItem menuiFichierQuitter;
+
+	private JMenuItem menuiEditionAnnuler;
+	private JMenuItem menuiEditionRefaire;
+	private JMenuItem menuiEditionCopier;
+	private JMenuItem menuiEditionColler;
+	private JMenuItem menuiEditionCouper;
 
 	public MaBarreMenu(JFrame f,Controleur ctrl)
 	{
@@ -120,15 +120,12 @@ public class MaBarreMenu extends JMenuBar implements ActionListener
 		if(e.getSource() instanceof JMenuItem )
 		{
 			String info = ((JMenuItem) e.getSource()).getText();
-
 			switch (info) 
 			{
 				case "Refaire":	this.ctrl.changerPanel("init");break;
 				case "Quitter" : this.ctrl.fermeFrame();
 			}
-			
 		}
-
 	}
 }
 
