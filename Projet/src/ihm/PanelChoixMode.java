@@ -26,7 +26,7 @@ public class PanelChoixMode extends JPanel implements ActionListener
 	{
 		this.ctrl = ctrl;
 
-		Icon iconCree 	     = Controleur.imageToIcon("donnee\\chemin.png");
+		Icon iconCree 	     = Controleur.imageToIcon("Projet\\donnee\\chemin.png");
 		JPanel panelDispoBtn = new JPanel(new GridLayout(3,1, 30, 30));
 		JLabel lblTitre      = new JLabel("Images importées", JLabel.CENTER);
 		Border border        = BorderFactory.createLineBorder(Color.BLACK, 2);
@@ -59,29 +59,29 @@ public class PanelChoixMode extends JPanel implements ActionListener
 		this.btnEditer.setBackground(Color.WHITE);
 		this.btnQuitter.setBackground(Color.WHITE);
 		
+		JPanel tmp = new JPanel(new GridLayout(70,1));	
+		JPanel panelListe[]  = new JPanel[70];
 
-		this.scrollPane = new JScrollPane(panelImages, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
 		panelDispoBtn.setBorder(espacement);
 		panelDispoBtn.add(this.btnImporter);
 		panelDispoBtn.add(this.btnEditer);
 		panelDispoBtn.add(this.btnQuitter);
 
-		JPanel panelTitre = new JPanel(new GridLayout(1,3));
-		JPanel panelListe  = new JPanel(new GridLayout(70,1));
-
-		panelTitre.add(new JLabel());
-		panelTitre.add(lblTitre);
-		panelTitre.add(new JLabel());
-
+	
 
 		for(int i = 0; i < 70; i++)
 		{
-			panelListe.add(new JLabel("Image " + i, JLabel.CENTER));
+			panelListe[i] = new JPanel(new BorderLayout());
+			panelListe[i].add(new JLabel("Image n" + i,JLabel.CENTER),BorderLayout.NORTH);
+			panelListe[i].add(new JButton(iconCree),BorderLayout.CENTER);
+			panelImages.add(panelListe[i]);
+
+			tmp.add(panelListe[i]);
+
 		}
 
-		panelImages.add(panelTitre, BorderLayout.NORTH);
-		panelImages.add(panelListe, BorderLayout.CENTER);
+		this.scrollPane = new JScrollPane(tmp, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
 
 		this.add(panelDispoBtn);
@@ -123,4 +123,6 @@ public class PanelChoixMode extends JPanel implements ActionListener
 			System.exit(0);
 		/*----------------------------*/
 	}
+
+
 }
