@@ -21,6 +21,7 @@ public class PanelChoixMode extends JPanel implements ActionListener
 	private JButton btnEditer;
 	private JButton btnQuitter;
 	private JScrollBar scrollBar;
+	private JScrollPane scrollPane;
 
 	public PanelChoixMode(Controleur ctrl)
 	{
@@ -35,7 +36,6 @@ public class PanelChoixMode extends JPanel implements ActionListener
 
 		System.out.println(" Longueur " + length);
 		System.out.println(" Largeur " + width);
-
 
 		Border espacement = BorderFactory.createEmptyBorder(length, width, width, length);
 
@@ -55,6 +55,7 @@ public class PanelChoixMode extends JPanel implements ActionListener
 		this.btnQuitter.setBorder(border);
 
 		this.scrollBar = new JScrollBar(JScrollBar.VERTICAL, 0, 10, 0, 100);
+		this.scrollPane = new JScrollPane(this.scrollBar);
 
 		panelDispoBtn.setBorder(espacement);
 
@@ -77,7 +78,7 @@ public class PanelChoixMode extends JPanel implements ActionListener
 	
 		panelImages.add(panelTitre, BorderLayout.NORTH);
 		panelImages.add(panelListe, BorderLayout.CENTER);
-		panelImages.add(this.scrollBar, BorderLayout.WEST);
+		panelImages.add(this.scrollPane, BorderLayout.WEST);
 
 
 		this.add(panelDispoBtn);
