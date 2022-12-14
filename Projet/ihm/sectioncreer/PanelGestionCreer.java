@@ -1,5 +1,7 @@
 package ihm.sectioncreer;
 
+import java.awt.BorderLayout;
+
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import main.Controleur;
@@ -16,6 +18,7 @@ public class PanelGestionCreer extends JPanel
 	public PanelGestionCreer(Controleur ctrl)
 	{
 		this.ctrl = ctrl; 
+		this.setLayout(new BorderLayout());
 
 		this.tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		this.panelCreerNoeud = new PanelCreerNoeud(this.ctrl);
@@ -26,7 +29,7 @@ public class PanelGestionCreer extends JPanel
 		this.tabbedPane.addTab("Créer Arete", this.panelCreerArete);
 		this.tabbedPane.addTab("Détail", this.panelDetail);
 
-		this.add(this.tabbedPane);
+		this.add(this.tabbedPane,BorderLayout.CENTER);
 
 	}
 	
