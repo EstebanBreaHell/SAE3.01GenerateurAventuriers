@@ -25,4 +25,8 @@ public class PanelCreer extends JPanel
 		this.add(this.panelGestionCreer, BorderLayout.EAST);
 		
 	}
+
+	public void majIHM(){
+		this.panelGraphique.repaint();
+	}
 }
