@@ -121,15 +121,19 @@ public class Metier
 	}
 
     /* Méthode permettant de récupérer tous les noeuds disponibles ( qui n'ont pas d'aretes ) */
-    public ArrayList<Noeud> getNoeudDispo(Noeud n) {
+	/* A refaire car pue la merde */
+    public ArrayList<Noeud> getNoeudDispo(Noeud n) 
+	{
         ArrayList<Noeud> lstNoeudOccupe = new ArrayList<Noeud>();
         ArrayList<Noeud> lstNoeudDispo = new ArrayList<Noeud>();
 
         for (Arete a : n.getArrayArete())
-            if(a.getNoeud() != n || a.getNoeud2() != n) {
-                lstNoeudOccupe.add(a.getNoeud());
-                lstNoeudOccupe.add(a.getNoeud2());
-            }
+		{
+            if(a.getNoeud() != n && !lstNoeudOccupe.contains(a.getNoeud()))
+				lstNoeudOccupe.add(a.getNoeud());
+			if(a.getNoeud2() != n && !lstNoeudOccupe.contains(a.getNoeud2()))
+				lstNoeudOccupe.add(a.getNoeud2());
+		}
 
         for (Noeud noeud : this.lstNoeud)
             if(!lstNoeudOccupe.contains(noeud))
@@ -140,7 +144,8 @@ public class Metier
     }
     /*------------------------------------*/
 
-    public void majIHM(){
+    public void majIHM()
+	{
         this.ctrl.majIHM();
     }
 }
