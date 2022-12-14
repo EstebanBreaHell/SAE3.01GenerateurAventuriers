@@ -107,6 +107,16 @@ public class Controleur
         return Optional.ofNullable(filename).filter(f -> f.contains(".")).map(f -> f.substring(filename.lastIndexOf(".") + 1)).get();
 	}
 
+    public PanelImageInfo getPanelSelectionner()
+    {
+        return this.ihm.getPanelSelectionner();
+    }
+
+    public void imageToPanelGraphique(String path)
+    {
+        this.ihm.imageToPanelGraphique(path);
+    }
+
     /*
     public Color getCouleurArrete(Arete arete)
     {

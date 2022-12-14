@@ -67,6 +67,7 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 		this.listHistorique  = new JList<String>(TAB_EXPLIQUATION_HISTORIQUE);
 
 
+
 		this.listHistorique.setPreferredSize(new Dimension(0,550));
 		this.listHistorique.setBorder(border);
 		this.listHistorique.setBackground(Color.WHITE);

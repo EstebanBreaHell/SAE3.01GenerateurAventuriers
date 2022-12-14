@@ -43,7 +43,9 @@ public class PanelImageInfo extends JPanel implements ActionListener
 		this.btnImage.addActionListener(this);
 	}
 
-	public void inverseEtatBtn(){this.btnImage.setEnabled(!this.btnImage.isEnabled());}
+	public Icon getIcon() 			{return this.icon;}
+	public void inverseEtatBtn()	{this.btnImage.setEnabled(!this.btnImage.isEnabled());}
+	public String getNomfichier() {return this.nomFichier;}
 	public void changerBordure(Border bordure){this.btnImage.setBorder(bordure);}
 
 	@Override

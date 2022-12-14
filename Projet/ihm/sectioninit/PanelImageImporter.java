@@ -89,6 +89,10 @@ public class PanelImageImporter extends JPanel
 		super.paint(g);
 	}
 	
+	public PanelImageInfo getPanelSelectionner()
+	{
+		return this.panelSelectionner;
+	}
 
 	public void majPanelImporter()
 	{

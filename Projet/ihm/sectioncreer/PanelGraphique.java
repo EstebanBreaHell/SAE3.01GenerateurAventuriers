@@ -9,7 +9,10 @@ import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -59,7 +62,19 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 		this.add(panelBtn, BorderLayout.NORTH);
 
 		this.btnBackToMenu.addActionListener(this);
-	}	
+	}
+
+	public void imageToPanelGraphique(String path)
+	{
+		//g.drawImage.drawImage(ImageIO.read(new File(path)) , 0, 0, this);
+
+				
+	}
+
+	public void paintComponent(Graphics g)
+	{
+		super.paintComponent(g);
+	}
 
 	public void paint(Graphics g)
 	{
