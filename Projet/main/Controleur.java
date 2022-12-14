@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.Image;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import javax.swing.Icon;
@@ -12,17 +13,20 @@ import javax.swing.ImageIcon;
 
 import ihm.Frame;
 import ihm.sectioninit.PanelImageInfo;
+import metier.Arete;
+import metier.Metier;
+import metier.Noeud;
 
 
 public class Controleur 
 {
-    //private Metier metier;
+    private Metier metier;
     private Frame ihm;
 
 
     public Controleur()
     {
-        //this.metier = new Metier(this);
+        this.metier = new Metier(this);
         this.ihm = new Frame(this,"init");
     }
 
@@ -63,6 +67,16 @@ public class Controleur
 
     public Font getFont(){return this.ihm.getDefautFont();}
 
+    public ArrayList<Noeud> getLstNoeud()
+    {
+        return this.metier.getLstNoeud();
+    }
+
+    public ArrayList<Arete> getLstArete()
+    {
+        return this.metier.getLstArete();
+    }
+
     public String getExtension(String filename) {
         return Optional.ofNullable(filename).filter(f -> f.contains(".")).map(f -> f.substring(filename.lastIndexOf(".") + 1)).get();
 	}
@@ -74,6 +88,9 @@ public class Controleur
     }
     */
 
+    public void majIHM(){
+        this.ihm.majIHM();
+    }
 
     public static void main(String[] args)
     {
