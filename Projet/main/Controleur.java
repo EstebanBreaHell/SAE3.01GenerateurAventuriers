@@ -76,6 +76,32 @@ public class Controleur
     {
         return this.metier.getLstArete();
     }
+    public void setNbJoueurMin( int m )
+    {
+        this.metier.setNbJoueurMin(m);
+    }
+
+    public void setNbJoueurMax( int m )
+    {
+        this.metier.setNbJoueurMax(m);
+    }
+
+    public void setNbWagonsMax(int nbWagonsMax) {
+        this.metier.setNbWagonsMax(nbWagonsMax);
+    }
+
+    public int getNbJoueurMax() {
+        return this.metier.getNbJoueurMax();
+    }
+
+    public int getNbJoueurMin() {
+        return this.metier.getNbJoueurMin();
+    }
+
+    public int getNbWagonsMax() {
+        return this.metier.getNbWagonsMax();
+    }
+
 
     public String getExtension(String filename) {
         return Optional.ofNullable(filename).filter(f -> f.contains(".")).map(f -> f.substring(filename.lastIndexOf(".") + 1)).get();
