@@ -47,11 +47,11 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 	public PanelCreerNoeud(Controleur ctrl)
 	{
 		this.setLayout(new BorderLayout());
-		
 		this.ctrl = ctrl;
+		
 		JPanel panelCoordonnees 	= new JPanel(new GridLayout(5,3,10, 10));
-		JPanel panelDispoHistorique = new JPanel(new BorderLayout(0,10));
-		JPanel panelValidation		= new JPanel(new GridLayout(1,3, 10, 15));
+		JPanel panelDispoHistorique = new JPanel(new BorderLayout(0,20));
+		JPanel panelValidation		= new JPanel(new GridLayout(3,3, 10, 20));
 		JLabel lblNom = new JLabel("Nom : ", JLabel.LEFT);
 		JLabel lblPosX = new JLabel("Position X : ", JLabel.LEFT);
 		JLabel lblPosY = new JLabel("Position Y : ", JLabel.LEFT);
@@ -67,7 +67,7 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 		this.listHistorique  = new JList<String>(TAB_EXPLIQUATION_HISTORIQUE);
 
 
-		this.listHistorique.setPreferredSize(new Dimension(100,400));
+		this.listHistorique.setPreferredSize(new Dimension(0,550));
 		this.listHistorique.setBorder(border);
 		this.listHistorique.setBackground(Color.WHITE);
 		this.btnSupprimer.setBackground(Color.WHITE);
@@ -95,25 +95,23 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 		panelCoordonnees.add(lblPosY);
 		panelCoordonnees.add(this.txtPosY);
 		panelCoordonnees.add(new JLabel());
-		panelCoordonnees.add(new JLabel());
-		panelCoordonnees.add(new JLabel());
-		panelCoordonnees.add(new JLabel());
 
 		panelDispoHistorique.add(lblHistorique,BorderLayout.NORTH);
 		panelDispoHistorique.add(new JPanel(), BorderLayout.WEST);
 		panelDispoHistorique.add(new JPanel(), BorderLayout.EAST);
 		panelDispoHistorique.add(this.listHistorique, BorderLayout.CENTER);
+		panelDispoHistorique.add(new JPanel(), BorderLayout.SOUTH);
 		
 
-		//panelValidation.add(new JLabel());
+		panelValidation.add(new JLabel());
 		panelValidation.add(this.btnGenererNoeud);
-		//panelValidation.add(new JLabel());
-		//panelValidation.add(new JLabel());
+		panelValidation.add(new JLabel());
+		panelValidation.add(new JLabel());
 		panelValidation.add(this.btnGenererPrefait);
-		//panelValidation.add(new JLabel());
-		//panelValidation.add(new JLabel());
+		panelValidation.add(new JLabel());
+		panelValidation.add(new JLabel());
 		panelValidation.add(this.btnSupprimer);
-		//panelValidation.add(new JLabel());
+		panelValidation.add(new JLabel());
 
 
 		this.add(panelCoordonnees, BorderLayout.NORTH);

@@ -2,12 +2,19 @@ package ihm.sectioncreer;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JMenuItem;
+
+import java.awt.event.KeyEvent;
+import java.awt.event.InputEvent;
+
 
 
 import main.Controleur;
@@ -16,30 +23,27 @@ public class PanelDetail extends JPanel implements ActionListener
 {
 	private JTextField txtNbJoueursMin;	
 	private JTextField txtNbJoueursMax;
-	private JTextField txtNbWagonsMax;
 	private JTextField txtNbCartesJoueurs;
 	private Controleur ctrl;
-
-
+	
 	public PanelDetail(Controleur ctrl)
 	{
 		this.ctrl = ctrl; 
 		this.setLayout(new BorderLayout());
 		JLabel lblNbJoueursMin = new JLabel("Nombre de joueurs minimum : ");
 		JLabel lblNbJoueursMax = new JLabel("Nombre de joueurs maximum : ");
-		JLabel lblNbWagonsMax = new JLabel("Nombre de wagons maximum : ");
+		JLabel lblNbWagonsMax = new JLabel("Choisissez un nombre de wagons");
 		JLabel lblNbCartesJoueurs = new JLabel("Nombre de cartes par joueurs : ");
+
+
 
 		this.txtNbJoueursMin = new JTextField();
 		this.txtNbJoueursMax = new JTextField();
-		this.txtNbWagonsMax = new JTextField();
 		this.txtNbCartesJoueurs = new JTextField();
 
-		JPanel panelDetail 		= new JPanel(new GridLayout(3,2));
-		JPanel panelChoixCarte	= new JPanel(new GridLayout(4,4, 10, 10));
-		JPanel panelBas			= new JPanel(new GridLayout(1,2));
-
-		for(int i = 0; i < 16; i++)
+		JPanel panelDetail 		= new JPanel(new GridLayout(5,3,0,10));
+		JPanel panelChoixCarte	= new JPanel(new GridLayout(4,4, 0,0));
+		for(int i = 0; i < 8; i++)
 		{
 			JButton btn = new JButton("" + i);
 			JLabel lbl = new JLabel("" + i);
@@ -48,20 +52,37 @@ public class PanelDetail extends JPanel implements ActionListener
 			panelChoixCarte.add(lbl);
 		}
 
+
+		panelDetail.add(new JLabel());
+		panelDetail.add(new JLabel());
+		panelDetail.add(new JLabel());
 		panelDetail.add(lblNbJoueursMin);
 		panelDetail.add(this.txtNbJoueursMin);
+		panelDetail.add(new JLabel());
 		panelDetail.add(lblNbJoueursMax);
 		panelDetail.add(this.txtNbJoueursMax);
+		panelDetail.add(new JLabel());
+		panelDetail.add(lblNbCartesJoueurs);
+		panelDetail.add(this.txtNbCartesJoueurs);
+		panelDetail.add(new JLabel());
 		panelDetail.add(lblNbWagonsMax);
-		panelDetail.add(this.txtNbWagonsMax);
 
-		panelBas.add(lblNbCartesJoueurs);
-		panelBas.add(this.txtNbCartesJoueurs);
+		
+
 
 		this.add(panelDetail, BorderLayout.NORTH);
 		this.add(panelChoixCarte, BorderLayout.CENTER);
-		this.add(panelBas, BorderLayout.SOUTH);
 		
+		
+		/*private JMenuItem menuiRetour;
+
+		JMenu menuRetour = new JMenu("Retour au menu");
+		menuRetour.setMnemonic('R');
+
+		this.menuiRetour = new JMenuItem("Retour au menu");
+		this.menuiRetour.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4,InputEvent.ALT_DOWN_MASK));
+		menuRetour.add(this.menuiRetour);
+		this.add(menuRetour, BorderLayout.SOUTH);*/
 	}
 
 	public void actionPerformed(ActionEvent e)

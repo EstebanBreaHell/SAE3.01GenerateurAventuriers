@@ -49,13 +49,15 @@ public class PanelCreerArete extends JPanel implements ActionListener
 		this.setLayout(new BorderLayout());
 		this.ctrl = ctrl;
 
-		JPanel panelHaut 	  		= new JPanel(new GridLayout(6,3, 10, 10));
-		JPanel panelDispoHistorique = new JPanel(new BorderLayout(0,20));
-		JPanel panelValidation		= new JPanel(new GridLayout(3,3, 10, 15));
+		JPanel panelHaut 	  		= new JPanel(new GridLayout(6,3,0,15));
+		JPanel panelDispoHistorique = new JPanel(new BorderLayout(0,25));
+		JPanel panelValidation		= new JPanel(new GridLayout(3,3, 10, 20));
 		JLabel lblCouleur  = new JLabel("Couleur : ", JLabel.LEFT);
 		JLabel lblDistance = new JLabel("Distance : ", JLabel.LEFT);
 		JLabel lblRelier   = new JLabel("Relier... ", JLabel.LEFT);
+		JLabel lblVers	   = new JLabel("vers ", JLabel.CENTER);
 		Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
+		JLabel lblHistorique = new JLabel("Historique", JLabel.CENTER);
 
 		this.txtCouleur = new JTextField();
 		this.txtDistance = new JTextField();
@@ -76,7 +78,10 @@ public class PanelCreerArete extends JPanel implements ActionListener
 		this.listHistorique.setBorder(border);
 
 
-		
+		this.btnGenererArete.setBackground(Color.WHITE);
+		this.btnGenererPrefait.setBackground(Color.WHITE);
+		this.btnSupprimer.setBackground(Color.WHITE);
+
 		panelHaut.add(new JLabel());
 		panelHaut.add(new JLabel());
 		panelHaut.add(new JLabel());
@@ -87,20 +92,28 @@ public class PanelCreerArete extends JPanel implements ActionListener
 		panelHaut.add(new JLabel());
 		panelHaut.add(new JLabel());
 		panelHaut.add(this.comboNoeud1);
-		panelHaut.add(new JLabel());
-		panelHaut.add(new JLabel());
+		panelHaut.add(lblVers);
 		panelHaut.add(this.comboNoeud2);
-		panelHaut.add(new JLabel());
-		panelHaut.add(new JLabel());
 		panelHaut.add(lblDistance);
 		panelHaut.add(this.txtDistance);
 		panelHaut.add(new JLabel());
 
-		panelDispoHistorique.add(new JLabel("Historique : "), BorderLayout.NORTH);
+		panelDispoHistorique.add(lblHistorique, BorderLayout.NORTH);
 		panelDispoHistorique.add(this.listHistorique, BorderLayout.CENTER);
+		panelDispoHistorique.add(new JPanel(), BorderLayout.SOUTH);
+		panelDispoHistorique.add(new JPanel(), BorderLayout.EAST);
+		panelDispoHistorique.add(new JPanel(), BorderLayout.WEST);
 
+		panelValidation.add(new JLabel());
 		panelValidation.add(this.btnGenererArete);
+		panelValidation.add(new JLabel());
+		panelValidation.add(new JLabel());
 		panelValidation.add(this.btnGenererPrefait);
+		panelValidation.add(new JLabel());
+		panelValidation.add(new JLabel());
+		panelValidation.add(this.btnSupprimer);
+		panelValidation.add(new JLabel());
+
 
 		this.add(panelHaut, BorderLayout.NORTH);
 		this.add(panelDispoHistorique, BorderLayout.CENTER);
