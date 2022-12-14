@@ -74,6 +74,5 @@ public class PanelDetail extends JPanel implements ActionListener
 	public void actionPerformed(ActionEvent e)
 	{
 		// TODO Auto-generated method stub
-
 	}
 }

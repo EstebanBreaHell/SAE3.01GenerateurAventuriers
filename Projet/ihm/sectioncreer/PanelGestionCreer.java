@@ -14,6 +14,7 @@ public class PanelGestionCreer extends JPanel
 	private PanelCreerNoeud panelCreerNoeud;
 	private PanelCreerArete panelCreerArete;
 	private PanelDetail	panelDetail;
+	//private PanelObjectif panelObjectif;
 
 	public PanelGestionCreer(Controleur ctrl)
 	{
@@ -24,9 +25,11 @@ public class PanelGestionCreer extends JPanel
 		this.panelCreerNoeud = new PanelCreerNoeud(this.ctrl);
 		this.panelCreerArete = new PanelCreerArete(this.ctrl);
 		this.panelDetail	 = new PanelDetail(this.ctrl);
+		//this.panelObjectif = new PanelObjectif(this.ctrl);
 
 		this.tabbedPane.addTab("Créer Noeud",this.panelCreerNoeud);
 		this.tabbedPane.addTab("Créer Arête", this.panelCreerArete);
+		this.tabbedPane.addTab("Objectifs", null);
 		this.tabbedPane.addTab("Paramètres", this.panelDetail);
 
 		this.add(this.tabbedPane,BorderLayout.CENTER);
