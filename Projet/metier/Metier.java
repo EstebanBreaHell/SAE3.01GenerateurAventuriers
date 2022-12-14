@@ -19,7 +19,7 @@ public class Metier
 	private ArrayList<Noeud> lstNoeud;
 	private ArrayList<Arete> lstArete;
 
-	private int nbJoueurMax, nbJoueurMin;
+	private int nbJoueurMax, nbJoueurMin, nbWagonsMax;
 
     public Metier( Controleur ctrl )
     {
@@ -29,6 +29,7 @@ public class Metier
 
 		this.nbJoueurMax = 0;
 		this.nbJoueurMin = 0;
+        this.nbWagonsMax = 0;
     }
 
     public void setNbJoueurMin( int m )
@@ -39,6 +40,22 @@ public class Metier
     public void setNbJoueurMax( int m )
     {
         this.nbJoueurMax =  m ;
+    }
+
+    public void setNbWagonsMax(int nbWagonsMax) {
+        this.nbWagonsMax = nbWagonsMax;
+    }
+
+    public int getNbJoueurMax() {
+        return nbJoueurMax;
+    }
+
+    public int getNbJoueurMin() {
+        return nbJoueurMin;
+    }
+
+    public int getNbWagonsMax() {
+        return nbWagonsMax;
     }
 
     public void ecrireXml()
@@ -61,12 +78,25 @@ public class Metier
                 pw.println ("\t\t</noeud>");
 
             }
+            for( Arete a : lstArete )
+            {
+                pw.println ( "\t\t<arete>" );
+
+                pw.println ( "\t\t<noeud1>" + a.getNoeud().getNom() + " </noeud1>" );
+                pw.println ( "\t\t<noeud2>" + a.getNoeud2().getNom() + " </noeud2>" );
+                pw.println ( "\t\t<couleurRGB>" + a.getCouleur().getRGB() + " </couleurRGB>" );
+                pw.println ( "\t\t<wagons>" + a.getWagon() + " </wagons>" );
+
+                pw.println ("\t\t</arete>");
+
+            }
             pw.println ( " \t</mappe>" );
 
             pw.println ( "\t<details>" );
 
             pw.println ( "\t\t<nbJoueurMin>" + this.nbJoueurMin + " </nbJoueurMin>" );
             pw.println ( "\t\t<nbJoueurMax>" + this.nbJoueurMax + " </nbJoueurMax>" );
+            pw.println ( "\t\t<nbWagonsMax>" + this.nbWagonsMax + " </nbWagonsMax>" );
 
             pw.println ( "\t</details>" );
 
@@ -80,7 +110,7 @@ public class Metier
 
     }
 
-	public void creeNoeud( String nom, int x, int y )
+    public void creeNoeud(String nom, int x, int y )
 	{
 		Noeud n = new Noeud( nom, x, y, x, y-10 );
 		lstNoeud.add( n );
