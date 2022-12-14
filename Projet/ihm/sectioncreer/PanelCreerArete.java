@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import java.awt.Color;
+import java.awt.Dimension;
 
 import main.Controleur;
 
@@ -25,37 +26,48 @@ public class PanelCreerArete extends JPanel implements ActionListener
 	private JButton    btnSupprimer;
 	private JButton    btnGenererArete;
 	private JButton    btnGenererPrefait;
+	private Controleur ctrl;
 
 	private final String[] TAB_EXPLIQUATION_HISTORIQUE = {"|Noeud : a 		| Action : Ajout 		| numeroMouvement : 1	|",
 														  "|Noeud : b 		| Action : Ajout 		| numeroMouvement : 2	|",
-														  "|Arête : a-b 	| Action : Ajout 		| numeroMouvement : 3 	|",
-														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|"};
+													      "|Arête : a-b 	| Action : Ajout 		| numeroMouvement : 3 	|",
+														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|",
+														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|",
+														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|",
+														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|",
+														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|",
+														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|",
+														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|", 
+														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|", 
+														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|", 
+														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|",};
 
 	private JList<String>listHistorique;
 
 	public PanelCreerArete(Controleur ctrl)
 	{
 		this.setLayout(new BorderLayout());
+		this.ctrl = ctrl;
 
-
-		JPanel panelHaut 	  		= new JPanel(new GridLayout(5,2, 10, 10));
-		JPanel panelSupprimer 		= new JPanel(new GridLayout(1,3, 10, 10));
-		JPanel panelDispoHistorique = new JPanel(new BorderLayout());
-		JPanel panelValidation		= new JPanel(new GridLayout(2,1, 10, 10));
+		JPanel panelHaut 	  		= new JPanel(new GridLayout(6,3, 10, 10));
+		JPanel panelDispoHistorique = new JPanel(new BorderLayout(0,20));
+		JPanel panelValidation		= new JPanel(new GridLayout(3,3, 10, 15));
 		JLabel lblCouleur  = new JLabel("Couleur : ", JLabel.LEFT);
 		JLabel lblDistance = new JLabel("Distance : ", JLabel.LEFT);
 		JLabel lblRelier   = new JLabel("Relier... ", JLabel.LEFT);
-		Border border = BorderFactory.createLineBorder(Color.BLACK, 2);
+		Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
 
 		this.txtCouleur = new JTextField();
 		this.txtDistance = new JTextField();
 		this.comboNoeud1 = new JComboBox();
 		this.comboNoeud2 = new JComboBox();
 		this.btnSupprimer = new JButton("Supprimer");
-		this.btnGenererArete = new JButton("Générer une arête");
-		this.btnGenererPrefait = new JButton("Générer une arête préfaite");
+		this.btnGenererArete = new JButton("Générer arête");
+		this.btnGenererPrefait = new JButton("Générer arête préfaite");
 		this.listHistorique = new JList<String>(TAB_EXPLIQUATION_HISTORIQUE);
 
+
+		this.listHistorique.setPreferredSize(new Dimension(0, 550));
 		this.txtCouleur.setBorder(border);
 		this.txtDistance.setBorder(border);
 		this.comboNoeud1.setBorder(border);
@@ -64,20 +76,25 @@ public class PanelCreerArete extends JPanel implements ActionListener
 		this.listHistorique.setBorder(border);
 
 
+		
+		panelHaut.add(new JLabel());
+		panelHaut.add(new JLabel());
+		panelHaut.add(new JLabel());
 		panelHaut.add(lblCouleur);
 		panelHaut.add(this.txtCouleur);
+		panelHaut.add(new JLabel());
 		panelHaut.add(lblRelier); 
+		panelHaut.add(new JLabel());
 		panelHaut.add(new JLabel());
 		panelHaut.add(this.comboNoeud1);
 		panelHaut.add(new JLabel());
+		panelHaut.add(new JLabel());
 		panelHaut.add(this.comboNoeud2);
+		panelHaut.add(new JLabel());
 		panelHaut.add(new JLabel());
 		panelHaut.add(lblDistance);
 		panelHaut.add(this.txtDistance);
-
-		panelSupprimer.add(new JLabel());
-		panelSupprimer.add(this.btnSupprimer);
-		panelSupprimer.add(new JLabel());
+		panelHaut.add(new JLabel());
 
 		panelDispoHistorique.add(new JLabel("Historique : "), BorderLayout.NORTH);
 		panelDispoHistorique.add(this.listHistorique, BorderLayout.CENTER);
@@ -86,8 +103,7 @@ public class PanelCreerArete extends JPanel implements ActionListener
 		panelValidation.add(this.btnGenererPrefait);
 
 		this.add(panelHaut, BorderLayout.NORTH);
-		this.add(panelSupprimer, BorderLayout.CENTER);
-		this.add(panelDispoHistorique);
+		this.add(panelDispoHistorique, BorderLayout.CENTER);
 		this.add(panelValidation, BorderLayout.SOUTH);
 
 	}

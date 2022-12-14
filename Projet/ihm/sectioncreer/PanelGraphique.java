@@ -35,15 +35,7 @@ public class PanelGraphique extends JPanel implements ActionListener
 
 		this.setLayout(new BorderLayout());
 
-		this.btnImportImg = new JButton("[IMPORTE UN IMAGE]");
-
-		panelDispoBtn.add(new JLabel(" "),BorderLayout.NORTH);
-		panelDispoBtn.add(this.btnImportImg,BorderLayout.CENTER);
-		panelDispoBtn.add(new JLabel(" "),BorderLayout.SOUTH);
-
 		this.add(panelDispoBtn);
-
-		this.btnImportImg.addActionListener(this);
 	}
 
 	public void paint(Graphics g)
