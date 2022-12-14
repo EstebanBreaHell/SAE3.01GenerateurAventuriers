@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import java.awt.Color;
+import java.awt.Dimension;
 
 import main.Controleur;
 
@@ -23,38 +24,54 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 	private JButton    btnSupprimer;
 	private JButton    btnGenererNoeud;
 	private JButton    btnGenererPrefait;
+	private Controleur ctrl;
 
 	private final String[] TAB_EXPLIQUATION_HISTORIQUE = {"|Noeud : a 		| Action : Ajout 		| numeroMouvement : 1	|",
 														  "|Noeud : b 		| Action : Ajout 		| numeroMouvement : 2	|",
 														  "|Arête : a-b 	| Action : Ajout 		| numeroMouvement : 3 	|",
-														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|"};
+														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|",
+														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|",
+														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|",
+														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|",
+														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|",
+														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|",
+														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|", 
+														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|", 
+														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|", 
+														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|", };
 
 	private JList<String>listHistorique;
 
 	public PanelCreerNoeud(Controleur ctrl)
 	{
 		this.setLayout(new BorderLayout());
-		JPanel panelCoordonnees 	= new JPanel(new GridLayout(3,2, 10, 10));
-		JPanel panelSupprimer 		= new JPanel(new GridLayout(1,3, 10, 10));
-		JPanel panelDispoHistorique = new JPanel(new BorderLayout());
-		JPanel panelValidation		= new JPanel(new GridLayout(2,1, 10, 10));
+		this.ctrl = ctrl;
+		JPanel panelCoordonnees 	= new JPanel(new GridLayout(5,3,10, 10));
+		JPanel panelDispoHistorique = new JPanel(new BorderLayout(0,10));
+		JPanel panelValidation		= new JPanel(new GridLayout(3,3, 10, 15));
 		JLabel lblNom = new JLabel("Nom : ", JLabel.LEFT);
 		JLabel lblPosX = new JLabel("Position X : ", JLabel.LEFT);
 		JLabel lblPosY = new JLabel("Position Y : ", JLabel.LEFT);
-		Border border = BorderFactory.createLineBorder(Color.BLACK, 2);
-
+		JLabel lblHistorique = new JLabel("Historique ", JLabel.CENTER);
+		Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
 
 		this.txtNom = new JTextField();
 		this.txtPosX = new JTextField();
 		this.txtPosY = new JTextField();
 		this.btnSupprimer = new JButton("Supprimer");
-		this.btnGenererNoeud = new JButton("Générer un noeud : ");
-		this.btnGenererPrefait = new JButton("Générer un noeud préfait : ");
+		this.btnGenererNoeud = new JButton("Générer noeud");
+		this.btnGenererPrefait = new JButton("Générer noeud préfait");
 		this.listHistorique  = new JList<String>(TAB_EXPLIQUATION_HISTORIQUE);
 
 
+		this.listHistorique.setPreferredSize(new Dimension(100,400));
 		this.listHistorique.setBorder(border);
 		this.listHistorique.setBackground(Color.WHITE);
+		this.btnSupprimer.setBackground(Color.WHITE);
+		this.btnGenererNoeud.setBackground(Color.WHITE);
+		this.btnGenererPrefait.setBackground(Color.WHITE);
+		
+
 		this.txtNom.setBorder(border);
 		this.txtPosX.setBorder(border);
 		this.txtPosY.setBorder(border);
@@ -62,28 +79,40 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 		this.btnGenererNoeud.setBorder(border);
 		this.btnGenererPrefait.setBorder(border);
 	
+		panelCoordonnees.add(new JLabel());
+		panelCoordonnees.add(new JLabel());
+		panelCoordonnees.add(new JLabel());
 		panelCoordonnees.add(lblNom);
 		panelCoordonnees.add(this.txtNom);
+		panelCoordonnees.add(new JLabel());
 		panelCoordonnees.add(lblPosX);
 		panelCoordonnees.add(this.txtPosX);
+		panelCoordonnees.add(new JLabel());
 		panelCoordonnees.add(lblPosY);
 		panelCoordonnees.add(this.txtPosY);
+		panelCoordonnees.add(new JLabel());
+		panelCoordonnees.add(new JLabel());
+		panelCoordonnees.add(new JLabel());
+		panelCoordonnees.add(new JLabel());
 
-		
-		panelSupprimer.add(new JLabel());
-		panelSupprimer.add(this.btnSupprimer);
-		panelSupprimer.add(new JLabel());
+		panelDispoHistorique.add(lblHistorique,BorderLayout.NORTH);
+		panelDispoHistorique.add(new JPanel(), BorderLayout.WEST);
+		panelDispoHistorique.add(new JPanel(), BorderLayout.EAST);
+		panelDispoHistorique.add(this.listHistorique, BorderLayout.CENTER);
 
-		panelDispoHistorique.add(new JLabel("Historique",JLabel.CENTER),BorderLayout.NORTH);
-		panelDispoHistorique.add(this.listHistorique);
-
+		panelValidation.add(new JLabel());
 		panelValidation.add(this.btnGenererNoeud);
+		panelValidation.add(new JLabel());
+		panelValidation.add(new JLabel());
 		panelValidation.add(this.btnGenererPrefait);
+		panelValidation.add(new JLabel());
+		panelValidation.add(new JLabel());
+		panelValidation.add(this.btnSupprimer);
+		panelValidation.add(new JLabel());
 
 
 		this.add(panelCoordonnees, BorderLayout.NORTH);
-		this.add(panelSupprimer, BorderLayout.CENTER);
-		this.add(panelDispoHistorique);
+		this.add(panelDispoHistorique, BorderLayout.CENTER);
 		this.add(panelValidation, BorderLayout.SOUTH);
 
 

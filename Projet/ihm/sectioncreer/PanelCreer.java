@@ -1,9 +1,6 @@
 package ihm.sectioncreer;
 
 import javax.swing.JPanel;
-
-import ihm.sectioninit.PanelImageInfo;
-
 import java.awt.BorderLayout;
 
 
@@ -14,6 +11,7 @@ public class PanelCreer extends JPanel
 	private Controleur ctrl; 
 	private PanelGraphique panelGraphique;
 	private PanelGestionCreer panelGestionCreer;
+	private PanelDetail panelDetail;
 
 	public PanelCreer(Controleur ctrl)
 	{
@@ -22,15 +20,9 @@ public class PanelCreer extends JPanel
 
 		this.panelGraphique 	= new PanelGraphique(this.ctrl);
 		this.panelGestionCreer 	= new PanelGestionCreer(this.ctrl);
-
-
+		
 		this.add(this.panelGraphique,BorderLayout.CENTER);
 		this.add(this.panelGestionCreer, BorderLayout.EAST);
 		
 	}
-
-	
-	
-
-	
 }
