@@ -1,6 +1,7 @@
 package ihm;
 
 
+import javax.swing.Icon;
 import javax.swing.JFrame;
 
 import ihm.sectioncreer.PanelCreer;
@@ -26,7 +27,9 @@ public class Frame extends JFrame
 
     public Frame(Controleur ctrl, String nomPanel)
     {
-        
+        this.panelInit = new PanelInit(this.ctrl);
+        this.panelCreer = new PanelCreer(this.ctrl);
+
         this.ctrl = ctrl;
 		this.longueur = this.tailleMoniteur.width  - (int) (this.tailleMoniteur.width*0.01) ;
 		this.hauteur  = this.tailleMoniteur.height - (int) (this.tailleMoniteur.height*0.06);
@@ -73,6 +76,16 @@ public class Frame extends JFrame
     public Font getDefautFont() {return Frame.POLICE_DEFAUT;}
     public Dimension getDimensionEcran() {return new Dimension(this.longueur,this.hauteur);}
     public void panelSelectionner(PanelImageInfo panelSelectionner){ this.panelInit.panelSelectionner(panelSelectionner);}
+
+    public void imageToPanelGraphique(String path)
+    {
+        this.panelCreer.imageToPanelGraphique(path);
+    }
+
+    public PanelImageInfo getPanelSelectionner()
+    {
+        return this.panelInit.getPanelSelectionner();
+    }
 
     public void majIHM() { this.panelCreer.majIHM();  }
     public void majPanelImporter(){this.panelInit.majPanelImporter();}

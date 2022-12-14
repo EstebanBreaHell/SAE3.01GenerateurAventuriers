@@ -1,5 +1,6 @@
 package ihm.sectioncreer;
 
+import javax.swing.Icon;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
@@ -36,6 +37,11 @@ public class PanelCreer extends JPanel
 		this.add(this.panelGestionCreer, BorderLayout.EAST);
 		*/
 		
+	}
+
+	public void imageToPanelGraphique(String path)
+	{
+		this.panelGraphique.imageToPanelGraphique(path);
 	}
 
 	public void majIHM(){

@@ -2,7 +2,9 @@ package ihm.sectioninit;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -76,7 +78,20 @@ public class PanelDispoBtn extends JPanel implements ActionListener
 	public void actionPerformed(ActionEvent e) 
 	{
 		if(e.getSource() == this.btnEditer)
-			this.ctrl.changerPanel("editer");
+		{
+			PanelImageInfo panelSelectionner = this.ctrl.getPanelSelectionner();
+
+			if(this.ctrl.getPanelSelectionner() == null)
+			{
+				JOptionPane.showMessageDialog(this,"Merci de selectionner une image sur le panel de droite");
+			}
+			else
+			{
+				this.ctrl.imageToPanelGraphique("importe\\"+panelSelectionner.getNomfichier());
+				this.ctrl.changerPanel("editer");
+			}
+		}
+			
 
 		if(e.getSource() == this.btnImporter)
 		{
