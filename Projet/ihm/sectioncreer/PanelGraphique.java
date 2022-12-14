@@ -36,18 +36,30 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 		this.ctrl = ctrl;
 		this.setLayout(new BorderLayout());
 
-		JPanel panelBtn = new JPanel(new GridLayout(1,20));
+		JPanel panelBtn = new JPanel(new GridLayout(1,10));
 
 		Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
 		int hauteur  = tailleMoniteur.height - (int) (tailleMoniteur.height*0.06);
 
 		this.btnBackToMenu = new JButton("Retour au menu");
+		this.btnBackToMenu.setBackground(Color.WHITE);
 
-		panelBtn.add(this.btnBackToMenu);
+		for(int i = 0; i < 6; i++)
+		{
+			if(i == 0)
+			{
+				panelBtn.add(this.btnBackToMenu);
+			}
+			else
+			{
+				panelBtn.add(new JLabel(""));
+			}
+	
+		}
 		this.add(panelBtn, BorderLayout.NORTH);
 
 		this.btnBackToMenu.addActionListener(this);
-	}
+	}	
 
 	public void paint(Graphics g)
 	{
@@ -143,6 +155,11 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 					}
 				}
 			}
+		}
+
+		if(e.getSource() == this.btnBackToMenu)
+		{
+			this.ctrl.changerPanel("init");
 		}
 	}
 
