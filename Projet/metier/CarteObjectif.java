@@ -14,17 +14,11 @@ public class CarteObjectif {
         this.nbPoints = nbPoints;
     }
 
-    public Noeud getnoeudDep() {
-        return this.noeudDep;
-    }
+    public Noeud getnoeudDep()  {return this.noeudDep;}
 
-    public Noeud getnoeudArr() {
-        return this.noeudArr;
-    }
+    public Noeud getnoeudArr()  {return this.noeudArr;}
 
-    public int getNbPoints() {
-        return this.nbPoints;
-    }
+    public int getNbPoints()    {return this.nbPoints;}
 
 
 }

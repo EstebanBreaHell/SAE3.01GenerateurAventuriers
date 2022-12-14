@@ -1,16 +1,16 @@
 package metier;
 
-
+import java.awt.Color;
 
 public class CarteWagon {
 
-    private String couleur;
+    private Color couleur;
 
-    public CarteWagon(String couleur) {
+    public CarteWagon(Color couleur) {
         this.couleur = couleur;
     }
 
-    public String getCouleur() {
+    public Color getCouleur() {
         return this.couleur;
     }
 

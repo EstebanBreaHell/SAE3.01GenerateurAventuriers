@@ -82,8 +82,8 @@ public class Metier
             {
                 pw.println ( "\t\t<arete>" );
 
-                pw.println ( "\t\t<noeud1>" + a.getNoeud().getNom() + " </noeud1>" );
-                pw.println ( "\t\t<noeud2>" + a.getNoeud2().getNom() + " </noeud2>" );
+                pw.println ( "\t\t<noeud1>" + a.getNoeudDep().getNom() + " </noeud1>" );
+                pw.println ( "\t\t<noeud2>" + a.getNoeudArr().getNom() + " </noeud2>" );
                 pw.println ( "\t\t<couleurRGB>" + a.getCouleur().getRGB() + " </couleurRGB>" );
                 pw.println ( "\t\t<wagons>" + a.getWagon() + " </wagons>" );
 
@@ -144,9 +144,8 @@ public class Metier
 		List<Arete> arrayListArretSupp = n.getArrayArete();
 
 		while(!(arrayListArretSupp.size() !=0))
-		{
 			supprArete( arrayListArretSupp.get(0) );
-		}
+		
 		this.lstNoeud.remove( n );
 	}
 
@@ -159,10 +158,10 @@ public class Metier
 
         for (Arete a : n.getArrayArete())
 		{
-            if(a.getNoeud() != n && !lstNoeudOccupe.contains(a.getNoeud()))
-				lstNoeudOccupe.add(a.getNoeud());
-			if(a.getNoeud2() != n && !lstNoeudOccupe.contains(a.getNoeud2()))
-				lstNoeudOccupe.add(a.getNoeud2());
+            if(a.getNoeudDep() != n && !lstNoeudOccupe.contains(a.getNoeudDep()))
+				lstNoeudOccupe.add(a.getNoeudDep());
+			if(a.getNoeudArr() != n && !lstNoeudOccupe.contains(a.getNoeudArr()))
+				lstNoeudOccupe.add(a.getNoeudArr());
 		}
 
         for (Noeud noeud : this.lstNoeud)

@@ -31,12 +31,8 @@ public class Arete {
         this.noeudArr.supprArete(this);
     }
 
-    public Noeud getNoeud()   {
-        return this.noeudDep;
-    }
-    public Noeud getNoeud2()  {
-        return this.noeudArr;
-    }
+    public Noeud getNoeudDep()  {return this.noeudDep;}
+    public Noeud getNoeudArr()  {return this.noeudArr;}
     public Color getCouleur() {
         return this.couleur;
     }

@@ -9,15 +9,12 @@ import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
+
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
+
 import javax.swing.filechooser.FileSystemView;
 
 
@@ -90,8 +87,8 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 				int fromSize = 20;
 				int toSize = 20;
 
-				Noeud from = a.getNoeud();
-				Noeud to =   a.getNoeud2();
+				Noeud from = a.getNoeudDep();
+				Noeud to =   a.getNoeudArr();
 
 				if(to.getX() != 0 && to.getY() != 0) {
 					if(from.getX() != 0 && from.getY() != 0) {

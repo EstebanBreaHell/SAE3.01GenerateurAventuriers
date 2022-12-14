@@ -30,18 +30,18 @@ public class Noeud
     }
 
     /**
-     * Ajoute les arrete qui appartienne aux noeud
-     * @param arrete
+     * Ajoute les arete qui appartienne aux noeud
+     * @param arete
      */
-    public void ajoutArete(Arete arrete){
-        this.alArrete.add(arrete);
+    public void ajoutArete(Arete arete){
+        this.alArrete.add(arete);
     }
     /**
-     * Supprime une 
-     * @param arrete
+     * Supprime une arete 
+     * @param arete
      */
-    public void supprArete(Arete arrete){
-        this.alArrete.remove(arrete);
+    public void supprArete(Arete arete){
+        this.alArrete.remove(arete);
     }
 
     public ArrayList<Arete> getArrayArete(){
