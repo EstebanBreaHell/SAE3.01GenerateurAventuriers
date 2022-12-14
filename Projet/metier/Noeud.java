@@ -88,7 +88,6 @@ public class Noeud
         return this.nomY;
     }
 
-
     /**
         *Retourne l'objet sous forme String
         * @return l'objet sous forme String

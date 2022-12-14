@@ -5,6 +5,7 @@ import main.Controleur;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.Color;
@@ -15,7 +16,7 @@ public class Metier
     
     private Controleur ctrl;
 
-	private List<Noeud> lstNoeud;
+	private ArrayList<Noeud> lstNoeud;
 	private List<Arete> lstArete;
 
 	private int nbJoueurMax, nbJoueurMin;
@@ -72,7 +73,6 @@ public class Metier
             pw.println("</infos>");
 
             pw.close();
-
         }
         catch ( IOException e) {
             e.printStackTrace();
@@ -86,15 +86,13 @@ public class Metier
 		lstNoeud.add( n );
 	}
 
-	
-
 	//En partant sur la base que l'on utilise une liste déroulante pour la couleur ET pour les ville
 	public void creeArete(Noeud n1 , Noeud n2 , Color c, int nbW )
 	{
 		Arete a = new Arete( n1, n2, c ,nbW);
-
 		this.lstArete.add( a );
 	}
+
 	public ArrayList<Noeud> getLstNoeud()
 	{
 		return (ArrayList<Noeud>) this.lstNoeud;
@@ -105,8 +103,6 @@ public class Metier
 		return (ArrayList<Arete>) this.lstArete;
 	}
 
-
-	
 	public void supprArete( Arete a )
 	{
 		a.supprArete();
@@ -115,20 +111,31 @@ public class Metier
 
 	public void supprNoeud( Noeud n )
 	{
-		List<Arete> arayListArretSupp = n.getArrayArete();
-
-		for( Arete a : arayListArretSupp )
-		{
+		List<Arete> arrayListArretSupp = n.getArrayArete();
+		for( Arete a : arrayListArretSupp )
 			supprArete( a );
-		}
 		
 		this.lstNoeud.remove( n );
 	}
 
+    /* Méthode permettant de récupérer tous les noeuds disponibles ( qui n'ont pas d'aretes ) */
+    public ArrayList<Noeud> getNoeudDispo(Noeud n) {
+        ArrayList<Noeud> lstNoeudOccupe = new ArrayList<Noeud>();
+        ArrayList<Noeud> lstNoeudDispo = new ArrayList<Noeud>();
+
+        for (Arete a : n.getArrayArete())
+            if(a.getNoeud() != n || a.getNoeud2() != n) {
+                lstNoeudOccupe.add(a.getNoeud());
+                lstNoeudOccupe.add(a.getNoeud2());
+            }
+
+        for (Noeud noeud : this.lstNoeud)
+            if(!lstNoeudOccupe.contains(noeud))
+                lstNoeudDispo.add(noeud);
 
 
-
-
-
+        return lstNoeudDispo;
+    }
+    /*------------------------------------*/
 
 }
