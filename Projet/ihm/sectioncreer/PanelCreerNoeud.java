@@ -2,17 +2,18 @@ package ihm.sectioncreer;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.text.NumberFormat;
+
 import javax.swing.*;
 import javax.swing.border.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+import javax.swing.text.NumberFormatter;
 
 import java.util.ArrayList;
 import java.util.List; 
 
 import main.Controleur;
 
-public class PanelCreerNoeud extends JPanel implements ActionListener, ListSelectionListener
+public class PanelCreerNoeud extends JPanel implements ActionListener
 {
 	private JTextField txtNom;
 	private JTextField txtPosX;
@@ -40,9 +41,15 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, ListSelec
 		JLabel lblHistorique = new JLabel("Historique ", JLabel.CENTER);
 		Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
 
+		NumberFormat longformat = NumberFormat.getIntegerInstance();
+		NumberFormatter numberFormatter = new NumberFormatter(longformat);
+		numberFormatter.setValueClass(Long.class);
+		numberFormatter.setAllowsInvalid(false);
+		numberFormatter.setMinimum(0L);
+
 		this.txtNom = new JTextField();
-		this.txtPosX = new JTextField();
-		this.txtPosY = new JTextField();
+		this.txtPosX = new JFormattedTextField(longformat);
+		this.txtPosY = new JFormattedTextField(longformat);
 		this.btnSupprimer = new JButton("Supprimer");
 		this.btnGenererNoeud = new JButton("Générer noeud");
 		this.btnGenererPrefait = new JButton("Générer noeud préfait");
@@ -103,18 +110,6 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, ListSelec
 		this.btnGenererNoeud.addActionListener(this);
 		this.btnGenererPrefait.addActionListener(this);
 
-		//Si on selectionne une ligne de la JList, on peut la supprimer avec btnSupprimer
-		this.listHistorique.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent e) {
-				if (e.getValueIsAdjusting() == false) {
-					if (listHistorique.getSelectedIndex() == -1) {
-						btnSupprimer.setEnabled(false);
-					} else {
-						btnSupprimer.setEnabled(true);
-					}
-				}
-			}
-		});
 
 		// Empêcher l'utilisateur de rentrer autre chose qu'un nombre dans les champs de texte
 		this.txtPosX.addKeyListener(new KeyAdapter() {
@@ -143,7 +138,8 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, ListSelec
 
 		if(e.getSource() == this.btnSupprimer)
 		{
-			this.setVisible(false);
+			this.lstLabel.remove(this.listHistorique.getSelectedIndex());
+			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 		}
 
 		if(e.getSource() == this.btnGenererNoeud)
@@ -165,8 +161,12 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, ListSelec
 
 		if(e.getSource() == this.btnGenererPrefait)
 		{
-			System.out.println("Générer un noeud préfait");
+			String randomNom = (char) (Math.random() * 26 + 'a') + "";
+			String randomPosX = String.valueOf((int)(Math.random() * 1000));
+			String randomPosY = String.valueOf((int)(Math.random() * 1000));
+
+			this.lstLabel.add(new JLabel("Nom : " + randomNom + " | Pos X : " + randomPosX + " | Pos Y : " + randomPosY));
+			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 		}
 	}
-
 }

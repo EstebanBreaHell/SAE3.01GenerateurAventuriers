@@ -1,19 +1,14 @@
 package ihm.sectioncreer;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
-import javax.swing.border.Border;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import java.awt.GridLayout;
-import java.awt.BorderLayout;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JList;
-import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.border.*;
+import javax.swing.text.NumberFormatter;
+import java.text.NumberFormat;
+import java.util.List;
+import java.util.ArrayList;
+
 
 import main.Controleur;
 
@@ -26,21 +21,8 @@ public class PanelCreerArete extends JPanel implements ActionListener
 	private JButton    btnSupprimer;
 	private JButton    btnGenererArete;
 	private JButton    btnGenererPrefait;
+	private List<JLabel> lstLabel;
 	private Controleur ctrl;
-
-	private final String[] TAB_EXPLIQUATION_HISTORIQUE = {"|Noeud : a 		| Action : Ajout 		| numeroMouvement : 1	|",
-														  "|Noeud : b 		| Action : Ajout 		| numeroMouvement : 2	|",
-													      "|Arête : a-b 	| Action : Ajout 		| numeroMouvement : 3 	|",
-														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|",
-														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|",
-														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|",
-														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|",
-														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|",
-														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|",
-														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|", 
-														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|", 
-														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|", 
-														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|",};
 
 	private JList<String>listHistorique;
 
@@ -48,6 +30,7 @@ public class PanelCreerArete extends JPanel implements ActionListener
 	{
 		this.setLayout(new BorderLayout());
 		this.ctrl = ctrl;
+		this.lstLabel = new ArrayList<JLabel>();
 
 		JPanel panelHaut 	  		= new JPanel(new GridLayout(6,3,0,15));
 		JPanel panelDispoHistorique = new JPanel(new BorderLayout(0,25));
@@ -59,14 +42,21 @@ public class PanelCreerArete extends JPanel implements ActionListener
 		Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
 		JLabel lblHistorique = new JLabel("Historique", JLabel.CENTER);
 
+
+		NumberFormat longformat = NumberFormat.getIntegerInstance();
+		NumberFormatter numberFormatter = new NumberFormatter(longformat);
+		numberFormatter.setValueClass(Long.class);
+		numberFormatter.setAllowsInvalid(false);
+		numberFormatter.setMinimum(0L);
+
 		this.txtCouleur = new JTextField();
-		this.txtDistance = new JTextField();
+		this.txtDistance = new JFormattedTextField(longformat);		
 		this.comboNoeud1 = new JComboBox();
 		this.comboNoeud2 = new JComboBox();
 		this.btnSupprimer = new JButton("Supprimer");
 		this.btnGenererArete = new JButton("Générer arête");
 		this.btnGenererPrefait = new JButton("Générer arête préfaite");
-		this.listHistorique = new JList<String>(TAB_EXPLIQUATION_HISTORIQUE);
+		this.listHistorique = new JList<String>();
 
 
 		this.listHistorique.setPreferredSize(new Dimension(0, 550));
@@ -119,21 +109,64 @@ public class PanelCreerArete extends JPanel implements ActionListener
 		this.add(panelDispoHistorique, BorderLayout.CENTER);
 		this.add(panelValidation, BorderLayout.SOUTH);
 
+
+		this.btnSupprimer.addActionListener(this);
+		this.btnGenererArete.addActionListener(this);
+		this.btnGenererPrefait.addActionListener(this);
+
+		// Empêcher l'utilisateur de rentrer autre chose qu'un nombre dans les champs de texte
+		this.txtDistance.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+					getToolkit().beep();
+					e.consume();
+				}
+			}
+		});
+		
+
 	}
 
 	public void actionPerformed(ActionEvent e)
 	{
 		if(e.getSource() == this.btnSupprimer)
 		{
-			System.out.println("Suppression");
+			this.lstLabel.remove(this.listHistorique.getSelectedIndex());
+			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 		}
 		else if(e.getSource() == this.btnGenererArete)
 		{
-			System.out.println("Génération d'une arête");
+			if(this.txtDistance.getText().isEmpty() || this.txtCouleur.getText().isEmpty())
+			{
+				JOptionPane.showMessageDialog(this, "Tous les champs sont obligatoires", "Erreur", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
+			if(!(this.txtCouleur.getText().equals("rouge") || this.txtCouleur.getText().equals("vert")    || 
+			     this.txtCouleur.getText().equals("bleu")  || this.txtCouleur.getText().equals("jaune")   || 
+				 this.txtCouleur.getText().equals("noir")  || this.txtCouleur.getText().equals("blanc")   ||
+				 this.txtCouleur.getText().equals("violet") || this.txtCouleur.getText().equals("marron")) ||
+				 this.txtDistance.getText().equals("0"))
+			{
+				JOptionPane.showMessageDialog(this, "La couleur doit être rouge, vert, bleu, jaune, noir, blanc, violet ou marron. La distance doit être supérieur à 0", "Erreur", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
+			this.lstLabel.add(new JLabel("Couleur : " + this.txtCouleur.getText() + " | Distance : " + this.txtDistance.getText()));
+			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
+
+			this.txtDistance.setText("");
+			this.txtCouleur.setText("");
 		}
 		else if(e.getSource() == this.btnGenererPrefait)
 		{
-			System.out.println("Génération d'une arête préfaite");
+			String[] couleurs = {"rouge", "vert", "bleu", "jaune", "noir", "blanc", "violet", "marron"};
+			String randomCouleur = couleurs[(int)(Math.random() * couleurs.length)];
+			String randomDistance = String.valueOf((int)(Math.random() * 1000));
+
+			this.lstLabel.add(new JLabel("Couleur : " + randomCouleur + " | Distance : " + randomDistance));
+			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 		}
 	}
 }
