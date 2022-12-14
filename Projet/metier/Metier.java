@@ -112,9 +112,11 @@ public class Metier
 	public void supprNoeud( Noeud n )
 	{
 		List<Arete> arrayListArretSupp = n.getArrayArete();
-		for( Arete a : arrayListArretSupp )
-			supprArete( a );
-		
+
+		while(!(arrayListArretSupp.size() !=0))
+		{
+			supprArete( arrayListArretSupp.get(0) );
+		}
 		this.lstNoeud.remove( n );
 	}
 
