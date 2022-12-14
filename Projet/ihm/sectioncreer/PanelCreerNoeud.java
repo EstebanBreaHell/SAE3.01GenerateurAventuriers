@@ -6,6 +6,8 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
@@ -45,10 +47,11 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 	public PanelCreerNoeud(Controleur ctrl)
 	{
 		this.setLayout(new BorderLayout());
+		
 		this.ctrl = ctrl;
 		JPanel panelCoordonnees 	= new JPanel(new GridLayout(5,3,10, 10));
 		JPanel panelDispoHistorique = new JPanel(new BorderLayout(0,10));
-		JPanel panelValidation		= new JPanel(new GridLayout(3,3, 10, 15));
+		JPanel panelValidation		= new JPanel(new GridLayout(1,3, 10, 15));
 		JLabel lblNom = new JLabel("Nom : ", JLabel.LEFT);
 		JLabel lblPosX = new JLabel("Position X : ", JLabel.LEFT);
 		JLabel lblPosY = new JLabel("Position Y : ", JLabel.LEFT);
@@ -79,6 +82,7 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 		this.btnGenererNoeud.setBorder(border);
 		this.btnGenererPrefait.setBorder(border);
 	
+	
 		panelCoordonnees.add(new JLabel());
 		panelCoordonnees.add(new JLabel());
 		panelCoordonnees.add(new JLabel());
@@ -99,16 +103,17 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 		panelDispoHistorique.add(new JPanel(), BorderLayout.WEST);
 		panelDispoHistorique.add(new JPanel(), BorderLayout.EAST);
 		panelDispoHistorique.add(this.listHistorique, BorderLayout.CENTER);
+		
 
-		panelValidation.add(new JLabel());
+		//panelValidation.add(new JLabel());
 		panelValidation.add(this.btnGenererNoeud);
-		panelValidation.add(new JLabel());
-		panelValidation.add(new JLabel());
+		//panelValidation.add(new JLabel());
+		//panelValidation.add(new JLabel());
 		panelValidation.add(this.btnGenererPrefait);
-		panelValidation.add(new JLabel());
-		panelValidation.add(new JLabel());
+		//panelValidation.add(new JLabel());
+		//panelValidation.add(new JLabel());
 		panelValidation.add(this.btnSupprimer);
-		panelValidation.add(new JLabel());
+		//panelValidation.add(new JLabel());
 
 
 		this.add(panelCoordonnees, BorderLayout.NORTH);
