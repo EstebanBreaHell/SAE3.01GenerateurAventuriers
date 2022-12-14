@@ -9,11 +9,14 @@ import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 import javax.swing.filechooser.FileSystemView;
+
 
 import main.Controleur;
 import metier.Arete;
@@ -24,21 +27,26 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 {
 	private Controleur ctrl;
 	private JButton btnImportImg;
+	private JButton btnBackToMenu; 
 
 	private boolean premierClic;
 
 	public PanelGraphique(Controleur ctrl)
 	{
 		this.ctrl = ctrl;
+		this.setLayout(new BorderLayout());
+
+		JPanel panelBtn = new JPanel(new GridLayout(1,20));
 
 		Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
 		int hauteur  = tailleMoniteur.height - (int) (tailleMoniteur.height*0.06);
 
-		JPanel panelDispoBtn = new JPanel(new BorderLayout(0,hauteur/6));
+		this.btnBackToMenu = new JButton("Retour au menu");
 
-		this.setLayout(new BorderLayout());
+		panelBtn.add(this.btnBackToMenu);
+		this.add(panelBtn, BorderLayout.NORTH);
 
-		this.add(panelDispoBtn);
+		this.btnBackToMenu.addActionListener(this);
 	}
 
 	public void paint(Graphics g)

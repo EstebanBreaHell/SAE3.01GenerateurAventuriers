@@ -74,15 +74,7 @@ public class PanelDetail extends JPanel implements ActionListener
 		this.add(panelChoixCarte, BorderLayout.CENTER);
 		
 		
-		/*private JMenuItem menuiRetour;
 
-		JMenu menuRetour = new JMenu("Retour au menu");
-		menuRetour.setMnemonic('R');
-
-		this.menuiRetour = new JMenuItem("Retour au menu");
-		this.menuiRetour.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4,InputEvent.ALT_DOWN_MASK));
-		menuRetour.add(this.menuiRetour);
-		this.add(menuRetour, BorderLayout.SOUTH);*/
 	}
 
 	public void actionPerformed(ActionEvent e)
