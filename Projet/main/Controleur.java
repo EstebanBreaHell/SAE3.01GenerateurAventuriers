@@ -88,13 +88,8 @@ public class Controleur
     }
     */
 
-    public void majIHM(){
-        this.ihm.majIHM();
-    }
-    public void majPanelImporter()
-    {
-        this.ihm.majPanelImporter();
-    }
+    public void majIHM(){this.ihm.majIHM();}
+    public void majPanelImporter(){this.ihm.majPanelImporter();}
 
 
     public static void main(String[] args)
