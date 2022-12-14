@@ -67,14 +67,8 @@ public class PanelDetail extends JPanel implements ActionListener
 		panelDetail.add(new JLabel());
 		panelDetail.add(lblNbWagonsMax);
 
-		
-
-
 		this.add(panelDetail, BorderLayout.NORTH);
 		this.add(panelChoixCarte, BorderLayout.CENTER);
-		
-		
-
 	}
 
 	public void actionPerformed(ActionEvent e)
