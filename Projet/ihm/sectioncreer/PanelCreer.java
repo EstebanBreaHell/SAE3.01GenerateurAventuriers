@@ -1,6 +1,8 @@
 package ihm.sectioncreer;
 
 import javax.swing.JPanel;
+import javax.swing.JSplitPane;
+
 import java.awt.BorderLayout;
 
 
@@ -21,8 +23,18 @@ public class PanelCreer extends JPanel
 		this.panelGraphique 	= new PanelGraphique(this.ctrl);
 		this.panelGestionCreer 	= new PanelGestionCreer(this.ctrl);
 		
+		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+
+		
+		splitPane.add(this.panelGraphique,JSplitPane.LEFT);
+		splitPane.add(this.panelGestionCreer,JSplitPane.RIGHT);
+
+		this.add(splitPane);
+
+		/*
 		this.add(this.panelGraphique,BorderLayout.CENTER);
 		this.add(this.panelGestionCreer, BorderLayout.EAST);
+		*/
 		
 	}
 
