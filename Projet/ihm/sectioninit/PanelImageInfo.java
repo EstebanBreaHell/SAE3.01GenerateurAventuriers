@@ -1,11 +1,14 @@
 package ihm.sectioninit;
 
+import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.*;
 
 
@@ -32,9 +35,7 @@ public class PanelImageInfo extends JPanel implements ActionListener
 		this.btnImage = new JButton();
 		this.btnImage.setIcon(icon);
 		this.btnImage.setRolloverIcon(this.icon);
-		this.btnImage.setRolloverEnabled(true);
-		this.btnImage.setFocusPainted(false);
-		this.btnImage.setBorderPainted(false);
+		this.btnImage.setBackground(Color.WHITE);;
 
 		this.add(new JLabel(nomFichier,JLabel.CENTER),BorderLayout.NORTH);
 		this.add(this.btnImage,BorderLayout.CENTER);
@@ -43,6 +44,7 @@ public class PanelImageInfo extends JPanel implements ActionListener
 	}
 
 	public void inverseEtatBtn(){this.btnImage.setEnabled(!this.btnImage.isEnabled());}
+	public void changerBordure(Border bordure){this.btnImage.setBorder(bordure);}
 
 	@Override
 	public void actionPerformed(ActionEvent e) 

@@ -73,4 +73,5 @@ public class Frame extends JFrame
     public Font getDefautFont() {return Frame.POLICE_DEFAUT;}
     public Dimension getDimensionEcran() {return new Dimension(this.longueur,this.hauteur);}
     public void panelSelectionner(PanelImageInfo panelSelectionner){ this.panelInit.panelSelectionner(panelSelectionner);}
+    public void majPanelImporter(){this.panelInit.majPanelImporter();}
 }

@@ -1,13 +1,18 @@
 package ihm.sectioninit;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.border.Border;
 
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Graphics;
+
 
 import java.awt.event.*;
 import java.io.File;
@@ -17,40 +22,43 @@ import java.nio.file.Paths;
 
 import main.Controleur;
 
-public class PanelImageImporter extends JPanel implements ActionListener
+public class PanelImageImporter extends JPanel
 {
 	private Controleur ctrl;
 	private JScrollPane scrollPane;
-	private static String[] repertoireImage;
+	private String[] repertoireImage;
 	private PanelImageInfo panelSelectionner;
 
-	private static void initRepertoireImporte()
+	private  void initRepertoireImporte()
 	{
 		try 	{Files.createDirectories(Paths.get("importe"));} 
 		catch (IOException e) 	{e.printStackTrace();}
 
-		PanelImageImporter.repertoireImage = new File(Paths.get("importe").toFile().getAbsolutePath()).list();
+		this.repertoireImage = new File(Paths.get("importe").toFile().getAbsolutePath()).list();
 	}
 
 	public PanelImageImporter(Controleur ctrl)
 	{		
 		this.ctrl = ctrl;
-		this.setLayout(new BorderLayout());
+		this.setLayout(new BorderLayout(0,10));
+		//this.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
+		this.setBackground(Color.CYAN);
 		
-		PanelImageImporter.initRepertoireImporte();		
+		this.initRepertoireImporte();		
 
-		PanelImageInfo[] tabPanelAffichageImporte = new PanelImageInfo[PanelImageImporter.repertoireImage.length];
+		PanelImageInfo[] tabPanelAffichageImporte = new PanelImageInfo[this.repertoireImage.length];
 		JPanel panelDispoAffichage =new JPanel(new GridLayout(tabPanelAffichageImporte.length,1));
 
 		for (int index = 0; index < tabPanelAffichageImporte.length; index++)
 		{
-			tabPanelAffichageImporte[index] = new PanelImageInfo(this.ctrl,PanelImageImporter.repertoireImage[index]);
-
+			tabPanelAffichageImporte[index] = new PanelImageInfo(this.ctrl,this.repertoireImage[index]);
 			panelDispoAffichage.add(tabPanelAffichageImporte[index]);
 		}
 
 		this.scrollPane = new JScrollPane(panelDispoAffichage, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		this.scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 
+		this.add(new JLabel("Liste des images importées",JLabel.CENTER),BorderLayout.NORTH);
 		this.add(this.scrollPane,BorderLayout.CENTER);
 	}
 
@@ -61,22 +69,40 @@ public class PanelImageImporter extends JPanel implements ActionListener
 	public void panelSelectionner(PanelImageInfo panelSelectionner)
 	{
 		if(this.panelSelectionner == null)
+		{
 			this.panelSelectionner = panelSelectionner;
+		}
 		else
 		{
+			this.panelSelectionner.changerBordure(BorderFactory.createEmptyBorder());
 			this.panelSelectionner.inverseEtatBtn();
 			this.panelSelectionner = panelSelectionner;
 		}
 
+		this.panelSelectionner.changerBordure(BorderFactory.createLineBorder(Color.RED, 3));
 		this.panelSelectionner.inverseEtatBtn();
 
 	}
 
-
-	@Override
-	public void actionPerformed(ActionEvent e) 
+	public void paint(Graphics g)
 	{
-		// TODO Auto-generated method stub
+		super.paint(g);
+	}
+	
+
+	public void majPanelImporter()
+	{
+		this.initRepertoireImporte();
 		
+		PanelImageInfo[] tabPanelAffichageImporte = new PanelImageInfo[this.repertoireImage.length];
+		JPanel panelDispoAffichage =new JPanel(new GridLayout(tabPanelAffichageImporte.length,1));
+
+		for (int index = 0; index < tabPanelAffichageImporte.length; index++)
+		{
+			tabPanelAffichageImporte[index] = new PanelImageInfo(this.ctrl,this.repertoireImage[index]);
+			panelDispoAffichage.add(tabPanelAffichageImporte[index]);
+		}
+		this.add(panelDispoAffichage);
+		this.ctrl.changerPanel("init");
 	}
 }

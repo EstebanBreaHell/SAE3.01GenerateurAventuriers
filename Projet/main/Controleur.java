@@ -74,6 +74,11 @@ public class Controleur
     }
     */
 
+    public void majPanelImporter()
+    {
+        this.ihm.majPanelImporter();
+    }
+
 
     public static void main(String[] args)
     {

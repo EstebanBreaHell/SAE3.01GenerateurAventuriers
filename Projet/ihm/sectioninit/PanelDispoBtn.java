@@ -14,15 +14,13 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.Color;
 import java.awt.event.*;
-import java.awt.Desktop;
+
 import java.io.File;
-import java.io.FileFilter;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.file.CopyOption;
+
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
+
 
 import main.Controleur;
 
@@ -96,6 +94,8 @@ public class PanelDispoBtn extends JPanel implements ActionListener
 				try 	{Files.copy(file.toPath(), Paths.get("importe\\"+file.getName()));} 
 				catch (IOException e1) {e1.printStackTrace();}
 			}
+
+			this.ctrl.majPanelImporter();
 		}
 
 		/* Fermeture de l'application */

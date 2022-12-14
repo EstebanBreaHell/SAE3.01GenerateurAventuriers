@@ -25,5 +25,6 @@ public class PanelInit extends JPanel
 	}
 
 	public void panelSelectionner(PanelImageInfo panelSelectionner){this.panelImageImporter.panelSelectionner(panelSelectionner);}
+	public void majPanelImporter(){this.panelImageImporter.majPanelImporter();}
 	
 }
