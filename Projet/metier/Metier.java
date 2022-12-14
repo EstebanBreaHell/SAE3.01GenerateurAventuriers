@@ -17,7 +17,7 @@ public class Metier
     private Controleur ctrl;
 
 	private ArrayList<Noeud> lstNoeud;
-	private List<Arete> lstArete;
+	private ArrayList<Arete> lstArete;
 
 	private int nbJoueurMax, nbJoueurMin;
 
@@ -95,12 +95,12 @@ public class Metier
 
 	public ArrayList<Noeud> getLstNoeud()
 	{
-		return (ArrayList<Noeud>) this.lstNoeud;
+		return this.lstNoeud;
 	}
 
 	public ArrayList<Arete> getLstArete()
 	{
-		return (ArrayList<Arete>) this.lstArete;
+		return this.lstArete;
 	}
 
 	public void supprArete( Arete a )
@@ -112,9 +112,11 @@ public class Metier
 	public void supprNoeud( Noeud n )
 	{
 		List<Arete> arrayListArretSupp = n.getArrayArete();
-		for( Arete a : arrayListArretSupp )
-			supprArete( a );
-		
+
+		while(!(arrayListArretSupp.size() !=0))
+		{
+			supprArete( arrayListArretSupp.get(0) );
+		}
 		this.lstNoeud.remove( n );
 	}
 
@@ -138,4 +140,7 @@ public class Metier
     }
     /*------------------------------------*/
 
+    public void majIHM(){
+        this.ctrl.majIHM();
+    }
 }

@@ -141,4 +141,5 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 			System.out.println("Générer un noeud préfait");
 		}
 	}
+
 }
