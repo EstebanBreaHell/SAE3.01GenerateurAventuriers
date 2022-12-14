@@ -1,24 +1,18 @@
 package ihm.sectioncreer;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.border.Border;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.border.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
-import java.awt.GridLayout;
-import java.awt.BorderLayout;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JList;
-import java.awt.Color;
-import java.awt.Dimension;
+import java.util.ArrayList;
+import java.util.List; 
 
 import main.Controleur;
 
-public class PanelCreerNoeud extends JPanel implements ActionListener
+public class PanelCreerNoeud extends JPanel implements ActionListener, ListSelectionListener
 {
 	private JTextField txtNom;
 	private JTextField txtPosX;
@@ -26,28 +20,16 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 	private JButton    btnSupprimer;
 	private JButton    btnGenererNoeud;
 	private JButton    btnGenererPrefait;
+	private List<JLabel> lstLabel;
 	private Controleur ctrl;
 
-	private final String[] TAB_EXPLIQUATION_HISTORIQUE = {"|Noeud : a 		| Action : Ajout 		| numeroMouvement : 1	|",
-														  "|Noeud : b 		| Action : Ajout 		| numeroMouvement : 2	|",
-														  "|Arête : a-b 	| Action : Ajout 		| numeroMouvement : 3 	|",
-														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|",
-														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|",
-														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|",
-														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|",
-														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|",
-														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|",
-														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|", 
-														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|", 
-														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|", 
-														  "|Arête : a-b     | Action : Supp			| numeroMouvement : 4 	|", };
-
-	private JList<String>listHistorique;
+	private JList<String> listHistorique;
 
 	public PanelCreerNoeud(Controleur ctrl)
 	{
 		this.setLayout(new BorderLayout());
 		this.ctrl = ctrl;
+		this.lstLabel = new ArrayList<JLabel>();
 		
 		JPanel panelCoordonnees 	= new JPanel(new GridLayout(5,3,10, 10));
 		JPanel panelDispoHistorique = new JPanel(new BorderLayout(0,20));
@@ -64,7 +46,7 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 		this.btnSupprimer = new JButton("Supprimer");
 		this.btnGenererNoeud = new JButton("Générer noeud");
 		this.btnGenererPrefait = new JButton("Générer noeud préfait");
-		this.listHistorique  = new JList<String>(TAB_EXPLIQUATION_HISTORIQUE);
+		this.listHistorique  = new JList<String>();
 
 
 		this.listHistorique.setPreferredSize(new Dimension(0,550));
@@ -81,7 +63,7 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 		this.btnSupprimer.setBorder(border);
 		this.btnGenererNoeud.setBorder(border);
 		this.btnGenererPrefait.setBorder(border);
-	
+
 	
 		panelCoordonnees.add(new JLabel());
 		panelCoordonnees.add(new JLabel());
@@ -113,19 +95,52 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 		panelValidation.add(this.btnSupprimer);
 		panelValidation.add(new JLabel());
 
-
 		this.add(panelCoordonnees, BorderLayout.NORTH);
 		this.add(panelDispoHistorique, BorderLayout.CENTER);
 		this.add(panelValidation, BorderLayout.SOUTH);
 
-
 		this.btnSupprimer.addActionListener(this);
 		this.btnGenererNoeud.addActionListener(this);
 		this.btnGenererPrefait.addActionListener(this);
+
+		//Si on selectionne une ligne de la JList, on peut la supprimer avec btnSupprimer
+		this.listHistorique.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				if (e.getValueIsAdjusting() == false) {
+					if (listHistorique.getSelectedIndex() == -1) {
+						btnSupprimer.setEnabled(false);
+					} else {
+						btnSupprimer.setEnabled(true);
+					}
+				}
+			}
+		});
+
+		// Empêcher l'utilisateur de rentrer autre chose qu'un nombre dans les champs de texte
+		this.txtPosX.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+					getToolkit().beep();
+					e.consume();
+				}
+			}
+		});
+
+		this.txtPosY.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+					getToolkit().beep();
+					e.consume();
+				}
+			}
+		});
 	}
 
 	public void actionPerformed(ActionEvent e)
 	{
+
 		if(e.getSource() == this.btnSupprimer)
 		{
 			this.setVisible(false);
@@ -133,7 +148,19 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 
 		if(e.getSource() == this.btnGenererNoeud)
 		{
-			System.out.println("Générer un noeud");
+
+			if(this.txtPosX.getText().isEmpty() || this.txtNom.getText().isEmpty() || this.txtPosY.getText().isEmpty())
+			{
+				JOptionPane.showMessageDialog(this, "Tous les champs sont obligatoires", "Erreur", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
+			this.lstLabel.add(new JLabel("Nom : " + this.txtNom.getText() + " | Pos X : " + this.txtPosX.getText() + " | Pos Y : " + this.txtPosY.getText()));
+			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
+
+			this.txtNom.setText("");
+			this.txtPosX.setText("");
+			this.txtPosY.setText("");
 		}
 
 		if(e.getSource() == this.btnGenererPrefait)
