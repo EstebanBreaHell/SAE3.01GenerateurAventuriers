@@ -199,4 +199,8 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 	public void mouseExited(MouseEvent e) {
 
 	}
+
+	public void majIHM(){
+		this.repaint();
+	}
 }

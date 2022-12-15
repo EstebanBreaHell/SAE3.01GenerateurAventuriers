@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List; 
 
 import main.Controleur;
-import ihm.sectioncreer.PanelCreer;
+import ihm.sectioncreer.*;
 
 public class PanelCreerNoeud extends JPanel implements ActionListener
 {
@@ -53,10 +53,8 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 		this.txtPosY = new JFormattedTextField(longformat);
 		this.btnSupprimer = new JButton("Supprimer");
 		this.btnGenererNoeud = new JButton("Générer noeud");
-		this.btnGenererPrefait = new JButton("Générer noeud préfait");
+		this.btnGenererPrefait = new JButton("Générer noeud Aléatoire");
 		this.listHistorique  = new JList<String>();
-
-
 
 		this.listHistorique.setPreferredSize(new Dimension(0,550));
 		this.listHistorique.setBorder(border);
@@ -65,7 +63,6 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 		this.btnGenererNoeud.setBackground(Color.WHITE);
 		this.btnGenererPrefait.setBackground(Color.WHITE);
 
-
 		this.txtNom.setBorder(border);
 		this.txtPosX.setBorder(border);
 		this.txtPosY.setBorder(border);
@@ -73,7 +70,6 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 		this.btnGenererNoeud.setBorder(border);
 		this.btnGenererPrefait.setBorder(border);
 
-	
 		panelCoordonnees.add(new JLabel());
 		panelCoordonnees.add(new JLabel());
 		panelCoordonnees.add(new JLabel());
@@ -92,7 +88,6 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 		panelDispoHistorique.add(new JPanel(), BorderLayout.EAST);
 		panelDispoHistorique.add(this.listHistorique, BorderLayout.CENTER);
 		panelDispoHistorique.add(new JPanel(), BorderLayout.SOUTH);
-		
 
 		panelValidation.add(new JLabel());
 		panelValidation.add(this.btnGenererNoeud);
@@ -141,8 +136,8 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 		{
 			this.lstLabel.remove(this.listHistorique.getSelectedIndex());
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
-
 			this.ctrl.suppNoeud(this.listHistorique.getSelectedIndex());
+			this.ctrl.majIHM();
 		}
 
 		if(e.getSource() == this.btnGenererNoeud)
