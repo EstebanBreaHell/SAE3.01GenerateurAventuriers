@@ -187,15 +187,16 @@ public class PanelCreerArete extends JPanel implements ActionListener
 
 			this.lstLabel.add(new JLabel("Couleur : " + randomCouleur + " | Distance : " + randomDistance));
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
-		}*/
+		}
 	}
 
 	public void majIHM()
 	{
+		/*
 		Noeud n = this.ctrl.getLstNoeud().get(this.ctrl.getLstNoeud().size()-1);
 
 		this.comboNoeud1.addItem(n.getNom());
 		this.comboNoeud2.addItem(n.getNom());
-
+		*/
 	}
 }
