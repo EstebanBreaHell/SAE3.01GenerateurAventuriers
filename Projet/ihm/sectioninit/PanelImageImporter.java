@@ -1,20 +1,15 @@
 package ihm.sectioninit;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.border.Border;
 
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 
-
-import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
