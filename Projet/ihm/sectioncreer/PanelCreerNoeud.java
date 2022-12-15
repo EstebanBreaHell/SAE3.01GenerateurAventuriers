@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List; 
 
 import main.Controleur;
+import ihm.sectioncreer.PanelCreer;
 
 public class PanelCreerNoeud extends JPanel implements ActionListener
 {
@@ -28,8 +29,8 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 
 	public PanelCreerNoeud(Controleur ctrl)
 	{
-		this.setLayout(new BorderLayout());
 		this.ctrl = ctrl;
+		this.setLayout(new BorderLayout());
 		this.lstLabel = new ArrayList<JLabel>();
 		
 		JPanel panelCoordonnees 	= new JPanel(new GridLayout(5,3,10, 10));
@@ -63,7 +64,7 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 		this.btnSupprimer.setBackground(Color.WHITE);
 		this.btnGenererNoeud.setBackground(Color.WHITE);
 		this.btnGenererPrefait.setBackground(Color.WHITE);
-		
+
 
 		this.txtNom.setBorder(border);
 		this.txtPosX.setBorder(border);
@@ -136,11 +137,12 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 
 	public void actionPerformed(ActionEvent e)
 	{
-
 		if(e.getSource() == this.btnSupprimer)
 		{
 			this.lstLabel.remove(this.listHistorique.getSelectedIndex());
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
+
+			this.ctrl.suppNoeud(this.listHistorique.getSelectedIndex());
 		}
 
 		if(e.getSource() == this.btnGenererNoeud)

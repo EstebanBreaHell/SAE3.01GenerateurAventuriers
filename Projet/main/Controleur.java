@@ -104,6 +104,8 @@ public class Controleur
 
     public void addNoeud(String nom, int x, int y) { this.metier.creeNoeud(nom, x, y); }
 
+    public void suppNoeud(int n) { this.metier.supprNoeud(n); }
+
     public String getNomNoeudPanelCreer() { return this.ihm.getNomNoeudPanelCreer(); }
 
     public void afficherErreurPanelCreer(String text) { this.ihm.afficherErreurPanelCreer(text);}
