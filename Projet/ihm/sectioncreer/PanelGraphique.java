@@ -51,8 +51,6 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 			else
 				panelBtn.add(new JLabel(""));
 			
-	
-		
 		this.add(panelBtn, BorderLayout.NORTH);
 		this.addMouseListener(this);
 
