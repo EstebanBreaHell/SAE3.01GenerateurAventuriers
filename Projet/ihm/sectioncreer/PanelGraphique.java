@@ -64,13 +64,6 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 	public void imageToPanelGraphique(String path)
 	{
 		//g.drawImage.drawImage(ImageIO.read(new File(path)) , 0, 0, this);
-
-				
-	}
-
-	public void paintComponent(Graphics g)
-	{
-		super.paintComponent(g);
 	}
 
 	public void paint(Graphics g)
@@ -78,41 +71,38 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 		super.paint(g);
 		g.setFont(new Font("default", Font.BOLD, 16));
 
-		if(this.premierClic) {
-			// draw les arete
-			for (Arete a : this.ctrl.getLstArete())
-			{
+		// draw les arete
+		for (Arete a : this.ctrl.getLstArete()) {
 
-				int nb = a.getWagon();
-				int fromSize = 20;
-				int toSize = 20;
+			int nb = a.getWagon();
+			int fromSize = 20;
+			int toSize = 20;
 
-				Noeud from = a.getNoeudDep();
-				Noeud to =   a.getNoeudArr();
+			Noeud from = a.getNoeudDep();
+			Noeud to = a.getNoeudArr();
 
-				if(to.getX() != 0 && to.getY() != 0) {
-					if(from.getX() != 0 && from.getY() != 0) {
+			if (to.getX() != 0 && to.getY() != 0) {
+				if (from.getX() != 0 && from.getY() != 0) {
 
-						int fromX = from.getX() + fromSize/2;
-						int fromY = from.getY() + fromSize/2;
+					int fromX = from.getX() + fromSize / 2;
+					int fromY = from.getY() + fromSize / 2;
 
-						int toX = to.getX() + toSize/2;
-						int toY = to.getY() + toSize/2;
+					int toX = to.getX() + toSize / 2;
+					int toY = to.getY() + toSize / 2;
 
-						drawArete(fromX, fromY, toX, toY, nb, g);
+					drawArete(fromX, fromY, toX, toY, nb, g);
 
-					}
 				}
-			}
-
-			// draw les noeuds
-			for ( Noeud n : this.ctrl.getLstNoeud() ) {
-				if ( n.getX() != 0 && n.getY() != 0)
-					drawNoeud( n , g);
 			}
 		}
 
+		// draw les noeuds
+		for ( Noeud n : this.ctrl.getLstNoeud() ) {
+			if ( n.getX() != 0 && n.getY() != 0)
+				drawNoeud( n, g);
+		}
 	}
+
 
 	private void drawNoeud(Noeud noeud, Graphics g)
 	{
@@ -177,8 +167,6 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		//this.ctrl.setPos( e.getX(), e.getY()), this.ctrl.getIdCuve() );
-		this.premierClic = true;
 		this.ctrl.majIHM();
 	}
 

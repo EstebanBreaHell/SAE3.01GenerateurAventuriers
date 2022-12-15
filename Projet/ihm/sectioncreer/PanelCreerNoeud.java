@@ -152,12 +152,16 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 				return;
 			}
 
+			this.ctrl.addNoeud(this.txtNom.getText(),Integer.parseInt(this.txtPosX.getText()), Integer.parseInt(this.txtPosY.getText()));
+
 			this.lstLabel.add(new JLabel("Nom : " + this.txtNom.getText() + " | Pos X : " + this.txtPosX.getText() + " | Pos Y : " + this.txtPosY.getText()));
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 
 			this.txtNom.setText("");
 			this.txtPosX.setText("");
 			this.txtPosY.setText("");
+
+			this.ctrl.majIHM();
 		}
 
 		if(e.getSource() == this.btnGenererPrefait)
@@ -168,6 +172,10 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 
 			this.lstLabel.add(new JLabel("Nom : " + randomNom + " | Pos X : " + randomPosX + " | Pos Y : " + randomPosY));
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
+
+			this.ctrl.addNoeud(randomNom,Integer.parseInt(randomPosX), Integer.parseInt(randomPosY));
+
+			this.ctrl.majIHM();
 		}
 	}
 }

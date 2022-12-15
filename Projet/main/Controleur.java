@@ -102,6 +102,8 @@ public class Controleur
         return this.metier.getNbWagonsMax();
     }
 
+    public void addNoeud(String nom, int x, int y) { this.metier.creeNoeud(nom, x, y); }
+
 
     public String getExtension(String filename) {
         return Optional.ofNullable(filename).filter(f -> f.contains(".")).map(f -> f.substring(filename.lastIndexOf(".") + 1)).get();
@@ -132,4 +134,6 @@ public class Controleur
     {
         new Controleur();
     }
+
+
 }
