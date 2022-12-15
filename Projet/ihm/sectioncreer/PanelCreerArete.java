@@ -16,23 +16,30 @@ import metier.Noeud;
 
 public class PanelCreerArete extends JPanel implements ActionListener
 {
-	private JComboBox<String>  comboCouleur;
-	private JComboBox  comboNoeud1;
-	private JComboBox  comboNoeud2; 
-	private JTextField txtDistance;
-	private JButton    btnSupprimer;
-	private JButton    btnGenererArete;
-	private JButton    btnGenererPrefait;
-	private List<JLabel> lstLabel;
 	private Controleur ctrl;
 
+	private JComboBox<String> comboCouleur;
+	private JComboBox  comboNoeud1;
+	private JComboBox  comboNoeud2;
+
+	private JTextField txtDistance;
+
+	private JButton btnSupprimer;
+	private JButton btnGenererArete;
+	private JButton btnGenererPrefait;
+
+	private List<JLabel> lstLabel;
+
 	private JList<String>listHistorique;
+
+	private PanelGraphique panelGraphique;
 
 	public PanelCreerArete(Controleur ctrl)
 	{
 		this.setLayout(new BorderLayout());
 		this.ctrl = ctrl;
 		this.lstLabel = new ArrayList<JLabel>();
+		this.panelGraphique = new PanelGraphique(this.ctrl);
 
 		JPanel panelHaut 	  		= new JPanel(new GridLayout(6,3,0,15));
 		JPanel panelDispoHistorique = new JPanel(new BorderLayout(0,25));
@@ -151,16 +158,24 @@ public class PanelCreerArete extends JPanel implements ActionListener
 		}
 		else if(e.getSource() == this.btnGenererArete)
 		{
+			/* Vérifier que les champs sont remplis */
 			if(this.txtDistance.getText().isEmpty() || this.txtDistance.getText().equals("0"))
 			{
 				JOptionPane.showMessageDialog(this, "Tous les champs sont obligatoires", "Erreur", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
+			/*--------------------------------------*/
 
-			this.lstLabel.add(new JLabel("Reliure de " + this.comboNoeud1.getSelectedItem() + " à " + this.comboNoeud2.getSelectedItem() + 
-										 " | Couleur : " + this.comboCouleur.getSelectedItem() + " | Distance : " + 
-										 this.txtDistance.getText()));
+			/* Ajout de l'arête dans l'historique */
+			this.lstLabel.add(new JLabel(
+			"Arête de "    + this.comboNoeud1.getSelectedItem()  + " à " + this.comboNoeud2.getSelectedItem()   +
+				" de Couleur " + this.comboCouleur.getSelectedItem() + " de distance " + this.txtDistance.getText())
+			);
+
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
+			/*------------------------------------*/
+
+			this.panelGraphique.majIHM();
 
 			this.txtDistance.setText("");
 		}
@@ -172,7 +187,7 @@ public class PanelCreerArete extends JPanel implements ActionListener
 
 			this.lstLabel.add(new JLabel("Couleur : " + randomCouleur + " | Distance : " + randomDistance));
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
-		}
+		}*/
 	}
 
 	public void majIHM()
