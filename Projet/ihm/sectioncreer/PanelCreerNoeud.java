@@ -144,8 +144,6 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 
 	public void actionPerformed(ActionEvent e)
 	{
-		System.out.println(this.listHistorique.getSelectedIndex());
-
 		if(e.getSource() == this.btnSupprimer)
 		{
 			this.lstLabel.remove(this.listHistorique.getSelectedIndex());
