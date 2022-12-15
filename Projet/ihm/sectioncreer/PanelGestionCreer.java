@@ -30,7 +30,6 @@ public class PanelGestionCreer extends JPanel
 		this.tabbedPane.addTab("Paramètres", this.panelDetail);
 
 		this.add(this.tabbedPane,BorderLayout.CENTER);
-
 	}
 
     public String getNomNoeudPanelCreer() { return this.panelCreerNoeud.getNomNoeudPanelCreer(); }

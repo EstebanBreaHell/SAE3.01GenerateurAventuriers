@@ -1,20 +1,19 @@
 package ihm.sectioncreer;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
-import javax.swing.KeyStroke;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
 import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.JFrame;
+
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JMenuItem;
-
-import java.awt.event.KeyEvent;
-import java.awt.event.InputEvent;
-
 
 
 import main.Controleur;
@@ -25,6 +24,24 @@ public class PanelDetail extends JPanel implements ActionListener
 	private JTextField txtNbJoueursMax;
 	private JTextField txtNbCartesJoueurs;
 	private Controleur ctrl;
+	private JButton btnValider;
+	private JButton btnplus;
+	private JButton btnmoins;
+	private JButton btnplus2;
+	private JButton btnmoins2;
+	private JTextField btnCompter;
+	private JTextField btnCompter2; 
+
+	private Object[][] donnees = {
+								{"1", "1",},
+								{"2", "2",},
+								{"3", "4",},
+								{"4", "7",},
+								{"5", "10",},
+								{"6", "15",},
+	};
+
+	private String[] entetes = {"Longueur de la route", "Points marqués"};
 	
 	public PanelDetail(Controleur ctrl)
 	{
@@ -32,25 +49,61 @@ public class PanelDetail extends JPanel implements ActionListener
 		this.setLayout(new BorderLayout());
 		JLabel lblNbJoueursMin = new JLabel("Nombre de joueurs minimum : ");
 		JLabel lblNbJoueursMax = new JLabel("Nombre de joueurs maximum : ");
-		JLabel lblNbWagonsMax = new JLabel("Choisissez un nombre de wagons");
+		JLabel lblNbWagonsMax = new JLabel("Nombre de wagons de couleurs : ");
+		JLabel lblNbWagonsMulti = new JLabel("Nombre de wagons multicolores : ");
 		JLabel lblNbCartesJoueurs = new JLabel("Nombre de cartes par joueurs : ");
+		JLabel lblCarteWagon = new JLabel(new ImageIcon("donnee\\carteWagons\\carte.png"));
+		JLabel lblCarteMulti = new JLabel(new ImageIcon("donnee\\carteWagons\\carte9.png"));
+		JLabel lblPoints     = new JLabel("Barême des points : ");
+		JTable tableau = new JTable(donnees, entetes);
 
-
+		DefaultTableCellRenderer custom = new DefaultTableCellRenderer();
+		custom.setHorizontalAlignment(JLabel.CENTER);
 
 		this.txtNbJoueursMin = new JTextField();
 		this.txtNbJoueursMax = new JTextField();
 		this.txtNbCartesJoueurs = new JTextField();
+		this.btnValider = new JButton("Valider");
+		this.btnplus = new JButton("+");
+		this.btnmoins = new JButton("-");
+		this.btnplus2 = new JButton("+");
+		this.btnmoins2 = new JButton("-");
+		this.btnCompter = new JTextField("0", JTextField.CENTER);
+		this.btnCompter2 = new JTextField("0");
+
+		this.btnCompter.setHorizontalAlignment(SwingConstants.CENTER);
+		this.btnCompter2.setHorizontalAlignment(SwingConstants.CENTER);
+	
+		for(int i = 0; i < tableau.getColumnCount(); i++)
+		{
+			tableau.getColumnModel().getColumn(i).setCellRenderer(custom);
+		}
 
 		JPanel panelDetail 		= new JPanel(new GridLayout(5,3,0,10));
-		JPanel panelChoixCarte	= new JPanel(new GridLayout(4,4, 0,0));
-		for(int i = 0; i < 8; i++)
-		{
-			JButton btn = new JButton("" + i);
-			JLabel lbl = new JLabel("" + i);
-			btn.addActionListener(this);
-			panelChoixCarte.add(btn);
-			panelChoixCarte.add(lbl);
-		}
+		JPanel panelChoixCarte	= new JPanel(null);
+		JPanel panelBas			= new JPanel(new GridLayout(1,3,10,10));
+		JPanel panelTableau		= new JPanel(new BorderLayout());
+
+		
+
+		this.btnplus.setBounds(50, 30, 60, 20);
+		this.btnCompter.setBounds(50, 50, 60, 60);
+		this.btnCompter.setEditable(false);
+		this.btnmoins.setBounds(50, 110, 60, 20);
+		lblCarteWagon.setBounds(100, 50, 250, 60);
+
+		lblNbWagonsMulti.setBounds(0, 40, 250, 250);
+
+		this.btnplus2.setBounds(50, 200, 60, 20);
+		this.btnCompter2.setBounds(50, 220, 60, 60);
+		this.btnmoins2.setBounds(50, 280, 60, 20);
+		this.btnCompter2.setEditable(false);
+		lblCarteMulti.setBounds(50, 220, 250, 60);
+
+		lblPoints.setBounds(0,240, 250, 250);
+
+		panelTableau.setBounds(50, 390, 400, 117);
+		
 
 
 		panelDetail.add(new JLabel());
@@ -67,12 +120,79 @@ public class PanelDetail extends JPanel implements ActionListener
 		panelDetail.add(new JLabel());
 		panelDetail.add(lblNbWagonsMax);
 
+		panelChoixCarte.add(this.btnplus);
+		panelChoixCarte.add(this.btnCompter);
+		panelChoixCarte.add(this.btnmoins);
+		panelChoixCarte.add(lblCarteWagon);
+
+		panelChoixCarte.add(lblNbWagonsMulti);
+
+		panelChoixCarte.add(this.btnplus2);
+		panelChoixCarte.add(this.btnCompter2);
+		panelChoixCarte.add(this.btnmoins2);
+		panelChoixCarte.add(lblCarteMulti);
+		panelChoixCarte.add(lblPoints);
+		panelChoixCarte.add(panelTableau);
+
+		panelTableau.add(tableau.getTableHeader(), BorderLayout.NORTH);
+		panelTableau.add(tableau, BorderLayout.CENTER);
+
+		panelBas.add(new JLabel());
+		panelBas.add(this.btnValider);
+		panelBas.add(new JLabel());
+
 		this.add(panelDetail, BorderLayout.NORTH);
 		this.add(panelChoixCarte, BorderLayout.CENTER);
+		this.add(panelBas, BorderLayout.SOUTH);
+
+
+
+		this.btnplus.addActionListener(this);
+		this.btnmoins.addActionListener(this);
+		this.btnplus2.addActionListener(this);
+		this.btnmoins2.addActionListener(this);
+		this.btnValider.addActionListener(this);
+
 	}
 
 	public void actionPerformed(ActionEvent e)
 	{
-		// TODO Auto-generated method stub
+		if(e.getSource() == this.btnplus)
+		{
+			int nb = Integer.parseInt(this.btnCompter.getText());
+			nb++;
+			this.btnCompter.setText(Integer.toString(nb));
+		}
+
+		if(e.getSource() == this.btnplus2)
+		{
+			int nb = Integer.parseInt(this.btnCompter2.getText());
+			nb++;
+			this.btnCompter2.setText(Integer.toString(nb));
+		}
+
+		if(e.getSource() == this.btnmoins || e.getSource() == this.btnmoins2)
+		{
+			int nb = Integer.parseInt(this.btnCompter.getText());
+			nb--;
+			this.btnCompter.setText(Integer.toString(nb));
+
+			if(nb < 0)
+			{
+				this.btnCompter.setText("0");
+			}
+		}
+
+		if(e.getSource() == this.btnmoins2)
+		{
+			int nb = Integer.parseInt(this.btnCompter2.getText());
+			nb--;
+			this.btnCompter2.setText(Integer.toString(nb));
+
+			if(nb < 0)
+			{
+				this.btnCompter2.setText("0");
+			}
+		}
 	}
 }

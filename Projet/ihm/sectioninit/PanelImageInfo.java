@@ -1,6 +1,5 @@
 package ihm.sectioninit;
 
-import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
