@@ -27,9 +27,9 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 	private JButton btnGenererNoeud;
 	private JButton btnGenererPrefait;
 
-	private List<JLabel> lstLabel;
+	public static List<JLabel> lstLabel;
 
-	private JList<String> listHistorique;
+	public static JList<String> listHistorique;
 
 	private PanelGraphique panelGraphique;
 
@@ -156,17 +156,20 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 
 		if(e.getSource() == this.btnGenererNoeud)
 		{
-
+			/* Vérification si tous les champs à préciser sont remplis */
 			if(this.txtPosX.getText().isEmpty() || this.txtNom.getText().isEmpty() || this.txtPosY.getText().isEmpty())
 			{
 				afficherErreurPanelCreer("Tous les champs sont obligatoires");
 				return;
 			}
+			/*---------------------------------------------------------*/
 
 			this.ctrl.addNoeud(this.txtNom.getText(),Integer.parseInt(this.txtPosX.getText()), Integer.parseInt(this.txtPosY.getText()));
 
+			/* Ajout du noeud ajouté dans l'histoirque */
 			this.lstLabel.add(new JLabel("Nom : " + this.txtNom.getText() + " | Pos X : " + this.txtPosX.getText() + " | Pos Y : " + this.txtPosY.getText()));
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
+			/*-----------------------------------------*/
 
 			this.ctrl.majIHM();
 		}
