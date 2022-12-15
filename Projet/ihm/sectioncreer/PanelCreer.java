@@ -1,5 +1,7 @@
 package ihm.sectioncreer;
 
+import javax.swing.Icon;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 

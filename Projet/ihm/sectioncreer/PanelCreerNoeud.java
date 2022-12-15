@@ -176,8 +176,8 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 		{
 			Random random = new Random();
 			String randomNom = (char) (Math.random() * 26 + 'a') + "";
-			int randomPosX = random.nextInt(750);
-			int randomPosY = random.nextInt(600);
+			int randomPosX = random.nextInt(750) + 50;
+			int randomPosY = random.nextInt(600) + 50;
 
 			this.lstLabel.add(new JLabel("Nom : " + randomNom + " | Pos X : " + randomPosX + " | Pos Y : " + randomPosY));
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
@@ -192,6 +192,7 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 
 	public void afficherErreurPanelCreer(String text) { JOptionPane.showMessageDialog(this, text, "Erreur", JOptionPane.ERROR_MESSAGE);}
 
+	
 	public void majIHM() { 	this.txtNom.setText("");
 							this.txtPosX.setText("");
 							this.txtPosY.setText(""); }

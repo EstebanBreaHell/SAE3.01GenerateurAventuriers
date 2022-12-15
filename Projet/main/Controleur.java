@@ -10,6 +10,7 @@ import java.util.Optional;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JList;
 
 import ihm.Frame;
 import ihm.sectioninit.PanelImageInfo;
