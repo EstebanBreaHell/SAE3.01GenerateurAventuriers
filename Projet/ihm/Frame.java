@@ -92,7 +92,6 @@ public class Frame extends JFrame
 
     public void afficherErreurPanelCreer(String text) { this.panelCreer.afficherErreurPanelCreer(text);}
     public void majPanelImporter(){this.panelInit.majPanelImporter();}
-    public JList<String> getLstHistorique(){return this.panelCreer.getLstHistorique();}
 
 
 }

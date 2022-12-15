@@ -192,8 +192,7 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 
 	public void afficherErreurPanelCreer(String text) { JOptionPane.showMessageDialog(this, text, "Erreur", JOptionPane.ERROR_MESSAGE);}
 
-	public JList<String> getLstHistorique(){return this.getLstHistorique();}
-
+	
 	public void majIHM() { 	this.txtNom.setText("");
 							this.txtPosX.setText("");
 							this.txtPosY.setText(""); }

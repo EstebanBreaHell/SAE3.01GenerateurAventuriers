@@ -25,7 +25,8 @@ public class PanelCreerCarteObjectif extends JPanel
 		this.setLayout(new BorderLayout());
 
 		this.txtNbPoint = new JTextField();
-		this.lstNoeud = this.ctrl.getLstHistorique();
+		this.lstNoeud = new JList<>();
+		
 
 		this.add(this.txtNbPoint,BorderLayout.NORTH);
 		this.add(this.lstNoeud,BorderLayout.CENTER);
