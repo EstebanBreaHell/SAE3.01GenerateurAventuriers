@@ -36,7 +36,6 @@ public class PanelImageImporter extends JPanel
 	{		
 		this.ctrl = ctrl;
 		this.setLayout(new BorderLayout(0,10));
-		//this.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
 		this.setBackground(Color.CYAN);
 		
 		this.initRepertoireImporte();		

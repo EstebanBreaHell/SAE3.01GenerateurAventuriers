@@ -13,9 +13,8 @@ import java.util.List;
 import java.util.Random;
 
 import main.Controleur;
-import ihm.sectioncreer.PanelGraphique;
 
-public class PanelCreerNoeud extends JPanel implements ActionListener
+public class PanelCreerNoeud extends JPanel implements ActionListener, MouseListener
 {
 	private Controleur ctrl;
 
@@ -26,6 +25,8 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 	private JButton btnSupprimer;
 	private JButton btnGenererNoeud;
 	private JButton btnGenererPrefait;
+
+	private JScrollPane scrollPane;
 
 	public static List<JLabel> lstLabel;
 
@@ -70,6 +71,9 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 		this.listHistorique.setPreferredSize(new Dimension(0,550));
 		this.listHistorique.setBorder(border);
 		this.listHistorique.setBackground(Color.WHITE);
+		this.listHistorique.addMouseListener(this);
+
+		this.scrollPane = new JScrollPane(this.listHistorique, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
 		this.btnSupprimer     .setBackground(Color.WHITE);
 		this.btnGenererNoeud  .setBackground(Color.WHITE);
@@ -99,7 +103,7 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 		panelDispoHistorique.add(lblHistorique,BorderLayout.NORTH);
 		panelDispoHistorique.add(new JPanel(), BorderLayout.WEST);
 		panelDispoHistorique.add(new JPanel(), BorderLayout.EAST);
-		panelDispoHistorique.add(this.listHistorique, BorderLayout.CENTER);
+		panelDispoHistorique.add(this.scrollPane, BorderLayout.CENTER);
 		panelDispoHistorique.add(new JPanel(), BorderLayout.SOUTH);
 
 		panelValidation.add(new JLabel());
@@ -143,13 +147,7 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 	}
 
 	public void actionPerformed(ActionEvent e)
-	{
-		if(e.getSource() == this.listHistorique.getSelectedValue())
-		{
-			JOptionPane.showMessageDialog(this, "" + this.txtNom, "Erreur", JOptionPane.ERROR_MESSAGE);
-		}
-
-		
+	{	
 		if(e.getSource() == this.btnSupprimer)
 		{
 			this.lstLabel.remove(this.listHistorique.getSelectedIndex());
@@ -193,6 +191,34 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 			this.ctrl.majIHM();
 		}
 	}
+
+	public void mouseClicked(MouseEvent e) {
+		if(e.getClickCount() == 2)
+		{
+			// Récupération du noeud sélectionné et afficher un panel d'informatique								
+		}		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+
+	}
+
 
 	public String getNomNoeudPanelCreer() { return this.txtNom.getText(); }
 

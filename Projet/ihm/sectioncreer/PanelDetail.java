@@ -10,6 +10,12 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+/**
+ * Il faut utiliser la récursivité pour peindre les images que l'utilisateur veut, en fonction de txtNbCouleur aussi que tu choisis
+ * Il faut également définir une couleur à chaque joueur selon celle qu'il a généré, et les arêtes sont en fonction du nombre de txtNbCouleurs
+ * On peut faire ça avec JColorChooser
+ */
+
 
 import main.Controleur;
 
@@ -60,7 +66,7 @@ public class PanelDetail extends JPanel implements ActionListener
 		DefaultTableCellRenderer custom = new DefaultTableCellRenderer();
 		custom.setHorizontalAlignment(JLabel.CENTER);
 
-		this.txtNbJoueursMin = new JTextField();
+		this.txtNbJoueursMin = new JTextField("1");
 		this.txtNbJoueursMax = new JTextField();
 		this.txtNbCartesJoueurs = new JTextField();
 		this.btnValider = new JButton("Valider");
@@ -268,6 +274,18 @@ public class PanelDetail extends JPanel implements ActionListener
 			{
 				JOptionPane.showMessageDialog(this, "Erreur de saisie", "Erreur", JOptionPane.ERROR_MESSAGE);
 			}
+
+
+			/*JPanel panelAfficher = new JPanel();
+			for(int i = 1; i <= nbJoueursMax; i ++)
+			{
+				panelAfficher.add(new JLabel("Couleur pour le joueur" + i + ": "));
+				panelAfficher.add(new JTextField());
+
+				this.add(panelAfficher);
+		
+			}*/
+
 		}
 
 		if(e.getSource() == this.btnEditer)
