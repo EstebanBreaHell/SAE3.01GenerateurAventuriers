@@ -85,7 +85,7 @@ public class PanelCreerArete extends JPanel implements ActionListener
 
 		this.container.add(this.btnCouleur);
 
-
+		/* A optimiser par la suite */
 		panelHaut.add(new JLabel());
 		panelHaut.add(new JLabel());
 		panelHaut.add(new JLabel());
@@ -182,17 +182,17 @@ public class PanelCreerArete extends JPanel implements ActionListener
 			}
 			/*--------------------------------------*/
 
-			/* Ajout de l'arête dans l'historique 
+			// Ajout de l'arête dans l'historique 
 			this.lstLabel.add(new JLabel(
 			"Arête de "    + this.comboNoeud1.getSelectedItem()  + " à " + this.comboNoeud2.getSelectedItem()   +
-				" de Couleur " + this.comboCouleur.getSelectedItem() + " de distance " + this.txtDistance.getText())
+				" de Couleur " + this.container.getBackground() + " de distance " + this.txtDistance.getText())
 			);
 
 			this.ctrl.addArete( this.comboNoeud1.getItemAt(this.comboNoeud1.getSelectedIndex()),
 					            this.comboNoeud2.getItemAt(this.comboNoeud2.getSelectedIndex()),
-					            this.comboCouleur.getSelectedItem().toString(),
+					            this.container.getBackground().toString(),
 								Integer.parseInt(this.txtDistance.getText()) 
-					); */
+					);
 
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 			/*------------------------------------*/
