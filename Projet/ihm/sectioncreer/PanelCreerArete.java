@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 
 import main.Controleur;
+import metier.Noeud;
 
 public class PanelCreerArete extends JPanel implements ActionListener
 {
@@ -66,7 +67,6 @@ public class PanelCreerArete extends JPanel implements ActionListener
 		this.comboNoeud2.setBorder(border);
 		this.btnSupprimer.setBorder(border);
 		this.listHistorique.setBorder(border);
-
 
 		this.btnGenererArete.setBackground(Color.WHITE);
 		this.btnGenererPrefait.setBackground(Color.WHITE);
@@ -172,6 +172,10 @@ public class PanelCreerArete extends JPanel implements ActionListener
 
 	public void majIHM()
 	{
+		Noeud n = this.ctrl.getLstNoeud().get(this.ctrl.getLstNoeud().size()-1);
+
+		this.comboNoeud1.addItem(n.getNom());
+		this.comboNoeud2.addItem(n.getNom());
 
 	}
 }
