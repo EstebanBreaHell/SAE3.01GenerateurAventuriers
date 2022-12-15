@@ -17,7 +17,8 @@ public class PanelDetail extends JPanel implements ActionListener
 {
 	private JTextField txtNbJoueursMin;	
 	private JTextField txtNbJoueursMax;
-	private JTextField txtNbCartesJoueurs;
+	private JTextField txtNbCartesJoueurs;	
+	private JTextField txtNbCouleurs;
 	private Controleur ctrl;
 	private JButton btnValider;
 	private JButton btnplus;
@@ -27,6 +28,8 @@ public class PanelDetail extends JPanel implements ActionListener
 	private JButton btnEditer;
 	private JTextField btnCompter;
 	private JTextField btnCompter2; 
+
+
 
 	private Object[][] donnees = {
 								{"1", "1",},
@@ -43,14 +46,15 @@ public class PanelDetail extends JPanel implements ActionListener
 	{
 		this.ctrl = ctrl; 
 		this.setLayout(new BorderLayout());
-		JLabel lblNbJoueursMin = new JLabel("Nombre de joueurs minimum : ");
-		JLabel lblNbJoueursMax = new JLabel("Nombre de joueurs maximum : ");
-		JLabel lblNbWagonsMax = new JLabel("Nombre de wagons de couleurs : ");
-		JLabel lblNbWagonsMulti = new JLabel("Nombre de wagons multicolores : ");
-		JLabel lblNbCartesJoueurs = new JLabel("Nombre de cartes par joueurs : ");
+		JLabel lblNbJoueursMin = new JLabel("Nb joueurs minimum : ");
+		JLabel lblNbJoueursMax = new JLabel("Nb joueurs maximum : ");
+		JLabel lblNbWagonsMax = new JLabel("Nb wagons de couleurs : ");
+		JLabel lblNbWagonsMulti = new JLabel("Nb de wagons multicolores : ");
+		JLabel lblNbCartesJoueurs = new JLabel("Nb cartes / joueur : ");
 		JLabel lblCarteWagon = new JLabel(new ImageIcon("donnee\\carteWagons\\carte.png"));
 		JLabel lblCarteMulti = new JLabel(new ImageIcon("donnee\\carteWagons\\carte9.png"));
 		JLabel lblPoints     = new JLabel("Barême des points : ");
+		JLabel lblCouleur	 = new JLabel("Nb couleurs : ");
 		JTable tableau = new JTable(donnees, entetes);
 
 		DefaultTableCellRenderer custom = new DefaultTableCellRenderer();
@@ -67,6 +71,7 @@ public class PanelDetail extends JPanel implements ActionListener
 		this.btnEditer = new JButton("Editer");
 		this.btnCompter = new JTextField("0", JTextField.CENTER);
 		this.btnCompter2 = new JTextField("0");
+		this.txtNbCouleurs = new JTextField();
 
 		this.btnCompter.setHorizontalAlignment(SwingConstants.CENTER);
 		this.btnCompter2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -78,7 +83,7 @@ public class PanelDetail extends JPanel implements ActionListener
 			tableau.getColumnModel().getColumn(i).setCellRenderer(custom);
 		}
 
-		JPanel panelDetail 		= new JPanel(new GridLayout(5,3,0,10));
+		JPanel panelDetail 		= new JPanel(new GridLayout(6,4,0,10));
 		JPanel panelChoixCarte	= new JPanel(null);
 		JPanel panelBas			= new JPanel(new GridLayout(1,3,10,10));
 		JPanel panelTableau		= new JPanel(new BorderLayout());
@@ -109,15 +114,28 @@ public class PanelDetail extends JPanel implements ActionListener
 		panelDetail.add(new JLabel());
 		panelDetail.add(new JLabel());
 		panelDetail.add(new JLabel());
+		panelDetail.add(new JLabel());
+
 		panelDetail.add(lblNbJoueursMin);
+		panelDetail.add(new JLabel());
 		panelDetail.add(this.txtNbJoueursMin);
 		panelDetail.add(new JLabel());
+
 		panelDetail.add(lblNbJoueursMax);
+		panelDetail.add(new JLabel());
 		panelDetail.add(this.txtNbJoueursMax);
 		panelDetail.add(new JLabel());
+
 		panelDetail.add(lblNbCartesJoueurs);
+		panelDetail.add(new JLabel());
 		panelDetail.add(this.txtNbCartesJoueurs);
 		panelDetail.add(new JLabel());
+
+		panelDetail.add(lblCouleur);
+		panelDetail.add(new JLabel());
+		panelDetail.add(this.txtNbCouleurs);
+		panelDetail.add(new JLabel());
+		
 		panelDetail.add(lblNbWagonsMax);
 
 		panelChoixCarte.add(this.btnplus);
@@ -175,6 +193,15 @@ public class PanelDetail extends JPanel implements ActionListener
 		});
 
 		this.txtNbCartesJoueurs.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+					e.consume();
+				}
+			}
+		});
+
+		this.txtNbCouleurs.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
 				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
