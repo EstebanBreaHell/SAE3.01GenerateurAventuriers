@@ -21,7 +21,8 @@ public class PanelCreerArete extends JPanel implements ActionListener
 	private JList<String> listHistorique;
 	private JTextField txtDistance;
 
-	private JComboBox<String> comboCouleur;
+	private Container container;
+	private JButton   btnCouleur;
 	private JComboBox<Noeud> comboNoeud1;
 	private JComboBox<Noeud> comboNoeud2;
 
@@ -38,14 +39,9 @@ public class PanelCreerArete extends JPanel implements ActionListener
 		this.lstLabel = new ArrayList<JLabel>();
 		this.panelGraphique = new PanelGraphique(this.ctrl);
 
-		JPanel panelHaut 	  		= new JPanel(new GridLayout(6,3,0,15));
-		JPanel panelDispoHistorique = new JPanel(new BorderLayout(0,25));
+		JPanel panelHaut 	  		= new JPanel(new GridLayout(6,4,10,10));
+		JPanel panelDispoHistorique = new JPanel(new BorderLayout(0,20));
 		JPanel panelValidation		= new JPanel(new GridLayout(3,3, 10, 20));
-
-		JLabel lblCouleur  = new JLabel("Couleur : ", JLabel.LEFT);
-		JLabel lblDistance = new JLabel("Distance : ", JLabel.LEFT);
-		JLabel lblRelier   = new JLabel("Relier... ", JLabel.LEFT);
-		JLabel lblVers	   = new JLabel("vers ", JLabel.CENTER);
 
 		Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
 		JLabel lblHistorique = new JLabel("Historique", JLabel.CENTER);
@@ -56,55 +52,71 @@ public class PanelCreerArete extends JPanel implements ActionListener
 		numberFormatter.setAllowsInvalid(false);
 		numberFormatter.setMinimum(0L);
 
-		this.comboCouleur = new JComboBox<String>(
-			new String[] 
-			{
-				"Rouge", 
-				"Vert", 
-				"Bleu",	
-				"Jaune",
-				"Noir",
-				"Blanc",
-				"Rose", 
-				"Orange",
-				"Gris"
-			});
 
+
+		//Information contenue dans le panelHaut
+		JLabel lblDistance = new JLabel("Distance : ", JLabel.LEFT);
+		JLabel lblRelier   = new JLabel("Relier... ", JLabel.LEFT);
+		JLabel lblVers	   = new JLabel("vers ", JLabel.CENTER);
+		JLabel lblCouleur  = new JLabel("Couleur : ", JLabel.LEFT);
+
+		this.container = new Container();
+		this.container.setLayout(new FlowLayout());
+		this.btnCouleur =new JButton("Couleur de l'arête");
 		this.txtDistance = new JFormattedTextField(longformat);		
 		this.comboNoeud1 = new JComboBox<Noeud>();
 		this.comboNoeud2 = new JComboBox<Noeud>();
+
 		this.btnSupprimer = new JButton("Supprimer");
 		this.btnGenererArete = new JButton("Générer arête");
 		this.btnGenererPrefait = new JButton("Générer arête préfaite");
 		this.listHistorique = new JList<String>();
 
-		this.listHistorique.setPreferredSize(new Dimension(0, 550));
-		this.comboCouleur.setBorder(border);
 		this.txtDistance.setBorder(border);
 		this.comboNoeud1.setBorder(border);
 		this.comboNoeud2.setBorder(border);
 		this.btnSupprimer.setBorder(border);
 		this.listHistorique.setBorder(border);
 
+
 		this.btnGenererArete.setBackground(Color.WHITE);
 		this.btnGenererPrefait.setBackground(Color.WHITE);
 		this.btnSupprimer.setBackground(Color.WHITE);
 
+		this.container.add(this.btnCouleur);
+
+
 		panelHaut.add(new JLabel());
 		panelHaut.add(new JLabel());
 		panelHaut.add(new JLabel());
+		panelHaut.add(new JLabel());
+
 		panelHaut.add(lblCouleur);
-		panelHaut.add(this.comboCouleur);
 		panelHaut.add(new JLabel());
+		panelHaut.add(new JLabel());
+		panelHaut.add(new JLabel());
+
+		panelHaut.add(new JLabel());
+		panelHaut.add(this.container);
+		panelHaut.add(new JLabel());
+		panelHaut.add(new JLabel());
+
 		panelHaut.add(lblRelier); 
 		panelHaut.add(new JLabel());
+		panelHaut.add(new JLabel());
+		panelHaut.add(new JLabel());
+
 		panelHaut.add(new JLabel());
 		panelHaut.add(this.comboNoeud1);
 		panelHaut.add(lblVers);
 		panelHaut.add(this.comboNoeud2);
+
+
 		panelHaut.add(lblDistance);
 		panelHaut.add(this.txtDistance);
 		panelHaut.add(new JLabel());
+		panelHaut.add(new JLabel());
+
 
 		panelDispoHistorique.add(lblHistorique, BorderLayout.NORTH);
 		panelDispoHistorique.add(this.listHistorique, BorderLayout.CENTER);
@@ -131,6 +143,7 @@ public class PanelCreerArete extends JPanel implements ActionListener
 		this.btnSupprimer.addActionListener(this);
 		this.btnGenererArete.addActionListener(this);
 		this.btnGenererPrefait.addActionListener(this);
+		this.btnCouleur.addActionListener(this);
 
 		// Empêcher l'utilisateur de rentrer autre chose qu'un nombre dans les champs de texte
 		this.txtDistance.addKeyListener(new KeyAdapter() {
@@ -146,6 +159,14 @@ public class PanelCreerArete extends JPanel implements ActionListener
 
 	public void actionPerformed(ActionEvent e)
 	{
+
+		if(e.getSource() == this.btnCouleur)
+		{
+			Color initialcolor=Color.RED;
+			Color color=JColorChooser.showDialog(this,"Select a color",initialcolor);
+			container.setBackground(color);
+		}
+
 		if(e.getSource() == this.btnSupprimer)
 		{
 			this.lstLabel.remove(this.listHistorique.getSelectedIndex());
@@ -161,7 +182,7 @@ public class PanelCreerArete extends JPanel implements ActionListener
 			}
 			/*--------------------------------------*/
 
-			/* Ajout de l'arête dans l'historique */
+			/* Ajout de l'arête dans l'historique 
 			this.lstLabel.add(new JLabel(
 			"Arête de "    + this.comboNoeud1.getSelectedItem()  + " à " + this.comboNoeud2.getSelectedItem()   +
 				" de Couleur " + this.comboCouleur.getSelectedItem() + " de distance " + this.txtDistance.getText())
@@ -170,8 +191,8 @@ public class PanelCreerArete extends JPanel implements ActionListener
 			this.ctrl.addArete( this.comboNoeud1.getItemAt(this.comboNoeud1.getSelectedIndex()),
 					            this.comboNoeud2.getItemAt(this.comboNoeud2.getSelectedIndex()),
 					            this.comboCouleur.getSelectedItem().toString(),
-								Integer.parseInt(this.txtDistance.getText())
-					);
+								Integer.parseInt(this.txtDistance.getText()) 
+					); */
 
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 			/*------------------------------------*/

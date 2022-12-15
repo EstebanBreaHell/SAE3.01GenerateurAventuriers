@@ -52,7 +52,6 @@ public class PanelImageInfo extends JPanel implements ActionListener
 	{
 		if(e.getSource() == this.btnImage)
 		{
-			System.out.println(this.nomFichier);
 			this.ctrl.panelSelectionner(this);
 		}
 		
