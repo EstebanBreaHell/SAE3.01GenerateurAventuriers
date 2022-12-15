@@ -9,7 +9,8 @@ import javax.swing.border.*;
 import javax.swing.text.NumberFormatter;
 
 import java.util.ArrayList;
-import java.util.List; 
+import java.util.List;
+import java.util.Random;
 
 import main.Controleur;
 import ihm.sectioncreer.PanelGraphique;
@@ -26,9 +27,9 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 	private JButton btnGenererNoeud;
 	private JButton btnGenererPrefait;
 
-	private List<JLabel> lstLabel;
+	public static List<JLabel> lstLabel;
 
-	private JList<String> listHistorique;
+	public static JList<String> listHistorique;
 
 	private PanelGraphique panelGraphique;
 
@@ -155,31 +156,35 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 
 		if(e.getSource() == this.btnGenererNoeud)
 		{
-
+			/* Vérification si tous les champs à préciser sont remplis */
 			if(this.txtPosX.getText().isEmpty() || this.txtNom.getText().isEmpty() || this.txtPosY.getText().isEmpty())
 			{
 				afficherErreurPanelCreer("Tous les champs sont obligatoires");
 				return;
 			}
+			/*---------------------------------------------------------*/
 
 			this.ctrl.addNoeud(this.txtNom.getText(),Integer.parseInt(this.txtPosX.getText()), Integer.parseInt(this.txtPosY.getText()));
 
+			/* Ajout du noeud ajouté dans l'histoirque */
 			this.lstLabel.add(new JLabel("Nom : " + this.txtNom.getText() + " | Pos X : " + this.txtPosX.getText() + " | Pos Y : " + this.txtPosY.getText()));
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
+			/*-----------------------------------------*/
 
 			this.ctrl.majIHM();
 		}
 
 		if(e.getSource() == this.btnGenererPrefait)
 		{
+			Random random = new Random();
 			String randomNom = (char) (Math.random() * 26 + 'a') + "";
-			String randomPosX = String.valueOf((int)(Math.random() * 1000));
-			String randomPosY = String.valueOf((int)(Math.random() * 1000));
+			int randomPosX = random.nextInt(50, 750);
+			int randomPosY = random.nextInt(50, 600);
 
 			this.lstLabel.add(new JLabel("Nom : " + randomNom + " | Pos X : " + randomPosX + " | Pos Y : " + randomPosY));
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 
-			this.ctrl.addNoeud(randomNom,Integer.parseInt(randomPosX), Integer.parseInt(randomPosY));
+			this.ctrl.addNoeud(randomNom,randomPosX, randomPosY);
 
 			this.ctrl.majIHM();
 		}

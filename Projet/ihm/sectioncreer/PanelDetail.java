@@ -1,19 +1,10 @@
 package ihm.sectioncreer;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.JFrame;
 
-import java.awt.GridLayout;
-import java.awt.BorderLayout;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.table.DefaultTableCellRenderer;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
 
 import main.Controleur;
@@ -73,6 +64,7 @@ public class PanelDetail extends JPanel implements ActionListener
 
 		this.btnCompter.setHorizontalAlignment(SwingConstants.CENTER);
 		this.btnCompter2.setHorizontalAlignment(SwingConstants.CENTER);
+		this.btnValider.setBackground(Color.WHITE);
 	
 		for(int i = 0; i < tableau.getColumnCount(); i++)
 		{
@@ -153,6 +145,36 @@ public class PanelDetail extends JPanel implements ActionListener
 		this.btnmoins2.addActionListener(this);
 		this.btnValider.addActionListener(this);
 
+
+		this.txtNbJoueursMax.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+					getToolkit().beep();
+					e.consume();
+				}
+			}
+		});
+
+		this.txtNbJoueursMin.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+					getToolkit().beep();
+					e.consume();
+				}
+			}
+		});
+
+		this.txtNbCartesJoueurs.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+					getToolkit().beep();
+					e.consume();
+				}
+			}
+		});
 	}
 
 	public void actionPerformed(ActionEvent e)
@@ -192,6 +214,25 @@ public class PanelDetail extends JPanel implements ActionListener
 			if(nb < 0)
 			{
 				this.btnCompter2.setText("0");
+			}
+		}
+
+		if(e.getSource() == this.btnValider)
+		{
+			if(this.txtNbCartesJoueurs.getText().isEmpty() || this.txtNbJoueursMax.getText().isEmpty() || this.txtNbJoueursMin.getText().isEmpty())
+			{
+				JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs", "Erreur", JOptionPane.ERROR_MESSAGE);
+			}
+
+			int nbJoueursMin = Integer.parseInt(this.txtNbJoueursMin.getText());
+			int nbJoueursMax = Integer.parseInt(this.txtNbJoueursMax.getText());
+			int nbCartesJoueurs = Integer.parseInt(this.txtNbCartesJoueurs.getText());
+			int nbWagonsMax = Integer.parseInt(this.btnCompter.getText());
+			int nbWagonsMulti = Integer.parseInt(this.btnCompter2.getText());
+
+			if(nbJoueursMin > nbJoueursMax || nbJoueursMin <= 0 || nbJoueursMax <= 0 || nbCartesJoueurs <= 0 || nbWagonsMax <= 0 || nbWagonsMulti <= 0)
+			{
+				JOptionPane.showMessageDialog(this, "Erreur de saisie", "Erreur", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}

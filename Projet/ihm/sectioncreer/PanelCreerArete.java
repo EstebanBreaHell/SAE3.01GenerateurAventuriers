@@ -8,6 +8,7 @@ import javax.swing.text.NumberFormatter;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.ArrayList;
+import java.awt.Color; 
 
 
 import main.Controleur;
@@ -15,7 +16,7 @@ import metier.Noeud;
 
 public class PanelCreerArete extends JPanel implements ActionListener
 {
-	private JTextField txtCouleur;
+	private JComboBox<String>  comboCouleur;
 	private JComboBox  comboNoeud1;
 	private JComboBox  comboNoeud2; 
 	private JTextField txtDistance;
@@ -50,7 +51,20 @@ public class PanelCreerArete extends JPanel implements ActionListener
 		numberFormatter.setAllowsInvalid(false);
 		numberFormatter.setMinimum(0L);
 
-		this.txtCouleur = new JTextField();
+		this.comboCouleur = new JComboBox<String>(
+			new String[] 
+			{
+				"Rouge", 
+				"Vert", 
+				"Bleu",	
+				"Jaune",
+				"Noir",
+				"Blanc",
+				"Rose", 
+				"Orange",
+				"Gris"
+			});
+
 		this.txtDistance = new JFormattedTextField(longformat);		
 		this.comboNoeud1 = new JComboBox();
 		this.comboNoeud2 = new JComboBox();
@@ -61,7 +75,7 @@ public class PanelCreerArete extends JPanel implements ActionListener
 
 
 		this.listHistorique.setPreferredSize(new Dimension(0, 550));
-		this.txtCouleur.setBorder(border);
+		this.comboCouleur.setBorder(border);
 		this.txtDistance.setBorder(border);
 		this.comboNoeud1.setBorder(border);
 		this.comboNoeud2.setBorder(border);
@@ -76,7 +90,7 @@ public class PanelCreerArete extends JPanel implements ActionListener
 		panelHaut.add(new JLabel());
 		panelHaut.add(new JLabel());
 		panelHaut.add(lblCouleur);
-		panelHaut.add(this.txtCouleur);
+		panelHaut.add(this.comboCouleur);
 		panelHaut.add(new JLabel());
 		panelHaut.add(lblRelier); 
 		panelHaut.add(new JLabel());
@@ -137,27 +151,17 @@ public class PanelCreerArete extends JPanel implements ActionListener
 		}
 		else if(e.getSource() == this.btnGenererArete)
 		{
-			if(this.txtDistance.getText().isEmpty() || this.txtCouleur.getText().isEmpty())
+			if(this.txtDistance.getText().isEmpty() || this.txtDistance.getText().equals("0"))
 			{
 				JOptionPane.showMessageDialog(this, "Tous les champs sont obligatoires", "Erreur", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 
-			if(!(this.txtCouleur.getText().equals("rouge") || this.txtCouleur.getText().equals("vert")    || 
-			     this.txtCouleur.getText().equals("bleu")  || this.txtCouleur.getText().equals("jaune")   || 
-				 this.txtCouleur.getText().equals("noir")  || this.txtCouleur.getText().equals("blanc")   ||
-				 this.txtCouleur.getText().equals("violet") || this.txtCouleur.getText().equals("marron")) ||
-				 this.txtDistance.getText().equals("0"))
-			{
-				JOptionPane.showMessageDialog(this, "La couleur doit être rouge, vert, bleu, jaune, noir, blanc, violet ou marron. La distance doit être supérieur à 0", "Erreur", JOptionPane.ERROR_MESSAGE);
-				return;
-			}
-
-			this.lstLabel.add(new JLabel("Couleur : " + this.txtCouleur.getText() + " | Distance : " + this.txtDistance.getText()));
+			this.lstLabel.add(new JLabel("Couleur : " + this.comboCouleur.getSelectedItem() + " | Distance : " + this.txtDistance.getText()));
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 
 			this.txtDistance.setText("");
-			this.txtCouleur.setText("");
+			//this.comboCouleur.setText("");
 		}
 		else if(e.getSource() == this.btnGenererPrefait)
 		{
