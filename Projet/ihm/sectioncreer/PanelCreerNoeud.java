@@ -144,6 +144,12 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 
 	public void actionPerformed(ActionEvent e)
 	{
+		if(e.getSource() == this.listHistorique.getSelectedValue())
+		{
+			JOptionPane.showMessageDialog(this, "" + this.txtNom, "Erreur", JOptionPane.ERROR_MESSAGE);
+		}
+
+		
 		if(e.getSource() == this.btnSupprimer)
 		{
 			this.lstLabel.remove(this.listHistorique.getSelectedIndex());
