@@ -16,23 +16,30 @@ import metier.Noeud;
 
 public class PanelCreerArete extends JPanel implements ActionListener
 {
-	private JComboBox<String>  comboCouleur;
-	private JComboBox  comboNoeud1;
-	private JComboBox  comboNoeud2; 
-	private JTextField txtDistance;
-	private JButton    btnSupprimer;
-	private JButton    btnGenererArete;
-	private JButton    btnGenererPrefait;
-	private List<JLabel> lstLabel;
 	private Controleur ctrl;
 
+	private JComboBox<String> comboCouleur;
+	private JComboBox  comboNoeud1;
+	private JComboBox  comboNoeud2;
+
+	private JTextField txtDistance;
+
+	private JButton btnSupprimer;
+	private JButton btnGenererArete;
+	private JButton btnGenererPrefait;
+
+	private List<JLabel> lstLabel;
+
 	private JList<String>listHistorique;
+
+	private PanelGraphique panelGraphique;
 
 	public PanelCreerArete(Controleur ctrl)
 	{
 		this.setLayout(new BorderLayout());
 		this.ctrl = ctrl;
 		this.lstLabel = new ArrayList<JLabel>();
+		this.panelGraphique = new PanelGraphique(this.ctrl);
 
 		JPanel panelHaut 	  		= new JPanel(new GridLayout(6,3,0,15));
 		JPanel panelDispoHistorique = new JPanel(new BorderLayout(0,25));
@@ -151,21 +158,30 @@ public class PanelCreerArete extends JPanel implements ActionListener
 		}
 		else if(e.getSource() == this.btnGenererArete)
 		{
+			/* Vérifier que les champs sont remplis */
 			if(this.txtDistance.getText().isEmpty() || this.txtDistance.getText().equals("0"))
 			{
 				JOptionPane.showMessageDialog(this, "Tous les champs sont obligatoires", "Erreur", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
+			/*--------------------------------------*/
 
-			this.lstLabel.add(new JLabel("Couleur : " + this.comboCouleur.getSelectedItem() + " | Distance : " + this.txtDistance.getText()));
+			/* Ajout de l'arête dans l'historique */
+			this.lstLabel.add(new JLabel(
+			"Arête de "    + this.comboNoeud1.getSelectedItem()  + " à " + this.comboNoeud2.getSelectedItem()   +
+				" de Couleur " + this.comboCouleur.getSelectedItem() + " de distance " + this.txtDistance.getText())
+			);
+
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
+			/*------------------------------------*/
+
+			this.panelGraphique.majIHM();
 
 			this.txtDistance.setText("");
-			//this.comboCouleur.setText("");
 		}
 		else if(e.getSource() == this.btnGenererPrefait)
 		{
-			String[] couleurs = {"rouge", "vert", "bleu", "jaune", "noir", "blanc", "violet", "marron"};
+			String[] couleurs = {"Rouge", "Vert", "Bleu", "Jaune", "Noir", "Blanc", "Violet", "Marron"};
 			String randomCouleur = couleurs[(int)(Math.random() * couleurs.length)];
 			String randomDistance = String.valueOf((int)(Math.random() * 1000));
 
@@ -176,10 +192,11 @@ public class PanelCreerArete extends JPanel implements ActionListener
 
 	public void majIHM()
 	{
+		/*
 		Noeud n = this.ctrl.getLstNoeud().get(this.ctrl.getLstNoeud().size()-1);
 
 		this.comboNoeud1.addItem(n.getNom());
 		this.comboNoeud2.addItem(n.getNom());
-
+		*/
 	}
 }

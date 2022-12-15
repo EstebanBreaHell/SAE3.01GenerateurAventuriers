@@ -5,6 +5,10 @@ import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.filechooser.*;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 
 import main.Controleur;
@@ -20,6 +24,7 @@ public class PanelDetail extends JPanel implements ActionListener
 	private JButton btnmoins;
 	private JButton btnplus2;
 	private JButton btnmoins2;
+	private JButton btnEditer;
 	private JTextField btnCompter;
 	private JTextField btnCompter2; 
 
@@ -59,12 +64,14 @@ public class PanelDetail extends JPanel implements ActionListener
 		this.btnmoins = new JButton("-");
 		this.btnplus2 = new JButton("+");
 		this.btnmoins2 = new JButton("-");
+		this.btnEditer = new JButton("Editer");
 		this.btnCompter = new JTextField("0", JTextField.CENTER);
 		this.btnCompter2 = new JTextField("0");
 
 		this.btnCompter.setHorizontalAlignment(SwingConstants.CENTER);
 		this.btnCompter2.setHorizontalAlignment(SwingConstants.CENTER);
 		this.btnValider.setBackground(Color.WHITE);
+		this.btnEditer.setBackground(Color.WHITE);
 	
 		for(int i = 0; i < tableau.getColumnCount(); i++)
 		{
@@ -77,12 +84,13 @@ public class PanelDetail extends JPanel implements ActionListener
 		JPanel panelTableau		= new JPanel(new BorderLayout());
 
 		
-
+		
 		this.btnplus.setBounds(50, 30, 60, 20);
 		this.btnCompter.setBounds(50, 50, 60, 60);
 		this.btnCompter.setEditable(false);
 		this.btnmoins.setBounds(50, 110, 60, 20);
 		lblCarteWagon.setBounds(100, 50, 250, 60);
+		this.btnEditer.setBounds(330, 90, 70, 20);
 
 		lblNbWagonsMulti.setBounds(0, 40, 250, 250);
 
@@ -116,6 +124,7 @@ public class PanelDetail extends JPanel implements ActionListener
 		panelChoixCarte.add(this.btnCompter);
 		panelChoixCarte.add(this.btnmoins);
 		panelChoixCarte.add(lblCarteWagon);
+		panelChoixCarte.add(this.btnEditer);
 
 		panelChoixCarte.add(lblNbWagonsMulti);
 
@@ -144,13 +153,13 @@ public class PanelDetail extends JPanel implements ActionListener
 		this.btnplus2.addActionListener(this);
 		this.btnmoins2.addActionListener(this);
 		this.btnValider.addActionListener(this);
+		this.btnEditer.addActionListener(this);
 
 
 		this.txtNbJoueursMax.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
 				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
-					getToolkit().beep();
 					e.consume();
 				}
 			}
@@ -160,7 +169,6 @@ public class PanelDetail extends JPanel implements ActionListener
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
 				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
-					getToolkit().beep();
 					e.consume();
 				}
 			}
@@ -170,7 +178,6 @@ public class PanelDetail extends JPanel implements ActionListener
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
 				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
-					getToolkit().beep();
 					e.consume();
 				}
 			}
@@ -234,6 +241,26 @@ public class PanelDetail extends JPanel implements ActionListener
 			{
 				JOptionPane.showMessageDialog(this, "Erreur de saisie", "Erreur", JOptionPane.ERROR_MESSAGE);
 			}
+		}
+
+		if(e.getSource() == this.btnEditer)
+		{
+			FileNameExtensionFilter filtre = new FileNameExtensionFilter("format image(*.png; *.jpg; *.gif)", "png","jpg","gif");
+			JFileChooser jFileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+
+			jFileChooser.setAcceptAllFileFilterUsed(false);
+			jFileChooser.setFileFilter(filtre);
+
+			int res = jFileChooser.showOpenDialog(null);
+			if(res == JFileChooser.APPROVE_OPTION)
+			{
+				File file = jFileChooser.getSelectedFile();
+				
+				try 	{Files.copy(file.toPath(), Paths.get("importe\\"+file.getName()));} 
+				catch (IOException e1) {e1.printStackTrace();}
+			}
+
+			this.ctrl.majPanelImporter();
 		}
 	}
 }

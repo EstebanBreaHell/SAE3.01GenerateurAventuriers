@@ -15,7 +15,6 @@ public class PanelCreer extends JPanel
 	private Controleur ctrl; 
 	private PanelGraphique panelGraphique;
 	private PanelGestionCreer panelGestionCreer;
-	private PanelDetail panelDetail;
 
 	public PanelCreer(Controleur ctrl)
 	{

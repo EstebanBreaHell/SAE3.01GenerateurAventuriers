@@ -181,8 +181,10 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 		else
 		{
 			this.ctrl.addNoeud(nom, e.getX(), e.getY());
+			/* Ajout des noeuds dans l'historique */
 			PanelCreerNoeud.lstLabel.add(new JLabel("Nom : " + nom + " | Pos X : " + e.getX()  + " | Pos Y : " + e.getY()));
 			PanelCreerNoeud.listHistorique.setListData(PanelCreerNoeud.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
+			/*------------------------------------*/
 
 			this.ctrl.majIHM();
 		}
