@@ -84,7 +84,7 @@ public class Metier
 
                 pw.println ( "\t\t<noeud1>" + a.getNoeudDep().getNom() + " </noeud1>" );
                 pw.println ( "\t\t<noeud2>" + a.getNoeudArr().getNom() + " </noeud2>" );
-                pw.println ( "\t\t<couleurRGB>" + a.getCouleur().getRGB() + " </couleurRGB>" );
+               // pw.println ( "\t\t<couleurRGB>" + a.getCouleur().getRGB() + " </couleurRGB>" );
                 pw.println ( "\t\t<wagons>" + a.getWagon() + " </wagons>" );
 
                 pw.println ("\t\t</arete>");
@@ -117,10 +117,18 @@ public class Metier
 	}
 
 	//En partant sur la base que l'on utilise une liste déroulante pour la couleur ET pour les ville
-	public void creeArete(Noeud n1 , Noeud n2 , Color c, int nbW )
+	public void creeArete(Noeud n1 , Noeud n2 , String c, int nbW )
 	{
 		Arete a = new Arete( n1, n2, c ,nbW);
+
+        for(Arete a2 : lstArete ){
+            System.out.println(a2.toString());
+        }
 		this.lstArete.add( a );
+
+        for(Arete a2 : lstArete ){
+            System.out.println(a2.toString());
+        }
 	}
 
 	public ArrayList<Noeud> getLstNoeud()

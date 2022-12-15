@@ -17,22 +17,19 @@ import metier.Noeud;
 public class PanelCreerArete extends JPanel implements ActionListener
 {
 	private Controleur ctrl;
+	private PanelGraphique panelGraphique;
+	private JList<String> listHistorique;
+	private JTextField txtDistance;
 
 	private JComboBox<String> comboCouleur;
-	private JComboBox  comboNoeud1;
-	private JComboBox  comboNoeud2;
-
-	private JTextField txtDistance;
+	private JComboBox<Noeud> comboNoeud1;
+	private JComboBox<Noeud> comboNoeud2;
 
 	private JButton btnSupprimer;
 	private JButton btnGenererArete;
 	private JButton btnGenererPrefait;
 
 	private List<JLabel> lstLabel;
-
-	private JList<String>listHistorique;
-
-	private PanelGraphique panelGraphique;
 
 	public PanelCreerArete(Controleur ctrl)
 	{
@@ -44,13 +41,14 @@ public class PanelCreerArete extends JPanel implements ActionListener
 		JPanel panelHaut 	  		= new JPanel(new GridLayout(6,3,0,15));
 		JPanel panelDispoHistorique = new JPanel(new BorderLayout(0,25));
 		JPanel panelValidation		= new JPanel(new GridLayout(3,3, 10, 20));
+
 		JLabel lblCouleur  = new JLabel("Couleur : ", JLabel.LEFT);
 		JLabel lblDistance = new JLabel("Distance : ", JLabel.LEFT);
 		JLabel lblRelier   = new JLabel("Relier... ", JLabel.LEFT);
 		JLabel lblVers	   = new JLabel("vers ", JLabel.CENTER);
+
 		Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
 		JLabel lblHistorique = new JLabel("Historique", JLabel.CENTER);
-
 
 		NumberFormat longformat = NumberFormat.getIntegerInstance();
 		NumberFormatter numberFormatter = new NumberFormatter(longformat);
@@ -73,13 +71,12 @@ public class PanelCreerArete extends JPanel implements ActionListener
 			});
 
 		this.txtDistance = new JFormattedTextField(longformat);		
-		this.comboNoeud1 = new JComboBox();
-		this.comboNoeud2 = new JComboBox();
+		this.comboNoeud1 = new JComboBox<Noeud>();
+		this.comboNoeud2 = new JComboBox<Noeud>();
 		this.btnSupprimer = new JButton("Supprimer");
 		this.btnGenererArete = new JButton("Générer arête");
 		this.btnGenererPrefait = new JButton("Générer arête préfaite");
 		this.listHistorique = new JList<String>();
-
 
 		this.listHistorique.setPreferredSize(new Dimension(0, 550));
 		this.comboCouleur.setBorder(border);
@@ -145,8 +142,6 @@ public class PanelCreerArete extends JPanel implements ActionListener
 				}
 			}
 		});
-		
-
 	}
 
 	public void actionPerformed(ActionEvent e)
@@ -172,6 +167,12 @@ public class PanelCreerArete extends JPanel implements ActionListener
 				" de Couleur " + this.comboCouleur.getSelectedItem() + " de distance " + this.txtDistance.getText())
 			);
 
+			this.ctrl.addArete( this.comboNoeud1.getItemAt(this.comboNoeud1.getSelectedIndex()),
+					            this.comboNoeud2.getItemAt(this.comboNoeud2.getSelectedIndex()),
+					            this.comboCouleur.getSelectedItem().toString(),
+								Integer.parseInt(this.txtDistance.getText())
+					);
+
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 			/*------------------------------------*/
 
@@ -185,8 +186,16 @@ public class PanelCreerArete extends JPanel implements ActionListener
 			String randomCouleur = couleurs[(int)(Math.random() * couleurs.length)];
 			String randomDistance = String.valueOf((int)(Math.random() * 1000));
 
+			this.ctrl.addArete( this.comboNoeud1.getItemAt(this.comboNoeud1.getSelectedIndex()),
+					this.comboNoeud2.getItemAt(this.comboNoeud2.getSelectedIndex()),
+					randomCouleur,
+					Integer.parseInt(randomDistance)
+					);
+
+			/* Ajout de l'arête dans l'historique */
 			this.lstLabel.add(new JLabel("Couleur : " + randomCouleur + " | Distance : " + randomDistance));
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
+			/*------------------------------------*/
 		}
 	}
 
