@@ -44,7 +44,15 @@ public class PanelCreer extends JPanel
 		this.panelGraphique.imageToPanelGraphique(path);
 	}
 
+	public String getNomNoeudPanelCreer() { return this.panelGestionCreer.getNomNoeudPanelCreer(); }
+
+	public void afficherErreurPanelCreer(String text) { this.panelGestionCreer.afficherErreurPanelCreer(text);}
+
+
 	public void majIHM(){
+		this.panelGestionCreer.majIHM();
 		this.panelGraphique.repaint();
 	}
+
+
 }

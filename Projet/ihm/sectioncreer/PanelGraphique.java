@@ -57,6 +57,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 	
 		}
 		this.add(panelBtn, BorderLayout.NORTH);
+		this.addMouseListener(this);
 
 		this.btnBackToMenu.addActionListener(this);
 	}
@@ -167,7 +168,16 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		this.ctrl.majIHM();
+		String nom = this.ctrl.getNomNoeudPanelCreer();
+		if(nom.equals(""))
+		{
+			this.ctrl.afficherErreurPanelCreer("Il faut entrer un nom");
+		}
+		else
+		{
+			this.ctrl.addNoeud(nom, e.getX(), e.getY());
+			this.ctrl.majIHM();
+		}
 	}
 
 	@Override

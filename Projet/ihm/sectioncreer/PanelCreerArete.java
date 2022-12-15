@@ -169,4 +169,9 @@ public class PanelCreerArete extends JPanel implements ActionListener
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 		}
 	}
+
+	public void majIHM()
+	{
+
+	}
 }

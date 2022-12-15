@@ -148,7 +148,7 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 
 			if(this.txtPosX.getText().isEmpty() || this.txtNom.getText().isEmpty() || this.txtPosY.getText().isEmpty())
 			{
-				JOptionPane.showMessageDialog(this, "Tous les champs sont obligatoires", "Erreur", JOptionPane.ERROR_MESSAGE);
+				afficherErreurPanelCreer("Tous les champs sont obligatoires");
 				return;
 			}
 
@@ -156,10 +156,6 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 
 			this.lstLabel.add(new JLabel("Nom : " + this.txtNom.getText() + " | Pos X : " + this.txtPosX.getText() + " | Pos Y : " + this.txtPosY.getText()));
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
-
-			this.txtNom.setText("");
-			this.txtPosX.setText("");
-			this.txtPosY.setText("");
 
 			this.ctrl.majIHM();
 		}
@@ -178,4 +174,12 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 			this.ctrl.majIHM();
 		}
 	}
+
+	public String getNomNoeudPanelCreer() { return this.txtNom.getText(); }
+
+	public void afficherErreurPanelCreer(String text) { JOptionPane.showMessageDialog(this, text, "Erreur", JOptionPane.ERROR_MESSAGE);}
+
+	public void majIHM() { 	this.txtNom.setText("");
+							this.txtPosX.setText("");
+							this.txtPosY.setText(""); }
 }

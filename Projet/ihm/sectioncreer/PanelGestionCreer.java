@@ -35,5 +35,14 @@ public class PanelGestionCreer extends JPanel
 		this.add(this.tabbedPane,BorderLayout.CENTER);
 
 	}
-	
+
+    public String getNomNoeudPanelCreer() { return this.panelCreerNoeud.getNomNoeudPanelCreer(); }
+
+	public void afficherErreurPanelCreer(String text) { this.panelCreerNoeud.afficherErreurPanelCreer(text);}
+
+	public void majIHM()
+	{
+		this.panelCreerNoeud.majIHM();
+		this.panelCreerArete.majIHM();
+	}
 }

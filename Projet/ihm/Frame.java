@@ -88,5 +88,11 @@ public class Frame extends JFrame
     }
 
     public void majIHM() { this.panelCreer.majIHM();  }
+
+    public String getNomNoeudPanelCreer() { return this.panelCreer.getNomNoeudPanelCreer();}
+
+    public void afficherErreurPanelCreer(String text) { this.panelCreer.afficherErreurPanelCreer(text);}
     public void majPanelImporter(){this.panelInit.majPanelImporter();}
+
+
 }
