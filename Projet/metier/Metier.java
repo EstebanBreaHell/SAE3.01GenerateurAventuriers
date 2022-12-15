@@ -139,17 +139,20 @@ public class Metier
 		this.lstArete.remove( a );
 	}
 
-	public void supprNoeud( int n )
-	{
-        for(int cpt = 0; cpt < lstNoeud.size(); cpt++)
-            if(lstNoeud.get(cpt).getNom().equals(lstNoeud.get(n).getNom()))
-                lstNoeud.remove(cpt);
+	public void supprNoeud( int n ) {
+        System.out.println(n);
+        for (Noeud no : lstNoeud) {
+            System.out.println(no.toString());
+        }
+        System.out.println("zrzerbtetbrtrbeqbarbjkerhoizrjierjioerioe");
 
-        for( Arete a : lstArete )
-            if( a.getNoeudDep().getNom().equals(lstNoeud.get(n).getNom()) ||
-                a.getNoeudArr().getNom().equals(lstNoeud.get(n).getNom()) )
-                supprArete( a );
-	}
+        //Méthode pour supprimer le n indiqué en paramètre
+        lstNoeud.remove(n);
+
+        for (Noeud no : lstNoeud) {
+            System.out.println(no.toString());
+        }
+    }
 
     /* Méthode permettant de récupérer tous les noeuds disponibles ( qui n'ont pas d'aretes ) */
 	/* A refaire car pue la merde */

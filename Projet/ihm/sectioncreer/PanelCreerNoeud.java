@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List; 
 
 import main.Controleur;
-import ihm.sectioncreer.*;
+import ihm.sectioncreer.PanelGraphique;
 
 public class PanelCreerNoeud extends JPanel implements ActionListener
 {
@@ -30,11 +30,14 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 
 	private JList<String> listHistorique;
 
+	private PanelGraphique panelGraphique;
+
 	public PanelCreerNoeud(Controleur ctrl)
 	{
 		this.ctrl = ctrl;
 		this.setLayout(new BorderLayout());
 		this.lstLabel = new ArrayList<JLabel>();
+		this.panelGraphique = new PanelGraphique(this.ctrl);
 		
 		JPanel panelCoordonnees 	= new JPanel(new GridLayout(5,3,10, 10));
 		JPanel panelDispoHistorique = new JPanel(new BorderLayout(0,20));
@@ -116,7 +119,6 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 		this.btnGenererNoeud.addActionListener(this);
 		this.btnGenererPrefait.addActionListener(this);
 
-
 		// Empêcher l'utilisateur de rentrer autre chose qu'un nombre dans les champs de texte
 		this.txtPosX.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
@@ -141,12 +143,14 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 
 	public void actionPerformed(ActionEvent e)
 	{
+		System.out.println(this.listHistorique.getSelectedIndex());
+
 		if(e.getSource() == this.btnSupprimer)
 		{
 			this.lstLabel.remove(this.listHistorique.getSelectedIndex());
+			this.ctrl.supprNoeud(this.listHistorique.getSelectedIndex());
+			this.panelGraphique.majIHM();
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
-			this.ctrl.suppNoeud(this.listHistorique.getSelectedIndex());
-			this.ctrl.majIHM();
 		}
 
 		if(e.getSource() == this.btnGenererNoeud)

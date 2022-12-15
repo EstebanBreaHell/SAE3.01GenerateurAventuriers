@@ -39,23 +39,17 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 		JPanel panelBtn = new JPanel(new GridLayout(1,10));
 
 		Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
-		int hauteur  = tailleMoniteur.height - (int) (tailleMoniteur.height*0.06);
+		int hauteur = tailleMoniteur.height - (int) (tailleMoniteur.height*0.06);
 
 		this.btnBackToMenu = new JButton("Retour au menu");
 		this.btnBackToMenu.setBackground(Color.WHITE);
 
 		for(int i = 0; i < 6; i++)
-		{
 			if(i == 0)
-			{
 				panelBtn.add(this.btnBackToMenu);
-			}
 			else
-			{
 				panelBtn.add(new JLabel(""));
-			}
-	
-		}
+
 		this.add(panelBtn, BorderLayout.NORTH);
 		this.addMouseListener(this);
 
@@ -98,10 +92,9 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 		}
 
 		// draw les noeuds
-		for ( Noeud n : this.ctrl.getLstNoeud() ) {
+		for ( Noeud n : this.ctrl.getLstNoeud() )
 			if ( n.getX() != 0 && n.getY() != 0)
 				drawNoeud( n, g);
-		}
 	}
 
 
@@ -152,30 +145,24 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 					Desktop desktop = Desktop.getDesktop();
 					try {
 						desktop.open(file);
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+					} catch (IOException e1) {e1.printStackTrace();}
 				}
 			}
 		}
 
 		if(e.getSource() == this.btnBackToMenu)
-		{
 			this.ctrl.changerPanel("init");
-		}
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		String nom = this.ctrl.getNomNoeudPanelCreer();
 		if(nom.equals(""))
-		{
 			this.ctrl.afficherErreurPanelCreer("Il faut entrer un nom");
-		}
 		else
 		{
 			this.ctrl.addNoeud(nom, e.getX(), e.getY());
+			this.majIHM();
 			this.ctrl.majIHM();
 		}
 	}
@@ -202,5 +189,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 
 	public void majIHM(){
 		this.repaint();
+		this.ctrl.majIHM();
+		System.out.println("Flag2");
 	}
 }
