@@ -3,6 +3,7 @@ package ihm;
 
 import javax.swing.Icon;
 import javax.swing.JFrame;
+import javax.swing.JList;
 
 import ihm.sectioncreer.PanelCreer;
 import ihm.sectioninit.PanelImageInfo;
@@ -72,6 +73,7 @@ public class Frame extends JFrame
         }
     }
 
+    
     public void fermeFrame(){this.dispose();}
     public Font getDefautFont() {return Frame.POLICE_DEFAUT;}
     public Dimension getDimensionEcran() {return new Dimension(this.longueur,this.hauteur);}
@@ -93,6 +95,7 @@ public class Frame extends JFrame
 
     public void afficherErreurPanelCreer(String text) { this.panelCreer.afficherErreurPanelCreer(text);}
     public void majPanelImporter(){this.panelInit.majPanelImporter();}
+    public JList<String> getLstHistorique(){return this.panelCreer.getLstHistorique();}
 
 
 }

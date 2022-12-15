@@ -1,6 +1,7 @@
 package ihm.sectioncreer;
 
 import javax.swing.Icon;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
@@ -48,6 +49,10 @@ public class PanelCreer extends JPanel
 
 	public void afficherErreurPanelCreer(String text) { this.panelGestionCreer.afficherErreurPanelCreer(text);}
 
+	public JList<String> getLstHistorique()
+	{
+		return this.panelGestionCreer.getLstHistorique();
+	}
 
 	public void majIHM(){
 		this.panelGestionCreer.majIHM();

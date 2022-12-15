@@ -10,6 +10,7 @@ import java.util.Optional;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JList;
 
 import ihm.Frame;
 import ihm.sectioninit.PanelImageInfo;
@@ -86,6 +87,8 @@ public class Controleur
     {
         this.metier.setNbJoueurMax(m);
     }
+
+    public JList<String> getLstHistorique() {return this.ihm.getLstHistorique();}
 
     public void setNbWagonsMax(int nbWagonsMax) {
         this.metier.setNbWagonsMax(nbWagonsMax);

@@ -2,6 +2,7 @@ package ihm.sectioncreer;
 
 import java.awt.BorderLayout;
 
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import main.Controleur;
@@ -41,4 +42,6 @@ public class PanelGestionCreer extends JPanel
 		this.panelCreerNoeud.majIHM();
 		this.panelCreerArete.majIHM();
 	}
+
+	public JList<String> getLstHistorique(){return this.panelCreerNoeud.getLstHistorique();}
 }
