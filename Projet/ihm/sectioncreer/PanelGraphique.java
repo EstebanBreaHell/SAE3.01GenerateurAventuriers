@@ -9,7 +9,7 @@ import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 
-
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -28,6 +28,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 	private Controleur ctrl;
 	private JButton btnImportImg;
 	private JButton btnBackToMenu; 
+	private static String  pathImg;
 
 	private boolean premierClic;
 
@@ -56,6 +57,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 			}
 	
 		}
+
 		this.add(panelBtn, BorderLayout.NORTH);
 		this.addMouseListener(this);
 
@@ -64,8 +66,25 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 
 	public void imageToPanelGraphique(String path)
 	{
-		//g.drawImage.drawImage(ImageIO.read(new File(path)) , 0, 0, this);
+		PanelGraphique.pathImg = path;
 	}
+
+	public void paintComponent(Graphics g)
+	{
+		super.paintComponent(g);
+
+		while(PanelGraphique.pathImg == null)
+			System.out.println("erreur");
+
+		Image img = null;
+
+		try   {img = ImageIO.read( new File(PanelGraphique.pathImg));} 
+		catch (IOException e) {e.printStackTrace();}
+		g.drawImage(img, 0,0, this);
+
+
+	}
+
 
 	public void paint(Graphics g)
 	{
@@ -103,7 +122,6 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 				drawNoeud( n, g);
 		}
 	}
-
 
 	private void drawNoeud(Noeud noeud, Graphics g)
 	{
