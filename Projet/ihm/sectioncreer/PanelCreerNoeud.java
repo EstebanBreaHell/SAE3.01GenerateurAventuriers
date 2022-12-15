@@ -16,14 +16,17 @@ import ihm.sectioncreer.*;
 
 public class PanelCreerNoeud extends JPanel implements ActionListener
 {
+	private Controleur ctrl;
+
 	private JTextField txtNom;
 	private JTextField txtPosX;
 	private JTextField txtPosY;
-	private JButton    btnSupprimer;
-	private JButton    btnGenererNoeud;
-	private JButton    btnGenererPrefait;
+
+	private JButton btnSupprimer;
+	private JButton btnGenererNoeud;
+	private JButton btnGenererPrefait;
+
 	private List<JLabel> lstLabel;
-	private Controleur ctrl;
 
 	private JList<String> listHistorique;
 
@@ -36,10 +39,13 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 		JPanel panelCoordonnees 	= new JPanel(new GridLayout(5,3,10, 10));
 		JPanel panelDispoHistorique = new JPanel(new BorderLayout(0,20));
 		JPanel panelValidation		= new JPanel(new GridLayout(3,3, 10, 20));
-		JLabel lblNom = new JLabel("Nom : ", JLabel.LEFT);
+
+		JLabel lblNom  = new JLabel("Nom : ",        JLabel.LEFT);
 		JLabel lblPosX = new JLabel("Position X : ", JLabel.LEFT);
 		JLabel lblPosY = new JLabel("Position Y : ", JLabel.LEFT);
+
 		JLabel lblHistorique = new JLabel("Historique ", JLabel.CENTER);
+
 		Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
 
 		NumberFormat longformat = NumberFormat.getIntegerInstance();
@@ -48,26 +54,29 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 		numberFormatter.setAllowsInvalid(false);
 		numberFormatter.setMinimum(0L);
 
-		this.txtNom = new JTextField();
+		this.txtNom  = new JTextField();
 		this.txtPosX = new JFormattedTextField(longformat);
 		this.txtPosY = new JFormattedTextField(longformat);
-		this.btnSupprimer = new JButton("Supprimer");
-		this.btnGenererNoeud = new JButton("Générer noeud");
-		this.btnGenererPrefait = new JButton("Générer noeud Aléatoire");
-		this.listHistorique  = new JList<String>();
 
+		this.btnSupprimer      = new JButton("Supprimer"              );
+		this.btnGenererNoeud   = new JButton("Générer noeud"          );
+		this.btnGenererPrefait = new JButton("Générer noeud Aléatoire");
+
+		this.listHistorique = new JList<String>();
 		this.listHistorique.setPreferredSize(new Dimension(0,550));
 		this.listHistorique.setBorder(border);
 		this.listHistorique.setBackground(Color.WHITE);
-		this.btnSupprimer.setBackground(Color.WHITE);
-		this.btnGenererNoeud.setBackground(Color.WHITE);
+
+		this.btnSupprimer     .setBackground(Color.WHITE);
+		this.btnGenererNoeud  .setBackground(Color.WHITE);
 		this.btnGenererPrefait.setBackground(Color.WHITE);
 
-		this.txtNom.setBorder(border);
+		this.txtNom .setBorder(border);
 		this.txtPosX.setBorder(border);
 		this.txtPosY.setBorder(border);
-		this.btnSupprimer.setBorder(border);
-		this.btnGenererNoeud.setBorder(border);
+
+		this.btnSupprimer     .setBorder(border);
+		this.btnGenererNoeud  .setBorder(border);
 		this.btnGenererPrefait.setBorder(border);
 
 		panelCoordonnees.add(new JLabel());

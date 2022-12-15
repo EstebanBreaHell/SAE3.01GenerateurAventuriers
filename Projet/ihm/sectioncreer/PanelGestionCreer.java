@@ -24,7 +24,7 @@ public class PanelGestionCreer extends JPanel
 		this.panelCreerNoeud = new PanelCreerNoeud(this.ctrl);
 		this.panelCreerArete = new PanelCreerArete(this.ctrl);
 		this.panelDetail	 = new PanelDetail(this.ctrl);
-		
+
 		this.tabbedPane.addTab("Créer Noeud",this.panelCreerNoeud);
 		this.tabbedPane.addTab("Créer Arête", this.panelCreerArete);
 		this.tabbedPane.addTab("Paramètres", this.panelDetail);
