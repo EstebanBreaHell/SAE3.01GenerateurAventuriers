@@ -51,19 +51,16 @@ public class Frame extends JFrame
 
         switch (nomPanel) {
             case "editer":
-                System.out.println("Bien recu pour editer");
                 this.panelCreer = new PanelCreer(this.ctrl);
                 this.add(this.panelCreer);                
             break;
 
             case "init" : 
-                System.out.println("Bien recu pour Init");
                 this.panelInit = new PanelInit(this.ctrl);
                 this.add(this.panelInit);
             break;
 
             case "Import":
-                System.out.println("Bien recu pour Import mais pas encore implémenté");
                 this.panelInit = new PanelInit(this.ctrl);
                 this.add(this.panelInit);
 

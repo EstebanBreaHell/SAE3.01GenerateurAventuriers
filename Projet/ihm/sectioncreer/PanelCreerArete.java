@@ -157,15 +157,16 @@ public class PanelCreerArete extends JPanel implements ActionListener
 				return;
 			}
 
-			this.lstLabel.add(new JLabel("Couleur : " + this.comboCouleur.getSelectedItem() + " | Distance : " + this.txtDistance.getText()));
+			this.lstLabel.add(new JLabel("Reliure de " + this.comboNoeud1.getSelectedItem() + " à " + this.comboNoeud2.getSelectedItem() + 
+										 " | Couleur : " + this.comboCouleur.getSelectedItem() + " | Distance : " + 
+										 this.txtDistance.getText()));
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 
 			this.txtDistance.setText("");
-			//this.comboCouleur.setText("");
 		}
 		else if(e.getSource() == this.btnGenererPrefait)
 		{
-			String[] couleurs = {"rouge", "vert", "bleu", "jaune", "noir", "blanc", "violet", "marron"};
+			String[] couleurs = {"Rouge", "Vert", "Bleu", "Jaune", "Noir", "Blanc", "Violet", "Marron"};
 			String randomCouleur = couleurs[(int)(Math.random() * couleurs.length)];
 			String randomDistance = String.valueOf((int)(Math.random() * 1000));
 
