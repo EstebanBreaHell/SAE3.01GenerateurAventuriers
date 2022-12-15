@@ -179,7 +179,7 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 		if(e.getSource() == this.btnGenererPrefait)
 		{
 			Random random = new Random();
-			String randomNom = (char) (Math.random() * 26 + 'a') + "";
+			String randomNom = "Nouvelle ville";
 			int randomPosX = random.nextInt(750) + 50;
 			int randomPosY = random.nextInt(600) + 50;
 
