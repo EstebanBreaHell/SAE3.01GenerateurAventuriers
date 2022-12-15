@@ -82,7 +82,9 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 	public void paint(Graphics g)
 	{
 		super.paint(g);
-		g.setFont(new Font("default", Font.BOLD, 16));
+
+		// Dessiner le texte
+		g.setFont(new Font("default", Font.BOLD, 12));
 
 		// draw les arete
 		for (Arete a : this.ctrl.getLstArete()) {
@@ -119,7 +121,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 
 	private void drawNoeud(Noeud noeud, Graphics g)
 	{
-		int size = 20;
+		int size = 26;
 
 		// draw la Noeud
 		g.setColor(Color.BLACK);
@@ -128,7 +130,13 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 
 		// draw l'ID de la noeud
 		String str = String.valueOf(noeud.getNom());
-		g.drawString(str, noeud.getX() + size/2 - g.getFontMetrics().stringWidth(str)/2, noeud.getY() - 22);
+		g.drawRect(noeud.getNomX() + size/2 - g.getFontMetrics().stringWidth(str)/2, noeud.getNomY() - size, g.getFontMetrics().stringWidth(str), 20);
+		g.setColor(Color.WHITE);
+		g.fillRect(noeud.getNomX() + size/2 - g.getFontMetrics().stringWidth(str)/2, noeud.getNomY() - size, g.getFontMetrics().stringWidth(str), 22);
+
+		g.setColor(Color.BLACK);
+		g.drawString(str, noeud.getX() + size/2 - g.getFontMetrics().stringWidth(str)/2, noeud.getY() - 21);
+
 	}
 
 	private void drawArete(int fromX, int fromY, int toX, int toY, int nbWagon, Graphics g)
