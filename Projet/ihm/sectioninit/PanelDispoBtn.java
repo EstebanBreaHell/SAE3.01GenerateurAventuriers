@@ -34,7 +34,6 @@ public class PanelDispoBtn extends JPanel implements ActionListener
 	private JButton btnEditer;
 	private JButton btnQuitter;
 
-
 	public PanelDispoBtn(Controleur ctrl)
 	{
 		this.ctrl = ctrl;
