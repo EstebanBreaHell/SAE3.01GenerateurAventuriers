@@ -211,6 +211,5 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 	public void majIHM(){
 		this.repaint();
 		this.ctrl.majIHM();
-		System.out.println("Flag2");
 	}
 }

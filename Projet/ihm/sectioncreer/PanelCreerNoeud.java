@@ -9,7 +9,8 @@ import javax.swing.border.*;
 import javax.swing.text.NumberFormatter;
 
 import java.util.ArrayList;
-import java.util.List; 
+import java.util.List;
+import java.util.Random;
 
 import main.Controleur;
 import ihm.sectioncreer.PanelGraphique;
@@ -172,14 +173,15 @@ public class PanelCreerNoeud extends JPanel implements ActionListener
 
 		if(e.getSource() == this.btnGenererPrefait)
 		{
+			Random random = new Random();
 			String randomNom = (char) (Math.random() * 26 + 'a') + "";
-			String randomPosX = String.valueOf((int)(Math.random() * 1000));
-			String randomPosY = String.valueOf((int)(Math.random() * 1000));
+			int randomPosX = random.nextInt(50, 750);
+			int randomPosY = random.nextInt(50, 600);
 
 			this.lstLabel.add(new JLabel("Nom : " + randomNom + " | Pos X : " + randomPosX + " | Pos Y : " + randomPosY));
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 
-			this.ctrl.addNoeud(randomNom,Integer.parseInt(randomPosX), Integer.parseInt(randomPosY));
+			this.ctrl.addNoeud(randomNom,randomPosX, randomPosY);
 
 			this.ctrl.majIHM();
 		}
