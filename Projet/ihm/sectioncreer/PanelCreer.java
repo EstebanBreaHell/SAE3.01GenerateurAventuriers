@@ -39,6 +39,11 @@ public class PanelCreer extends JPanel
 		
 	}
 
+	public void supprimArete(int n)
+	{
+		this.panelGestionCreer.supprimArete(n);
+	}
+
 	public void imageToPanelGraphique(String path)
 	{
 		this.panelGraphique.imageToPanelGraphique(path);

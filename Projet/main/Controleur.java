@@ -51,6 +51,11 @@ public class Controleur
 
         this.ihm = new Frame(this, nomPanel);
     }
+    public void supprimArete(int n)
+	{
+        this.ihm.supprimArete(n);
+    }
+
 
     public void panelSelectionner(PanelImageInfo panelSelectionner)
     {
@@ -90,6 +95,11 @@ public class Controleur
 
     public void setNbWagonsMax(int nbWagonsMax) {
         this.metier.setNbWagonsMax(nbWagonsMax);
+    }
+
+    public ArrayList<Noeud> getNoeudDispo(Noeud n)
+    {
+        return this.metier.getNoeudDispo(n);
     }
 
     public int getNbJoueurMax() {
@@ -140,6 +150,11 @@ public class Controleur
     public void supprNoeud(int noeud)
     {
         this.metier.supprNoeud(noeud);
+    }
+
+    public void supprArete(int arete)
+    {
+        this.metier.supprArete(arete);
     }
 
     public static void main(String[] args)
