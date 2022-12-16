@@ -173,8 +173,11 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 
 		if(e.getSource() == this.btnSupprimer)
 		{
+
 			this.lstLabel.remove(this.listHistorique.getSelectedIndex());
+			this.ctrl.supprArete(this.listHistorique.getSelectedIndex());
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
+			this.panelGraphique.majIHM();
 		}
 		else if(e.getSource() == this.btnGenererArete)
 		{
@@ -232,7 +235,9 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		this.comboNoeud2.removeAllItems();
 
 		Noeud n = this.comboNoeud1.getItemAt(this.comboNoeud1.getSelectedIndex());
-
+		
+		if(n == null)
+			return;
 		for(Noeud noeud : this.ctrl.getNoeudDispo(n))
 		{
 			this.comboNoeud2.addItem(noeud);
@@ -244,10 +249,15 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 
 	public void majIHM()
 	{
+		this.comboNoeud1.removeAllItems();
+		for(Noeud noeud : this.ctrl.getLstNoeud())
+		{
+			this.comboNoeud1.addItem(noeud);
+		} 
 		
-		Noeud n = this.ctrl.getLstNoeud().get(this.ctrl.getLstNoeud().size()-1);
 
-		this.comboNoeud1.addItem(n);
+			//this.comboNoeud1.addItem(n);
+		
 		/*
 		 * getNoeudDispo
 		 */

@@ -179,7 +179,14 @@ public class Metier
 		return this.lstArete;
 	}
 
-	public void supprArete( Arete a )
+	public void supprArete( int n )
+	{
+        Arete a = this.lstArete.get( n );
+		a.supprArete();
+		this.lstArete.remove( a );
+	}
+
+    public void supprArete( Arete a )
 	{
 		a.supprArete();
 		this.lstArete.remove( a );

@@ -147,6 +147,11 @@ public class Controleur
         this.metier.supprNoeud(noeud);
     }
 
+    public void supprArete(int arete)
+    {
+        this.metier.supprArete(arete);
+    }
+
     public static void main(String[] args)
     {
         new Controleur();
