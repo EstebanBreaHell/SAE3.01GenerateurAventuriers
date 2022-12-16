@@ -62,16 +62,13 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
-
-		while(PanelGraphique.pathImg == null)
-			System.out.println("erreur");
-
+	
 		Image img = null;
 
 		try   {img = ImageIO.read( new File(PanelGraphique.pathImg));} 
 		catch (IOException e) {e.printStackTrace();}
-		g.drawImage(img, 0,0, this);
 
+		g.drawImage(img.getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT),0,0, this);
 
 	}
 
