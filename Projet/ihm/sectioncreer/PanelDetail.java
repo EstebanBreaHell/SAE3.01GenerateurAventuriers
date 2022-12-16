@@ -284,7 +284,7 @@ public class PanelDetail extends JPanel implements ActionListener
 			}
 
 
-			JPanel panelAfficher = new JPanel();
+			JPanel panelCouleur = new JPanel(new GridLayout(nbJoueursMax + 1, 2, 5,5));
 			for(int i = 1; i <= nbJoueursMax; i ++)
 			{
 				panelCouleur.add(new JLabel("Couleur joueur " + i + " : "));
