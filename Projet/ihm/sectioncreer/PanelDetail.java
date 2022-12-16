@@ -38,7 +38,6 @@ public class PanelDetail extends JPanel implements ActionListener
 	private JDialog jd;
 
 
-
 	private Object[][] donnees = {
 								{"1", "1",},
 								{"2", "2",},
@@ -284,10 +283,8 @@ public class PanelDetail extends JPanel implements ActionListener
 				JOptionPane.showMessageDialog(this, "Erreur de saisie", "Erreur", JOptionPane.ERROR_MESSAGE);
 			}
 
-			/* Gestion de couleurs par nombre de joueurs crées */
-			JPanel panelCouleur = new JPanel();
-			panelCouleur.setLayout(new GridLayout(nbJoueursMax + 1,2,5,5));
 
+			JPanel panelAfficher = new JPanel();
 			for(int i = 1; i <= nbJoueursMax; i ++)
 			{
 				panelCouleur.add(new JLabel("Couleur joueur " + i + " : "));
@@ -303,9 +300,8 @@ public class PanelDetail extends JPanel implements ActionListener
 		{
 			jd.dispose();
 		}
-
 		
-
+		
 		if(e.getSource() == this.btnEditer)
 		{
 			FileNameExtensionFilter filtre = new FileNameExtensionFilter("format image(*.png; *.jpg; *.gif)", "png","jpg","gif");
