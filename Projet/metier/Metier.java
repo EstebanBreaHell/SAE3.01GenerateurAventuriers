@@ -148,13 +148,14 @@ public class Metier
 	}
 
 	public void supprNoeud( int n ) {
-        System.out.println(n);
-        for (Noeud no : lstNoeud) {
-            System.out.println(no.toString());
-        }
-        System.out.println("zrzerbtetbrtrbeqbarbjkerhoizrjierjioerioe");
-
         //Méthode pour supprimer le n indiqué en paramètre
+        List<Arete> arrayListArretSupp = this.lstNoeud.get(n).getArrayArete();
+
+        while(arrayListArretSupp.size() != 0)
+        {
+            supprArete(arrayListArretSupp.get(0));
+        }
+
         lstNoeud.remove(n);
 
         for (Noeud no : lstNoeud) {
