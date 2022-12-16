@@ -33,7 +33,9 @@ public class PanelDetail extends JPanel implements ActionListener
 	private JButton btnmoins2;
 	private JButton btnEditer;
 	private JTextField btnCompter;
-	private JTextField btnCompter2; 
+	private JTextField btnCompter2;
+
+	private Popup popup; 
 
 
 
@@ -276,14 +278,13 @@ public class PanelDetail extends JPanel implements ActionListener
 			}
 
 
-			/*JPanel panelAfficher = new JPanel();
+			/*JPanel panelChoixCouleur = new JPanel();
+			PopupFactory pf = new PopupFactory();
+			this.popup = pf.getPopup(this, panelChoixCouleur,200,200);
 			for(int i = 1; i <= nbJoueursMax; i ++)
 			{
-				panelAfficher.add(new JLabel("Couleur pour le joueur" + i + ": "));
-				panelAfficher.add(new JTextField());
-
-				this.add(panelAfficher);
-		
+				panelChoixCouleur.add(new JLabel("Couleur pour le joueur" + i + ": "));
+				panelChoixCouleur.add(new JTextField());
 			}*/
 
 		}
