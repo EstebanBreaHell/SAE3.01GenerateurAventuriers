@@ -18,6 +18,8 @@ public class Metier
 
 	private ArrayList<Noeud> lstNoeud;
 	private ArrayList<Arete> lstArete;
+    private ArrayList<CarteObjectif> lstCarteObjectif;
+    private ArrayList<CarteWagon> lstCarteWagon;
 
 	private int nbJoueurMax, nbJoueurMin, nbWagonsMax;
 
@@ -26,6 +28,8 @@ public class Metier
         this.ctrl = ctrl;
 		this.lstNoeud = new ArrayList<Noeud>();
 		this.lstArete = new ArrayList<Arete>();
+        this.lstCarteObjectif = new ArrayList<CarteObjectif>();
+        this.lstCarteWagon = new ArrayList<CarteWagon>();
 
 		this.nbJoueurMax = 0;
 		this.nbJoueurMin = 0;
@@ -82,12 +86,34 @@ public class Metier
             {
                 pw.println ( "\t\t<arete>" );
 
-                pw.println ( "\t\t<noeud1>" + a.getNoeudDep().getNom() + " </noeud1>" );
-                pw.println ( "\t\t<noeud2>" + a.getNoeudArr().getNom() + " </noeud2>" );
+                pw.println ( "\t\t<noeudArr>" + a.getNoeudDep().getNom() + " </noeudArr>" );
+                pw.println ( "\t\t<noeudDep>" + a.getNoeudArr().getNom() + " </noeudDep>" );
                // pw.println ( "\t\t<couleurRGB>" + a.getCouleur().getRGB() + " </couleurRGB>" );
                 pw.println ( "\t\t<wagons>" + a.getWagon() + " </wagons>" );
 
                 pw.println ("\t\t</arete>");
+
+            }
+
+            for( CarteObjectif co : lstCarteObjectif )
+            {
+                pw.println ( "\t\t<carteObjectif>" );
+
+                pw.println ( "\t\t<noeudArr>" + co.getNoeudDep().getNom() + " </noeudArr>" );
+                pw.println ( "\t\t<noeudDep>" + co.getNoeudArr().getNom() + " </noeudDep>" );
+                pw.println ( "\t\t<points>" + co.getNbPoints() + " </points>" );
+
+                pw.println ("\t\t</carteObjectif>");
+
+            }
+
+            for( CarteWagon cw : lstCarteWagon )
+            {
+                pw.println ( "\t\t<carteWagon>" );
+
+                pw.println ( "\t\t<couleur>" + cw.getCouleur() + " </couleur>" );
+
+                pw.println ("\t\t</carteWagon>");
 
             }
             pw.println ( " \t</mappe>" );
@@ -130,6 +156,18 @@ public class Metier
             System.out.println(a2.toString());
         }
 	}
+
+    public void creeCarteObjectif( Noeud noeudDep, Noeud noeudArr, int nbW )
+    {
+        CarteObjectif co = new CarteObjectif( noeudDep, noeudArr, nbW );
+        this.lstCarteObjectif.add( co );
+    }
+
+    public void creeCarteWagon( Color c )
+    {
+        CarteWagon cw = new CarteWagon( c );
+        this.lstCarteWagon.add( cw );
+    }
 
 	public ArrayList<Noeud> getLstNoeud()
 	{
