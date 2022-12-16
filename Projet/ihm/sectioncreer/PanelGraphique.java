@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import javax.swing.filechooser.FileSystemView;
+import javax.swing.text.Position;
 
 
 import main.Controleur;
@@ -20,14 +21,14 @@ import metier.Arete;
 import metier.Noeud;
 
 
-public class PanelGraphique extends JPanel implements ActionListener, MouseListener
+public class PanelGraphique extends JPanel implements ActionListener, MouseListener, MouseMotionListener
 {
 	private Controleur ctrl;
 	private JButton btnImportImg;
 	private JButton btnBackToMenu; 
 	private static String  pathImg;
 
-	private boolean premierClic;
+	private Noeud noeudActive;
 
 	public PanelGraphique(Controleur ctrl)
 	{
@@ -176,43 +177,72 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		String nom = this.ctrl.getNomNoeudPanelCreer();
+
+
+		for( Noeud n : this.ctrl.getLstNoeud() ){
+
+			if(e.getXOnScreen() >= n.getX()+50 &&
+			   e.getXOnScreen() >= n.getY()-50 &&
+			   e.getYOnScreen() >= n.getY()+50 &&
+			   e.getYOnScreen() >= n.getY()-50)
+				this.noeudActive = n;
+			
+			System.out.println(e.getX() + "||| " + e.getY());
+		}
+
+		System.out.println(noeudActive);
+
 		if(nom.equals(""))
 			this.ctrl.afficherErreurPanelCreer("Il faut entrer un nom");
 		else
 		{
 			this.ctrl.addNoeud(nom, e.getX(), e.getY());
+
 			/* Ajout des noeuds dans l'historique */
 			PanelCreerNoeud.lstLabel.add(new JLabel("Nom : " + nom + " | Pos X : " + e.getX()  + " | Pos Y : " + e.getY()));
 			PanelCreerNoeud.listHistorique.setListData(PanelCreerNoeud.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 			/*------------------------------------*/
 
+			/*this.noeudActive = this.ctrl.getNoeud(nom);
+			System.out.println(noeudActive.getNom());*/
 			this.ctrl.majIHM();
 		}
 	}
 
-	/*
-	public void mouseDragged(MouseEvent e) {
-		// Obtenez les coordonnées de la souris
-		int x = e.getX();
-		int y = e.getY();
 
-		// Déplacez l'objet en utilisant les coordonnées de la souris
-		moveObject(x, y);
+	public void mouseDragged(MouseEvent e)
+	{
+		if (this.noeudActive != null)
+		{
+			this.noeudActive.setPosX(e.getX());
+			this.noeudActive.setPosY(e.getY());
+			this.repaint();
+		}
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		// Cette méthode n'est pas utilisée dans le cas du drag'n'drop
-	}*/
+	}
 
+	// utilise pour capturer le clique de l'utilisateur
 	@Override
-	public void mousePressed(MouseEvent e) {
-
+	public void mousePressed(MouseEvent e)
+	{
+		for (Noeud n : this.ctrl.getLstNoeud())
+		{
+			if (e.getX() > n.getX() && e.getX() < n.getX() &&
+				e.getY() > n.getX() && e.getY() < n.getY()   )
+			{
+				this.noeudActive = n;
+				break;
+			}
+		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-
+		this.noeudActive = null;
 	}
 
 	@Override

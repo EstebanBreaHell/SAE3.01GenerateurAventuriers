@@ -166,4 +166,8 @@ public class Controleur
     {
         new Controleur();
     }
+
+    public Noeud getNoeud(String nom) {
+        return this.metier.getNoeud(nom);
+    }
 }

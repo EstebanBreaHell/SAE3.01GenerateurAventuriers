@@ -234,4 +234,12 @@ public class Metier
 	{
         this.ctrl.majIHM();
     }
+
+    public Noeud getNoeud(String nom) {
+        for (Noeud n : this.lstNoeud)
+            if (n.getNom().equals(nom))
+                return n;
+
+        return null;
+    }
 }
