@@ -26,7 +26,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 	private JButton btnImportImg;
 	private JButton btnBackToMenu; 
 	private static String  pathImg;
-	private Noeud noeudActif;
+	private Noeud noeudActive;
 	private boolean premierClic;
 
 	public PanelGraphique(Controleur ctrl)
@@ -192,7 +192,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 		}
 	}
 
-	
+
 	public void mouseDragged(MouseEvent e) {
 		// Obtenez les coordonnées de la souris
 		if(this.noeudActif != null)
@@ -207,7 +207,6 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 			this.noeudActif.setNomY(y-10);
 			this.ctrl.majIHM();
 		}
-	}
 	@Override
 	public void mouseMoved(MouseEvent e) {}
 

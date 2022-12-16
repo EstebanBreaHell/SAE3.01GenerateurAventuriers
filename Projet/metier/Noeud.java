@@ -1,5 +1,6 @@
 package metier;
 
+import javax.swing.text.Position;
 import java.util.ArrayList;
 
 public class Noeud
@@ -103,6 +104,22 @@ public class Noeud
 
     public void setNomY(int y){
         this.nomY = y;
+    }
+
+    /**
+     * Modifie la position X du noeud
+     * @param posX
+     */
+    public void setPosX(int posX){
+        this.posX = posX;
+    }
+
+    /**
+     * Modifie la position Y du noeud
+     * @param posY
+     */
+    public void setPosY(int posY){
+        this.posY = posY;
     }
 
     /**
