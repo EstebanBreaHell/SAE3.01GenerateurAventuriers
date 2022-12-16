@@ -8,6 +8,8 @@ public class Arete {
     private Noeud noeudArr;
     private String couleur;
     private int   nbWagon;
+    private boolean estDouble;
+    private boolean estOccupe;
 
     /**
     * Constructeur de la classe arrete
@@ -16,14 +18,27 @@ public class Arete {
     * @param couleur la couleur de l'arrete
     * @param nbWagon le nombre de nbWagon
     */
-    public Arete(Noeud noeudDep, Noeud noeudArr, String couleur, int nbWagon) {
+    public Arete(Noeud noeudDep, Noeud noeudArr, String couleur, int nbWagon, boolean estDouble) {
         this.noeudDep = noeudDep;
         this.noeudArr = noeudArr;
         this.couleur  = couleur;
         this.nbWagon  = nbWagon;
+        this.estDouble = estDouble;
+        this.estOccupe = false;
 
         this.noeudDep.ajoutArete(this);
         this.noeudArr.ajoutArete(this);
+    }
+
+    public boolean getEstDouble() {
+        return this.estDouble;
+    }
+    public boolean getEstOccupe() {
+        return this.estOccupe;
+    }
+
+    public void setEstOccupe(boolean estOccupe) {
+        this.estOccupe = estOccupe;
     }
 
     public void supprArete() {
@@ -51,6 +66,11 @@ public class Arete {
     }
     public void setWagon(int nbWagon){
         this.nbWagon = nbWagon;
+    }
+
+    public String toString() {
+        return "Arete [noeudDep=" + noeudDep + ", noeudArr=" + noeudArr + ", couleur=" + couleur + ", nbWagon=" + nbWagon + ", estDouble=" + estDouble + ", estOccupe=" + estOccupe
+                + "]";
     }
 
     
