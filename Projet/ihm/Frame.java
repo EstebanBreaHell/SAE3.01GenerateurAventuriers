@@ -50,6 +50,10 @@ public class Frame extends JFrame
 
         this.setVisible(true);
     }
+    public void supprimArete(int n)
+	{
+        this.panelCreer.supprimArete(n);
+    }
 
     public void changerPanel(String nomPanel)
     {

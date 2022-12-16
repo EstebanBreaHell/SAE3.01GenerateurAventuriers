@@ -51,6 +51,11 @@ public class Controleur
 
         this.ihm = new Frame(this, nomPanel);
     }
+    public void supprimArete(int n)
+	{
+        this.ihm.supprimArete(n);
+    }
+
 
     public void panelSelectionner(PanelImageInfo panelSelectionner)
     {

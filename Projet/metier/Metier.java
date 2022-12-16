@@ -147,14 +147,9 @@ public class Metier
 	{
 		Arete a = new Arete( n1, n2, c ,nbW);
 
-        for(Arete a2 : lstArete ){
-            System.out.println(a2.toString());
-        }
 		this.lstArete.add( a );
 
-        for(Arete a2 : lstArete ){
-            System.out.println(a2.toString());
-        }
+    
 	}
 
     public void creeCarteObjectif( Noeud noeudDep, Noeud noeudArr, int nbW )
@@ -195,17 +190,15 @@ public class Metier
 	public void supprNoeud( int n ) {
         //Méthode pour supprimer le n indiqué en paramètre
         List<Arete> arrayListArretSupp = this.lstNoeud.get(n).getArrayArete();
-
+        
         while(arrayListArretSupp.size() != 0)
         {
+            System.out.print(this.lstArete.indexOf(arrayListArretSupp.get(0)));
+            this.ctrl.supprimArete(this.lstArete.indexOf(arrayListArretSupp.get(0)));
             supprArete(arrayListArretSupp.get(0));
         }
 
         lstNoeud.remove(n);
-
-        for (Noeud no : lstNoeud) {
-            System.out.println(no.toString());
-        }
     }
 
     /* Méthode permettant de récupérer tous les noeuds disponibles ( qui n'ont pas d'aretes ) */

@@ -161,6 +161,12 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		});
 	}
 
+	public void supprimArete(int n)
+	{
+		this.lstLabel.remove(n);
+		this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
+		this.panelGraphique.majIHM();
+	}
 	public void actionPerformed(ActionEvent e)
 	{
 
