@@ -23,6 +23,7 @@ public class PanelCreerCarteObjectif extends JPanel
 	{
 		this.ctrl = ctrl; 
 		this.setLayout(new BorderLayout());
+		this.lstNoeud = new JList<String>();
 		
 		System.out.println();
 

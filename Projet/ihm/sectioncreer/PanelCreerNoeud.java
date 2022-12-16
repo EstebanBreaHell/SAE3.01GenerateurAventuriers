@@ -239,7 +239,6 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 		if(e.getSource() == this.btnConfirmer)
 		{
 			this.lstLabel.add(new JLabel("Nom : " + this.txtNomModif.getText() + " | Pos X : " + this.txtPosXModif.getText() + " | Pos Y : " + this.txtPosYModif.getText()));
-			this.listHistorique.remove(PanelCreerNoeud.listHistorique.getSelectedIndex());
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 
 			jd.dispose();
