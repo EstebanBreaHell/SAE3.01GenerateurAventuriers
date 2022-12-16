@@ -16,10 +16,12 @@ import java.awt.*;
 
 public class Frame extends JFrame
 {
+    private Controleur ctrl;
+    
     protected static Font POLICE_DEFAUT = new Font("Broadway",Font.BOLD,50);
     private Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
 
-    private Controleur ctrl;
+    
 
     private PanelInit   panelInit;
     private PanelCreer  panelCreer;
@@ -28,10 +30,12 @@ public class Frame extends JFrame
 
     public Frame(Controleur ctrl, String nomPanel)
     {
+
+        this.ctrl = ctrl;
         this.panelInit = new PanelInit(this.ctrl);
         this.panelCreer = new PanelCreer(this.ctrl);
 
-        this.ctrl = ctrl;
+        
 		this.longueur = this.tailleMoniteur.width  - (int) (this.tailleMoniteur.width*0.01) ;
 		this.hauteur  = this.tailleMoniteur.height - (int) (this.tailleMoniteur.height*0.06);
 

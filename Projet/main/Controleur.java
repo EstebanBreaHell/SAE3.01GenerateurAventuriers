@@ -92,6 +92,11 @@ public class Controleur
         this.metier.setNbWagonsMax(nbWagonsMax);
     }
 
+    public ArrayList<Noeud> getNoeudDispo(Noeud n)
+    {
+        return this.metier.getNoeudDispo(n);
+    }
+
     public int getNbJoueurMax() {
         return this.metier.getNbJoueurMax();
     }
@@ -105,6 +110,8 @@ public class Controleur
     }
 
     public void addNoeud(String nom, int x, int y) { this.metier.creeNoeud(nom, x, y); }
+
+    public void addArete(Noeud noeud1, Noeud noeud2,  String couleur, int longueur) { this.metier.creeArete(noeud1, noeud2, couleur, longueur ); }
 
     public String getNomNoeudPanelCreer() { return this.ihm.getNomNoeudPanelCreer(); }
 
@@ -140,11 +147,13 @@ public class Controleur
         this.metier.supprNoeud(noeud);
     }
 
+    public void supprArete(int arete)
+    {
+        this.metier.supprArete(arete);
+    }
+
     public static void main(String[] args)
     {
         new Controleur();
     }
-
-
-
 }

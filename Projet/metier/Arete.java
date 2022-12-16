@@ -6,7 +6,7 @@ public class Arete {
 
     private Noeud noeudDep;
     private Noeud noeudArr;
-    private Color couleur;
+    private String couleur;
     private int   nbWagon;
 
     /**
@@ -16,7 +16,7 @@ public class Arete {
     * @param couleur la couleur de l'arrete
     * @param nbWagon le nombre de nbWagon
     */
-    public Arete(Noeud noeudDep, Noeud noeudArr, Color couleur, int nbWagon) {
+    public Arete(Noeud noeudDep, Noeud noeudArr, String couleur, int nbWagon) {
         this.noeudDep = noeudDep;
         this.noeudArr = noeudArr;
         this.couleur  = couleur;
@@ -33,7 +33,7 @@ public class Arete {
 
     public Noeud getNoeudDep()  {return this.noeudDep;}
     public Noeud getNoeudArr()  {return this.noeudArr;}
-    public Color getCouleur() {
+    public String getCouleur() {
         return this.couleur;
     }
     public int   getWagon()   {
@@ -46,7 +46,7 @@ public class Arete {
     public void setNoeud2(Noeud noeudArr){
         this.noeudArr = noeudArr;
     }
-    public void setCouleur(Color couleur){
+    public void setCouleur(String couleur){
         this.couleur = couleur;
     }
     public void setWagon(int nbWagon){

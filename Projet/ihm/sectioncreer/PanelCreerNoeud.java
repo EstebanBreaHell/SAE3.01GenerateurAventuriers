@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+
 import main.Controleur;
 
 public class PanelCreerNoeud extends JPanel implements ActionListener, MouseListener
@@ -150,10 +151,13 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 	{	
 		if(e.getSource() == this.btnSupprimer)
 		{
-			this.lstLabel.remove(this.listHistorique.getSelectedIndex());
-			this.ctrl.supprNoeud(this.listHistorique.getSelectedIndex());
+			int n =PanelCreerNoeud.listHistorique.getSelectedIndex();
+
+			this.ctrl.supprNoeud(n);
+			PanelCreerNoeud.lstLabel.remove(n);
 			this.panelGraphique.majIHM();
-			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
+			PanelCreerNoeud.listHistorique.setListData(PanelCreerNoeud.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
+
 		}
 
 		if(e.getSource() == this.btnGenererNoeud)

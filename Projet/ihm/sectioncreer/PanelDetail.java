@@ -32,11 +32,10 @@ public class PanelDetail extends JPanel implements ActionListener
 	private JButton btnplus2;
 	private JButton btnmoins2;
 	private JButton btnEditer;
+	private JButton btnConfirmer;
 	private JTextField btnCompter;
-	private JTextField btnCompter2;
-
-	private Popup popup; 
-
+	private JTextField btnCompter2; 
+	private JDialog jd;
 
 
 	private Object[][] donnees = {
@@ -68,23 +67,27 @@ public class PanelDetail extends JPanel implements ActionListener
 		DefaultTableCellRenderer custom = new DefaultTableCellRenderer();
 		custom.setHorizontalAlignment(JLabel.CENTER);
 
-		this.txtNbJoueursMin = new JTextField("1");
-		this.txtNbJoueursMax = new JTextField();
+		this.txtNbJoueursMin 	= new JTextField("1");
+		this.txtNbJoueursMax 	= new JTextField();
 		this.txtNbCartesJoueurs = new JTextField();
-		this.btnValider = new JButton("Valider");
-		this.btnplus = new JButton("+");
-		this.btnmoins = new JButton("-");
-		this.btnplus2 = new JButton("+");
-		this.btnmoins2 = new JButton("-");
-		this.btnEditer = new JButton("Editer");
-		this.btnCompter = new JTextField("0", JTextField.CENTER);
-		this.btnCompter2 = new JTextField("0");
-		this.txtNbCouleurs = new JTextField();
+		this.btnValider 		= new JButton("Valider");
+		this.btnplus 			= new JButton("+");
+		this.btnmoins 			= new JButton("-");
+		this.btnplus2 			= new JButton("+");
+		this.btnmoins2 			= new JButton("-");
+		this.btnEditer 			= new JButton("Editer");
+		this.btnCompter 		= new JTextField("0", JTextField.CENTER);
+		this.btnCompter2 		= new JTextField("0");
+		this.txtNbCouleurs		= new JTextField();
+		this.btnConfirmer 		= new JButton("Confirmer");
 
 		this.btnCompter.setHorizontalAlignment(SwingConstants.CENTER);
 		this.btnCompter2.setHorizontalAlignment(SwingConstants.CENTER);
 		this.btnValider.setBackground(Color.WHITE);
 		this.btnEditer.setBackground(Color.WHITE);
+
+		this.jd = new JDialog();
+		jd.setTitle("Choix des couleurs pour chaque joueur");
 	
 		for(int i = 0; i < tableau.getColumnCount(); i++)
 		{
@@ -116,6 +119,8 @@ public class PanelDetail extends JPanel implements ActionListener
 		lblPoints.setBounds(0,240, 250, 250);
 
 		panelTableau.setBounds(50, 390, 400, 117);
+
+		jd.setBounds(900, 300, 500, 400); 	
 		
 
 
@@ -180,6 +185,7 @@ public class PanelDetail extends JPanel implements ActionListener
 		this.btnmoins2.addActionListener(this);
 		this.btnValider.addActionListener(this);
 		this.btnEditer.addActionListener(this);
+		this.btnConfirmer.addActionListener(this);
 
 
 		this.txtNbJoueursMax.addKeyListener(new KeyAdapter() {
@@ -278,17 +284,24 @@ public class PanelDetail extends JPanel implements ActionListener
 			}
 
 
-			/*JPanel panelChoixCouleur = new JPanel();
-			PopupFactory pf = new PopupFactory();
-			this.popup = pf.getPopup(this, panelChoixCouleur,200,200);
+			JPanel panelAfficher = new JPanel();
 			for(int i = 1; i <= nbJoueursMax; i ++)
 			{
-				panelChoixCouleur.add(new JLabel("Couleur pour le joueur" + i + ": "));
-				panelChoixCouleur.add(new JTextField());
-			}*/
-
+				panelCouleur.add(new JLabel("Couleur joueur " + i + " : "));
+				panelCouleur.add(new JTextField());
+			}
+			panelCouleur.add(btnConfirmer);
+			
+			jd.add(panelCouleur);
+			jd.setVisible(true);
 		}
 
+		if(e.getSource() == btnConfirmer)
+		{
+			jd.dispose();
+		}
+		
+		
 		if(e.getSource() == this.btnEditer)
 		{
 			FileNameExtensionFilter filtre = new FileNameExtensionFilter("format image(*.png; *.jpg; *.gif)", "png","jpg","gif");

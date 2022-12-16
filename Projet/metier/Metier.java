@@ -18,6 +18,8 @@ public class Metier
 
 	private ArrayList<Noeud> lstNoeud;
 	private ArrayList<Arete> lstArete;
+    private ArrayList<CarteObjectif> lstCarteObjectif;
+    private ArrayList<CarteWagon> lstCarteWagon;
 
 	private int nbJoueurMax, nbJoueurMin, nbWagonsMax;
 
@@ -26,6 +28,8 @@ public class Metier
         this.ctrl = ctrl;
 		this.lstNoeud = new ArrayList<Noeud>();
 		this.lstArete = new ArrayList<Arete>();
+        this.lstCarteObjectif = new ArrayList<CarteObjectif>();
+        this.lstCarteWagon = new ArrayList<CarteWagon>();
 
 		this.nbJoueurMax = 0;
 		this.nbJoueurMin = 0;
@@ -82,12 +86,34 @@ public class Metier
             {
                 pw.println ( "\t\t<arete>" );
 
-                pw.println ( "\t\t<noeud1>" + a.getNoeudDep().getNom() + " </noeud1>" );
-                pw.println ( "\t\t<noeud2>" + a.getNoeudArr().getNom() + " </noeud2>" );
-                pw.println ( "\t\t<couleurRGB>" + a.getCouleur().getRGB() + " </couleurRGB>" );
+                pw.println ( "\t\t<noeudArr>" + a.getNoeudDep().getNom() + " </noeudArr>" );
+                pw.println ( "\t\t<noeudDep>" + a.getNoeudArr().getNom() + " </noeudDep>" );
+               // pw.println ( "\t\t<couleurRGB>" + a.getCouleur().getRGB() + " </couleurRGB>" );
                 pw.println ( "\t\t<wagons>" + a.getWagon() + " </wagons>" );
 
                 pw.println ("\t\t</arete>");
+
+            }
+
+            for( CarteObjectif co : lstCarteObjectif )
+            {
+                pw.println ( "\t\t<carteObjectif>" );
+
+                pw.println ( "\t\t<noeudArr>" + co.getNoeudDep().getNom() + " </noeudArr>" );
+                pw.println ( "\t\t<noeudDep>" + co.getNoeudArr().getNom() + " </noeudDep>" );
+                pw.println ( "\t\t<points>" + co.getNbPoints() + " </points>" );
+
+                pw.println ("\t\t</carteObjectif>");
+
+            }
+
+            for( CarteWagon cw : lstCarteWagon )
+            {
+                pw.println ( "\t\t<carteWagon>" );
+
+                pw.println ( "\t\t<couleur>" + cw.getCouleur() + " </couleur>" );
+
+                pw.println ("\t\t</carteWagon>");
 
             }
             pw.println ( " \t</mappe>" );
@@ -117,11 +143,31 @@ public class Metier
 	}
 
 	//En partant sur la base que l'on utilise une liste déroulante pour la couleur ET pour les ville
-	public void creeArete(Noeud n1 , Noeud n2 , Color c, int nbW )
+	public void creeArete(Noeud n1 , Noeud n2 , String c, int nbW )
 	{
 		Arete a = new Arete( n1, n2, c ,nbW);
+
+        for(Arete a2 : lstArete ){
+            System.out.println(a2.toString());
+        }
 		this.lstArete.add( a );
+
+        for(Arete a2 : lstArete ){
+            System.out.println(a2.toString());
+        }
 	}
+
+    public void creeCarteObjectif( Noeud noeudDep, Noeud noeudArr, int nbW )
+    {
+        CarteObjectif co = new CarteObjectif( noeudDep, noeudArr, nbW );
+        this.lstCarteObjectif.add( co );
+    }
+
+    public void creeCarteWagon( Color c )
+    {
+        CarteWagon cw = new CarteWagon( c );
+        this.lstCarteWagon.add( cw );
+    }
 
 	public ArrayList<Noeud> getLstNoeud()
 	{
@@ -133,20 +179,28 @@ public class Metier
 		return this.lstArete;
 	}
 
-	public void supprArete( Arete a )
+	public void supprArete( int n )
+	{
+        Arete a = this.lstArete.get( n );
+		a.supprArete();
+		this.lstArete.remove( a );
+	}
+
+    public void supprArete( Arete a )
 	{
 		a.supprArete();
 		this.lstArete.remove( a );
 	}
 
 	public void supprNoeud( int n ) {
-        System.out.println(n);
-        for (Noeud no : lstNoeud) {
-            System.out.println(no.toString());
-        }
-        System.out.println("zrzerbtetbrtrbeqbarbjkerhoizrjierjioerioe");
-
         //Méthode pour supprimer le n indiqué en paramètre
+        List<Arete> arrayListArretSupp = this.lstNoeud.get(n).getArrayArete();
+
+        while(arrayListArretSupp.size() != 0)
+        {
+            supprArete(arrayListArretSupp.get(0));
+        }
+
         lstNoeud.remove(n);
 
         for (Noeud no : lstNoeud) {
@@ -163,16 +217,16 @@ public class Metier
 
         for (Arete a : n.getArrayArete())
 		{
-            if(a.getNoeudDep() != n && !lstNoeudOccupe.contains(a.getNoeudDep()))
+            if(!a.getNoeudDep().equals(n) && !lstNoeudOccupe.contains(a.getNoeudDep()))
 				lstNoeudOccupe.add(a.getNoeudDep());
-			if(a.getNoeudArr() != n && !lstNoeudOccupe.contains(a.getNoeudArr()))
+			if(!a.getNoeudArr().equals(n) && !lstNoeudOccupe.contains(a.getNoeudArr()))
 				lstNoeudOccupe.add(a.getNoeudArr());
 		}
 
-        for (Noeud noeud : this.lstNoeud)
-            if(!lstNoeudOccupe.contains(noeud))
-                lstNoeudDispo.add(noeud);
 
+        for (Noeud noeud : this.lstNoeud)
+            if(!lstNoeudOccupe.contains(noeud) && !noeud.equals(n))
+                lstNoeudDispo.add(noeud);
 
         return lstNoeudDispo;
     }
