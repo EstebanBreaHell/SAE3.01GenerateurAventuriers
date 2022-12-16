@@ -14,7 +14,7 @@ import java.awt.Color;
 import main.Controleur;
 import metier.Noeud;
 
-public class PanelCreerArete extends JPanel implements ActionListener
+public class PanelCreerArete extends JPanel implements ActionListener, ItemListener
 {
 	private Controleur ctrl;
 	private PanelGraphique panelGraphique;
@@ -63,8 +63,12 @@ public class PanelCreerArete extends JPanel implements ActionListener
 		this.container = new Container();
 		this.container.setLayout(new FlowLayout());
 		this.btnCouleur =new JButton("Couleur de l'arête");
-		this.txtDistance = new JFormattedTextField(longformat);		
+		this.txtDistance = new JFormattedTextField(longformat);	
+		
+
+		
 		this.comboNoeud1 = new JComboBox<Noeud>();
+		this.comboNoeud1.addItemListener(this);
 		this.comboNoeud2 = new JComboBox<Noeud>();
 
 		this.btnSupprimer = new JButton("Supprimer");
@@ -219,14 +223,35 @@ public class PanelCreerArete extends JPanel implements ActionListener
 			/*------------------------------------*/
 		}
 	}
+	public void itemStateChanged(ItemEvent e) 
+    { 
+        // si l'état du combobox est modifiée 
+        
+        System.out.println(" ["+this.comboNoeud1.getSelectedItem()+"]"); 
+
+		this.comboNoeud2.removeAllItems();
+
+		Noeud n = this.comboNoeud1.getItemAt(this.comboNoeud1.getSelectedIndex());
+
+		for(Noeud noeud : this.ctrl.getNoeudDispo(n))
+		{
+			this.comboNoeud2.addItem(noeud);
+		} 
+        
+    } 
+
+
 
 	public void majIHM()
 	{
-		/*
+		
 		Noeud n = this.ctrl.getLstNoeud().get(this.ctrl.getLstNoeud().size()-1);
 
-		this.comboNoeud1.addItem(n.getNom());
-		this.comboNoeud2.addItem(n.getNom());
-		*/
+		this.comboNoeud1.addItem(n);
+		/*
+		 * getNoeudDispo
+		 */
+		//this.comboNoeud2.addItem(ctrl.getNoeudDispo(n));
+		
 	}
 }

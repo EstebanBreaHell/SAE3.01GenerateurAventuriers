@@ -210,16 +210,16 @@ public class Metier
 
         for (Arete a : n.getArrayArete())
 		{
-            if(a.getNoeudDep() != n && !lstNoeudOccupe.contains(a.getNoeudDep()))
+            if(!a.getNoeudDep().equals(n) && !lstNoeudOccupe.contains(a.getNoeudDep()))
 				lstNoeudOccupe.add(a.getNoeudDep());
-			if(a.getNoeudArr() != n && !lstNoeudOccupe.contains(a.getNoeudArr()))
+			if(!a.getNoeudArr().equals(n) && !lstNoeudOccupe.contains(a.getNoeudArr()))
 				lstNoeudOccupe.add(a.getNoeudArr());
 		}
 
-        for (Noeud noeud : this.lstNoeud)
-            if(!lstNoeudOccupe.contains(noeud))
-                lstNoeudDispo.add(noeud);
 
+        for (Noeud noeud : this.lstNoeud)
+            if(!lstNoeudOccupe.contains(noeud) && !noeud.equals(n))
+                lstNoeudDispo.add(noeud);
 
         return lstNoeudDispo;
     }

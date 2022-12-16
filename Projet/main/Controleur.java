@@ -92,6 +92,11 @@ public class Controleur
         this.metier.setNbWagonsMax(nbWagonsMax);
     }
 
+    public ArrayList<Noeud> getNoeudDispo(Noeud n)
+    {
+        return this.metier.getNoeudDispo(n);
+    }
+
     public int getNbJoueurMax() {
         return this.metier.getNbJoueurMax();
     }
