@@ -22,10 +22,16 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 	private JTextField txtNom;
 	private JTextField txtPosX;
 	private JTextField txtPosY;
+	private JTextField txtNomModif;
+	private JTextField txtPosXModif;
+	private JTextField txtPosYModif;
+	private JTextField txtPosXnom;
+	private JTextField txtPosYnom;
 
 	private JButton btnSupprimer;
 	private JButton btnGenererNoeud;
 	private JButton btnGenererPrefait;
+	private JButton btnConfirmer;
 
 	private JScrollPane scrollPane;
 
@@ -34,6 +40,7 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 	public static JList<String> listHistorique;
 
 	private PanelGraphique panelGraphique;
+	private JDialog jd;
 
 	public PanelCreerNoeud(Controleur ctrl)
 	{
@@ -49,7 +56,6 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 		JLabel lblNom  = new JLabel("Nom : ",        JLabel.LEFT);
 		JLabel lblPosX = new JLabel("Position X : ", JLabel.LEFT);
 		JLabel lblPosY = new JLabel("Position Y : ", JLabel.LEFT);
-
 		JLabel lblHistorique = new JLabel("Historique ", JLabel.CENTER);
 
 		Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
@@ -60,13 +66,19 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 		numberFormatter.setAllowsInvalid(false);
 		numberFormatter.setMinimum(0L);
 
-		this.txtNom  = new JTextField();
-		this.txtPosX = new JFormattedTextField(longformat);
-		this.txtPosY = new JFormattedTextField(longformat);
+		this.txtNom			= new JTextField();
+		this.txtPosX		= new JFormattedTextField(longformat);
+		this.txtPosY		= new JFormattedTextField(longformat);
+		this.txtNomModif	= new JTextField();
+		this.txtPosXModif	= new JTextField();
+		this.txtPosYModif	= new JTextField();
+		this.txtPosXnom		= new JTextField();
+		this.txtPosYnom		= new JTextField();
 
 		this.btnSupprimer      = new JButton("Supprimer"              );
 		this.btnGenererNoeud   = new JButton("Générer noeud"          );
 		this.btnGenererPrefait = new JButton("Générer noeud Aléatoire");
+		this.btnConfirmer      = new JButton("Confirmer"              );
 
 		this.listHistorique = new JList<String>();
 		this.listHistorique.setPreferredSize(new Dimension(0,550));
@@ -75,6 +87,10 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 		this.listHistorique.addMouseListener(this);
 
 		this.scrollPane = new JScrollPane(this.listHistorique, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+		this.jd = new JDialog();
+		jd.setTitle("Modification des coordonnées");
+		jd.setBounds(900, 300, 500, 400); 	
 
 		this.btnSupprimer     .setBackground(Color.WHITE);
 		this.btnGenererNoeud  .setBackground(Color.WHITE);
@@ -117,20 +133,21 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 		panelValidation.add(this.btnSupprimer);
 		panelValidation.add(new JLabel());
 
-		this.add(panelCoordonnees, BorderLayout.NORTH);
-		this.add(panelDispoHistorique, BorderLayout.CENTER);
-		this.add(panelValidation, BorderLayout.SOUTH);
-
 		this.btnSupprimer.addActionListener(this);
 		this.btnGenererNoeud.addActionListener(this);
 		this.btnGenererPrefait.addActionListener(this);
+		this.btnConfirmer.addActionListener(this);
+
+		this.add(panelCoordonnees, BorderLayout.NORTH);
+		this.add(panelDispoHistorique, BorderLayout.CENTER);
+		this.add(panelValidation, BorderLayout.SOUTH);
 
 		// Empêcher l'utilisateur de rentrer autre chose qu'un nombre dans les champs de texte
 		this.txtPosX.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
-					getToolkit().beep();
+				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) 
+				{
 					e.consume();
 				}
 			}
@@ -139,8 +156,30 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 		this.txtPosY.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
-					getToolkit().beep();
+				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) 
+				{
+					e.consume();
+				}
+			}
+		});
+
+		
+		this.txtPosXModif.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) 
+				{
+					e.consume();
+				}
+			}
+		});
+
+		
+		this.txtPosYModif.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) 
+				{
 					e.consume();
 				}
 			}
@@ -153,7 +192,7 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 	{	
 		if(e.getSource() == this.btnSupprimer)
 		{
-			int n =PanelCreerNoeud.listHistorique.getSelectedIndex();
+			int n = PanelCreerNoeud.listHistorique.getSelectedIndex();
 
 			this.ctrl.supprNoeud(n);
 			PanelCreerNoeud.lstLabel.remove(n);
@@ -196,35 +235,58 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 
 			this.ctrl.majIHM();
 		}
+
+		if(e.getSource() == this.btnConfirmer)
+		{
+			this.lstLabel.add(new JLabel("Nom : " + this.txtNomModif.getText() + " | Pos X : " + this.txtPosXModif.getText() + " | Pos Y : " + this.txtPosYModif.getText()));
+			this.listHistorique.remove(PanelCreerNoeud.listHistorique.getSelectedIndex());
+			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
+
+			jd.dispose();
+		}
 	}
 
 	public void mouseClicked(MouseEvent e) {
+
 		if(e.getClickCount() == 2)
 		{
-			// Récupération du noeud sélectionné et afficher un panel d'informatique								
+			JPanel panelPopUp = new JPanel(new GridLayout(6,2,10,10));
+			this.txtNomModif.setText(this.lstLabel.get(PanelCreerNoeud.listHistorique.getSelectedIndex()).getText().split(" | ")[2] + " " + this.lstLabel.get(PanelCreerNoeud.listHistorique.getSelectedIndex()).getText().split(" | ")[3]);
+			this.txtPosXModif.setText(this.lstLabel.get(PanelCreerNoeud.listHistorique.getSelectedIndex()).getText().split(" | ")[8]);
+			this.txtPosYModif.setText(this.lstLabel.get(PanelCreerNoeud.listHistorique.getSelectedIndex()).getText().split(" | ")[13]);
+			//this.txtPosXnom.setText(/* Récupérer le X du labelNom */);
+			//this.txtPosYnom.setText(/* Récupérer le Y du labelNom */);
+	
+			panelPopUp.add(new JLabel("Nom : "));
+			panelPopUp.add(this.txtNomModif);
+
+			panelPopUp.add(new JLabel("Position X ville : "));
+			panelPopUp.add(this.txtPosXModif);
+
+			panelPopUp.add(new JLabel("Position Y ville : "));
+			panelPopUp.add(this.txtPosYModif);
+
+			panelPopUp.add(new JLabel("Position X nom :"));
+			panelPopUp.add(new JLabel());
+
+			panelPopUp.add(new JLabel("Position Y nom :"));
+			panelPopUp.add(new JLabel());
+
+			panelPopUp.add(this.btnConfirmer);
+
+			jd.add(panelPopUp);
+			jd.setVisible(true);					
 		}		
 	}
 
 	@Override
-	public void mousePressed(MouseEvent e) {
-
-	}
-
+	public void mousePressed(MouseEvent e) {}
 	@Override
-	public void mouseReleased(MouseEvent e) {
-
-	}
-
+	public void mouseReleased(MouseEvent e) {}
 	@Override
-	public void mouseEntered(MouseEvent e) {
-
-	}
-
+	public void mouseEntered(MouseEvent e) {}
 	@Override
-	public void mouseExited(MouseEvent e) {
-
-	}
-
+	public void mouseExited(MouseEvent e) {}
 
 	public String getNomNoeudPanelCreer() { return this.txtNom.getText(); }
 

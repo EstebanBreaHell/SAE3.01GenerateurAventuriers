@@ -64,6 +64,11 @@ public class PanelDetail extends JPanel implements ActionListener
 		JLabel lblCouleur	 = new JLabel("Nb couleurs : ");
 		JTable tableau = new JTable(donnees, entetes);
 
+		JPanel panelDetail 		= new JPanel(new GridLayout(6,4,0,10));
+		JPanel panelChoixCarte	= new JPanel(null);
+		JPanel panelBas			= new JPanel(new GridLayout(1,3,10,10));
+		JPanel panelTableau		= new JPanel(new BorderLayout());
+
 		DefaultTableCellRenderer custom = new DefaultTableCellRenderer();
 		custom.setHorizontalAlignment(JLabel.CENTER);
 
@@ -81,11 +86,6 @@ public class PanelDetail extends JPanel implements ActionListener
 		this.txtNbCouleurs		= new JTextField();
 		this.btnConfirmer 		= new JButton("Confirmer");
 
-		this.btnCompter.setHorizontalAlignment(SwingConstants.CENTER);
-		this.btnCompter2.setHorizontalAlignment(SwingConstants.CENTER);
-		this.btnValider.setBackground(Color.WHITE);
-		this.btnEditer.setBackground(Color.WHITE);
-
 		this.jd = new JDialog();
 		jd.setTitle("Choix des couleurs pour chaque joueur");
 	
@@ -94,35 +94,29 @@ public class PanelDetail extends JPanel implements ActionListener
 			tableau.getColumnModel().getColumn(i).setCellRenderer(custom);
 		}
 
-		JPanel panelDetail 		= new JPanel(new GridLayout(6,4,0,10));
-		JPanel panelChoixCarte	= new JPanel(null);
-		JPanel panelBas			= new JPanel(new GridLayout(1,3,10,10));
-		JPanel panelTableau		= new JPanel(new BorderLayout());
+		this.btnCompter.setHorizontalAlignment(SwingConstants.CENTER);
+		this.btnCompter2.setHorizontalAlignment(SwingConstants.CENTER);
+		this.btnValider.setBackground(Color.WHITE);
+		this.btnEditer.setBackground(Color.WHITE);
 
-		
-		
+
 		this.btnplus.setBounds(50, 30, 60, 20);
 		this.btnCompter.setBounds(50, 50, 60, 60);
 		this.btnCompter.setEditable(false);
 		this.btnmoins.setBounds(50, 110, 60, 20);
-		lblCarteWagon.setBounds(100, 50, 250, 60);
 		this.btnEditer.setBounds(330, 90, 70, 20);
-
-		lblNbWagonsMulti.setBounds(0, 40, 250, 250);
-
 		this.btnplus2.setBounds(50, 200, 60, 20);
 		this.btnCompter2.setBounds(50, 220, 60, 60);
 		this.btnmoins2.setBounds(50, 280, 60, 20);
 		this.btnCompter2.setEditable(false);
+
 		lblCarteMulti.setBounds(50, 220, 250, 60);
-
 		lblPoints.setBounds(0,240, 250, 250);
-
+		lblNbWagonsMulti.setBounds(0, 40, 250, 250);
+		lblCarteWagon.setBounds(100, 50, 250, 60);
 		panelTableau.setBounds(50, 390, 400, 117);
-
 		jd.setBounds(900, 300, 500, 400); 	
 		
-
 
 		panelDetail.add(new JLabel());
 		panelDetail.add(new JLabel());
@@ -284,7 +278,7 @@ public class PanelDetail extends JPanel implements ActionListener
 			}
 
 
-			JPanel panelCouleur = new JPanel(new GridLayout(nbJoueursMax + 1, 2, 5,5));
+			JPanel panelCouleur = new JPanel(new GridLayout(nbJoueursMax + 1, 2,5,5));
 			for(int i = 1; i <= nbJoueursMax; i ++)
 			{
 				panelCouleur.add(new JLabel("Couleur joueur " + i + " : "));

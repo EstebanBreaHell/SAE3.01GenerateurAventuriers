@@ -223,6 +223,11 @@ public class Metier
 
         return lstNoeudDispo;
     }
+
+	public int getXNomVille(int index)
+	{
+		return this.lstNoeud.get(index).getNomX();
+	}
     /*------------------------------------*/
 
     public void majIHM()
