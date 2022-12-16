@@ -30,12 +30,11 @@ public class Frame extends JFrame
 
     public Frame(Controleur ctrl, String nomPanel)
     {
-
         this.ctrl = ctrl;
+        
         this.panelInit = new PanelInit(this.ctrl);
         this.panelCreer = new PanelCreer(this.ctrl);
 
-        
 		this.longueur = this.tailleMoniteur.width  - (int) (this.tailleMoniteur.width*0.01) ;
 		this.hauteur  = this.tailleMoniteur.height - (int) (this.tailleMoniteur.height*0.06);
 
@@ -49,6 +48,10 @@ public class Frame extends JFrame
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         this.setVisible(true);
+    }
+    public void supprimArete(int n)
+	{
+        this.panelCreer.supprimArete(n);
     }
 
     public void changerPanel(String nomPanel)

@@ -186,6 +186,8 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 		});
 	}
 
+	
+
 	public void actionPerformed(ActionEvent e)
 	{	
 		if(e.getSource() == this.btnSupprimer)

@@ -276,7 +276,8 @@ public class PanelDetail extends JPanel implements ActionListener
 			{
 				JOptionPane.showMessageDialog(this, "Erreur de saisie", "Erreur", JOptionPane.ERROR_MESSAGE);
 			}
-			
+
+
 			JPanel panelCouleur = new JPanel(new GridLayout(nbJoueursMax + 1, 2,5,5));
 			for(int i = 1; i <= nbJoueursMax; i ++)
 			{
