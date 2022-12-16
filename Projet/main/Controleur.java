@@ -122,6 +122,11 @@ public class Controleur
         return Optional.ofNullable(filename).filter(f -> f.contains(".")).map(f -> f.substring(filename.lastIndexOf(".") + 1)).get();
 	}
 
+	public int getXNomVille(int index)
+	{
+		return this.metier.getXNomVille(index);
+	}
+
     public PanelImageInfo getPanelSelectionner()
     {
         return this.ihm.getPanelSelectionner();

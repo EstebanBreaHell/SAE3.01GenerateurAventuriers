@@ -229,9 +229,6 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 	public void itemStateChanged(ItemEvent e) 
     { 
         // si l'état du combobox est modifiée 
-        
-        System.out.println(" ["+this.comboNoeud1.getSelectedItem()+"]"); 
-
 		this.comboNoeud2.removeAllItems();
 
 		Noeud n = this.comboNoeud1.getItemAt(this.comboNoeud1.getSelectedIndex());
