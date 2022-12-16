@@ -148,6 +148,9 @@ public class Metier
 		Arete a = new Arete( n1, n2, c ,nbW,estDouble);
 
 		this.lstArete.add( a );
+
+        for (Arete b : lstArete)
+            System.out.print(b);
     
 	}
 

@@ -205,7 +205,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 			this.noeudActif.setY(y);
 			this.noeudActif.setNomX(x);
 			this.noeudActif.setNomY(y-10);
-			this.ctrl.majIHM();
+			this.repaint();
 		}
 	}
 	@Override
