@@ -11,7 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
+import java.awt.event.MouseEvent;
 import javax.swing.filechooser.FileSystemView;
 
 
@@ -20,13 +20,13 @@ import metier.Arete;
 import metier.Noeud;
 
 
-public class PanelGraphique extends JPanel implements ActionListener, MouseListener
+public class PanelGraphique extends JPanel implements ActionListener, MouseListener, MouseMotionListener
 {
 	private Controleur ctrl;
 	private JButton btnImportImg;
 	private JButton btnBackToMenu; 
 	private static String  pathImg;
-
+	private Noeud noeudActif;
 	private boolean premierClic;
 
 	public PanelGraphique(Controleur ctrl)
@@ -50,7 +50,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 			
 		this.add(panelBtn, BorderLayout.NORTH);
 		this.addMouseListener(this);
-
+		this.addMouseMotionListener(this);
 		this.btnBackToMenu.addActionListener(this);
 	}
 
@@ -62,16 +62,13 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
-
-		while(PanelGraphique.pathImg == null)
-			System.out.println("erreur");
-
+	
 		Image img = null;
 
 		try   {img = ImageIO.read( new File(PanelGraphique.pathImg));} 
 		catch (IOException e) {e.printStackTrace();}
-		g.drawImage(img, 0,0, this);
 
+		g.drawImage(img.getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT),0,0, this);
 
 	}
 
@@ -180,7 +177,9 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 	public void mouseClicked(MouseEvent e) {
 		String nom = this.ctrl.getNomNoeudPanelCreer();
 		if(nom.equals(""))
-			this.ctrl.afficherErreurPanelCreer("Il faut entrer un nom");
+		{	//this.ctrl.afficherErreurPanelCreer("Il faut entrer un nom");
+			return;
+		}	
 		else
 		{
 			this.ctrl.addNoeud(nom, e.getX(), e.getY());
@@ -193,29 +192,46 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 		}
 	}
 
-	/*
+
 	public void mouseDragged(MouseEvent e) {
 		// Obtenez les coordonnées de la souris
-		int x = e.getX();
-		int y = e.getY();
+		if(this.noeudActif != null)
+		{
+			int x = e.getX();
+			int y = e.getY();
 
-		// Déplacez l'objet en utilisant les coordonnées de la souris
-		moveObject(x, y);
+			// Déplacez l'objet en utilisant les coordonnées de la souris
+			this.noeudActif.setX(x);
+			this.noeudActif.setY(y);
+			this.noeudActif.setNomX(x);
+			this.noeudActif.setNomY(y-10);
+			this.repaint();
+		}
 	}
-
 	@Override
-	public void mouseMoved(MouseEvent e) {
-		// Cette méthode n'est pas utilisée dans le cas du drag'n'drop
-	}*/
+	public void mouseMoved(MouseEvent e) {}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
+		int x = e.getX();
+		int y = e.getY();
 
+		System.out.println("x : " + x + " | y : " + y);
+		for(Noeud n : this.ctrl.getLstNoeud())
+		{
+			System.out.println("x : " + n.getX() + " | y : " + n.getY());
+			if(n.getX() >= x-30 && n.getX() <= x+30 && n.getY() >= y-30 && n.getY() <= y+30)
+			{	
+				System.out.println("Noeud trouvé");
+				this.noeudActif = n;
+				break;
+			}
+		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-
+		this.noeudActif = null;
 	}
 
 	@Override

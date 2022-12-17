@@ -25,11 +25,7 @@ public class PanelCreerCarteObjectif extends JPanel
 		this.setLayout(new BorderLayout());
 		this.lstNoeud = new JList<String>();
 		
-		System.out.println();
 
-		//this.lstNoeud = new JList<>(this.ctrl);
-
-		this.add(this.lstNoeud);
 		
 		
 	}

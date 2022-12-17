@@ -1,5 +1,6 @@
 package metier;
 
+import javax.swing.text.Position;
 import java.util.ArrayList;
 
 public class Noeud
@@ -71,6 +72,7 @@ public class Noeud
     {
         return this.posY;
     }
+    
     /**
         * Retourne la coordonnée posX du nom de la noeud
         * @return la coordonnée posX du nom de la noeud
@@ -86,6 +88,38 @@ public class Noeud
     public int getNomY()
     {
         return this.nomY;
+    }
+
+    public void setX(int x){
+        this.posX = x;
+    }
+
+    public void setY(int y){
+        this.posY = y;
+    }
+
+    public void setNomX(int x){
+        this.nomX = x;
+    }
+
+    public void setNomY(int y){
+        this.nomY = y;
+    }
+
+    /**
+     * Modifie la position X du noeud
+     * @param posX
+     */
+    public void setPosX(int posX){
+        this.posX = posX;
+    }
+
+    /**
+     * Modifie la position Y du noeud
+     * @param posY
+     */
+    public void setPosY(int posY){
+        this.posY = posY;
     }
 
     /**

@@ -143,12 +143,14 @@ public class Metier
 	}
 
 	//En partant sur la base que l'on utilise une liste déroulante pour la couleur ET pour les ville
-	public void creeArete(Noeud n1 , Noeud n2 , String c, int nbW )
+	public void creeArete(Noeud n1 , Noeud n2 , String c, int nbW , boolean estDouble )
 	{
-		Arete a = new Arete( n1, n2, c ,nbW);
+		Arete a = new Arete( n1, n2, c ,nbW,estDouble);
 
 		this.lstArete.add( a );
 
+        for (Arete b : lstArete)
+            System.out.print(b);
     
 	}
 
@@ -233,5 +235,13 @@ public class Metier
     public void majIHM()
 	{
         this.ctrl.majIHM();
+    }
+
+    public Noeud getNoeud(String nom) {
+        for (Noeud n : this.lstNoeud)
+            if (n.getNom().equals(nom))
+                return n;
+
+        return null;
     }
 }

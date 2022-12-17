@@ -1,9 +1,12 @@
 package ihm.sectioncreer;
 
 import javax.swing.Icon;
+import javax.swing.JColorChooser;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+import javax.swing.colorchooser.ColorSelectionModel;
+import javax.swing.colorchooser.DefaultColorSelectionModel;
 
 import java.awt.BorderLayout;
 
@@ -25,7 +28,12 @@ public class PanelCreer extends JPanel
 		this.panelGestionCreer 	= new PanelGestionCreer(this.ctrl);
 		
 		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+/*
+		splitPane.setDividerLocation(1000);
+		splitPane.setEnabled(false);
+		*/
 
+		
 		
 		splitPane.add(this.panelGraphique,JSplitPane.LEFT);
 		splitPane.add(this.panelGestionCreer,JSplitPane.RIGHT);

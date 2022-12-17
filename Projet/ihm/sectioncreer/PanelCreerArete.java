@@ -30,6 +30,8 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 	private JButton btnGenererArete;
 	private JButton btnGenererPrefait;
 
+	private JCheckBox chbDouble;
+
 	private List<JLabel> lstLabel;
 
 	public PanelCreerArete(Controleur ctrl)
@@ -59,6 +61,7 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		JLabel lblRelier   = new JLabel("Relier... ", JLabel.LEFT);
 		JLabel lblVers	   = new JLabel("vers ", JLabel.CENTER);
 		JLabel lblCouleur  = new JLabel("Couleur : ", JLabel.LEFT);
+		//JCheckBox chbDouble = new JCheckBox("Double sens ", JLa);
 
 		this.container = new Container();
 		this.container.setLayout(new FlowLayout());
@@ -70,6 +73,7 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		this.comboNoeud1 = new JComboBox<Noeud>();
 		this.comboNoeud1.addItemListener(this);
 		this.comboNoeud2 = new JComboBox<Noeud>();
+		this.chbDouble = new JCheckBox("Double sens ", false);
 
 		this.btnSupprimer = new JButton("Supprimer");
 		this.btnGenererArete = new JButton("Générer arête");
@@ -119,7 +123,7 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		panelHaut.add(lblDistance);
 		panelHaut.add(this.txtDistance);
 		panelHaut.add(new JLabel());
-		panelHaut.add(new JLabel());
+		panelHaut.add(this.chbDouble);
 
 
 		panelDispoHistorique.add(lblHistorique, BorderLayout.NORTH);
@@ -179,7 +183,11 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 
 		if(e.getSource() == this.btnSupprimer)
 		{
-
+			if(this.listHistorique.getSelectedIndex() == -1)
+			{
+				JOptionPane.showMessageDialog(this, "Veuillez séléctionnez une arete a supprimer", "Erreur", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
 			this.lstLabel.remove(this.listHistorique.getSelectedIndex());
 			this.ctrl.supprArete(this.listHistorique.getSelectedIndex());
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
@@ -204,39 +212,70 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 			this.ctrl.addArete( this.comboNoeud1.getItemAt(this.comboNoeud1.getSelectedIndex()),
 					            this.comboNoeud2.getItemAt(this.comboNoeud2.getSelectedIndex()),
 					            this.container.getBackground().toString(),
-								Integer.parseInt(this.txtDistance.getText()) 
+								Integer.parseInt(this.txtDistance.getText()),this.chbDouble.isSelected() 
 					);
-
+			
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 			/*------------------------------------*/
 
 			this.panelGraphique.majIHM();
-
+			
 			this.txtDistance.setText("");
 		}
 		else if(e.getSource() == this.btnGenererPrefait)
 		{
-			String[] couleurs = {"Rouge", "Vert", "Bleu", "Jaune", "Noir", "Blanc", "Violet", "Marron"};
-			String randomCouleur = couleurs[(int)(Math.random() * couleurs.length)];
-			String randomDistance = String.valueOf((int)(Math.random() * 1000));
 
-			this.ctrl.addArete( this.comboNoeud1.getItemAt(this.comboNoeud1.getSelectedIndex()),
-					this.comboNoeud2.getItemAt(this.comboNoeud2.getSelectedIndex()),
+			//java.awt.Color[r=0,g=0,b=255]
+			int n = this.ctrl.getLstNoeud().size();
+			n = (n*(n-1))/2;
+			if(this.ctrl.getLstArete().size() == n)
+			{
+				JOptionPane.showMessageDialog(this, "Tous les noeuds sont reliés", "Erreur", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			ArrayList<Noeud> lstNoeud = this.ctrl.getLstNoeud(); 
+			if(lstNoeud.size() < 2)
+			{
+				JOptionPane.showMessageDialog(this, "Il faut au moins 2 noeuds disponibles pour générer une arête", "Erreur", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
+			Noeud noeud1 = lstNoeud.get((int)(Math.random() * lstNoeud.size()));
+
+			Noeud noeud2 = null;
+			while(noeud2 == null)
+			{
+				if(this.ctrl.getNoeudDispo(noeud1).size()>0)
+					noeud2 = this.ctrl.getNoeudDispo(noeud1).get((int)(Math.random() * this.ctrl.getNoeudDispo(noeud1).size()));
+				else
+					noeud1 = lstNoeud.get((int)(Math.random() * lstNoeud.size()));
+			}
+
+			String randomCouleur = "java.awt.Color[r=" + (int)(Math.random() * 255) + ",g=" + (int)(Math.random() * 255) + ",b=" + (int)(Math.random() * 255) + "]";
+
+			int randomDistance =(int)(Math.random() * 8)+1;
+
+
+
+			this.ctrl.addArete( noeud1,
+					noeud2,
 					randomCouleur,
-					Integer.parseInt(randomDistance)
+					randomDistance,
+					//random true or false
+					Math.random() < 0.5 ? true : false
 					);
 
 			/* Ajout de l'arête dans l'historique */
-			this.lstLabel.add(new JLabel("Couleur : " + randomCouleur + " | Distance : " + randomDistance));
+			this.lstLabel.add(new JLabel("Arête de "    + noeud1  + " à " + noeud2   +
+			" de Couleur " + randomCouleur + " de distance " + randomDistance));
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
-			/*------------------------------------*/
+			this.panelGraphique.majIHM();
 		}
 	}
 	public void itemStateChanged(ItemEvent e) 
     { 
         // si l'état du combobox est modifiée 
 		this.comboNoeud2.removeAllItems();
-
 		Noeud n = this.comboNoeud1.getItemAt(this.comboNoeud1.getSelectedIndex());
 		
 		if(n == null)
