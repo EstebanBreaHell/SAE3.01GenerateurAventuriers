@@ -15,8 +15,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JList;
 import javax.swing.UIManager;
 
-import com.formdev.flatlaf.FlatDarkLaf;
-import com.formdev.flatlaf.FlatLightLaf;
 
 import ihm.Frame;
 import ihm.sectioninit.PanelImageInfo;
@@ -175,11 +173,7 @@ public class Controleur
 
     public static void main(String[] args)
     {
-        try {
-            UIManager.setLookAndFeel( new FlatDarkLaf() );
-        } catch( Exception ex ) {
-            System.err.println( "Failed to initialize LaF" );
-        }
+        
         new Controleur();
     }
 
