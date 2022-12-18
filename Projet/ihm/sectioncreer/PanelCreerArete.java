@@ -4,8 +4,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
-import javax.swing.text.NumberFormatter;
-import java.text.NumberFormat;
 import java.util.List;
 import java.util.ArrayList;
 import java.awt.Color; 
@@ -41,39 +39,28 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		this.lstLabel = new ArrayList<JLabel>();
 		this.panelGraphique = new PanelGraphique(this.ctrl);
 
-		JPanel panelHaut 	  		= new JPanel(new GridLayout(6,4,10,10));
+		JPanel panelHaut 	  		= new JPanel(new GridLayout(6,4,10,20));
 		JPanel panelDispoHistorique = new JPanel(new BorderLayout(0,20));
 		JPanel panelValidation		= new JPanel(new GridLayout(3,3, 10, 20));
 
 		Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
 		JLabel lblHistorique = new JLabel("Historique", JLabel.CENTER);
 
-		NumberFormat longformat = NumberFormat.getIntegerInstance();
-		NumberFormatter numberFormatter = new NumberFormatter(longformat);
-		numberFormatter.setValueClass(Long.class);
-		numberFormatter.setAllowsInvalid(false);
-		numberFormatter.setMinimum(0L);
-
-
-
 		//Information contenue dans le panelHaut
 		JLabel lblDistance = new JLabel("Distance : ", JLabel.LEFT);
 		JLabel lblRelier   = new JLabel("Relier... ", JLabel.LEFT);
 		JLabel lblVers	   = new JLabel("vers ", JLabel.CENTER);
-		JLabel lblCouleur  = new JLabel("Couleur : ", JLabel.LEFT);
+		JLabel lblCouleur  = new JLabel("Sélectionnez couleur ", JLabel.LEFT);
 		//JCheckBox chbDouble = new JCheckBox("Double sens ", JLa);
 
 		this.container = new Container();
 		this.container.setLayout(new FlowLayout());
-		this.btnCouleur =new JButton("Couleur de l'arête");
-		this.txtDistance = new JFormattedTextField(longformat);	
-		
-
+		this.btnCouleur =new JButton("Palette de couleur");
+		this.txtDistance = new JTextField("1");
 		
 		this.comboNoeud1 = new JComboBox<Noeud>();
-		this.comboNoeud1.addItemListener(this);
 		this.comboNoeud2 = new JComboBox<Noeud>();
-		this.chbDouble = new JCheckBox("Double sens ", false);
+		this.chbDouble = new JCheckBox("Double sens", false);
 
 		this.btnSupprimer = new JButton("Supprimer");
 		this.btnGenererArete = new JButton("Générer arête");
@@ -90,12 +77,12 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		this.btnGenererArete.setBackground(Color.WHITE);
 		this.btnGenererPrefait.setBackground(Color.WHITE);
 		this.btnSupprimer.setBackground(Color.WHITE);
+		this.btnCouleur.setBackground(Color.WHITE);
+
 
 		this.container.add(this.btnCouleur);
 
 		/* A optimiser par la suite */
-		panelHaut.add(new JLabel());
-		panelHaut.add(new JLabel());
 		panelHaut.add(new JLabel());
 		panelHaut.add(new JLabel());
 
@@ -152,6 +139,7 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		this.btnGenererArete.addActionListener(this);
 		this.btnGenererPrefait.addActionListener(this);
 		this.btnCouleur.addActionListener(this);
+		this.comboNoeud1.addItemListener(this);
 
 		// Empêcher l'utilisateur de rentrer autre chose qu'un nombre dans les champs de texte
 		this.txtDistance.addKeyListener(new KeyAdapter() {
@@ -177,7 +165,7 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		if(e.getSource() == this.btnCouleur)
 		{
 			Color initialcolor=Color.RED;
-			Color color=JColorChooser.showDialog(this,"Select a color",initialcolor);
+			Color color=JColorChooser.showDialog(this,"Choisissez une couleur d'arête",initialcolor);
 			container.setBackground(color);
 		}
 
@@ -185,7 +173,7 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		{
 			if(this.listHistorique.getSelectedIndex() == -1)
 			{
-				JOptionPane.showMessageDialog(this, "Veuillez séléctionnez une arete a supprimer", "Erreur", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this, "Veuillez sélectionner une arête à supprimer", "Erreur", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 			this.lstLabel.remove(this.listHistorique.getSelectedIndex());
@@ -196,7 +184,8 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		else if(e.getSource() == this.btnGenererArete)
 		{
 			/* Vérifier que les champs sont remplis */
-			if(this.txtDistance.getText().isEmpty() || this.txtDistance.getText().equals("0"))
+			// Convertir la distance en entier
+			if(this.txtDistance.getText().isEmpty() || Integer.parseInt(this.txtDistance.getText()) < 1)
 			{
 				JOptionPane.showMessageDialog(this, "Tous les champs sont obligatoires", "Erreur", JOptionPane.ERROR_MESSAGE);
 				return;

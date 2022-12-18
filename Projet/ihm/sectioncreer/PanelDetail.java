@@ -35,6 +35,8 @@ public class PanelDetail extends JPanel implements ActionListener
 	private JButton btnConfirmer;
 	private JTextField btnCompter;
 	private JTextField btnCompter2; 
+	private JTextField txtNom;
+	private JTextField txtNomMoyenDeTransport;
 	private JDialog jd;
 
 
@@ -53,18 +55,8 @@ public class PanelDetail extends JPanel implements ActionListener
 	{
 		this.ctrl = ctrl; 
 		this.setLayout(new BorderLayout());
-		JLabel lblNbJoueursMin = new JLabel("Nb joueurs minimum : ");
-		JLabel lblNbJoueursMax = new JLabel("Nb joueurs maximum : ");
-		JLabel lblNbWagonsMax = new JLabel("Nb wagons de couleurs : ");
-		JLabel lblNbWagonsMulti = new JLabel("Nb de wagons multicolores : ");
-		JLabel lblNbCartesJoueurs = new JLabel("Nb cartes / joueur : ");
-		JLabel lblCarteWagon = new JLabel(new ImageIcon("donnee\\carteWagons\\carte.png"));
-		JLabel lblCarteMulti = new JLabel(new ImageIcon("donnee\\carteWagons\\carte9.png"));
-		JLabel lblPoints     = new JLabel("Barême des points : ");
-		JLabel lblCouleur	 = new JLabel("Nb couleurs : ");
-		JTable tableau = new JTable(donnees, entetes);
 
-		JPanel panelDetail 		= new JPanel(new GridLayout(6,4,0,10));
+		JPanel panelDetail 		= new JPanel(new GridLayout(8,4,0,10));
 		JPanel panelChoixCarte	= new JPanel(null);
 		JPanel panelBas			= new JPanel(new GridLayout(1,3,10,10));
 		JPanel panelTableau		= new JPanel(new BorderLayout());
@@ -72,20 +64,35 @@ public class PanelDetail extends JPanel implements ActionListener
 		DefaultTableCellRenderer custom = new DefaultTableCellRenderer();
 		custom.setHorizontalAlignment(JLabel.CENTER);
 
-		this.txtNbJoueursMin 	= new JTextField("1");
-		this.txtNbJoueursMax 	= new JTextField();
-		this.txtNbCartesJoueurs = new JTextField();
-		this.btnValider 		= new JButton("Valider");
-		this.btnplus 			= new JButton("+");
-		this.btnmoins 			= new JButton("-");
-		this.btnplus2 			= new JButton("+");
-		this.btnmoins2 			= new JButton("-");
-		this.btnEditer 			= new JButton("Editer");
-		this.btnCompter 		= new JTextField("0", JTextField.CENTER);
-		this.btnCompter2 		= new JTextField("0");
-		this.txtNbCouleurs		= new JTextField();
-		this.btnConfirmer 		= new JButton("Confirmer");
+		this.txtNbJoueursMin 		= new JTextField("1");
+		this.txtNbJoueursMax 		= new JTextField();
+		this.txtNbCartesJoueurs 	= new JTextField();
+		this.txtNomMoyenDeTransport = new JTextField("voiture,vélo,wagon");
+		this.btnCompter 			= new JTextField("0", JTextField.CENTER);
+		this.btnCompter2 			= new JTextField("0");
+		this.txtNbCouleurs			= new JTextField();
+		this.txtNom					= new JTextField(("route,piste cyclable,rails"));
+		this.btnValider 			= new JButton("Valider");
+		this.btnplus 				= new JButton("+");
+		this.btnmoins 				= new JButton("-");
+		this.btnplus2 				= new JButton("+");
+		this.btnmoins2 				= new JButton("-");
+		this.btnEditer 				= new JButton("Importer image moyen de transport");
+		this.btnConfirmer 			= new JButton("Confirmer");
 
+		JLabel lblNbJoueursMin 			= new JLabel("Nb joueurs minimum : ");
+		JLabel lblNbJoueursMax 			= new JLabel("Nb joueurs maximum : ");
+		JLabel lblNbWagonsMax 			= new JLabel("Nb " + this.txtNomMoyenDeTransport.getText() + " de couleurs : ");
+		JLabel lblNbWagonsMulti 		= new JLabel("Nb " + this.txtNomMoyenDeTransport.getText() + " de wagons multicolores : ");
+		JLabel lblNbCartesJoueurs 		= new JLabel("Nb cartes / joueur : ");
+		JLabel lblCarteWagon 			= new JLabel(new ImageIcon("donnee\\carteWagons\\carte.png"));
+		JLabel lblCarteMulti			= new JLabel(new ImageIcon("donnee\\carteWagons\\carte9.png"));
+		JLabel lblPoints     			= new JLabel("Barême des points : ");
+		JLabel lblCouleur		 		= new JLabel("Nb couleurs : ");
+		JLabel lblNom 					= new JLabel("Type arête :");
+		JLabel lblNomMoyenDeTransport 	= new JLabel("Type moyen de transport :");
+
+		JTable tableau = new JTable(donnees, entetes);
 		this.jd = new JDialog();
 		jd.setTitle("Choix des couleurs pour chaque joueur");
 	
@@ -98,13 +105,14 @@ public class PanelDetail extends JPanel implements ActionListener
 		this.btnCompter2.setHorizontalAlignment(SwingConstants.CENTER);
 		this.btnValider.setBackground(Color.WHITE);
 		this.btnEditer.setBackground(Color.WHITE);
-
+		this.txtNom.setForeground(Color.GRAY);
+		this.txtNomMoyenDeTransport.setForeground(Color.GRAY);
 
 		this.btnplus.setBounds(50, 30, 60, 20);
 		this.btnCompter.setBounds(50, 50, 60, 60);
 		this.btnCompter.setEditable(false);
 		this.btnmoins.setBounds(50, 110, 60, 20);
-		this.btnEditer.setBounds(330, 90, 70, 20);
+		this.btnEditer.setBounds(330, 85, 245, 25);
 		this.btnplus2.setBounds(50, 200, 60, 20);
 		this.btnCompter2.setBounds(50, 220, 60, 60);
 		this.btnmoins2.setBounds(50, 280, 60, 20);
@@ -142,8 +150,21 @@ public class PanelDetail extends JPanel implements ActionListener
 		panelDetail.add(new JLabel());
 		panelDetail.add(this.txtNbCouleurs);
 		panelDetail.add(new JLabel());
-		
+	
+		panelDetail.add(lblNom);
+		panelDetail.add(new JLabel());
+		panelDetail.add(this.txtNom);
+		panelDetail.add(new JLabel());
+
+		panelDetail.add(lblNomMoyenDeTransport);
+		panelDetail.add(new JLabel());
+		panelDetail.add(this.txtNomMoyenDeTransport);
+		panelDetail.add(new JLabel());
+
 		panelDetail.add(lblNbWagonsMax);
+		panelDetail.add(new JLabel());
+		panelDetail.add(new JLabel());
+		panelDetail.add(new JLabel());
 
 		panelChoixCarte.add(this.btnplus);
 		panelChoixCarte.add(this.btnCompter);
@@ -182,6 +203,7 @@ public class PanelDetail extends JPanel implements ActionListener
 		this.btnConfirmer.addActionListener(this);
 
 
+		// A optimiser
 		this.txtNbJoueursMax.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -215,6 +237,30 @@ public class PanelDetail extends JPanel implements ActionListener
 				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
 					e.consume();
 				}
+			}
+		});
+
+		this.txtNom.addFocusListener(new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				txtNom.setText("");
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(txtNom.getText().equals(""))
+					txtNom.setText("route,piste cyclable,rails");
+			}
+		});
+
+		this.txtNomMoyenDeTransport.addFocusListener(new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				txtNom.setText("");
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(txtNom.getText().equals(""))
+					txtNom.setText("route,piste cyclable,rails");
 			}
 		});
 	}
