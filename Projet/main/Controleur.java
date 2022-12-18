@@ -65,6 +65,13 @@ public class Controleur
         this.ihm.supprimArete(n);
     }
 
+    public int getPositionAreteNoeudAl(Noeud n )
+    {
+        return this.metier.getLstNoeud().indexOf(n);
+    }
+
+    
+
 
     public void panelSelectionner(PanelImageInfo panelSelectionner)
     {

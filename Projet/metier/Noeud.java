@@ -34,6 +34,8 @@ public class Noeud
      * Ajoute les arete qui appartienne aux noeud
      * @param arete
      */
+
+    
     public void ajoutArete(Arete arete){
         this.alArrete.add(arete);
     }

@@ -211,7 +211,10 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 
 	public void mouseDragged(MouseEvent e) {
 		// Obtenez les coordonnées de la souris
-		if(this.noeudActif != null && !nomActif)
+		if(this.noeudActif == null)
+			return;
+
+		if(!nomActif)
 		{
 			int x = e.getX();
 			int y = e.getY();
@@ -223,7 +226,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 			//this.noeudActif.setNomY(y-10);
 			this.repaint();
 		}
-		if(this.noeudActif != null && nomActif)
+		else
 		{
 			int x = e.getX();
 			int y = e.getY();
@@ -235,6 +238,10 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 			//this.noeudActif.setNomY(y-10);
 			this.repaint();
 		}
+		PanelCreerNoeud.lstLabel.get(this.ctrl.getPositionAreteNoeudAl(this.noeudActif)).setText("Nom : " + this.noeudActif.getNom() + " | Pos X : " + this.noeudActif.getX()  + " | Pos Y : " + this.noeudActif.getY());
+		PanelCreerNoeud.listHistorique.setListData(PanelCreerNoeud.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
+
+
 	}
 	@Override
 	public void mouseMoved(MouseEvent e) {}

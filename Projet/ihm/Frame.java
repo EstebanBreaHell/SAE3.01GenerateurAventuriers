@@ -92,6 +92,7 @@ public class Frame extends JFrame
     {
         return this.panelInit.getPanelSelectionner();
     }
+    
 
     public void majIHM() { this.panelCreer.majIHM();  }
 
