@@ -86,6 +86,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 			int nb = a.getWagon();
 			int fromSize = 20;
 			int toSize = 20;
+			String c = a.getCouleur();
 
 			Noeud from = a.getNoeudDep();
 			Noeud to = a.getNoeudArr();
@@ -99,7 +100,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 					int toX = to.getX() + toSize / 2;
 					int toY = to.getY() + toSize / 2;
 
-					drawArete(fromX, fromY, toX, toY, nb, g);
+					drawArete(fromX, fromY, toX, toY, nb, c , g);
 
 				}
 			}
@@ -133,13 +134,23 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 
 	}
 
-	private void drawArete(int fromX, int fromY, int toX, int toY, int nbWagon, Graphics g)
+	private void drawArete(int fromX, int fromY, int toX, int toY, int nbWagon, String c , Graphics g)
 	{
 		int posX = (fromX + toX) / 2;
 		int posY = (fromY + toY) / 2;
 
 		// draw la valeur de l'arete
-		g.setColor(new Color(195, 195, 195));
+		System.out.print(c);
+		//from string : "java.awt.Color[r=0,g=0,b=0]" to : 0,0,0
+		String[] rgb = c.substring(15, c.length()-1).split(",");
+		//now remove "r=" and "g=" and "b="
+		rgb[0] = rgb[0].substring(2);
+		rgb[1] = rgb[1].substring(2);
+		rgb[2] = rgb[2].substring(2);
+		
+
+		g.setColor(new Color(Integer.parseInt(rgb[0]), Integer.parseInt(rgb[1]), Integer.parseInt(rgb[2])));
+		//g.setColor(new Color(195, 195, 195));
 		g.drawString(String.valueOf(nbWagon), posX + 5, posY + 5);
 
 		// change la largeur de la ligne et la draw
