@@ -250,6 +250,7 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 			this.ctrl.majIHM();
 			jd.dispose();
+
 			
 		}
 	}
@@ -259,11 +260,15 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 		if(e.getClickCount() == 2)
 		{
 			JPanel panelPopUp = new JPanel(new GridLayout(6,2,10,10));
-			this.txtNomModif.setText(this.lstLabel.get(PanelCreerNoeud.listHistorique.getSelectedIndex()).getText().split(" | ")[2] + " " + this.lstLabel.get(PanelCreerNoeud.listHistorique.getSelectedIndex()).getText().split(" | ")[3]);
-			this.txtPosXModif.setText(this.lstLabel.get(PanelCreerNoeud.listHistorique.getSelectedIndex()).getText().split(" | ")[8]);
-			this.txtPosYModif.setText(this.lstLabel.get(PanelCreerNoeud.listHistorique.getSelectedIndex()).getText().split(" | ")[13]);
+			//this.txtNomModif.setText(this.lstLabel.get(PanelCreerNoeud.listHistorique.getSelectedIndex()).getText().split(" | ")[2] + " " + this.lstLabel.get(PanelCreerNoeud.listHistorique.getSelectedIndex()).getText().split(" | ")[3]);
+			//this.txtPosXModif.setText(this.lstLabel.get(PanelCreerNoeud.listHistorique.getSelectedIndex()).getText().split(" | ")[8]);
+			//this.txtPosYModif.setText(this.lstLabel.get(PanelCreerNoeud.listHistorique.getSelectedIndex()).getText().split(" | ")[13]);
 			//this.txtPosXnom.setText(/* Récupérer le X du labelNom */);
 			//this.txtPosYnom.setText(/* Récupérer le Y du labelNom */);
+
+			this.txtNomModif.setText(this.ctrl.getLstNoeud().get(PanelCreerNoeud.listHistorique.getSelectedIndex()).getNom());
+			this.txtPosXModif.setText(String.valueOf(this.ctrl.getLstNoeud().get(PanelCreerNoeud.listHistorique.getSelectedIndex()).getX()));
+			this.txtPosYModif.setText(String.valueOf(this.ctrl.getLstNoeud().get(PanelCreerNoeud.listHistorique.getSelectedIndex()).getY()));
 	
 			panelPopUp.add(new JLabel("Nom : "));
 			panelPopUp.add(this.txtNomModif);
