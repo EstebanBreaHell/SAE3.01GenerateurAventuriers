@@ -86,7 +86,7 @@ public class PanelDispoBtn extends JPanel implements ActionListener
 			}
 			else
 			{
-				this.ctrl.imageToPanelGraphique("importe\\"+panelSelectionner.getNomfichier());
+				this.ctrl.imageToPanelGraphique("importe/"+panelSelectionner.getNomfichier());
 				this.ctrl.changerPanel("editer");
 			}
 		}
@@ -105,7 +105,7 @@ public class PanelDispoBtn extends JPanel implements ActionListener
 			{
 				File file = jFileChooser.getSelectedFile();
 				
-				try 	{Files.copy(file.toPath(), Paths.get("importe\\"+file.getName()));} 
+				try 	{Files.copy(file.toPath(), Paths.get("importe/"+file.getName()));} 
 				catch (IOException e1) {e1.printStackTrace();}
 			}
 

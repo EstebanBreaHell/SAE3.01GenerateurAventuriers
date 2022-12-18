@@ -263,7 +263,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 			}
 			
 			System.out.println("NomX : " + n.getNomX() + " | NomY : " + n.getNomY());
-			if (n.getNomX() >= x-15 && n.getNomX() <= x+15 && n.getNomY()-30 >= y-15 && n.getNomY()-30 <= y+15)
+			if (n.getNomX() >= x-35 && n.getNomX() <= x+35 && n.getNomY()-30 >= y-15 && n.getNomY()-30 <= y+15)
 			{
 				System.out.println("Noeud trouvé");
 				this.noeudActif = n;

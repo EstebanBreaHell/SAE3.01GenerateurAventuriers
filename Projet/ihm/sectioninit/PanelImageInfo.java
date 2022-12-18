@@ -29,7 +29,7 @@ public class PanelImageInfo extends JPanel implements ActionListener
 		this.nomFichier = nomFichier;
 		this.setLayout(new BorderLayout());
 
-		this.icon= Controleur.imageToIcon("importe\\" + nomFichier,200,100);
+		this.icon= Controleur.imageToIcon("importe/" + nomFichier,200,100);
 
 		this.btnImage = new JButton();
 		this.btnImage.setIcon(icon);
