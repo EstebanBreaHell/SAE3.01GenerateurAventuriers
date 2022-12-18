@@ -47,6 +47,10 @@ public class Noeud
         this.alArrete.remove(arete);
     }
 
+    public void setNom(String nom){
+        this.nom = nom;
+    }
+
     public ArrayList<Arete> getArrayArete(){
         return this.alArrete;
     }
