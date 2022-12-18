@@ -8,9 +8,15 @@ import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Optional;
 
+
+
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JList;
+import javax.swing.UIManager;
+
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLightLaf;
 
 import ihm.Frame;
 import ihm.sectioninit.PanelImageInfo;
@@ -30,6 +36,11 @@ public class Controleur
     {
         this.metier = new Metier(this);
         this.ihm = new Frame(this,"init");
+    }
+
+    public void resetGraph()
+    {
+        this.metier = new Metier(this);
     }
 
     /**
@@ -164,6 +175,11 @@ public class Controleur
 
     public static void main(String[] args)
     {
+        try {
+            UIManager.setLookAndFeel( new FlatDarkLaf() );
+        } catch( Exception ex ) {
+            System.err.println( "Failed to initialize LaF" );
+        }
         new Controleur();
     }
 

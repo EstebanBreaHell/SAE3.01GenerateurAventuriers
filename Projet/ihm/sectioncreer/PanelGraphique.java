@@ -140,14 +140,14 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 		int posY = (fromY + toY) / 2;
 
 		// draw la valeur de l'arete
-		System.out.print(c);
+		//System.out.print(c);
 		//from string : "java.awt.Color[r=0,g=0,b=0]" to : 0,0,0
 		String[] rgb = c.substring(15, c.length()-1).split(",");
 		//now remove "r=" and "g=" and "b="
 		rgb[0] = rgb[0].substring(2);
 		rgb[1] = rgb[1].substring(2);
 		rgb[2] = rgb[2].substring(2);
-		
+
 
 		g.setColor(new Color(Integer.parseInt(rgb[0]), Integer.parseInt(rgb[1]), Integer.parseInt(rgb[2])));
 		//g.setColor(new Color(195, 195, 195));
@@ -183,7 +183,10 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 		}
 
 		if(e.getSource() == this.btnBackToMenu)
+		{
+			this.ctrl.resetGraph();
 			this.ctrl.changerPanel("init");
+		}
 	}
 
 	@Override
