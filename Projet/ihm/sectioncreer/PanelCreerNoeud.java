@@ -266,7 +266,7 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 			panelPopUp.add(new JLabel("Position Y ville : "));
 			panelPopUp.add(this.txtPosYModif);
 
-			panelPopUp.add(new JLabel("Position X nom :"));
+			panelPopUp.add(new JLabel("Position X nom :")); 
 			panelPopUp.add(new JLabel());
 
 			panelPopUp.add(new JLabel("Position Y nom :"));

@@ -138,7 +138,7 @@ public class Metier
 
     public void creeNoeud(String nom, int x, int y )
 	{
-		Noeud n = new Noeud( nom, x, y, x, y-10 );
+		Noeud n = new Noeud( nom, x, y, x-15, y+15 );
 		lstNoeud.add( n );
 	}
 

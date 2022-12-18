@@ -28,6 +28,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 	private static String  pathImg;
 	private Noeud noeudActif;
 	private boolean premierClic;
+	private boolean nomActif;
 
 	public PanelGraphique(Controleur ctrl)
 	{
@@ -41,7 +42,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 
 		this.btnBackToMenu = new JButton("Retour au menu");
 		this.btnBackToMenu.setBackground(Color.WHITE);
-
+		this.nomActif = false;
 		for(int i = 0; i < 6; i++)
 			if(i == 0)
 				panelBtn.add(this.btnBackToMenu);
@@ -126,8 +127,9 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 		g.setColor(Color.WHITE);
 		g.fillRect(noeud.getNomX() + size/2 - g.getFontMetrics().stringWidth(str)/2, noeud.getNomY() - size, g.getFontMetrics().stringWidth(str), 22);
 
+
 		g.setColor(Color.BLACK);
-		g.drawString(str, noeud.getX() + size/2 - g.getFontMetrics().stringWidth(str)/2, noeud.getY() - 21);
+		g.drawString(str, noeud.getNomX() + size/2 - g.getFontMetrics().stringWidth(str)/2, noeud.getNomY() -10);
 
 	}
 
@@ -195,7 +197,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 
 	public void mouseDragged(MouseEvent e) {
 		// Obtenez les coordonnées de la souris
-		if(this.noeudActif != null)
+		if(this.noeudActif != null && !nomActif)
 		{
 			int x = e.getX();
 			int y = e.getY();
@@ -203,8 +205,20 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 			// Déplacez l'objet en utilisant les coordonnées de la souris
 			this.noeudActif.setX(x);
 			this.noeudActif.setY(y);
+			//this.noeudActif.setNomX(x);
+			//this.noeudActif.setNomY(y-10);
+			this.repaint();
+		}
+		if(this.noeudActif != null && nomActif)
+		{
+			int x = e.getX();
+			int y = e.getY();
+
+			// Déplacez l'objet en utilisant les coordonnées de la souris
 			this.noeudActif.setNomX(x);
-			this.noeudActif.setNomY(y-10);
+			this.noeudActif.setNomY(y);
+			//this.noeudActif.setNomX(x);
+			//this.noeudActif.setNomY(y-10);
 			this.repaint();
 		}
 	}
@@ -213,25 +227,36 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		int x = e.getX();
-		int y = e.getY();
+		int x = e.getX()-15;
+		int y = e.getY()-15;
 
 		System.out.println("x : " + x + " | y : " + y);
 		for(Noeud n : this.ctrl.getLstNoeud())
 		{
 			System.out.println("x : " + n.getX() + " | y : " + n.getY());
-			if(n.getX() >= x-30 && n.getX() <= x+30 && n.getY() >= y-30 && n.getY() <= y+30)
+			if(n.getX() >= x-15 && n.getX() <= x+15 && n.getY() >= y-15 && n.getY() <= y+15)
 			{	
 				System.out.println("Noeud trouvé");
 				this.noeudActif = n;
-				break;
+				return;
 			}
+			
+			System.out.println("NomX : " + n.getNomX() + " | NomY : " + n.getNomY());
+			if (n.getNomX() >= x-15 && n.getNomX() <= x+15 && n.getNomY()-30 >= y-15 && n.getNomY()-30 <= y+15)
+			{
+				System.out.println("Noeud trouvé");
+				this.noeudActif = n;
+				this.nomActif = true;
+				return;
+			}	
+			
 		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		this.noeudActif = null;
+		this.nomActif = false;
 	}
 
 	@Override
