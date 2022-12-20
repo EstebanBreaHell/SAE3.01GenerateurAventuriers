@@ -85,6 +85,8 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		/* A optimiser par la suite */
 		panelHaut.add(new JLabel());
 		panelHaut.add(new JLabel());
+		panelHaut.add(new JLabel());
+		panelHaut.add(new JLabel());
 
 		panelHaut.add(lblCouleur);
 		panelHaut.add(new JLabel());
