@@ -39,7 +39,7 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		this.lstLabel = new ArrayList<JLabel>();
 		this.panelGraphique = new PanelGraphique(this.ctrl);
 
-		JPanel panelHaut 	  		= new JPanel(new GridLayout(6,4,10,20));
+		JPanel panelHaut 	  		= new JPanel(new GridLayout(5,4,10,20));
 		JPanel panelDispoHistorique = new JPanel(new BorderLayout(0,20));
 		JPanel panelValidation		= new JPanel(new GridLayout(3,3, 10, 20));
 
@@ -83,10 +83,6 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		this.container.add(this.btnCouleur);
 
 		/* A optimiser par la suite */
-		panelHaut.add(new JLabel());
-		panelHaut.add(new JLabel());
-		panelHaut.add(new JLabel());
-		panelHaut.add(new JLabel());
 
 		panelHaut.add(lblCouleur);
 		panelHaut.add(new JLabel());
@@ -195,10 +191,8 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 			/*--------------------------------------*/
 
 			// Ajout de l'arête dans l'historique 
-			this.lstLabel.add(new JLabel(
-			"Arête de "    + this.comboNoeud1.getSelectedItem()  + " à " + this.comboNoeud2.getSelectedItem()   +
-				" de Couleur " + this.container.getBackground() + " de distance " + this.txtDistance.getText())
-			);
+			this.lstLabel.add(new JLabel("L'arête relie "    + this.comboNoeud1.getSelectedItem()  + " à " + this.comboNoeud2.getSelectedItem()  
+			 				+ " de couleur" + this.container.getBackground() + " et de distance " + this.txtDistance.getText()));
 
 			this.ctrl.addArete( this.comboNoeud1.getItemAt(this.comboNoeud1.getSelectedIndex()),
 					            this.comboNoeud2.getItemAt(this.comboNoeud2.getSelectedIndex()),
@@ -242,23 +236,14 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 					noeud1 = lstNoeud.get((int)(Math.random() * lstNoeud.size()));
 			}
 
-			String randomCouleur = "java.awt.Color[r=" + (int)(Math.random() * 255) + ",g=" + (int)(Math.random() * 255) + ",b=" + (int)(Math.random() * 255) + "]";
-
+			String randomCouleur = "[" + (int)(Math.random() * 255) + "," + (int)(Math.random() * 255) + "," + (int)(Math.random() * 255) + "]";
 			int randomDistance =(int)(Math.random() * 8)+1;
 
-
-
-			this.ctrl.addArete( noeud1,
-					noeud2,
-					randomCouleur,
-					randomDistance,
-					//random true or false
-					Math.random() < 0.5 ? true : false
-					);
+			this.ctrl.addArete( noeud1,noeud2,randomCouleur,randomDistance, Math.random() < 0.5 ? true : false);
 
 			/* Ajout de l'arête dans l'historique */
-			this.lstLabel.add(new JLabel("Arête de "    + noeud1  + " à " + noeud2   +
-			" de Couleur " + randomCouleur + " de distance " + randomDistance));
+			this.lstLabel.add(new JLabel("L'arête relie  "    + noeud1  + " à " + noeud2   +
+			" de couleur RBG " + randomCouleur + " et de distance " + randomDistance));
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 			this.panelGraphique.majIHM();
 		}
@@ -277,8 +262,6 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		} 
         
     } 
-
-
 
 	public void majIHM()
 	{

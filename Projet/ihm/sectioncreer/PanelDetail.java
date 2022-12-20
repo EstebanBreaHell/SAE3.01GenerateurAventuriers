@@ -72,7 +72,7 @@ public class PanelDetail extends JPanel implements ActionListener
 		this.btnCompter2 			= new JTextField("0");
 		this.txtNbCouleurs			= new JTextField();
 		this.txtNom					= new JTextField(("route,piste cyclable,rails"));
-		this.btnValider 			= new JButton("Valider");
+		this.btnValider 			= new JButton("Générer XML");
 		this.btnplus 				= new JButton("+");
 		this.btnmoins 				= new JButton("-");
 		this.btnplus2 				= new JButton("+");
