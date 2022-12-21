@@ -1,7 +1,5 @@
 package metier;
 
-import java.awt.Color;
-
 public class Arete {
 
     private Noeud noeudDep;

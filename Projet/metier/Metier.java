@@ -5,10 +5,15 @@ import main.Controleur;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.Color;
+
+/* 
+import java.io.*;
+import org.jdom2.*;
+import org.jdom2.input.*;
+*/
 
 
 public class Metier
@@ -67,7 +72,7 @@ public class Metier
         try
         {
             PrintWriter pw = new PrintWriter( new FileOutputStream( "./sortie/carteTest.xml") );
-
+            pw.println("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>");
             pw.println("<infos>");
 
             pw.println ( "\t<mappe>" );
@@ -86,10 +91,12 @@ public class Metier
             {
                 pw.println ( "\t\t<arete>" );
 
-                pw.println ( "\t\t<noeudArr>" + a.getNoeudDep().getNom() + " </noeudArr>" );
-                pw.println ( "\t\t<noeudDep>" + a.getNoeudArr().getNom() + " </noeudDep>" );
+                pw.println ( "\t\t\t<noeudArr>" + a.getNoeudDep().getNom() + "</noeudArr>" );
+                pw.println ( "\t\t\t<noeudDep>" + a.getNoeudArr().getNom() + "</noeudDep>" );
+                pw.println ( "\t\t\t<couleur>" + a.getCouleur().toString() + "</couleur>" );
                // pw.println ( "\t\t<couleurRGB>" + a.getCouleur().getRGB() + " </couleurRGB>" );
-                pw.println ( "\t\t<wagons>" + a.getWagon() + " </wagons>" );
+                pw.println ( "\t\t\t<wagons>" + a.getWagon() + "</wagons>" );
+                pw.println("\t\t\t<estDouble>"+a.getEstDouble()+"</estDouble>");
 
                 pw.println ("\t\t</arete>");
 
@@ -99,9 +106,9 @@ public class Metier
             {
                 pw.println ( "\t\t<carteObjectif>" );
 
-                pw.println ( "\t\t<noeudArr>" + co.getNoeudDep().getNom() + " </noeudArr>" );
-                pw.println ( "\t\t<noeudDep>" + co.getNoeudArr().getNom() + " </noeudDep>" );
-                pw.println ( "\t\t<points>" + co.getNbPoints() + " </points>" );
+                pw.println ( "\t\t\t<noeudArr>"+ co.getNoeudDep().getNom() + "</noeudArr>" );
+                pw.println ( "\t\t\t<noeudDep>"+ co.getNoeudArr().getNom() + "</noeudDep>" );
+                pw.println ( "\t\t\t<points>"+ co.getNbPoints() + "</points>" );
 
                 pw.println ("\t\t</carteObjectif>");
 
@@ -111,7 +118,7 @@ public class Metier
             {
                 pw.println ( "\t\t<carteWagon>" );
 
-                pw.println ( "\t\t<couleur>" + cw.getCouleur() + " </couleur>" );
+                pw.println ( "\t\t\t<couleur>" + cw.getCouleur() + "</couleur>" );
 
                 pw.println ("\t\t</carteWagon>");
 
@@ -120,9 +127,9 @@ public class Metier
 
             pw.println ( "\t<details>" );
 
-            pw.println ( "\t\t<nbJoueurMin>" + this.nbJoueurMin + " </nbJoueurMin>" );
-            pw.println ( "\t\t<nbJoueurMax>" + this.nbJoueurMax + " </nbJoueurMax>" );
-            pw.println ( "\t\t<nbWagonsMax>" + this.nbWagonsMax + " </nbWagonsMax>" );
+            pw.println ( "\t\t<nbJoueurMin>"+ this.nbJoueurMin + "</nbJoueurMin>" );
+            pw.println ( "\t\t<nbJoueurMax>"+ this.nbJoueurMax + "</nbJoueurMax>" );
+            pw.println ( "\t\t<nbWagonsMax>"+ this.nbWagonsMax + "</nbWagonsMax>" );
 
             pw.println ( "\t</details>" );
 
@@ -135,6 +142,106 @@ public class Metier
         }
 
     }
+
+    /* 
+    public void lireXml()
+    {
+        org.jdom2.Document document;
+        Element racine;
+
+        SAXBuilder sxb = new SAXBuilder();
+        try {
+            // On crée un nouveau document JDOM avec en argument le
+            //fichier XML
+            // Le parsing est terminé
+            document = sxb.build(new File( "./sortie/carteTest.xml" ));
+        } catch (Exception e)
+        {
+            
+            System.out.println("ça crash");
+            return;
+        }
+
+        this.lstNoeud = new ArrayList<Noeud>();
+		this.lstArete = new ArrayList<Arete>();
+        this.lstCarteObjectif = new ArrayList<CarteObjectif>();
+        this.lstCarteWagon = new ArrayList<CarteWagon>();
+
+        racine = document.getRootElement();
+
+        System.out.println("Test1");
+
+        // List listVilles = racine.getChildren("noeud");
+        // Iterator i = listVilles.iterator();
+        List<Element> lstNoeud = racine.getChildren ( "mappe" ).get(0).getChildren("noeud");
+        List<Element> lstArete = racine.getChildren ( "mappe" ).get(0).getChildren("arete");
+        List<Element> lstObjectif = racine.getChildren ( "mappe" ).get(0).getChildren("carteObjectif");
+        List<Element> lstWagon = racine.getChildren ( "mappe" ).get(0).getChildren("carteWagon");
+
+        
+        System.out.println("Test2");
+        for(Element courant : lstNoeud) {
+            
+            String nomVille = courant.getAttributeValue("nom");
+            int x = Integer.parseInt(courant.getChild("coordonees").getAttributeValue("x"));
+            int y = Integer.parseInt(courant.getChild("coordonees").getAttributeValue("y"));
+            int nomX = Integer.parseInt(courant.getChild("coordoneesNom").getAttributeValue("x"));
+            int nomY = Integer.parseInt(courant.getChild("coordoneesNom").getAttributeValue("y"));
+
+            //System.out.println("Noeud : " + nomVille + " x : " + x + " y : " + y + " nomX : "+ nomX + " nomY : "+ nomY);
+
+            this.creeNoeud(nomVille, x, y, nomX, nomY);
+        }
+
+        for(Element a : lstArete)
+        {
+            String nomVille1 = a.getChild("noeudArr").getText ();
+            String nomVille2 = a.getChild("noeudDep").getText ();
+            String couleur = a.getChild("couleur").getText();
+            int nbW = Integer.parseInt(a.getChild("wagons").getText());
+            boolean estDouble = Boolean.parseBoolean(a.getChild("estDouble").getText());
+
+            //System.out.println("Arete : " + nomVille1 + " " + nomVille2 + " " + couleur + " " + nbW + " " + estDouble);
+            
+            this.creeArete(this.getNoeud(nomVille1), this.getNoeud(nomVille2), couleur, nbW, estDouble);
+        }
+
+        for(Element o : lstObjectif)
+        {
+            String nomVille1 = o.getChild("noeudArr").getText ();
+            String nomVille2 = o.getChild("noeudDep").getText ();
+            int points = Integer.parseInt(o.getChild("points").getText());
+
+           // System.out.println("Objectif : " + nomVille1 + " " + nomVille2 + " " + points);
+
+
+            this.creeCarteObjectif(this.getNoeud(nomVille1), this.getNoeud(nomVille2), points);
+        }
+
+        for(Element w : lstWagon)
+        {
+            String c = w.getChild("couleur").getText();
+            //System.out.println("Wagon : " + couleur);
+            //from java.awt.Color[r=0,g=0,b=0] to a Color object 
+            String[] rgb = c.substring(15, c.length()-1).split(",");
+		//now remove "r=" and "g=" and "b="
+		    rgb[0] = rgb[0].substring(2);
+            rgb[1] = rgb[1].substring(2);
+            rgb[2] = rgb[2].substring(2);
+
+
+            this.creeCarteWagon(new Color(Integer.parseInt(rgb[0]), Integer.parseInt(rgb[1]), Integer.parseInt(rgb[2])));
+            
+        }
+    
+
+    }
+    */
+    public void creeNoeud(String nom, int x, int y, int nomX , int nomY)
+	{
+		Noeud n = new Noeud( nom, x, y, nomX, nomY);
+		lstNoeud.add( n );
+	}
 
     public void creeNoeud(String nom, int x, int y )
 	{
