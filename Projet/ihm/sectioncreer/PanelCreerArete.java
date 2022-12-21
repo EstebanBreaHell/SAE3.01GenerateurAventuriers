@@ -235,8 +235,7 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 				else
 					noeud1 = lstNoeud.get((int)(Math.random() * lstNoeud.size()));
 			}
-
-			String randomCouleur = "[" + (int)(Math.random() * 255) + "," + (int)(Math.random() * 255) + "," + (int)(Math.random() * 255) + "]";
+			String randomCouleur = "java.awt.Color[r=" + (int)(Math.random() * 255) + ",g=" + (int)(Math.random() * 255) + ",b=" + (int)(Math.random() * 255) + "]";
 			int randomDistance =(int)(Math.random() * 8)+1;
 
 			this.ctrl.addArete( noeud1,noeud2,randomCouleur,randomDistance, Math.random() < 0.5 ? true : false);
