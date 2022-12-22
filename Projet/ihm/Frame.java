@@ -1,9 +1,6 @@
 package ihm;
 
-
-import javax.swing.Icon;
 import javax.swing.JFrame;
-import javax.swing.JList;
 
 import ihm.sectioncreer.PanelCreer;
 import ihm.sectioninit.PanelImageInfo;

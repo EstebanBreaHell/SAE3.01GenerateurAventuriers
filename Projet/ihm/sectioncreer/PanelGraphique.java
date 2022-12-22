@@ -27,11 +27,13 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 	private JButton btnBackToMenu; 
 	private static String  pathImg;
 	private Noeud noeudActif;
-	private boolean premierClic;
 	private boolean nomActif;
 
 	public PanelGraphique(Controleur ctrl)
 	{
+		/**
+		 * Création des composants
+		 */
 		this.ctrl = ctrl;
 		this.setLayout(new BorderLayout());
 
@@ -43,23 +45,43 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 		this.btnBackToMenu = new JButton("Retour au menu");
 		this.btnBackToMenu.setBackground(Color.WHITE);
 		this.nomActif = false;
+		
+		/**
+		 * Boucle permettant de placer le bouton en haut à gauche du panel
+		 */
 		for(int i = 0; i < 6; i++)
 			if(i == 0)
 				panelBtn.add(this.btnBackToMenu);
 			else
 				panelBtn.add(new JLabel(""));
 			
+		/**
+		 * Ajout des composants
+		 */
 		this.add(panelBtn, BorderLayout.NORTH);
+
+		/**
+		 * Activation des composants
+		 */
+		this.btnBackToMenu.addActionListener(this);
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
-		this.btnBackToMenu.addActionListener(this);
+		
 	}
 
+	/**
+	 * Méthode permettant de changer le chemin de l'image
+	 * @param path
+	 */
 	public void imageToPanelGraphique(String path)
 	{
 		PanelGraphique.pathImg = path;
 	}
 
+	/**
+	 * Méthode permettant de dessiner l'image
+	 * @param g
+	 */
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
@@ -73,6 +95,10 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 
 	}
 
+	/**
+	 * Méthode permettant de dessiner les noeuds et les arêtes
+	 * @param g
+	 */
 	public void paint(Graphics g)
 	{
 		super.paint(g);

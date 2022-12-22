@@ -44,6 +44,9 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 
 	public PanelCreerNoeud(Controleur ctrl)
 	{
+		/**
+		 * Création des composants
+		 */
 		this.ctrl = ctrl;
 		this.setLayout(new BorderLayout());
 		this.lstLabel = new ArrayList<JLabel>();
@@ -81,16 +84,20 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 		this.btnConfirmer      = new JButton("Confirmer"              );
 
 		this.listHistorique = new JList<String>();
-		this.listHistorique.setPreferredSize(new Dimension(0,550));
-		this.listHistorique.setBorder(border);
-		this.listHistorique.setBackground(Color.WHITE);
-		this.listHistorique.addMouseListener(this);
-
 		this.scrollPane = new JScrollPane(this.listHistorique, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
 		this.jd = new JDialog();
 		jd.setTitle("Modification des coordonnées");
-		jd.setBounds(900, 300, 500, 400); 	
+		jd.setBounds(900, 300, 500, 400); 
+
+		/**
+		 * Mise en place d'une bordure et d'une couleur de fond aux différents éléments
+		 * Placement manuel grâce à la méthode setBounds
+		 */
+		 
+		this.listHistorique.setPreferredSize(new Dimension(0,550));
+		this.listHistorique.setBorder(border);
+		this.listHistorique.setBackground(Color.WHITE);
 
 		this.btnSupprimer     .setBackground(Color.WHITE);
 		this.btnGenererNoeud  .setBackground(Color.WHITE);
@@ -99,11 +106,14 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 		this.txtNom .setBorder(border);
 		this.txtPosX.setBorder(border);
 		this.txtPosY.setBorder(border);
-
-		this.btnSupprimer     .setBorder(border);
-		this.btnGenererNoeud  .setBorder(border);
+		this.btnSupprimer.setBorder(border);
+		this.btnGenererNoeud.setBorder(border);
 		this.btnGenererPrefait.setBorder(border);
 
+
+		/**
+		 * Ajout des composants dans différents panels
+		 */
 		panelCoordonnees.add(new JLabel());
 		panelCoordonnees.add(new JLabel());
 		panelCoordonnees.add(new JLabel());
@@ -133,16 +143,25 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 		panelValidation.add(this.btnSupprimer);
 		panelValidation.add(new JLabel());
 
-		this.btnSupprimer.addActionListener(this);
-		this.btnGenererNoeud.addActionListener(this);
-		this.btnGenererPrefait.addActionListener(this);
-		this.btnConfirmer.addActionListener(this);
-
 		this.add(panelCoordonnees, BorderLayout.NORTH);
 		this.add(panelDispoHistorique, BorderLayout.CENTER);
 		this.add(panelValidation, BorderLayout.SOUTH);
 
-		// Empêcher l'utilisateur de rentrer autre chose qu'un nombre dans les champs de texte
+
+		/**
+		 * Activation des composants
+		 */
+		this.btnSupprimer.addActionListener(this);
+		this.btnGenererNoeud.addActionListener(this);
+		this.btnGenererPrefait.addActionListener(this);
+		this.btnConfirmer.addActionListener(this);
+		this.listHistorique.addMouseListener(this);
+
+		
+		/**
+		 * Gestion des évènements clavier, on ne peut entrer que des chiffres dans les champs de texte
+		 * à optimiser
+		 */
 		this.txtPosX.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -187,8 +206,10 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 	}
 	
 
-	
-
+	/**
+	 * Mise en place des actions des boutons
+	 * @param n
+	 */
 	public void actionPerformed(ActionEvent e)
 	{	
 		if(e.getSource() == this.btnSupprimer)
@@ -274,8 +295,6 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 			this.txtPosYModif.setText(String.valueOf(this.ctrl.getLstNoeud().get(PanelCreerNoeud.listHistorique.getSelectedIndex()).getY()));
 			this.txtPosXnom.setText(String.valueOf(this.ctrl.getLstNoeud().get(PanelCreerNoeud.listHistorique.getSelectedIndex()).getX()));
 			this.txtPosYnom.setText(String.valueOf(this.ctrl.getLstNoeud().get(PanelCreerNoeud.listHistorique.getSelectedIndex()).getY()));
-
-
 
 			panelPopUp.add(new JLabel("Nom : "));
 			panelPopUp.add(this.txtNomModif);

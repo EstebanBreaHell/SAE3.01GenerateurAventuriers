@@ -2,33 +2,23 @@ package main;
 
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Color;
 import java.awt.Image;
-
 import java.util.ArrayList;
 import java.util.Optional;
-
-
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JList;
-import javax.swing.UIManager;
-
 
 import ihm.Frame;
 import ihm.sectioninit.PanelImageInfo;
 import metier.Arete;
 import metier.Metier;
 import metier.Noeud;
-import ihm.sectioncreer.PanelGraphique;
 
 
 public class Controleur 
 {
     private Metier metier;
     private Frame ihm;
-
 
     public Controleur()
     {
@@ -69,9 +59,6 @@ public class Controleur
     {
         return this.metier.getLstNoeud().indexOf(n);
     }
-
-    
-
 
     public void panelSelectionner(PanelImageInfo panelSelectionner)
     {

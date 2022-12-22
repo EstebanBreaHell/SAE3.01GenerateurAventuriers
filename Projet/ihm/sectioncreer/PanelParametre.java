@@ -10,16 +10,9 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-/**
- * Il faut utiliser la récursivité pour peindre les images que l'utilisateur veut, en fonction de txtNbCouleur aussi que tu choisis
- * Il faut également définir une couleur à chaque joueur selon celle qu'il a généré, et les arêtes sont en fonction du nombre de txtNbCouleurs
- * On peut faire ça avec JColorChooser
- */
-
-
 import main.Controleur;
 
-public class PanelDetail extends JPanel implements ActionListener
+public class PanelParametre extends JPanel implements ActionListener
 {
 	private JTextField txtNbJoueursMin;	
 	private JTextField txtNbJoueursMax;
@@ -46,13 +39,15 @@ public class PanelDetail extends JPanel implements ActionListener
 								{"3", "4",},
 								{"4", "7",},
 								{"5", "10",},
-								{"6", "15",},
-	};
+								{"6", "15",},};
 
 	private String[] entetes = {"Longueur de la route", "Points marqués"};
 	
-	public PanelDetail(Controleur ctrl)
+	public PanelParametre(Controleur ctrl)
 	{
+		/**
+		 * Création des éléments de la fenêtre
+		 */
 		this.ctrl = ctrl; 
 		this.setLayout(new BorderLayout());
 
@@ -74,8 +69,8 @@ public class PanelDetail extends JPanel implements ActionListener
 		this.txtNom					= new JTextField(("route,piste cyclable,rails"));
 		this.btnValider 			= new JButton("Générer XML");
 		this.btnplus 				= new JButton("+");
-		this.btnmoins 				= new JButton("-");
 		this.btnplus2 				= new JButton("+");
+		this.btnmoins 				= new JButton("-");
 		this.btnmoins2 				= new JButton("-");
 		this.btnEditer 				= new JButton("Importer image moyen de transport");
 		this.btnConfirmer 			= new JButton("Confirmer");
@@ -83,7 +78,7 @@ public class PanelDetail extends JPanel implements ActionListener
 		JLabel lblNbJoueursMin 			= new JLabel("Nb joueurs minimum : ");
 		JLabel lblNbJoueursMax 			= new JLabel("Nb joueurs maximum : ");
 		JLabel lblNbWagonsMax 			= new JLabel("Nb " + this.txtNomMoyenDeTransport.getText() + " de couleurs : ");
-		JLabel lblNbWagonsMulti 		= new JLabel("Nb " + this.txtNomMoyenDeTransport.getText() + " de wagons multicolores : ");
+		JLabel lblNbWagonsMulti 		= new JLabel("Nb " + this.txtNomMoyenDeTransport.getText() + " multicolores : ");
 		JLabel lblNbCartesJoueurs 		= new JLabel("Nb cartes / joueur : ");
 		JLabel lblCarteWagon 			= new JLabel(new ImageIcon("donnee\\carteWagons\\carte.png"));
 		JLabel lblCarteMulti			= new JLabel(new ImageIcon("donnee\\carteWagons\\carte9.png"));
@@ -93,14 +88,22 @@ public class PanelDetail extends JPanel implements ActionListener
 		JLabel lblNomMoyenDeTransport 	= new JLabel("Type moyen de transport :");
 
 		JTable tableau = new JTable(donnees, entetes);
+
 		this.jd = new JDialog();
 		jd.setTitle("Choix des couleurs pour chaque joueur");
 	
+		/**
+		 * Rendre les éléments du tableau des scores éditables
+		 */
 		for(int i = 0; i < tableau.getColumnCount(); i++)
 		{
 			tableau.getColumnModel().getColumn(i).setCellRenderer(custom);
 		}
 
+		/**
+		 * Ajout d'une bordure et d'une couleur aux éléments
+		 * Utilisation de setBounds() pour les positionner manuellement 
+		 */ 
 		this.btnCompter.setHorizontalAlignment(SwingConstants.CENTER);
 		this.btnCompter2.setHorizontalAlignment(SwingConstants.CENTER);
 		this.btnValider.setBackground(Color.WHITE);
@@ -108,28 +111,27 @@ public class PanelDetail extends JPanel implements ActionListener
 		this.txtNom.setForeground(Color.GRAY);
 		this.txtNomMoyenDeTransport.setForeground(Color.GRAY);
 
-		this.btnplus.setBounds(50, 30, 60, 20);
-		this.btnCompter.setBounds(50, 50, 60, 60);
-		this.btnCompter.setEditable(false);
-		this.btnmoins.setBounds(50, 110, 60, 20);
-		this.btnEditer.setBounds(330, 85, 245, 25);
-		this.btnplus2.setBounds(50, 200, 60, 20);
-		this.btnCompter2.setBounds(50, 220, 60, 60);
-		this.btnmoins2.setBounds(50, 280, 60, 20);
+		this.btnplus	.setBounds( 50,  30,  60,  20);
+		this.btnCompter .setBounds( 50,  50,  60,  60);
+		this.btnmoins	.setBounds( 50, 110,  60,  20);
+		this.btnEditer	.setBounds(330,  85, 245,  25);
+		this.btnplus2	.setBounds( 50,  200, 60,  20);
+		this.btnCompter2.setBounds( 50,  220, 60,  60);
+		this.btnmoins2	.setBounds( 50,  280, 60,  20);
+		lblCarteMulti	.setBounds( 50,  220,250,  60);
+		lblPoints		.setBounds(  0,  240,250, 250);
+		lblNbWagonsMulti.setBounds(  0,   40,250, 250);
+		lblCarteWagon	.setBounds(100,   50,250,  60);
+		panelTableau	.setBounds( 50,  390,400, 117);
+		jd				.setBounds(900,  300,500, 400); 	
 		this.btnCompter2.setEditable(false);
+		this.btnCompter	.setEditable(false);
 
-		lblCarteMulti.setBounds(50, 220, 250, 60);
-		lblPoints.setBounds(0,240, 250, 250);
-		lblNbWagonsMulti.setBounds(0, 40, 250, 250);
-		lblCarteWagon.setBounds(100, 50, 250, 60);
-		panelTableau.setBounds(50, 390, 400, 117);
-		jd.setBounds(900, 300, 500, 400); 	
-		
-
-		panelDetail.add(new JLabel());
-		panelDetail.add(new JLabel());
-		panelDetail.add(new JLabel());
-		panelDetail.add(new JLabel());
+		/**
+		 * Ajout des composants dans chaque panel
+		 */
+		for(int i = 1; i <= 4; i++)
+			panelDetail.add(new JLabel());
 
 		panelDetail.add(lblNbJoueursMin);
 		panelDetail.add(new JLabel());
@@ -193,7 +195,9 @@ public class PanelDetail extends JPanel implements ActionListener
 		this.add(panelBas, BorderLayout.SOUTH);
 
 
-
+		/**
+		 * Activation des composants
+		 */
 		this.btnplus.addActionListener(this);
 		this.btnmoins.addActionListener(this);
 		this.btnplus2.addActionListener(this);
@@ -202,8 +206,9 @@ public class PanelDetail extends JPanel implements ActionListener
 		this.btnEditer.addActionListener(this);
 		this.btnConfirmer.addActionListener(this);
 
-
-		// A optimiser
+		/**
+		 * Gestion des évènements, à optimiser
+		 */
 		this.txtNbJoueursMax.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -260,11 +265,15 @@ public class PanelDetail extends JPanel implements ActionListener
 			@Override
 			public void focusLost(FocusEvent e) {
 				if(txtNom.getText().equals(""))
-					txtNom.setText("route,piste cyclable,rails");
+					txtNomMoyenDeTransport.setText("voiture,vélo,wagon");
 			}
 		});
 	}
 
+	/**
+	 * Récupération des données
+	 * @param e
+	 */
 	public void actionPerformed(ActionEvent e)
 	{
 		if(e.getSource() == this.btnplus)
@@ -307,10 +316,6 @@ public class PanelDetail extends JPanel implements ActionListener
 
 		if(e.getSource() == this.btnValider)
 		{
-			if(this.txtNbCartesJoueurs.getText().isEmpty() || this.txtNbJoueursMax.getText().isEmpty() || this.txtNbJoueursMin.getText().isEmpty())
-			{
-				JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs", "Erreur", JOptionPane.ERROR_MESSAGE);
-			}
 
 			int nbJoueursMin = Integer.parseInt(this.txtNbJoueursMin.getText());
 			int nbJoueursMax = Integer.parseInt(this.txtNbJoueursMax.getText());
@@ -318,11 +323,16 @@ public class PanelDetail extends JPanel implements ActionListener
 			int nbWagonsMax = Integer.parseInt(this.btnCompter.getText());
 			int nbWagonsMulti = Integer.parseInt(this.btnCompter2.getText());
 
+
+			if(this.txtNbCartesJoueurs.getText().isEmpty() || this.txtNbJoueursMax.getText().isEmpty() || this.txtNbJoueursMin.getText().isEmpty())
+			{
+				JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs", "Erreur", JOptionPane.ERROR_MESSAGE);
+			}
+
 			if(nbJoueursMin > nbJoueursMax || nbJoueursMin <= 0 || nbJoueursMax <= 0 || nbCartesJoueurs <= 0 || nbWagonsMax <= 0 || nbWagonsMulti <= 0)
 			{
 				JOptionPane.showMessageDialog(this, "Erreur de saisie", "Erreur", JOptionPane.ERROR_MESSAGE);
 			}
-
 
 			JPanel panelCouleur = new JPanel(new GridLayout(nbJoueursMax + 1, 2,5,5));
 			for(int i = 1; i <= nbJoueursMax; i ++)
@@ -340,7 +350,6 @@ public class PanelDetail extends JPanel implements ActionListener
 		{
 			jd.dispose();
 		}
-		
 		
 		if(e.getSource() == this.btnEditer)
 		{

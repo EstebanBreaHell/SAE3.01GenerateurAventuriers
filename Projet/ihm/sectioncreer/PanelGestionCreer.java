@@ -2,7 +2,6 @@ package ihm.sectioncreer;
 
 import java.awt.BorderLayout;
 
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import main.Controleur;
@@ -15,10 +14,13 @@ public class PanelGestionCreer extends JPanel
 	private PanelCreerNoeud panelCreerNoeud;
 	private PanelCreerArete panelCreerArete;
 	private PanelCreerCarteObjectif panelCreerCarteObjectif;
-	private PanelDetail	panelDetail;
+	private PanelParametre	panelParametre;
 
 	public PanelGestionCreer(Controleur ctrl)
 	{
+		/**
+		 * Création des composants
+		 */
 		this.ctrl = ctrl; 
 		this.setLayout(new BorderLayout());
 
@@ -26,26 +28,44 @@ public class PanelGestionCreer extends JPanel
 		this.panelCreerNoeud = new PanelCreerNoeud(this.ctrl);
 		this.panelCreerArete = new PanelCreerArete(this.ctrl);
 		this.panelCreerCarteObjectif = new PanelCreerCarteObjectif(this.ctrl);
-		this.panelDetail	 = new PanelDetail(this.ctrl);
+		this.panelParametre	 = new PanelParametre(this.ctrl);
 
 		this.tabbedPane.addTab("Créer Noeud",this.panelCreerNoeud);
 		this.tabbedPane.addTab("Créer Arête", this.panelCreerArete);
 		this.tabbedPane.addTab("Créer Carte Objectif",this.panelCreerCarteObjectif);
-		this.tabbedPane.addTab("Paramètres", this.panelDetail);
+		this.tabbedPane.addTab("Paramètres", this.panelParametre);
 
+		/**
+		 * Ajout des composants
+		 */
 		this.add(this.tabbedPane,BorderLayout.CENTER);
 	}
 
+	/**
+	 * Supprimer une arête
+	 * @param n
+	 */
 	public void supprimArete(int n)
 	{
 		this.panelCreerArete.supprimArete(n);
 	}
 
 	
+	/**
+	 * Retourne le nom du noeud du panel créer
+	 * @return String
+	 */
     public String getNomNoeudPanelCreer() { return this.panelCreerNoeud.getNomNoeudPanelCreer(); }
 
+	/**
+	 * Affiche le message d'erreur
+	 * @param text
+	 */
 	public void afficherErreurPanelCreer(String text) { this.panelCreerNoeud.afficherErreurPanelCreer(text);}
 
+	/**
+	 * Met à jour les panels de création de noeud et d'arête
+	 */
 	public void majIHM()
 	{
 		this.panelCreerNoeud.majIHM();

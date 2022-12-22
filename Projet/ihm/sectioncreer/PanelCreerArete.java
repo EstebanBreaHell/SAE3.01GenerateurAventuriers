@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.ArrayList;
 import java.awt.Color; 
 
-
 import main.Controleur;
 import metier.Noeud;
 
@@ -34,6 +33,10 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 
 	public PanelCreerArete(Controleur ctrl)
 	{
+
+		/**
+		 * Création des composants
+		 */
 		this.setLayout(new BorderLayout());
 		this.ctrl = ctrl;
 		this.lstLabel = new ArrayList<JLabel>();
@@ -67,6 +70,9 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		this.btnGenererPrefait = new JButton("Générer arête préfaite");
 		this.listHistorique = new JList<String>();
 
+		/**
+		 * Ajout de bordure et de couleur de fond
+		 */
 		this.txtDistance.setBorder(border);
 		this.comboNoeud1.setBorder(border);
 		this.comboNoeud2.setBorder(border);
@@ -80,10 +86,14 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		this.btnCouleur.setBackground(Color.WHITE);
 
 
+		/* Ajout du bouton dans le container */
 		this.container.add(this.btnCouleur);
 
-		/* A optimiser par la suite */
-
+		/*
+		 * Positionnement des composants
+		 * A optimiser par la suite
+		 */
+		
 		panelHaut.add(lblCouleur);
 		panelHaut.add(new JLabel());
 		panelHaut.add(new JLabel());
@@ -132,7 +142,9 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		this.add(panelDispoHistorique, BorderLayout.CENTER);
 		this.add(panelValidation, BorderLayout.SOUTH);
 
-
+		/**
+		 * Activation des composants
+		 */
 		this.btnSupprimer.addActionListener(this);
 		this.btnGenererArete.addActionListener(this);
 		this.btnGenererPrefait.addActionListener(this);
@@ -151,15 +163,23 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		});
 	}
 
+	/**
+	 * Supprimer une arête de la liste
+	 * @param n de type int
+	 */
 	public void supprimArete(int n)
 	{
 		this.lstLabel.remove(n);
 		this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 		this.panelGraphique.majIHM();
 	}
+
+	/**
+	 * Gérer une action avec les boutons
+	 * @param e de type ActionEvent
+	 */
 	public void actionPerformed(ActionEvent e)
 	{
-
 		if(e.getSource() == this.btnCouleur)
 		{
 			Color initialcolor=Color.RED;
@@ -183,9 +203,9 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		{
 			/* Vérifier que les champs sont remplis */
 			// Convertir la distance en entier
-			if(this.txtDistance.getText().isEmpty() || Integer.parseInt(this.txtDistance.getText()) < 1)
+			if(this.txtDistance.getText().isEmpty() || Integer.parseInt(this.txtDistance.getText()) < 1 || Integer.parseInt(this.txtDistance.getText()) > 100)
 			{
-				JOptionPane.showMessageDialog(this, "Tous les champs sont obligatoires", "Erreur", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this, "La distance doit être comprise entre 1 et 100", "Erreur", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 			/*--------------------------------------*/
@@ -247,31 +267,33 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 			this.panelGraphique.majIHM();
 		}
 	}
+
+	/**
+	 * Permet de voir si l'état du combobox est modifié
+	 * @param e de type ItemEvent
+	 */
 	public void itemStateChanged(ItemEvent e) 
     { 
-        // si l'état du combobox est modifiée 
 		this.comboNoeud2.removeAllItems();
 		Noeud n = this.comboNoeud1.getItemAt(this.comboNoeud1.getSelectedIndex());
 		
 		if(n == null)
 			return;
+
 		for(Noeud noeud : this.ctrl.getNoeudDispo(n))
-		{
-			this.comboNoeud2.addItem(noeud);
-		} 
-        
+			this.comboNoeud2.addItem(noeud);        
     } 
 
+	/**
+	 * Permet de mettre à jour l'IHM
+	 */
 	public void majIHM()
 	{
 		this.comboNoeud1.removeAllItems();
 		for(Noeud noeud : this.ctrl.getLstNoeud())
-		{
 			this.comboNoeud1.addItem(noeud);
-		} 
 		
-
-			//this.comboNoeud1.addItem(n);
+		//this.comboNoeud1.addItem(n);
 		
 		/*
 		 * getNoeudDispo
