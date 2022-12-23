@@ -180,8 +180,43 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 		g.drawString(String.valueOf(nbWagon), posX + 5, posY + 5);
 
 		// change la largeur de la ligne et la draw
-		((Graphics2D) g).setStroke(new BasicStroke(nbWagon/2));
-		g.drawLine(fromX, fromY, toX, toY);
+		((Graphics2D) g).setStroke(new BasicStroke(20));
+		//on vas déssiné les arete découpé en fonction du nombre de wagon 
+		for(int n= 0 ; n<=nbWagon-1; n++)
+		{
+			// fromX = 100 fromY = 250 
+			// toX = 300 toY = 250
+			// nbWagon = 3
+			// n = 0
+			// 100 + (300-100)/3 * 0 = 100
+			// 250 + (250-250)/3 * 0 = 250
+			// 100 + (300-100)/3 * 1 = 200
+			// 250 + (250-250)/3 * 1 = 250
+
+			// n = 1
+			//Cela dessine bien les ligne mais il faudrait des contour noir 
+			//pour que sa soit plus visible
+			((Graphics2D) g).setStroke(new BasicStroke(15));
+			g.setColor(Color.BLACK);
+			g.drawLine(fromX + (toX-fromX)/nbWagon *n,
+						fromY + (toY-fromY)/nbWagon *n,
+					fromX + (toX-fromX)/nbWagon *(n+1),
+					fromY + (toY-fromY)/nbWagon *(n+1));
+				
+			//Dessine les coutour du trait en noir 
+			
+			((Graphics2D) g).setStroke(new BasicStroke(10));
+			g.setColor(new Color(Integer.parseInt(rgb[0]), Integer.parseInt(rgb[1]), Integer.parseInt(rgb[2])));
+			g.drawLine(fromX + (toX-fromX)/nbWagon *n,
+						fromY + (toY-fromY)/nbWagon *n,
+					fromX + (toX-fromX)/nbWagon *(n+1),
+					fromY + (toY-fromY)/nbWagon *(n+1));
+			
+
+
+
+		}
+		//g.drawLine(fromX, fromY, toX, toY);
 		((Graphics2D) g).setStroke(new BasicStroke(1));
 	}
 

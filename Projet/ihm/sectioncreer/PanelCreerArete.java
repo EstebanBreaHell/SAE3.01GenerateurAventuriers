@@ -213,10 +213,16 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 			// Ajout de l'arête dans l'historique 
 			this.lstLabel.add(new JLabel("L'arête relie "    + this.comboNoeud1.getSelectedItem()  + " à " + this.comboNoeud2.getSelectedItem()  
 			 				+ " de couleur" + this.container.getBackground() + " et de distance " + this.txtDistance.getText()));
+			
+			//From javax.swing.plaf.ColorUIResource[r=238,g=238,b=238] 
+			//to
+			//java.awt.Color[r=238,g=238,b=238]
+			/*------------------------------------*/
+			String couleur = new Color(this.container.getBackground().getRGB()).toString();
 
 			this.ctrl.addArete( this.comboNoeud1.getItemAt(this.comboNoeud1.getSelectedIndex()),
 					            this.comboNoeud2.getItemAt(this.comboNoeud2.getSelectedIndex()),
-					            this.container.getBackground().toString(),
+					            couleur,
 								Integer.parseInt(this.txtDistance.getText()),this.chbDouble.isSelected() 
 					);
 			
