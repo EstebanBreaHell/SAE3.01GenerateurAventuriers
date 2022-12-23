@@ -5,6 +5,7 @@ import java.awt.event.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
@@ -103,12 +104,15 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 	{
 		super.paint(g);
 
-		// Dessiner le texte
+		// Dessiner le texte	
 		g.setFont(new Font("default", Font.BOLD, 12));
+		ArrayList<Arete> areteDoubleDessine = new ArrayList();
 
 		// draw les arete
 		for (Arete a : this.ctrl.getLstArete()) {
-
+			System.out.println("-----------------");
+			System.out.println(a);
+			System.out.println("-----------------");
 			int nb = a.getWagon();
 			int fromSize = 20;
 			int toSize = 20;
@@ -126,7 +130,18 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 					int toX = to.getX() + toSize / 2;
 					int toY = to.getY() + toSize / 2;
 
-					drawArete(fromX, fromY, toX, toY, nb, c , g);
+					if(a.getEstDouble() && !areteDoubleDessine.contains(a))
+					{
+						drawArete(fromX-5, fromY-5, toX-5, toY-5, nb, c, g);
+						drawArete(fromX+5, fromY+5, toX+5, toY+5, a.getAreteDouble().getWagon(), a.getAreteDouble().getCouleur(), g);
+						areteDoubleDessine.add(a);
+						areteDoubleDessine.add(a.getAreteDouble());
+					}
+					else
+					{
+						if(!areteDoubleDessine.contains(a))
+							drawArete(fromX, fromY, toX, toY, nb, c, g);
+					}
 
 				}
 			}
@@ -177,25 +192,15 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 
 		g.setColor(new Color(Integer.parseInt(rgb[0]), Integer.parseInt(rgb[1]), Integer.parseInt(rgb[2])));
 		//g.setColor(new Color(195, 195, 195));
-		g.drawString(String.valueOf(nbWagon), posX + 5, posY + 5);
+		//g.drawString(String.valueOf(nbWagon), posX + 5, posY + 5);
 
 		// change la largeur de la ligne et la draw
-		((Graphics2D) g).setStroke(new BasicStroke(20));
+		//((Graphics2D) g).setStroke(new BasicStroke(20));
 		//on vas déssiné les arete découpé en fonction du nombre de wagon 
+		
 		for(int n= 0 ; n<=nbWagon-1; n++)
 		{
-			// fromX = 100 fromY = 250 
-			// toX = 300 toY = 250
-			// nbWagon = 3
-			// n = 0
-			// 100 + (300-100)/3 * 0 = 100
-			// 250 + (250-250)/3 * 0 = 250
-			// 100 + (300-100)/3 * 1 = 200
-			// 250 + (250-250)/3 * 1 = 250
 
-			// n = 1
-			//Cela dessine bien les ligne mais il faudrait des contour noir 
-			//pour que sa soit plus visible
 			((Graphics2D) g).setStroke(new BasicStroke(15));
 			g.setColor(Color.BLACK);
 			g.drawLine(fromX + (toX-fromX)/nbWagon *n,
@@ -211,14 +216,12 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 						fromY + (toY-fromY)/nbWagon *n,
 					fromX + (toX-fromX)/nbWagon *(n+1),
 					fromY + (toY-fromY)/nbWagon *(n+1));
-			
-
-
-
 		}
 		//g.drawLine(fromX, fromY, toX, toY);
 		((Graphics2D) g).setStroke(new BasicStroke(1));
 	}
+
+
 
 	@Override
 	public void actionPerformed(ActionEvent e) 

@@ -250,14 +250,24 @@ public class Metier
 	}
 
 	//En partant sur la base que l'on utilise une liste déroulante pour la couleur ET pour les ville
-	public void creeArete(Noeud n1 , Noeud n2 , String c, int nbW , boolean estDouble )
+	public void creeArete(Noeud n1 , Noeud n2 , String c, int nbW )
 	{
-		Arete a = new Arete( n1, n2, c ,nbW,estDouble);
+		Arete a = new Arete( n1, n2, c ,nbW);
+        for (Arete b : lstArete)
+        {
+            if ((b.getNoeudArr().equals(n1) && b.getNoeudDep().equals(n2))||
+                (b.getNoeudArr().equals(n2) && b.getNoeudDep().equals(n1)))
+            {
+                b.setEstDouble(true);
+                a.setEstDouble(true);
+                b.setAreteDouble(a);
+                a.setAreteDouble(b);
+            }
+        }
 
 		this.lstArete.add( a );
 
-        for (Arete b : lstArete)
-            System.out.print(b);
+        
     
 	}
 
@@ -288,6 +298,18 @@ public class Metier
         Arete a = this.lstArete.get( n );
 		a.supprArete();
 		this.lstArete.remove( a );
+
+        if(a.getEstDouble())
+        {
+            for (Arete b : lstArete)
+            {
+                if ((b.getNoeudArr().equals(a.getNoeudArr()) && b.getNoeudDep().equals(a.getNoeudDep()))||
+                    (b.getNoeudArr().equals(a.getNoeudDep()) && b.getNoeudDep().equals(a.getNoeudArr())))
+                {
+                    b.setEstDouble(false);
+                }
+            }
+        }
 	}
 
     public void supprArete( Arete a )
@@ -317,12 +339,19 @@ public class Metier
         ArrayList<Noeud> lstNoeudOccupe = new ArrayList<Noeud>();
         ArrayList<Noeud> lstNoeudDispo = new ArrayList<Noeud>();
 
-        for (Arete a : n.getArrayArete())
+        for (Arete a : n.getArrayArete()) 
 		{
-            if(!a.getNoeudDep().equals(n) && !lstNoeudOccupe.contains(a.getNoeudDep()))
+            /*
+            if((!a.getNoeudDep().equals(n) || a.getEstDouble() )&& !lstNoeudOccupe.contains(a.getNoeudDep()) )
 				lstNoeudOccupe.add(a.getNoeudDep());
-			if(!a.getNoeudArr().equals(n) && !lstNoeudOccupe.contains(a.getNoeudArr()))
+			if((!a.getNoeudArr().equals(n) || a.getEstDouble() )&& !lstNoeudOccupe.contains(a.getNoeudArr()))
 				lstNoeudOccupe.add(a.getNoeudArr());
+            */
+            if(a.getEstDouble())
+            {
+                lstNoeudOccupe.add(a.getNoeudDep());
+                lstNoeudOccupe.add(a.getNoeudArr());
+            }
 		}
 
 

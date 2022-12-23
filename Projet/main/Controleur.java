@@ -119,7 +119,7 @@ public class Controleur
 
     public void addNoeud(String nom, int x, int y) { this.metier.creeNoeud(nom, x, y); }
 
-    public void addArete(Noeud noeud1, Noeud noeud2,  String couleur, int longueur , boolean estDouble) { this.metier.creeArete(noeud1, noeud2, couleur, longueur,estDouble ); }
+    public void addArete(Noeud noeud1, Noeud noeud2,  String couleur, int longueur) { this.metier.creeArete(noeud1, noeud2, couleur, longueur ); }
 
     public String getNomNoeudPanelCreer() { return this.ihm.getNomNoeudPanelCreer(); }
 
