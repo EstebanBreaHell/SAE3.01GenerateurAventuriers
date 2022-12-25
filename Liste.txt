@@ -1,0 +1,38 @@
+/**
+ * @author : Adrien Decharrois
+ * @date   : 25/12/2022 à 18h40
+ */
+
+---------------------------------------------------------------------------------------------------------|
+Liste des choses importantes à finaliser pour le projet : [Veillez à bien respecter ceci]		 |
+---------------------------------------------------------------------------------------------------------|
+- Correction de bug sur la popUp dans le panelCréerNoeud --> Lors du second double-cliquage		 |
+- Pouvoir double-cliquer sur le point ou la carré blanc pour modifier ses coordonnées ou nom		 | 
+- Prévoir une couleur neutre (qui permet de prendre la voie avec n'importe quelle couleur)		 |
+- Dans le panelParamètre, intégrer un bouton permettant d'importer le recto de sa carte multicouleur	 | [Valider par Adrien]
+- Finaliser et rendre fonctionnel le panelCreerCarteObjectif						 |
+- Espacer les doubles-voies pour plus de visibilité et les rendre double cliquables (comme les noeuds)	 |
+- Dans le panelParametre, nous devons définir à partir de combien de wagons restant dans la main d’un    | 
+joueur, la fin de partie est déclenchée									 | [Valider par Adrien]
+- Pouvoir récupérer les informations dans le XML, veillez à ce qu'elles soient bonnes			 | 
+- Passer à la phase de corrections de bugs --> Il y a encore des noeuds qui sortent du panel par exemple |
+- Ajouter un scrollPane à la listeHistorique d'arête dans panelCreerArete				 |
+---------------------------------------------------------------------------------------------------------|
+
+---------------------------------------------------------------------------------------------------------|
+Liste des choses passibles à finaliser pour le projet : [Veillez à bien respecter ceci]			 |												 |
+---------------------------------------------------------------------------------------------------------|
+- Ajouter un thème IHM 											 |
+- Optimiser le code											 |
+- Documenter et mettre en commentaire									 |
+- Améliorer l'esthétisme du panelCreerCarteObjectif							 |
+---------------------------------------------------------------------------------------------------------|
+
+Si vous avez d'autres suggestions à faire parvenir, dites-le. Si vous avez travailler sur ce compte rendu 
+et avez valider une tâche propre, mentionnez-le à côté du tableau --> [Valider]
+
+N'oubliez pas, c'est votre année qui est en jeu pour n'importe lequel d'entre vous. 
+
+
+
+
