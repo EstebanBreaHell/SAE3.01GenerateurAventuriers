@@ -61,11 +61,11 @@ public class PanelParametre extends JPanel implements ActionListener
 
 		this.txtNbJoueursMin 		= new JTextField("1");
 		this.txtNbJoueursMax 		= new JTextField();
-		this.txtNbCartesJoueurs 	= new JTextField();
+		this.txtNbCartesJoueurs 	= new JTextField("1");
 		this.txtNomMoyenDeTransport = new JTextField("voiture,vélo,wagon");
-		this.btnCompter 			= new JTextField("0", JTextField.CENTER);
-		this.btnCompter2 			= new JTextField("0");
-		this.txtNbCouleurs			= new JTextField();
+		this.btnCompter 			= new JTextField("1");
+		this.btnCompter2 			= new JTextField("1");
+		this.txtNbCouleurs			= new JTextField("1");
 		this.txtNom					= new JTextField(("route,piste cyclable,rails"));
 		this.btnValider 			= new JButton("Générer XML");
 		this.btnplus 				= new JButton("+");
@@ -77,7 +77,7 @@ public class PanelParametre extends JPanel implements ActionListener
 
 		JLabel lblNbJoueursMin 			= new JLabel("Nb joueurs minimum : ");
 		JLabel lblNbJoueursMax 			= new JLabel("Nb joueurs maximum : ");
-		JLabel lblNbWagonsMax 			= new JLabel("Nb " + this.txtNomMoyenDeTransport.getText() + " de couleurs : ");
+		JLabel lblNbWagonsMax 			= new JLabel("Nb " + this.txtNomMoyenDeTransport.getText() + " :");
 		JLabel lblNbWagonsMulti 		= new JLabel("Nb " + this.txtNomMoyenDeTransport.getText() + " multicolores : ");
 		JLabel lblNbCartesJoueurs 		= new JLabel("Nb cartes / joueur : ");
 		JLabel lblCarteWagon 			= new JLabel(new ImageIcon("donnee\\carteWagons\\carte.png"));
@@ -110,6 +110,16 @@ public class PanelParametre extends JPanel implements ActionListener
 		this.btnEditer.setBackground(Color.WHITE);
 		this.txtNom.setForeground(Color.GRAY);
 		this.txtNomMoyenDeTransport.setForeground(Color.GRAY);
+
+		this.txtNbCartesJoueurs.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.txtNbJoueursMin.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.txtNbJoueursMax.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.txtNbCouleurs.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.txtNom.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.txtNomMoyenDeTransport.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.btnCompter.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.btnCompter2.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		
 
 		this.btnplus	.setBounds( 50,  30,  60,  20);
 		this.btnCompter .setBounds( 50,  50,  60,  60);
@@ -248,25 +258,37 @@ public class PanelParametre extends JPanel implements ActionListener
 		this.txtNom.addFocusListener(new FocusListener() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				txtNom.setText("");
+				if(!(txtNom.getText().isEmpty()))
+				{
+					txtNom.getText();
+				}
+
+				if(txtNom.getText().equals("route,piste cyclable,rails"))
+				{
+					txtNom.setText("");
+					txtNom.setForeground(Color.BLACK);
+				}
 			}
 			@Override
-			public void focusLost(FocusEvent e) {
-				if(txtNom.getText().equals(""))
-					txtNom.setText("route,piste cyclable,rails");
-			}
+			public void focusLost(FocusEvent e) {}
 		});
 
 		this.txtNomMoyenDeTransport.addFocusListener(new FocusListener() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				txtNom.setText("");
+				if(!(txtNomMoyenDeTransport.getText().isEmpty()))
+				{
+					txtNomMoyenDeTransport.getText();
+				}
+
+				if(txtNomMoyenDeTransport.getText().equals("voiture,vélo,wagon"))
+				{
+					txtNomMoyenDeTransport.setText("");
+					txtNomMoyenDeTransport.setForeground(Color.BLACK);
+				}
 			}
 			@Override
-			public void focusLost(FocusEvent e) {
-				if(txtNom.getText().equals(""))
-					txtNomMoyenDeTransport.setText("voiture,vélo,wagon");
-			}
+			public void focusLost(FocusEvent e) {}
 		});
 	}
 
@@ -290,15 +312,15 @@ public class PanelParametre extends JPanel implements ActionListener
 			this.btnCompter2.setText(Integer.toString(nb));
 		}
 
-		if(e.getSource() == this.btnmoins || e.getSource() == this.btnmoins2)
+		if(e.getSource() == this.btnmoins)
 		{
 			int nb = Integer.parseInt(this.btnCompter.getText());
 			nb--;
 			this.btnCompter.setText(Integer.toString(nb));
 
-			if(nb < 0)
+			if(nb < 1)
 			{
-				this.btnCompter.setText("0");
+				this.btnCompter.setText("1");
 			}
 		}
 
@@ -308,42 +330,46 @@ public class PanelParametre extends JPanel implements ActionListener
 			nb--;
 			this.btnCompter2.setText(Integer.toString(nb));
 
-			if(nb < 0)
+			if(nb < 1)
 			{
-				this.btnCompter2.setText("0");
+				this.btnCompter2.setText("1");
 			}
 		}
 
 		if(e.getSource() == this.btnValider)
 		{
 
-			int nbJoueursMin = Integer.parseInt(this.txtNbJoueursMin.getText());
-			int nbJoueursMax = Integer.parseInt(this.txtNbJoueursMax.getText());
-			int nbCartesJoueurs = Integer.parseInt(this.txtNbCartesJoueurs.getText());
-			int nbWagonsMax = Integer.parseInt(this.btnCompter.getText());
-			int nbWagonsMulti = Integer.parseInt(this.btnCompter2.getText());
-
-
-			if(this.txtNbCartesJoueurs.getText().isEmpty() || this.txtNbJoueursMax.getText().isEmpty() || this.txtNbJoueursMin.getText().isEmpty())
+			if(this.txtNbCartesJoueurs.getText().isEmpty() || this.txtNbJoueursMax.getText().isEmpty() || 
+			   this.txtNbJoueursMin.getText().isEmpty()    || this.txtNom.getText().isEmpty()		   || 
+			   this.txtNomMoyenDeTransport.getText().isEmpty() || this.txtNbCouleurs.getText().isEmpty())
 			{
 				JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs", "Erreur", JOptionPane.ERROR_MESSAGE);
 			}
-
-			if(nbJoueursMin > nbJoueursMax || nbJoueursMin <= 0 || nbJoueursMax <= 0 || nbCartesJoueurs <= 0 || nbWagonsMax <= 0 || nbWagonsMulti <= 0)
+			else
 			{
-				JOptionPane.showMessageDialog(this, "Erreur de saisie", "Erreur", JOptionPane.ERROR_MESSAGE);
-			}
+				int nbJoueursMin = Integer.parseInt(this.txtNbJoueursMin.getText());
+				int nbJoueursMax = Integer.parseInt(this.txtNbJoueursMax.getText());
+				int nbCartesJoueurs = Integer.parseInt(this.txtNbCartesJoueurs.getText());
+				int nbWagonsMax = Integer.parseInt(this.btnCompter.getText());
+				int nbWagonsMulti = Integer.parseInt(this.btnCompter2.getText());
 
-			JPanel panelCouleur = new JPanel(new GridLayout(nbJoueursMax + 1, 2,5,5));
-			for(int i = 1; i <= nbJoueursMax; i ++)
-			{
-				panelCouleur.add(new JLabel("Couleur joueur " + i + " : "));
-				panelCouleur.add(new JTextField());
+				if(nbJoueursMin > nbJoueursMax || nbJoueursMin <= 0 || nbJoueursMax <= 0 || nbCartesJoueurs <= 0 || nbWagonsMax <= 0  || 
+				nbWagonsMulti <= 0)
+				{
+					JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs", "Erreur", JOptionPane.ERROR_MESSAGE);
+				} 
+
+				JPanel panelCouleur = new JPanel(new GridLayout(nbJoueursMax + 1, 2,5,5));
+				for(int i = 1; i <= nbJoueursMax; i ++)
+				{
+					panelCouleur.add(new JLabel("Couleur joueur " + i + " : "));
+					panelCouleur.add(new JTextField());
+				}
+				panelCouleur.add(btnConfirmer);
+				
+				jd.add(panelCouleur);
+				jd.setVisible(true);
 			}
-			panelCouleur.add(btnConfirmer);
-			
-			jd.add(panelCouleur);
-			jd.setVisible(true);
 		}
 
 		if(e.getSource() == btnConfirmer)
