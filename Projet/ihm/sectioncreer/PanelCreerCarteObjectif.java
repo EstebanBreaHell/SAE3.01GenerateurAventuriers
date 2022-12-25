@@ -10,6 +10,7 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 import main.Controleur;
+import metier.Noeud;
 
 public class PanelCreerCarteObjectif extends JPanel
 {
@@ -47,7 +48,6 @@ public class PanelCreerCarteObjectif extends JPanel
 		/**
 		 * Positionnement des composants
 		 */
-		
 
 		/*Début de panelDispoListe */
 		panelDispoListe.add(new JLabel("Liste des noeud existant sur la mappe",JLabel.CENTER),BorderLayout.NORTH);
