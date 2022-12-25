@@ -238,7 +238,7 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 
 			//java.awt.Color[r=0,g=0,b=255]
 			int n = this.ctrl.getLstNoeud().size();
-			n = (n*(n-1))/2;
+			n = (n*(n-1));
 			if(this.ctrl.getLstArete().size() == n)
 			{
 				JOptionPane.showMessageDialog(this, "Tous les noeuds sont reliés", "Erreur", JOptionPane.ERROR_MESSAGE);

@@ -110,9 +110,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 
 		// draw les arete
 		for (Arete a : this.ctrl.getLstArete()) {
-			System.out.println("-----------------");
-			System.out.println(a);
-			System.out.println("-----------------");
+			
 			int nb = a.getWagon();
 			int fromSize = 20;
 			int toSize = 20;
