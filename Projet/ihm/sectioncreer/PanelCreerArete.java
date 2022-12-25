@@ -105,9 +105,7 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		/* Ajout du bouton dans le container */
 		this.container.add(this.btnCouleur);
 		this.containerUpdate.add(this.btnCouleurUpdate);
-		this.jd = new JDialog();
-		jd.setTitle("Modification des coordonnées");
-		jd.setBounds(900, 300, 500, 400); 
+		
 
 		/*
 		 * Positionnement des composants
@@ -214,6 +212,10 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 			Color initialcolor=Color.RED;
 			Color color=JColorChooser.showDialog(this,"Choisissez une couleur d'arête",initialcolor);
 			containerUpdate.setBackground(color);
+			int n = this.listHistorique.getSelectedIndex();
+			String couleur = new Color(this.containerUpdate.getBackground().getRGB()).toString();
+			this.ctrl.getLstArete().get(n).setCouleur(couleur);
+			this.ctrl.majIHM();
 		}
 
 		if(e.getSource() == this.btnSupprimer)
@@ -306,8 +308,8 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 
 
 			int n = this.listHistorique.getSelectedIndex();
-			String couleur = new Color(this.containerUpdate.getBackground().getRGB()).toString();
-			this.ctrl.getLstArete().get(n).setCouleur(couleur);
+			//String couleur = new Color(this.containerUpdate.getBackground().getRGB()).toString();
+			//this.ctrl.getLstArete().get(n).setCouleur(couleur);
 			this.ctrl.getLstArete().get(n).setWagon(Integer.parseInt(this.txtDistanceUpdate.getText()));
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 			this.ctrl.majIHM();
@@ -319,16 +321,32 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 
 		if(e.getClickCount() == 2)
 		{
+			this.jd = new JDialog();
+			jd.setTitle("Modification des coordonnées");
+			jd.setBounds(900, 300, 500, 400); 
 			JPanel panelPopUp = new JPanel(new GridLayout(6,2,12,12));
-			panelPopUp.add(this.containerUpdate);
+
+			
 			//panelPopUp.add(new JLabel("Noeud 1 : "));
 			
 			Arete a = this.ctrl.getLstArete().get(this.listHistorique.getSelectedIndex());
 			//panelPopUp.add(new JLabel("Distance : "));
 			this.txtDistanceUpdate.setText(""+a.getWagon());
+			//Set la couleur du container a la couleur de l'arete
+			String c = a.getCouleur();
+			String[] rgb = c.substring(15, c.length()-1).split(",");
+			//now remove "r=" and "g=" and "b="
+			rgb[0] = rgb[0].substring(2);
+			rgb[1] = rgb[1].substring(2);
+			rgb[2] = rgb[2].substring(2);
 
+
+			//g.setColor(new Color(Integer.parseInt(rgb[0]), Integer.parseInt(rgb[1]), Integer.parseInt(rgb[2])));
+
+			this.containerUpdate.setBackground(new Color(Integer.parseInt(rgb[0]),Integer.parseInt(rgb[1]),Integer.parseInt(rgb[2])));
+			panelPopUp.add(this.containerUpdate);
 			panelPopUp.add(this.txtDistanceUpdate);
-			panelPopUp.add(new JLabel ("De : "+ a.getNoeudDep().getNom() + " à " + a.getNoeudArr().getNom()));
+			//panelPopUp.add(new JLabel ("De : "+ a.getNoeudDep().getNom() + " à " + a.getNoeudArr().getNom()));
 			panelPopUp.add(this.btnConfirmer);
 			jd.add(panelPopUp);
 			jd.setVisible(true);
