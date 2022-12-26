@@ -219,7 +219,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 		((Graphics2D) g).setStroke(new BasicStroke(1));
 	}
 
-
+	public String getImgPanel(){return PanelGraphique.pathImg;}
 
 	@Override
 	public void actionPerformed(ActionEvent e) 

@@ -125,6 +125,11 @@ public class Controleur
 
     public void afficherErreurPanelCreer(String text) { this.ihm.afficherErreurPanelCreer(text);}
 
+    public String getImgPanel()
+    {
+       return this.ihm.getImgPanel();
+    }
+
 
     public String getExtension(String filename) {
         return Optional.ofNullable(filename).filter(f -> f.contains(".")).map(f -> f.substring(filename.lastIndexOf(".") + 1)).get();
@@ -167,7 +172,6 @@ public class Controleur
 
     public static void main(String[] args)
     {
-        
         new Controleur();
     }
 

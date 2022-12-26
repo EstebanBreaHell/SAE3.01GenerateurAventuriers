@@ -13,16 +13,16 @@ import java.awt.event.ActionListener;
 import java.awt.GridLayout;
 
 import main.Controleur;
-import metier.Noeud;
 
 public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 {
 	private Controleur ctrl;
 	private JTextField txtNbPoint;
+	private PanelApercuFace panelApercuFace;
 	private JList<String> lstNoeud;
 	private JButton btnHistoriqueCarte;
 	private JButton btnCreerCarte;
-	private JButton btnVoirApercu;
+
 	private JButton btnModifierMotif;
 
 	public PanelCreerCarteObjectif(Controleur ctrl)
@@ -38,8 +38,10 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		this.txtNbPoint = new JTextField(2);
 		this.btnHistoriqueCarte = new JButton("Historique des cartes");
 		this.btnCreerCarte = new JButton("Créer carte");
-		this.btnVoirApercu = new JButton("Voir aperçu");
+
 		this.btnModifierMotif = new JButton("Modifier le motif");
+
+		this.panelApercuFace = new PanelApercuFace(this.ctrl);
 		
 		JPanel panelDispoListeApercu = new JPanel(new GridLayout(2,1));
 
@@ -47,7 +49,7 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		JPanel panelDispoGestionPoint = new JPanel(new BorderLayout(0,100));
 
 		JPanel panelDispoApercu = new JPanel(new GridLayout(1,2,10,10));
-		JPanel panelDispoFace = new JPanel(new BorderLayout());
+	
 		JPanel panelDispoArriere = new JPanel(new BorderLayout(10,10));
 
 		JPanel panelDispoBtnCreerHistorique = new JPanel(new GridLayout(2,1,5,5));
@@ -67,14 +69,8 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 
 
 		panelDispoListe.add(panelDispoGestionPoint,BorderLayout.SOUTH);
-		/*Fin de panelDispoListe */
-
-		/*Début de panelDispoApercu */
-			panelDispoFace.add(new JLabel("Recto",JLabel.CENTER),BorderLayout.NORTH);
-			panelDispoFace.add(new JLabel(Controleur.imageToIcon("importe\\a_changer.png", 200, 200)),BorderLayout.CENTER);
-			panelDispoFace.add(this.btnVoirApercu,BorderLayout.SOUTH);
-
-		panelDispoApercu.add(panelDispoFace);
+		
+		panelDispoApercu.add(this.panelApercuFace);
 
 			panelDispoArriere.add(new JLabel("Verso",JLabel.CENTER),BorderLayout.NORTH);
 			panelDispoArriere.add(new JLabel(Controleur.imageToIcon("importe\\FortniteMappe.png", 200, 200)),BorderLayout.CENTER);
@@ -97,7 +93,6 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 
 		this.btnCreerCarte.setBackground(Color.WHITE);
 		this.btnHistoriqueCarte.setBackground(Color.WHITE);
-		this.btnVoirApercu.setBackground(Color.WHITE);
 		this.btnModifierMotif.setBackground(Color.WHITE);
 
 		/**
@@ -106,7 +101,7 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 
 		this.btnHistoriqueCarte.addActionListener(this);
 		this.btnCreerCarte.addActionListener(this);
-		this.btnVoirApercu.addActionListener(this);
+		
 		this.btnModifierMotif.addActionListener(this);
 
 	}

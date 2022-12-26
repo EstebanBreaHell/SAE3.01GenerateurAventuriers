@@ -46,11 +46,7 @@ public class Frame extends JFrame
 
         this.setVisible(true);
     }
-    public void supprimArete(int n)
-	{
-        this.panelCreer.supprimArete(n);
-    }
-
+    public void supprimArete(int n){this.panelCreer.supprimArete(n);}
     public void changerPanel(String nomPanel)
     {
 
@@ -97,6 +93,7 @@ public class Frame extends JFrame
 
     public void afficherErreurPanelCreer(String text) { this.panelCreer.afficherErreurPanelCreer(text);}
     public void majPanelImporter(){this.panelInit.majPanelImporter();}
+    public String getImgPanel(){return this.panelCreer.getImgPanel()}
 
 
 }
