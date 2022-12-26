@@ -14,7 +14,7 @@ Liste des choses importantes à finaliser pour le projet : [Veillez à bien resp
 - Dans le panelParametre, nous devons définir à partir de combien de wagons restant dans la main d’un    | 
 joueur, la fin de partie est déclenchée									 | [Valider par Adrien]
 - Pouvoir récupérer les informations dans le XML, veillez à ce qu'elles soient bonnes			 | 
-- Passer à la phase de corrections de bugs --> Il y a encore des noeuds qui sortent du panel par exemple |
+- Passer à la phase de corrections de bugs  |
 - Ajouter un scrollPane à la listeHistorique d'arête dans panelCreerArete				 |
 ---------------------------------------------------------------------------------------------------------|
 
