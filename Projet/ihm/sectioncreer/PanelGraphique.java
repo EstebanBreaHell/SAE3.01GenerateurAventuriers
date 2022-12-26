@@ -280,9 +280,13 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 			int x = e.getX();
 			int y = e.getY();
 
+
 			// Déplacez l'objet en utilisant les coordonnées de la souris
-			this.noeudActif.setX(x);
-			this.noeudActif.setY(y);
+			if(x>=0 && x<=855)
+				this.noeudActif.setX(x);
+			
+			if(y>=25 && y<=670)
+				this.noeudActif.setY(y);
 			//this.noeudActif.setNomX(x);
 			//this.noeudActif.setNomY(y-10);
 			this.repaint();
@@ -293,8 +297,12 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 			int y = e.getY();
 
 			// Déplacez l'objet en utilisant les coordonnées de la souris
-			this.noeudActif.setNomX(x);
-			this.noeudActif.setNomY(y);
+			if(x>=0 && x<=855)
+				this.noeudActif.setNomX(x);
+			
+			if(y>=25 && y<=670)
+				this.noeudActif.setNomY(y);
+			
 			//this.noeudActif.setNomX(x);
 			//this.noeudActif.setNomY(y-10);
 			this.repaint();

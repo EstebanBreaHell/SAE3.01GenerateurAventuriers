@@ -14,6 +14,7 @@ import java.util.Random;
 
 
 import main.Controleur;
+import metier.Noeud;
 
 public class PanelCreerNoeud extends JPanel implements ActionListener, MouseListener
 {
@@ -232,11 +233,21 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 				return;
 			}
 			/*---------------------------------------------------------*/
+			String nom = this.txtNom.getText();
+			int x = Integer.parseInt(this.txtPosX.getText().replaceAll(" ",""));
+			int y = Integer.parseInt(this.txtPosY.getText().replaceAll(" ",""));
 
-			this.ctrl.addNoeud(this.txtNom.getText(),Integer.parseInt(this.txtPosX.getText()), Integer.parseInt(this.txtPosY.getText()));
+			if(!(x>=0) || !(x<=855))
+				x = x>0 ? 855 : 0;
+			
+			if(!(y>=25) || !(y<=670))
+				y = y>25 ? 670 : 25;
+
+
+			this.ctrl.addNoeud(nom,x,y);
 
 			/* Ajout du noeud ajouté dans l'histoirque */
-			this.lstLabel.add(new JLabel("Nom : " + this.txtNom.getText() + " | Pos X : " + this.txtPosX.getText() + " | Pos Y : " + this.txtPosY.getText()));
+			this.lstLabel.add(new JLabel("Nom : " + nom + " | Pos X : " + x + " | Pos Y : " + y));
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 			/*-----------------------------------------*/
 
@@ -261,21 +272,46 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 		if(e.getSource() == this.btnConfirmer)
 		{
 			//PanelCreerNoeud.listHistorique.getSelectedIndex()
-			int n = PanelCreerNoeud.listHistorique.getSelectedIndex();
+			int index = PanelCreerNoeud.listHistorique.getSelectedIndex();
+			int x = Integer.parseInt(this.txtPosXModif.getText());
+			int y = Integer.parseInt(this.txtPosYModif.getText());
+			int xNom = Integer.parseInt(this.txtPosXnom.getText());
+			int yNom = Integer.parseInt(this.txtPosYnom.getText());
+
+			Noeud n = this.ctrl.getLstNoeud().get(index);
+
+			n.setNom(this.txtNomModif.getText());
+
+			if(x>=0 && x<=855)
+				n.setPosX(x);
+			
+			if(y>=25 && y<=670)
+				n.setPosY(y);
+			
+			if(xNom>=0 && xNom<=855)
+				n.setNomX(xNom);
+			
+			if(yNom>=25 && yNom<=670)
+				n.setNomY(yNom);
+			
+
+			
+	
+			/* 
 			this.ctrl.getLstNoeud().get(n).setNom(this.txtNomModif.getText());
 			this.ctrl.getLstNoeud().get(n).setPosX(Integer.parseInt(this.txtPosXModif.getText()));
 			this.ctrl.getLstNoeud().get(n).setPosY(Integer.parseInt(this.txtPosYModif.getText()));
 			this.ctrl.getLstNoeud().get(n).setNomX(Integer.parseInt(this.txtPosXnom.getText()));
 			this.ctrl.getLstNoeud().get(n).setNomY(Integer.parseInt(this.txtPosYnom.getText()));
+			*/
 
-
-			PanelCreerNoeud.lstLabel.get(n).setText("Nom : " + this.txtNomModif.getText() + " | Pos X : " + this.txtPosXModif.getText() + " | Pos Y : " + this.txtPosYModif.getText());
+			PanelCreerNoeud.lstLabel.get(index).setText("Nom : " + n.getNom() + " | Pos X : " + n.getX() + " | Pos Y : " + n.getY());
 			//this.lstLabel.add(new JLabel("Nom : " + this.txtNomModif.getText() + " | Pos X : " + this.txtPosXModif.getText() + " | Pos Y : " + this.txtPosYModif.getText()));
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 			this.ctrl.majIHM();
 			jd.dispose();
 
-					
+
 		}
 	}
 
