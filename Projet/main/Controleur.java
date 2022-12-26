@@ -125,10 +125,7 @@ public class Controleur
 
     public void afficherErreurPanelCreer(String text) { this.ihm.afficherErreurPanelCreer(text);}
 
-    public String getImgPanel()
-    {
-       return this.ihm.getImgPanel();
-    }
+
 
 
     public String getExtension(String filename) {

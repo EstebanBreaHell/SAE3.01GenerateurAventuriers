@@ -18,8 +18,6 @@ public class Frame extends JFrame
     protected static Font POLICE_DEFAUT = new Font("Broadway",Font.BOLD,50);
     private Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
 
-    
-
     private PanelInit   panelInit;
     private PanelCreer  panelCreer;
 
@@ -93,7 +91,5 @@ public class Frame extends JFrame
 
     public void afficherErreurPanelCreer(String text) { this.panelCreer.afficherErreurPanelCreer(text);}
     public void majPanelImporter(){this.panelInit.majPanelImporter();}
-    public String getImgPanel(){return this.panelCreer.getImgPanel()}
-
 
 }

@@ -85,7 +85,6 @@ public class PanelCreer extends JPanel
 		this.panelGraphique.repaint();
 	}
 
-	public String getImgPanel(){return this.panelGraphique.getImgPanel();}
 
 
 }
