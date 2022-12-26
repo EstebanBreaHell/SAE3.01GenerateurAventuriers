@@ -275,7 +275,7 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 			this.ctrl.majIHM();
 			jd.dispose();
 
-			
+					
 		}
 	}
 
@@ -283,6 +283,9 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 
 		if(e.getClickCount() == 2)
 		{
+			this.jd = new JDialog();
+			jd.setTitle("Modification des coordonnées");
+			jd.setBounds(900, 300, 500, 400); 
 			JPanel panelPopUp = new JPanel(new GridLayout(6,2,12,12));
 			//this.txtNomModif.setText(this.lstLabel.get(PanelCreerNoeud.listHistorique.getSelectedIndex()).getText().split(" | ")[2] + " " + this.lstLabel.get(PanelCreerNoeud.listHistorique.getSelectedIndex()).getText().split(" | ")[3]);
 			//this.txtPosXModif.setText(this.lstLabel.get(PanelCreerNoeud.listHistorique.getSelectedIndex()).getText().split(" | ")[8]);
