@@ -6,7 +6,6 @@
 ---------------------------------------------------------------------------------------------------------|
 Liste des choses importantes à finaliser pour le projet : [Veillez à bien respecter ceci]		 |
 ---------------------------------------------------------------------------------------------------------|
-- Correction de bug sur la popUp dans le panelCréerNoeud --> Lors du second double-cliquage		 |
 - Pouvoir double-cliquer sur le point ou la carré blanc pour modifier ses coordonnées ou nom		 | 
 - Prévoir une couleur neutre (qui permet de prendre la voie avec n'importe quelle couleur)		 |
 - Dans le panelParamètre, intégrer un bouton permettant d'importer le recto de sa carte multicouleur	 | [Valider par Adrien]
