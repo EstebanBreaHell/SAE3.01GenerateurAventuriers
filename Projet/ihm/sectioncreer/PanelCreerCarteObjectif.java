@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.GridLayout;
 
 import main.Controleur;
+import metier.Noeud;
 
 public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 {
@@ -30,11 +31,11 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		/**
 		 * Création des composants
 		 */
-	
 		this.ctrl = ctrl; 
 		this.setLayout(new BorderLayout());
 
 		this.lstNoeud = new JList<String>();
+
 		this.txtNbPoint = new JTextField(2);
 		this.btnHistoriqueCarte = new JButton("Historique des cartes");
 		this.btnCreerCarte = new JButton("Créer carte");
@@ -101,7 +102,6 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 
 		this.btnHistoriqueCarte.addActionListener(this);
 		this.btnCreerCarte.addActionListener(this);
-		
 		this.btnModifierMotif.addActionListener(this);
 
 	}
