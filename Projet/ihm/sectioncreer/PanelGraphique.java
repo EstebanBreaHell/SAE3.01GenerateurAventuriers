@@ -130,10 +130,24 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 
 					if(a.getEstDouble() && !areteDoubleDessine.contains(a))
 					{
-						drawArete(fromX-5, fromY-5, toX-5, toY-5, nb, c, g);
-						drawArete(fromX+5, fromY+5, toX+5, toY+5, a.getAreteDouble().getWagon(), a.getAreteDouble().getCouleur(), g);
 						areteDoubleDessine.add(a);
 						areteDoubleDessine.add(a.getAreteDouble());
+
+						if((fromX > toX && toY < fromY) || (fromX < toX && toY > fromY) )
+						{
+							//Haut gauche
+							//Bas droit
+							drawArete(fromX+5, fromY-5, toX+5, toY-5, nb, c, g);
+							drawArete(fromX-5, fromY+5, toX-5, toY+5, a.getAreteDouble().getWagon(), a.getAreteDouble().getCouleur(), g);
+						}
+						else
+						{
+							//Haut droit 
+							//Bas gauche	
+							drawArete(fromX+5, fromY+5, toX+5, toY+5, nb, c, g);
+							drawArete(fromX-5, fromY-5, toX-5, toY-5, a.getAreteDouble().getWagon(), a.getAreteDouble().getCouleur(), g);
+						}
+						
 					}
 					else
 					{
