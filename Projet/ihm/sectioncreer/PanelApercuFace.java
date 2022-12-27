@@ -26,7 +26,7 @@ public class PanelApercuFace extends JPanel implements ActionListener
 	
 		this.add(new JLabel("Recto",JLabel.CENTER),BorderLayout.NORTH);
 
-		this.add(new JLabel(Controleur.imageToIcon("importe\\a_changer.png", 20, 20)),BorderLayout.CENTER);
+		this.add(new JLabel(),BorderLayout.CENTER);
 		
 		
 		this.add(this.btnVoirApercu,BorderLayout.SOUTH);

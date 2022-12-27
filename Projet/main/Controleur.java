@@ -20,6 +20,9 @@ public class Controleur
     private Metier metier;
     private Frame ihm;
 
+    private String pathImg;
+    
+
     public Controleur()
     {
         this.metier = new Metier(this);
@@ -147,6 +150,12 @@ public class Controleur
     public void imageToPanelGraphique(String path)
     {
         this.ihm.imageToPanelGraphique(path);
+        this.pathImg = path;
+    }
+
+    public String getPathImg()
+    {
+        return this.pathImg;
     }
 
     /*
