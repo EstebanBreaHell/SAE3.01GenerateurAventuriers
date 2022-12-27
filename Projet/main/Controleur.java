@@ -31,6 +31,8 @@ public class Controleur
         this.metier = new Metier(this);
     }
 
+
+
     /**
      * Convertie une image un icon
      * 

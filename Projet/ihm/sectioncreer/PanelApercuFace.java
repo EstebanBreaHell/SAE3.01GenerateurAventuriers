@@ -23,8 +23,12 @@ public class PanelApercuFace extends JPanel implements ActionListener
 		this.btnVoirApercu = new JButton("Voir aperçu");
 		this.btnVoirApercu.setBackground(Color.WHITE);
 
+	
 		this.add(new JLabel("Recto",JLabel.CENTER),BorderLayout.NORTH);
-		this.add(new JLabel("l'image ne veux pas s'importé depuis panelSelectionner"),BorderLayout.CENTER);
+
+		this.add(new JLabel(Controleur.imageToIcon("importe\\a_changer.png", 20, 20)),BorderLayout.CENTER);
+		
+		
 		this.add(this.btnVoirApercu,BorderLayout.SOUTH);
 
 		this.btnVoirApercu.addActionListener(this);
