@@ -32,6 +32,8 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 	private JButton btnSupprimer;
 	private JButton btnGenererArete;
 	private JButton btnGenererPrefait;
+	private JPanel panelHisto;
+	private JScrollPane scrollPaneHisto;
 
 	private JCheckBox chbDouble;
 
@@ -50,9 +52,16 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		this.lstLabel = new ArrayList<JLabel>();
 		this.panelGraphique = new PanelGraphique(this.ctrl);
 
+
 		JPanel panelHaut 	  		= new JPanel(new GridLayout(5,4,10,20));
 		JPanel panelDispoHistorique = new JPanel(new BorderLayout(0,20));
 		JPanel panelValidation		= new JPanel(new GridLayout(3,3, 10, 20));
+		this.panelHisto = new JPanel();
+		this.panelHisto.setBackground(Color.WHITE);
+		this.scrollPaneHisto = new JScrollPane(this.panelHisto);
+		
+		
+
 
 		Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
 		JLabel lblHistorique = new JLabel("Historique", JLabel.CENTER);
@@ -84,6 +93,7 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		this.btnGenererPrefait = new JButton("Générer arête préfaite");
 		this.btnConfirmer      = new JButton("Confirmer"             );
 		this.listHistorique = new JList<String>();
+		this.panelHisto.add(this.listHistorique);
 
 		/**
 		 * Ajout de bordure et de couleur de fond
@@ -140,7 +150,7 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 
 
 		panelDispoHistorique.add(lblHistorique, BorderLayout.NORTH);
-		panelDispoHistorique.add(this.listHistorique, BorderLayout.CENTER);
+		panelDispoHistorique.add(this.scrollPaneHisto, BorderLayout.CENTER);
 		panelDispoHistorique.add(new JPanel(), BorderLayout.SOUTH);
 		panelDispoHistorique.add(new JPanel(), BorderLayout.EAST);
 		panelDispoHistorique.add(new JPanel(), BorderLayout.WEST);
@@ -301,6 +311,7 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 			this.lstLabel.add(new JLabel("L'arête relie  "    + noeud1  + " à " + noeud2   +
 			" de couleur RBG " + randomCouleur + " et de distance " + randomDistance));
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
+			
 			this.panelGraphique.majIHM();
 		}
 		if(e.getSource() == this.btnConfirmer)

@@ -15,6 +15,7 @@ public class PanelGestionCreer extends JPanel
 	private PanelCreerArete panelCreerArete;
 	private PanelCreerCarteObjectif panelCreerCarteObjectif;
 	private PanelParametre	panelParametre;
+	private PanelCreerCarteWagon panelCreerCarteWagon;
 
 	public PanelGestionCreer(Controleur ctrl)
 	{
@@ -28,11 +29,14 @@ public class PanelGestionCreer extends JPanel
 		this.panelCreerNoeud = new PanelCreerNoeud(this.ctrl);
 		this.panelCreerArete = new PanelCreerArete(this.ctrl);
 		this.panelCreerCarteObjectif = new PanelCreerCarteObjectif(this.ctrl);
+		this.panelCreerCarteWagon  = new PanelCreerCarteWagon(this.ctrl);
 		this.panelParametre	 = new PanelParametre(this.ctrl);
+
 
 		this.tabbedPane.addTab("Créer Noeud",this.panelCreerNoeud);
 		this.tabbedPane.addTab("Créer Arête", this.panelCreerArete);
 		this.tabbedPane.addTab("Créer Carte Objectif",this.panelCreerCarteObjectif);
+		this.tabbedPane.addTab("Créer Carte Wagon",this.panelCreerCarteWagon);
 		this.tabbedPane.addTab("Paramètres", this.panelParametre);
 
 		/**
@@ -49,6 +53,7 @@ public class PanelGestionCreer extends JPanel
 	{
 		this.panelCreerArete.supprimArete(n);
 	}
+
 
 	
 	/**
@@ -70,6 +75,7 @@ public class PanelGestionCreer extends JPanel
 	{
 		this.panelCreerNoeud.majIHM();
 		this.panelCreerArete.majIHM();
+		this.panelCreerCarteWagon.majIHM();
 	}
 
 }

@@ -39,6 +39,7 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 	public static List<JLabel> lstLabel;
 
 	public static JList<String> listHistorique;
+	public JPanel panelHisto;
 
 	private PanelGraphique panelGraphique;
 	private JDialog jd;
@@ -83,10 +84,15 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 		this.btnGenererNoeud   = new JButton("Générer noeud"          );
 		this.btnGenererPrefait = new JButton("Générer noeud Aléatoire");
 		this.btnConfirmer      = new JButton("Confirmer"              );
+		
 
 		this.listHistorique = new JList<String>();
-		this.scrollPane = new JScrollPane(this.listHistorique, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		panelHisto = new JPanel();
+		this.scrollPane = new JScrollPane(this.panelHisto);
 
+		this.panelHisto.add(this.listHistorique);
+		this.panelHisto.setBackground(Color.WHITE);
+		
 		this.jd = new JDialog();
 		jd.setTitle("Modification des coordonnées");
 		jd.setBounds(900, 300, 500, 400); 
@@ -96,9 +102,9 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 		 * Placement manuel grâce à la méthode setBounds
 		 */
 		 
-		this.listHistorique.setPreferredSize(new Dimension(0,550));
-		this.listHistorique.setBorder(border);
-		this.listHistorique.setBackground(Color.WHITE);
+		// this.listHistorique.setPreferredSize(new Dimension(0,550));
+		// this.listHistorique.setBorder(border);
+		//this.listHistorique.setBackground(Color.WHITE);
 
 		this.btnSupprimer     .setBackground(Color.WHITE);
 		this.btnGenererNoeud  .setBackground(Color.WHITE);
