@@ -58,7 +58,7 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 		JPanel panelDispoHistorique = new JPanel(new BorderLayout(0,20));
 		JPanel panelValidation		= new JPanel(new GridLayout(3,3, 10, 20));
 
-		JLabel lblNom  = new JLabel("Nom : ",        JLabel.LEFT);
+		JLabel lblNom  = new JLabel("Nom du noeud : ",        JLabel.LEFT);
 		JLabel lblPosX = new JLabel("Position X : ", JLabel.LEFT);
 		JLabel lblPosY = new JLabel("Position Y : ", JLabel.LEFT);
 		JLabel lblHistorique = new JLabel("Historique ", JLabel.CENTER);
@@ -300,9 +300,6 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 			if(yNom>=25 && yNom<=670)
 				n.setNomY(yNom);
 			
-
-			
-	
 			/* 
 			this.ctrl.getLstNoeud().get(n).setNom(this.txtNomModif.getText());
 			this.ctrl.getLstNoeud().get(n).setPosX(Integer.parseInt(this.txtPosXModif.getText()));
@@ -341,19 +338,19 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 			this.txtPosXnom.setText(String.valueOf(this.ctrl.getLstNoeud().get(PanelCreerNoeud.listHistorique.getSelectedIndex()).getX()));
 			this.txtPosYnom.setText(String.valueOf(this.ctrl.getLstNoeud().get(PanelCreerNoeud.listHistorique.getSelectedIndex()).getY()));
 
-			panelPopUp.add(new JLabel("Nom : "));
+			panelPopUp.add(new JLabel("Nom du noeud : "));
 			panelPopUp.add(this.txtNomModif);
 
-			panelPopUp.add(new JLabel("Position X ville : "));
+			panelPopUp.add(new JLabel("Position X du noeud : "));
 			panelPopUp.add(this.txtPosXModif);
 
-			panelPopUp.add(new JLabel("Position Y ville : "));
+			panelPopUp.add(new JLabel("Position Y du noeud : "));
 			panelPopUp.add(this.txtPosYModif);
 
-			panelPopUp.add(new JLabel("Position X nom :")); 
+			panelPopUp.add(new JLabel("Position X du libellé :")); 
 			panelPopUp.add(this.txtPosXnom);
 
-			panelPopUp.add(new JLabel("Position Y nom :"));
+			panelPopUp.add(new JLabel("Position Y du libellé :"));
 			panelPopUp.add(this.txtPosYnom);
 
 			panelPopUp.add(this.btnConfirmer);

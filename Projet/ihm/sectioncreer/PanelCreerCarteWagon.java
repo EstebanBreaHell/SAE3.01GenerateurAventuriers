@@ -1,22 +1,17 @@
 package ihm.sectioncreer;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.JScrollPane;
-import java.awt.Container;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.awt.GridLayout;
 
 import main.Controleur;
-import metier.Noeud;
 import metier.Arete;	
 
 public class PanelCreerCarteWagon extends JPanel implements ActionListener

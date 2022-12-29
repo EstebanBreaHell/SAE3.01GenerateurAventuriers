@@ -35,7 +35,7 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 	private JPanel panelHisto;
 	private JScrollPane scrollPaneHisto;
 
-	private JCheckBox chbDouble;
+	private JCheckBox chbNeutre;
 
 	private List<JLabel> lstLabel;
 
@@ -60,9 +60,6 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		this.panelHisto.setBackground(Color.WHITE);
 		this.scrollPaneHisto = new JScrollPane(this.panelHisto);
 		
-		
-
-
 		Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
 		JLabel lblHistorique = new JLabel("Historique", JLabel.CENTER);
 
@@ -71,7 +68,6 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		JLabel lblRelier   = new JLabel("Relier... ", JLabel.LEFT);
 		JLabel lblVers	   = new JLabel("vers ", JLabel.CENTER);
 		JLabel lblCouleur  = new JLabel("Sélectionnez couleur ", JLabel.LEFT);
-		//JCheckBox chbDouble = new JCheckBox("Double sens ", JLa);
 
 		this.container = new Container();
 		this.containerUpdate = new Container();
@@ -86,7 +82,7 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		this.comboNoeud1 = new JComboBox<Noeud>();
 		this.comboNoeud2 = new JComboBox<Noeud>();
 
-		this.chbDouble = new JCheckBox("Double sens", false);
+		this.chbNeutre = new JCheckBox("Couleur neutre", false);
 
 		this.btnSupprimer = 	 new JButton("Supprimer"			 );
 		this.btnGenererArete =	 new JButton("Générer arête"		 );
@@ -146,7 +142,7 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		panelHaut.add(lblDistance);
 		panelHaut.add(this.txtDistance);
 		panelHaut.add(new JLabel());
-		panelHaut.add(this.chbDouble);
+		panelHaut.add(this.chbNeutre);
 
 
 		panelDispoHistorique.add(lblHistorique, BorderLayout.NORTH);
@@ -173,14 +169,15 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		/**
 		 * Activation des composants
 		 */
-		this.btnSupprimer.addActionListener(this);
-		this.btnGenererArete.addActionListener(this);
-		this.btnGenererPrefait.addActionListener(this);
-		this.btnCouleur.addActionListener(this);
-		this.btnCouleurUpdate.addActionListener(this);
-		this.comboNoeud1.addItemListener(this);
-		this.listHistorique.addMouseListener(this);
-		this.btnConfirmer.addActionListener(this);
+		this.btnSupprimer		.addActionListener(this);
+		this.btnGenererArete	.addActionListener(this);
+		this.btnGenererPrefait	.addActionListener(this);
+		this.btnCouleur			.addActionListener(this);
+		this.btnCouleurUpdate	.addActionListener(this);
+		this.comboNoeud1		.addItemListener(this);
+		this.listHistorique		.addMouseListener(this);
+		this.btnConfirmer		.addActionListener(this);
+		this.chbNeutre			.addActionListener(this);
 
 		// Empêcher l'utilisateur de rentrer autre chose qu'un nombre dans les champs de texte
 		this.txtDistance.addKeyListener(new KeyAdapter() {
@@ -252,8 +249,11 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 			/*--------------------------------------*/
 
 			// Ajout de l'arête dans l'historique 
+
+			String couleurChoisie = new Color(this.container.getBackground().getRGB()).toString().replace("java.awt.Color", " RGB ");
+
 			this.lstLabel.add(new JLabel("L'arête relie "    + this.comboNoeud1.getSelectedItem()  + " à " + this.comboNoeud2.getSelectedItem()  
-			 				+ " de couleur" + this.container.getBackground() + " et de distance " + this.txtDistance.getText()));
+			 				+ " de couleur" + couleurChoisie + " et de distance " + this.txtDistance.getText()));
 			
 			//From javax.swing.plaf.ColorUIResource[r=238,g=238,b=238] 
 			//to
@@ -297,26 +297,25 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 			Noeud noeud2 = null;
 			while(noeud2 == null)
 			{
-				if(this.ctrl.getNoeudDispo(noeud1).size()>0)
+				if(this.ctrl.getNoeudDispo(noeud1).size() > 0)
 					noeud2 = this.ctrl.getNoeudDispo(noeud1).get((int)(Math.random() * this.ctrl.getNoeudDispo(noeud1).size()));
 				else
 					noeud1 = lstNoeud.get((int)(Math.random() * lstNoeud.size()));
 			}
-			String randomCouleur = "java.awt.Color[r=" + (int)(Math.random() * 255) + ",g=" + (int)(Math.random() * 255) + ",b=" + (int)(Math.random() * 255) + "]";
+			String randomCouleur = "[r=" + (int)(Math.random() * 255) + ",g=" + (int)(Math.random() * 255) + ",b=" + (int)(Math.random() * 255) + "]";
 			int randomDistance =(int)(Math.random() * 8)+1;
 
 			this.ctrl.addArete( noeud1,noeud2,randomCouleur,randomDistance);
 
 			/* Ajout de l'arête dans l'historique */
-			this.lstLabel.add(new JLabel("L'arête relie  "    + noeud1  + " à " + noeud2   +
-			" de couleur RBG " + randomCouleur + " et de distance " + randomDistance));
+			this.lstLabel.add(new JLabel("L'arête relie "    + noeud1  + " à " + noeud2   + " de couleur RGB " + 
+			randomCouleur + " et de distance " + randomDistance));
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 			
 			this.panelGraphique.majIHM();
 		}
 		if(e.getSource() == this.btnConfirmer)
 		{
-
 
 			int n = this.listHistorique.getSelectedIndex();
 			//String couleur = new Color(this.containerUpdate.getBackground().getRGB()).toString();
@@ -325,6 +324,15 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 			this.ctrl.majIHM();
 			jd.dispose();
+		}
+
+		if(this.chbNeutre.isSelected())
+		{
+			System.out.println("Mise en place de la couleur neutre gris");
+		}
+		else
+		{
+			System.out.println("Couleur utilisée dans le JColor Chooser");
 		}
 	}
 
@@ -388,7 +396,8 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 			return;
 
 		for(Noeud noeud : this.ctrl.getNoeudDispo(n))
-			this.comboNoeud2.addItem(noeud);        
+			this.comboNoeud2.addItem(noeud);
+
     } 
 
 	/**

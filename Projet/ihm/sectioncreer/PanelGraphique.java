@@ -195,7 +195,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 		// draw la valeur de l'arete
 		//System.out.print(c);
 		//from string : "java.awt.Color[r=0,g=0,b=0]" to : 0,0,0
-		String[] rgb = c.substring(15, c.length()-1).split(",");
+		String[] rgb = c.substring(1, c.length()-1).split(",");
 		//now remove "r=" and "g=" and "b="
 		rgb[0] = rgb[0].substring(2);
 		rgb[1] = rgb[1].substring(2);
