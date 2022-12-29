@@ -11,7 +11,9 @@ import java.awt.Image;
 import java.awt.BasicStroke;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -74,6 +76,19 @@ public class PanelApercuFace extends JPanel implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		if(e.getSource() == this.btnVoirApercu) System.out.println("ça marche");	
+		if(e.getSource() == this.btnVoirApercu)
+		{
+			JDialog popupApercu = new JDialog();
+
+			popupApercu.setTitle("Apercu carte Face");
+			popupApercu.setLayout(new BorderLayout());
+			popupApercu.setBounds(100, 100, this.getWidth(), this.getHeight());
+		
+			popupApercu.add(new JLabel( new ImageIcon(this.ctrl.createImage(this).getScaledInstance((int)(this.getWidth()*1.5),(int)(this.getHeight()*1.5), Image.SCALE_DEFAULT))),BorderLayout.CENTER);
+			popupApercu.setBackground(Color.WHITE);
+
+			popupApercu.setResizable(false);
+			popupApercu.setVisible(true);
+		}	
 	}
 }
