@@ -1,6 +1,9 @@
 package ihm;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+import java.util.List;
 
 import ihm.sectioncreer.PanelCreer;
 import ihm.sectioninit.PanelImageInfo;
@@ -9,6 +12,7 @@ import ihm.sectioninit.PanelInit;
 import main.Controleur;
 
 import java.awt.*;
+
 
 
 public class Frame extends JFrame
@@ -68,7 +72,8 @@ public class Frame extends JFrame
         }
     }
 
-    
+    public List<JLabel> getLstHistorique() { return this.panelCreer.getLstHistorique();}
+
     public void fermeFrame(){this.dispose();}
     public Font getDefautFont() {return Frame.POLICE_DEFAUT;}
     public Dimension getDimensionEcran() {return new Dimension(this.longueur,this.hauteur);}

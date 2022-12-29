@@ -211,6 +211,10 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 			}
 		});
 	}
+
+	public List<JLabel> getListHistorique() {
+		return  PanelCreerNoeud.lstLabel;
+	}
 	
 
 	/**

@@ -3,9 +3,12 @@ package main;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
+import javax.swing.JLabel;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import javax.swing.Icon;
+import javax.swing.JList;
 import javax.swing.ImageIcon;
 
 import ihm.Frame;
@@ -68,6 +71,11 @@ public class Controleur
     public void panelSelectionner(PanelImageInfo panelSelectionner)
     {
         this.ihm.panelSelectionner(panelSelectionner);
+    }
+
+    public List<JLabel> getLstHistorique()
+    {
+        return this.ihm.getLstHistorique();
     }
 
     public Dimension getDimensionEcran()

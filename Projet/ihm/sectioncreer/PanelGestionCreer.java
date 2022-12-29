@@ -1,7 +1,10 @@
 package ihm.sectioncreer;
 
 import java.awt.BorderLayout;
+import java.util.List;
 
+import javax.swing.JList;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import main.Controleur;
@@ -54,6 +57,11 @@ public class PanelGestionCreer extends JPanel
 		this.panelCreerArete.supprimArete(n);
 	}
 
+	public List<JLabel> getLstHistorique()
+	{
+		return this.panelCreerNoeud.getListHistorique();
+	}
+
 
 	
 	/**
@@ -76,6 +84,7 @@ public class PanelGestionCreer extends JPanel
 		this.panelCreerNoeud.majIHM();
 		this.panelCreerArete.majIHM();
 		this.panelCreerCarteWagon.majIHM();
+		this.panelCreerCarteObjectif.majIHM();
 	}
 
 }
