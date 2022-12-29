@@ -4,12 +4,15 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.GridLayout;
 
 import main.Controleur;
@@ -21,6 +24,8 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 	private JTextField txtNbPoint;
 	private PanelApercuFace panelApercuFace;
 	private JList<String> lstNoeud;
+	private JScrollPane scrollPaneNoeud;
+	private JPanel panelLstNoeud;
 	private JButton btnHistoriqueCarte;
 	private JButton btnCreerCarte;
 
@@ -35,6 +40,7 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		this.setLayout(new BorderLayout());
 
 		this.lstNoeud = new JList<String>();
+		
 
 		this.txtNbPoint = new JTextField(2);
 		this.btnHistoriqueCarte = new JButton("Historique des cartes");
@@ -60,9 +66,15 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		 */
 
 		/*Début de panelDispoListe */
-		panelDispoListe.add(new JLabel("Liste des noeuds existant sur la mappe",JLabel.CENTER),BorderLayout.NORTH);
-		panelDispoListe.add(this.lstNoeud,BorderLayout.CENTER);
-	
+		//panelDispoListe.add(new JLabel("Liste des noeuds existant sur la mappe",JLabel.CENTER),BorderLayout.NORTH);
+		//panelDispoListe.add(this.lstNoeud,BorderLayout.CENTER);
+		this.panelLstNoeud = new JPanel();
+		this.panelLstNoeud.add(this.lstNoeud);
+		this.panelLstNoeud.setBackground(Color.WHITE);
+		this.scrollPaneNoeud = new JScrollPane(this.panelLstNoeud);
+		panelDispoListe.add(this.scrollPaneNoeud);
+
+
 			panelDispoGestionPoint.add(new JLabel("Nb points de la carte :",JLabel.CENTER),BorderLayout.WEST);
 			panelDispoGestionPoint.add(this.txtNbPoint, BorderLayout.CENTER);
 			JLabel lblPoints = new JLabel("points", JLabel.CENTER);
@@ -108,5 +120,18 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 
 	public void actionPerformed(ActionEvent e)
 	{
+	}
+
+	
+
+	public void majIHM()
+	{
+		List<JLabel> arratTmp = this.ctrl.getLstHistorique();
+
+
+		
+		// //Fait un setListData
+		this.lstNoeud.setListData(arratTmp.stream().map(label -> label.getText()).toArray(String[]::new));
+		//this.lstNoeud.setListData(this.ctrl.getLstHistorique());
 	}
 }

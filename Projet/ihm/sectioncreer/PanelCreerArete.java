@@ -401,6 +401,8 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 
     } 
 
+	
+
 	/**
 	 * Permet de mettre à jour l'IHM
 	 */

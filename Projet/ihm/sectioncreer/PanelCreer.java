@@ -1,8 +1,11 @@
 package ihm.sectioncreer;
 
+import javax.swing.JList;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
+import java.util.List;
 
 import main.Controleur;
 
@@ -53,6 +56,10 @@ public class PanelCreer extends JPanel
 	{
 		this.panelGestionCreer.supprimArete(n);
 	}
+
+	public List<JLabel> getLstHistorique() { return this.panelGestionCreer.getLstHistorique(); }
+    //return this.panelGestionCreer.getLstHistoriqueNoeud();
+    
 	
 	/**
 	 * Change le chemin de l'image
@@ -83,6 +90,7 @@ public class PanelCreer extends JPanel
 	{
 		this.panelGestionCreer.majIHM();
 		this.panelGraphique.repaint();
+
 	}
 
 
