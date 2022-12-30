@@ -5,12 +5,22 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Color;
+
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
+
+import java.io.File;
+import java.io.IOException;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
@@ -32,6 +42,8 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 	private HashMap<String, Integer> hashCoulNbCarte;
 
 	private JDialog jd;
+
+	private JDialog jdImporte;
 	
 
 
@@ -46,6 +58,8 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 	private JButton btnModifierMotif;
 	private JButton modifieRecto;
 	private JButton btnConfirme;
+	private JButton btnImporte;
+	private JButton btnValidImporte;
 
 	public PanelCreerCarteWagon(Controleur ctrl)
 	{
@@ -84,6 +98,7 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 		
 		this.btnModifierMotif = new JButton("Modifier le Verso");
 
+		this.btnModifierMotif.addActionListener(this);
 		this.lstCouleur.setBackground(Color.WHITE);
 		this.lstCouleur.setForeground(Color.BLACK);
 		this.lstCouleur.addMouseListener(this);
@@ -128,6 +143,34 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 				this.hashCoulNbCarte.put(couleur, Integer.parseInt(this.txtNbCarte.getText()));
 				this.jd.dispose();
 			}
+		}
+
+		if(e.getSource() == this.btnModifierMotif)
+		{
+			
+			this.jdImporte = new JDialog();
+			this.jdImporte.setTitle("Modifier la carte de couleur");	
+			this.jdImporte.setBounds(900, 300, 500, 400);
+
+
+			/* 
+			FileNameExtensionFilter filtre = new FileNameExtensionFilter("format image(*.png; *.jpg; *.gif)", "png","jpg","gif");
+			JFileChooser jFileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+
+			jFileChooser.setAcceptAllFileFilterUsed(false);
+			jFileChooser.setFileFilter(filtre);
+
+			int res = jFileChooser.showOpenDialog(null);
+			if(res == JFileChooser.APPROVE_OPTION)
+			{
+				File file = jFileChooser.getSelectedFile();
+				
+				try 	{Files.copy(file.toPath(), Paths.get("importe/imageCarte/"+file.getName()));} 
+				catch (IOException e1) {e1.printStackTrace();}
+			}
+			*/
+
+		
 		}
 	}
 	public void mouseClicked(MouseEvent e) {
