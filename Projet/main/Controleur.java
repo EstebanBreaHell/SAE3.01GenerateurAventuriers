@@ -201,8 +201,6 @@ public class Controleur
         this.metier.supprArete(arete);
     }
 
-    
-
     public static void main(String[] args)
     {
         new Controleur();

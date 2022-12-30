@@ -37,6 +37,7 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 	private JButton btnHistoriqueCarte;
 	private JButton btnCreerCarte;
 	private JPanel panelDispoArriere;
+	private JLabel lblImageArriere;
 
 	private JButton btnModifierMotif;
 	private String[] repertoireUserData;
@@ -65,6 +66,7 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		this.txtNbPoint = new JTextField(2);
 		this.btnHistoriqueCarte = new JButton("Historique des cartes");
 		this.btnCreerCarte = new JButton("Créer carte");
+		this.lblImageArriere = new JLabel("Erreur");
 
 		this.btnModifierMotif = new JButton("Modifier le motif");
 
@@ -140,7 +142,8 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 
 	public void setImageArriere(String pathImg)
 	{
-		this.panelDispoArriere.add(new JLabel(Controleur.imageToIcon(pathImg, 200, 100)));
+		this.lblImageArriere = new JLabel(Controleur.imageToIcon(pathImg, 200, 100));
+		this.panelDispoArriere.add(this.lblImageArriere);
 		
 	}
 
@@ -151,6 +154,7 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 			FileNameExtensionFilter filtre = new FileNameExtensionFilter("format image(*.png; *.jpg; *.gif)", "png","jpg","gif");
 			JFileChooser jFileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 
+			jFileChooser.setCurrentDirectory(new File("data_user"));
 			jFileChooser.setAcceptAllFileFilterUsed(false);
 			jFileChooser.setFileFilter(filtre);
 
@@ -162,6 +166,8 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 				try 	{Files.copy(file.toPath(), Paths.get("data_user/"+file.getName()));} 
 				catch (IOException e1) {e1.printStackTrace();}
 
+				this.panelDispoArriere.remove(this.lblImageArriere);
+				this.setImageArriere("data_user/"+file.getName());		
 
 			}
 		}
