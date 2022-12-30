@@ -40,12 +40,17 @@ public class PanelImageImporter extends JPanel
 		this.initRepertoireImporte();		
 
 		PanelImageInfo[] tabPanelAffichageImporte = new PanelImageInfo[this.repertoireImage.length];
-		JPanel panelDispoAffichage =new JPanel(new GridLayout(tabPanelAffichageImporte.length,1));
+		JPanel panelDispoAffichage =new JPanel(new GridLayout(tabPanelAffichageImporte.length-1,1));
 
 		for (int index = 0; index < tabPanelAffichageImporte.length; index++)
 		{
-			tabPanelAffichageImporte[index] = new PanelImageInfo(this.ctrl,this.repertoireImage[index]);
-			panelDispoAffichage.add(tabPanelAffichageImporte[index]);
+			if(!this.repertoireImage[index].equals("imageCarte"))
+			{
+				System.out.println(this.repertoireImage[index]);
+				tabPanelAffichageImporte[index] = new PanelImageInfo(this.ctrl,this.repertoireImage[index]);
+	
+				panelDispoAffichage.add(tabPanelAffichageImporte[index]);
+			}
 		}
 
 		this.scrollPane = new JScrollPane(panelDispoAffichage, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -92,12 +97,16 @@ public class PanelImageImporter extends JPanel
 		this.initRepertoireImporte();
 		
 		PanelImageInfo[] tabPanelAffichageImporte = new PanelImageInfo[this.repertoireImage.length];
-		JPanel panelDispoAffichage =new JPanel(new GridLayout(tabPanelAffichageImporte.length,1));
+		JPanel panelDispoAffichage =new JPanel(new GridLayout(tabPanelAffichageImporte.length-1,1));
 
 		for (int index = 0; index < tabPanelAffichageImporte.length; index++)
 		{
-			tabPanelAffichageImporte[index] = new PanelImageInfo(this.ctrl,this.repertoireImage[index]);
-			panelDispoAffichage.add(tabPanelAffichageImporte[index]);
+			if(!this.repertoireImage[index].equals("imageCarte"))
+			{
+				tabPanelAffichageImporte[index] = new PanelImageInfo(this.ctrl,this.repertoireImage[index]);
+				panelDispoAffichage.add(tabPanelAffichageImporte[index]);
+		
+			}
 		}
 		this.add(panelDispoAffichage);
 		this.ctrl.changerPanel("init");
