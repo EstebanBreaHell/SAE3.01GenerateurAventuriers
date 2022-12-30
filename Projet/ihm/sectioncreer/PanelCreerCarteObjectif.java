@@ -50,7 +50,8 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		this.setLayout(new BorderLayout());
 
 		this.lstNoeud = new JList<String>();
-		
+	
+		this.lblImageArriere = new JLabel(Controleur.imageToIcon("data_user\\non_definie.png", 200, 100));
 
 		this.txtNbPoint = new JTextField(2);
 		this.btnHistoriqueCarte = new JButton("Historique des cartes");
@@ -59,6 +60,7 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 
 		this.btnModifierMotif = new JButton("Modifier le motif");
 
+		this.panelDispoArriere = new JPanel(new BorderLayout(10,10));
 		this.panelApercuFace = new PanelApercuFace(this.ctrl);
 		
 		JPanel panelDispoListeApercu = new JPanel(new GridLayout(2,1));
@@ -68,8 +70,6 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 
 		JPanel panelDispoApercu = new JPanel(new GridLayout(1,2,10,10));
 	
-		JPanel panelDispoArriere = new JPanel(new BorderLayout(10,10));
-
 		JPanel panelDispoBtnCreerHistorique = new JPanel(new GridLayout(2,1,5,5));
 
 		/**
@@ -96,11 +96,12 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		
 		panelDispoApercu.add(this.panelApercuFace);
 
-			panelDispoArriere.add(new JLabel("Verso",JLabel.CENTER),BorderLayout.NORTH);
-			panelDispoArriere.add(new JLabel(Controleur.imageToIcon("importe\\FortniteMappe.png", 200, 200)),BorderLayout.CENTER);
-			panelDispoArriere.add(this.btnModifierMotif,BorderLayout.SOUTH);
+			this.panelDispoArriere.add(new JLabel("Verso",JLabel.CENTER),BorderLayout.NORTH);
+			this.setImageArriere("data_user\\non_definie.png");
+			//panelDispoArriere.add(new JLabel(Controleur.imageToIcon("importe\\FortniteMappe.png", 200, 200)),BorderLayout.CENTER);
+			this.panelDispoArriere.add(this.btnModifierMotif,BorderLayout.SOUTH);
 
-		panelDispoApercu.add(panelDispoArriere);
+		panelDispoApercu.add(this.panelDispoArriere);
 		/*Fin de panelDispoApercu */
 
 		panelDispoBtnCreerHistorique.add(this.btnHistoriqueCarte);
@@ -131,8 +132,9 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 
 	public void setImageArriere(String pathImg)
 	{
+		this.remove(this.lblImageArriere);
 		this.lblImageArriere = new JLabel(Controleur.imageToIcon(pathImg, 200, 100));
-		this.panelDispoArriere.add(this.lblImageArriere);
+		this.panelDispoArriere.add(this.lblImageArriere,BorderLayout.CENTER);
 		
 	}
 
@@ -156,21 +158,19 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 				catch (IOException e1) {e1.printStackTrace();}
 
 				this.panelDispoArriere.remove(this.lblImageArriere);
-				this.setImageArriere("data_user/"+file.getName());		
+				this.setImageArriere("data_user/"+file.getName());	
+				
+				this.majIHM();
 
 			}
 		}
-
 	}
 
 	
-
 	public void majIHM()
 	{
 		List<JLabel> arratTmp = this.ctrl.getLstHistorique();
 
-
-		
 		// //Fait un setListData
 		this.lstNoeud.setListData(arratTmp.stream().map(label -> label.getText()).toArray(String[]::new));
 		//this.lstNoeud.setListData(this.ctrl.getLstHistorique());
