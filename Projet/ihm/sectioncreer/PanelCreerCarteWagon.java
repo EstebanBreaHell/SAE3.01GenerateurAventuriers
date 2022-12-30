@@ -84,7 +84,9 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 		this.lstCouleur = new JList<String>();
 		this.lstCouleurTmp = new ArrayList<String>();
 		this.hashCoulNbCarte = new HashMap<String, Integer>();
+		this.hashCoulNbCarte.put("Joker",0);
 		this.hashCoulImage = new HashMap<String, String>();
+		this.hashCoulImage.put("Joker", null);
 		this.nomVerso = "Aucun verso choisit";
 		this.lblNomVerso = new JLabel(this.nomVerso);
 
@@ -100,7 +102,7 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 
 	
 
-
+		this.lstCouleurTmp.add("Joker");
 		for(Arete a : this.lstArete)
 		{
 			if(!this.lstCouleurTmp.contains(a.getCouleur()))
@@ -110,6 +112,9 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 				this.hashCoulImage.put(a.getCouleur(), null);
 			}
 		}
+
+		this.lstCouleur.setListData(this.lstCouleurTmp.toArray(new String[this.lstCouleurTmp.size()]));
+
 
 		//this.lstCouleur.setListData(this.lstCouleurTmp.toArray(new String[this.lstCouleurTmp.size()]));
 		
@@ -138,6 +143,7 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 	{
 		this.lstArete = this.ctrl.getLstArete();
 		this.lstCouleurTmp.clear();
+		this.lstCouleurTmp.add("Joker");
 		for(Arete a : this.lstArete)
 		{
 			if(!this.lstCouleurTmp.contains(a.getCouleur()))
@@ -322,13 +328,17 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 				String recto = this.hashCoulImage.get(couleur);
 				JButton btnCouleur = new JButton();
 				//couleur = "[r=xxx,g=xxx,b=xxx]"
-				String[] tabCouleur = couleur.split(",");
-				int r = Integer.parseInt(tabCouleur[0].substring(3));
-				int g = Integer.parseInt(tabCouleur[1].substring(2));
-				int b = Integer.parseInt(tabCouleur[2].substring(2,tabCouleur[2].length()-1));
+				if(! couleur.equals("Joker"))
+				{
+					String[] tabCouleur = couleur.split(",");
+					int r = Integer.parseInt(tabCouleur[0].substring(3));
+					int g = Integer.parseInt(tabCouleur[1].substring(2));
+					int b = Integer.parseInt(tabCouleur[2].substring(2,tabCouleur[2].length()-1));
+				
 
 
-				btnCouleur.setBackground(new Color(r,g,b));
+					btnCouleur.setBackground(new Color(r,g,b));
+				}
 
 
 				
