@@ -16,6 +16,8 @@ import java.awt.Color;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
+import ihm.sectioninit.PanelImageInfo;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -40,6 +42,7 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 	private ArrayList<String> lstCouleurTmp;
 	private ArrayList<Arete> lstArete;
 	private HashMap<String, Integer> hashCoulNbCarte;
+	private String[] repertoireImage;
 
 	private JDialog jd;
 
@@ -49,8 +52,9 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 
 	private JPanel panelLstCouleur;
 	private JPanel panelJd;
+	private JPanel panelJdImporte;
 
-	
+
 	private JScrollPane scrollPaneCouleur;
 
 
@@ -58,8 +62,10 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 	private JButton btnModifierMotif;
 	private JButton modifieRecto;
 	private JButton btnConfirme;
+
+	private JScrollPane scrollPaneImporte;
 	private JButton btnImporte;
-	private JButton btnValidImporte;
+	private JButton btnValidImporteRecto;
 
 	public PanelCreerCarteWagon(Controleur ctrl)
 	{
@@ -147,13 +153,56 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 
 		if(e.getSource() == this.btnModifierMotif)
 		{
-			
+			this.btnImporte = new JButton("Import image");
+			this.btnImporte.addActionListener(this);
 			this.jdImporte = new JDialog();
 			this.jdImporte.setTitle("Modifier la carte de couleur");	
 			this.jdImporte.setBounds(900, 300, 500, 400);
 
+			this.panelJdImporte = new JPanel();
 
-			/* 
+			try 	{
+				Files.createDirectories(Paths.get("importe/imageCarte"));
+			} 
+			catch (IOException ee) 	{ee.printStackTrace();}
+
+			this.repertoireImage = new File(Paths.get("importe/imageCarte").toFile().getAbsolutePath()).list();
+
+			
+
+			
+			PanelImageInfo[] tabPanelAffichageImporte = new PanelImageInfo[this.repertoireImage.length];
+			JPanel panelDispoAffichage =new JPanel(new GridLayout(tabPanelAffichageImporte.length,1));
+
+			for (int index = 0; index < tabPanelAffichageImporte.length; index++)
+			{
+				
+				//System.out.println(this.repertoireImage[index]);
+				tabPanelAffichageImporte[index] = new PanelImageInfo(this.ctrl,"imageCarte/"+this.repertoireImage[index]);
+	
+				panelDispoAffichage.add(tabPanelAffichageImporte[index]);
+			
+			}
+
+			this.scrollPaneImporte = new JScrollPane(panelDispoAffichage, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+			//this.scrollPaneImporte.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+
+			this.jdImporte.add(new JLabel("Liste des images de Carte importées",JLabel.CENTER),BorderLayout.NORTH);
+			this.jdImporte.add(this.scrollPaneImporte);
+			this.jdImporte.add(this.btnImporte,BorderLayout.SOUTH);
+			this.jdImporte.setVisible(true);
+		}
+
+
+		
+
+		if(e.getSource() == this.btnImporte)
+		{
+			
+
+			
+
+			
 			FileNameExtensionFilter filtre = new FileNameExtensionFilter("format image(*.png; *.jpg; *.gif)", "png","jpg","gif");
 			JFileChooser jFileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 
@@ -168,11 +217,12 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 				try 	{Files.copy(file.toPath(), Paths.get("importe/imageCarte/"+file.getName()));} 
 				catch (IOException e1) {e1.printStackTrace();}
 			}
-			*/
-
-		
 		}
 	}
+
+		
+	
+	
 	public void mouseClicked(MouseEvent e) {
 
 		if(e.getClickCount() == 2)
