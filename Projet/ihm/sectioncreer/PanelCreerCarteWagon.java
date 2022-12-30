@@ -42,6 +42,7 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 	private ArrayList<String> lstCouleurTmp;
 	private ArrayList<Arete> lstArete;
 	private HashMap<String, Integer> hashCoulNbCarte;
+	private HashMap<String, String> hashCoulImage;
 	private String[] repertoireImage;
 
 	private JDialog jd;
@@ -51,6 +52,7 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 
 
 	private JPanel panelLstCouleur;
+	private JPanel panelBouton;
 	private JPanel panelJd;
 	private JPanel panelJdImporte;
 
@@ -59,6 +61,9 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 
 
 	private JTextField txtNbCarte;
+	private JLabel lblNomRecto;
+	private JLabel lblNomVerso;
+	private String nomVerso;
 	private JButton btnModifierMotif;
 	private JButton modifieRecto;
 	private JButton btnConfirme;
@@ -66,6 +71,7 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 	private JScrollPane scrollPaneImporte;
 	private JButton btnImporte;
 	private JButton btnValidImporteRecto;
+	private JButton btnValidImporteVerso;
 
 	public PanelCreerCarteWagon(Controleur ctrl)
 	{
@@ -78,6 +84,10 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 		this.lstCouleur = new JList<String>();
 		this.lstCouleurTmp = new ArrayList<String>();
 		this.hashCoulNbCarte = new HashMap<String, Integer>();
+		this.hashCoulImage = new HashMap<String, String>();
+		this.nomVerso = "Aucun verso choisit";
+		this.lblNomVerso = new JLabel(this.nomVerso);
+
 
 
 		this.panelLstCouleur = new JPanel();
@@ -97,6 +107,7 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 			{
 				this.lstCouleurTmp.add(a.getCouleur());
 				this.hashCoulNbCarte.put(a.getCouleur(), 0);
+				this.hashCoulImage.put(a.getCouleur(), null);
 			}
 		}
 
@@ -111,16 +122,15 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 		/**
 		 * Ajout des composants
 		 */
-		this.add(this.btnModifierMotif, BorderLayout.NORTH);
+		this.panelBouton = new JPanel(new GridLayout(2,1,2,2));
+
+		this.panelBouton.add(this.lblNomVerso);
+		this.panelBouton.add(this.btnModifierMotif);
+
+		this.add(this.panelBouton      , BorderLayout.NORTH);
 		this.add(this.scrollPaneCouleur, BorderLayout.CENTER);
 		
-		
 
-
-		
-
-
-		
 
 	}
 
@@ -134,7 +144,10 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 			{
 				this.lstCouleurTmp.add(a.getCouleur());
 				if(!this.hashCoulNbCarte.containsKey(a.getCouleur()))
+				{
 					this.hashCoulNbCarte.put(a.getCouleur(), 0);
+					this.hashCoulImage.put(a.getCouleur(), null);
+				}
 			}
 		}
 		this.lstCouleur.setListData(this.lstCouleurTmp.toArray(new String[this.lstCouleurTmp.size()]));
@@ -151,10 +164,12 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 			}
 		}
 
-		if(e.getSource() == this.btnModifierMotif)
+		if(e.getSource() == this.modifieRecto)
 		{
 			this.btnImporte = new JButton("Import image");
+			this.btnValidImporteRecto = new JButton("Choisir l'image");
 			this.btnImporte.addActionListener(this);
+			this.btnValidImporteRecto.addActionListener(this);
 			this.jdImporte = new JDialog();
 			this.jdImporte.setTitle("Modifier la carte de couleur");	
 			this.jdImporte.setBounds(900, 300, 500, 400);
@@ -189,8 +204,75 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 
 			this.jdImporte.add(new JLabel("Liste des images de Carte importées",JLabel.CENTER),BorderLayout.NORTH);
 			this.jdImporte.add(this.scrollPaneImporte);
-			this.jdImporte.add(this.btnImporte,BorderLayout.SOUTH);
+			this.jdImporte.add(this.btnValidImporteRecto,BorderLayout.SOUTH);
+			this.jdImporte.add(this.btnImporte,BorderLayout.NORTH);
 			this.jdImporte.setVisible(true);
+		}
+
+		if(e.getSource() == this.btnModifierMotif)
+		{
+			this.btnImporte = new JButton("Import image");
+			this.btnValidImporteVerso = new JButton("Choisir l'image");
+			this.btnImporte.addActionListener(this);
+			this.btnValidImporteVerso.addActionListener(this);
+			this.jdImporte = new JDialog();
+			this.jdImporte.setTitle("Modifier la carte de couleur");	
+			this.jdImporte.setBounds(900, 300, 500, 400);
+
+			this.panelJdImporte = new JPanel();
+
+			try 	{
+				Files.createDirectories(Paths.get("importe/imageCarte"));
+			} 
+			catch (IOException ee) 	{ee.printStackTrace();}
+
+			this.repertoireImage = new File(Paths.get("importe/imageCarte").toFile().getAbsolutePath()).list();
+
+			
+
+			
+			PanelImageInfo[] tabPanelAffichageImporte = new PanelImageInfo[this.repertoireImage.length];
+			JPanel panelDispoAffichage =new JPanel(new GridLayout(tabPanelAffichageImporte.length,1));
+
+			for (int index = 0; index < tabPanelAffichageImporte.length; index++)
+			{
+				
+				//System.out.println(this.repertoireImage[index]);
+				tabPanelAffichageImporte[index] = new PanelImageInfo(this.ctrl,"imageCarte/"+this.repertoireImage[index]);
+	
+				panelDispoAffichage.add(tabPanelAffichageImporte[index]);
+			
+			}
+
+			this.scrollPaneImporte = new JScrollPane(panelDispoAffichage, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+			//this.scrollPaneImporte.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+
+			this.jdImporte.add(new JLabel("Liste des images de Carte importées",JLabel.CENTER),BorderLayout.NORTH);
+			this.jdImporte.add(this.scrollPaneImporte);
+			this.jdImporte.add(this.btnValidImporteVerso,BorderLayout.SOUTH);
+			this.jdImporte.add(this.btnImporte,BorderLayout.NORTH);
+			this.jdImporte.setVisible(true);
+		}
+
+		if(e.getSource() == btnValidImporteVerso)
+		{
+
+			
+			//Print l'élémenet séléctionné parmis la lst des image
+
+			System.out.println(this.ctrl.getPanelSelectionner().getNomfichier());
+
+			this.nomVerso = this.ctrl.getPanelSelectionner().getNomfichier();
+			//this.ctrl.getPanelSelectionner().setNomfichier();
+			this.lblNomVerso.setText(this.nomVerso);
+			this.jdImporte.dispose();
+		}
+
+		if(e.getSource() == this.btnValidImporteRecto)
+		{
+			this.hashCoulImage.put(this.lstCouleur.getSelectedValue(),this.ctrl.getPanelSelectionner().getNomfichier());
+			this.lblNomRecto.setText("Recto : "+this.ctrl.getPanelSelectionner().getNomfichier());
+			this.jdImporte.dispose();
 		}
 
 
@@ -235,8 +317,18 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 				jd.setBounds(900, 300, 500, 400);
 				this.panelJd = new JPanel();
 				this.panelJd.setBackground(Color.WHITE);
-				this.panelJd.setLayout(new GridLayout(2,2,12,12));
+				this.panelJd.setLayout(new GridLayout(3,3,1,1));
 				this.txtNbCarte = new JTextField(""+ this.hashCoulNbCarte.get(couleur));
+				String recto = this.hashCoulImage.get(couleur);
+				JButton btnCouleur = new JButton();
+				//couleur = "[r=xxx,g=xxx,b=xxx]"
+				String[] tabCouleur = couleur.split(",");
+				int r = Integer.parseInt(tabCouleur[0].substring(3));
+				int g = Integer.parseInt(tabCouleur[1].substring(2));
+				int b = Integer.parseInt(tabCouleur[2].substring(2,tabCouleur[2].length()-1));
+
+
+				btnCouleur.setBackground(new Color(r,g,b));
 
 
 				
@@ -247,7 +339,12 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 				this.btnConfirme  = new JButton("Confirme");
 				this.modifieRecto.addActionListener(this);
 				this.btnConfirme.addActionListener(this);
+				this.lblNomRecto = new JLabel("Recto : " + recto);
+
 				this.panelJd.add(new JLabel(couleur));
+				this.panelJd.add(btnCouleur);
+				
+				this.panelJd.add(this.lblNomRecto);
 				this.panelJd.add(this.modifieRecto);
 				this.panelJd.add(new JLabel("Nombre de carte"));
 				this.panelJd.add(this.txtNbCarte);

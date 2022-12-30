@@ -219,8 +219,10 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 			Color initialcolor=Color.RED;
 			Color color=JColorChooser.showDialog(this,"Choisissez une couleur d'arête",initialcolor);
 			containerUpdate.setBackground(color);
+			
+			String couleur = "[r="+color.getRed()+",g="+color.getGreen()+",b="+color.getBlue()+"]";
 			int n = this.listHistorique.getSelectedIndex();
-			String couleur = new Color(this.containerUpdate.getBackground().getRGB()).toString();
+			//String couleur = new Color(this.containerUpdate.getBackground().getRGB()).toString();
 			this.ctrl.getLstArete().get(n).setCouleur(couleur);
 			this.ctrl.majIHM();
 		}
@@ -354,16 +356,16 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 			this.txtDistanceUpdate.setText(""+a.getWagon());
 			//Set la couleur du container a la couleur de l'arete
 			String c = a.getCouleur();
-			String[] rgb = c.substring(15, c.length()-1).split(",");
-			//now remove "r=" and "g=" and "b="
-			rgb[0] = rgb[0].substring(2);
-			rgb[1] = rgb[1].substring(2);
-			rgb[2] = rgb[2].substring(2);
+
+			String[] tabCouleur = c.split(",");
+			int r = Integer.parseInt(tabCouleur[0].substring(3));
+			int g = Integer.parseInt(tabCouleur[1].substring(2));
+			int b = Integer.parseInt(tabCouleur[2].substring(2,tabCouleur[2].length()-1));
 
 
 			//g.setColor(new Color(Integer.parseInt(rgb[0]), Integer.parseInt(rgb[1]), Integer.parseInt(rgb[2])));
 
-			this.containerUpdate.setBackground(new Color(Integer.parseInt(rgb[0]),Integer.parseInt(rgb[1]),Integer.parseInt(rgb[2])));
+			this.containerUpdate.setBackground(new Color(r,g,b));
 			panelPopUp.add(this.containerUpdate);
 			panelPopUp.add(this.txtDistanceUpdate);
 			//panelPopUp.add(new JLabel ("De : "+ a.getNoeudDep().getNom() + " à " + a.getNoeudArr().getNom()));
