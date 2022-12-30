@@ -1,16 +1,24 @@
 package ihm.sectioncreer;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.GridLayout;
@@ -28,11 +36,23 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 	private JPanel panelLstNoeud;
 	private JButton btnHistoriqueCarte;
 	private JButton btnCreerCarte;
+	private JPanel panelDispoArriere;
 
 	private JButton btnModifierMotif;
+	private String[] repertoireUserData;
+
+	private  void initRepertoireImporte()
+	{
+		try 	{Files.createDirectories(Paths.get("data_user"));} 
+		catch (IOException e) 	{e.printStackTrace();}
+
+		this.repertoireUserData = new File(Paths.get("date_user").toFile().getAbsolutePath()).list();
+	}
+
 
 	public PanelCreerCarteObjectif(Controleur ctrl)
 	{
+		this.initRepertoireImporte();
 		/**
 		 * Création des composants
 		 */
@@ -49,6 +69,7 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		this.btnModifierMotif = new JButton("Modifier le motif");
 
 		this.panelApercuFace = new PanelApercuFace(this.ctrl);
+		this.panelDispoArriere = new JPanel(new BorderLayout(10,10));
 		
 		JPanel panelDispoListeApercu = new JPanel(new GridLayout(2,1));
 
@@ -57,7 +78,6 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 
 		JPanel panelDispoApercu = new JPanel(new GridLayout(1,2,10,10));
 	
-		JPanel panelDispoArriere = new JPanel(new BorderLayout(10,10));
 
 		JPanel panelDispoBtnCreerHistorique = new JPanel(new GridLayout(2,1,5,5));
 
@@ -85,11 +105,11 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		
 		panelDispoApercu.add(this.panelApercuFace);
 
-			panelDispoArriere.add(new JLabel("Verso",JLabel.CENTER),BorderLayout.NORTH);
-			panelDispoArriere.add(new JLabel(Controleur.imageToIcon("importe\\FortniteMappe.png", 200, 200)),BorderLayout.CENTER);
-			panelDispoArriere.add(this.btnModifierMotif,BorderLayout.SOUTH);
+			this.panelDispoArriere.add(new JLabel("Verso",JLabel.CENTER),BorderLayout.NORTH);
+			this.setImageArriere("donnee\\non_definie.png");
+			this.panelDispoArriere.add(this.btnModifierMotif,BorderLayout.SOUTH);
 
-		panelDispoApercu.add(panelDispoArriere);
+		panelDispoApercu.add(this.panelDispoArriere);
 		/*Fin de panelDispoApercu */
 
 		panelDispoBtnCreerHistorique.add(this.btnHistoriqueCarte);
@@ -118,8 +138,34 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 
 	}
 
+	public void setImageArriere(String pathImg)
+	{
+		this.panelDispoArriere.add(new JLabel(Controleur.imageToIcon(pathImg, 200, 100)));
+		
+	}
+
 	public void actionPerformed(ActionEvent e)
 	{
+		if(e.getSource() == this.btnModifierMotif)
+		{
+			FileNameExtensionFilter filtre = new FileNameExtensionFilter("format image(*.png; *.jpg; *.gif)", "png","jpg","gif");
+			JFileChooser jFileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+
+			jFileChooser.setAcceptAllFileFilterUsed(false);
+			jFileChooser.setFileFilter(filtre);
+
+			int res = jFileChooser.showOpenDialog(null);
+			if(res == JFileChooser.APPROVE_OPTION)
+			{
+				File file = jFileChooser.getSelectedFile();
+				
+				try 	{Files.copy(file.toPath(), Paths.get("data_user/"+file.getName()));} 
+				catch (IOException e1) {e1.printStackTrace();}
+
+
+			}
+		}
+
 	}
 
 	

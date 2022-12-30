@@ -24,7 +24,7 @@ public class PanelImageImporter extends JPanel
 	private String[] repertoireImage;
 	private PanelImageInfo panelSelectionner;
 
-	private  void initRepertoireImporte()
+	private void initRepertoireImporte()
 	{
 		try 	{Files.createDirectories(Paths.get("importe"));} 
 		catch (IOException e) 	{e.printStackTrace();}
