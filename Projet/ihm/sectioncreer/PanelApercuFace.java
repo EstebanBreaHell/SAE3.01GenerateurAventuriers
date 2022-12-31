@@ -9,6 +9,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.BasicStroke;
+import java.awt.Dimension;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -31,7 +32,7 @@ public class PanelApercuFace extends JPanel implements ActionListener
 		this.ctrl = ctrl;
 		this.setLayout(new BorderLayout());
 
-		this.panelGraphiqueFace = new PanelGraphiqueFace(this.ctrl.getPathImg(), 0, 0, "no", 0, 0, "yes");
+		this.panelGraphiqueFace = new PanelGraphiqueFace(this.ctrl.getPathImg(), 0, 0, "no", 0, 0, "yes",0);
 
 		this.btnVoirApercu = new JButton("Voir aperçu");
 		this.btnVoirApercu.setBackground(Color.WHITE);
@@ -43,7 +44,18 @@ public class PanelApercuFace extends JPanel implements ActionListener
 		this.btnVoirApercu.addActionListener(this);
 	}
 
-	private PanelGraphiqueFace getPanelGraphiqueFace(){return this.panelGraphiqueFace;}
+	public void setNoeud1(int x, int y , String nom)
+	{
+		this.panelGraphiqueFace.setNoeud1(x, y, nom);
+	}
+
+	public PanelGraphiqueFace getPanelGraphiqueFace(){return this.panelGraphiqueFace;}
+
+	public void setNbPoint(int nbPoint) 
+	{
+		System.out.println(nbPoint);	
+		this.panelGraphiqueFace.setNbPoint(nbPoint);
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -66,10 +78,10 @@ public class PanelApercuFace extends JPanel implements ActionListener
 	public class PanelGraphiqueFace extends JPanel
 	{
 		private static String pathImg;
-		private int x1, x2, y1, y2;
+		private int x1, x2, y1, y2, nbPoint;
 		private String nomNoeud1, nomNoeud2; 
 	
-		public PanelGraphiqueFace(String pathImg, int x1, int y1, String nomNoeud1, int x2, int y2, String nomNoeud2)
+		public PanelGraphiqueFace(String pathImg, int x1, int y1, String nomNoeud1, int x2, int y2, String nomNoeud2, int nbPoint)
 		{
 			PanelGraphiqueFace.pathImg = pathImg;
 			this.setLayout(new BorderLayout());
@@ -81,10 +93,30 @@ public class PanelApercuFace extends JPanel implements ActionListener
 
 			this.nomNoeud1 = nomNoeud1; 
 			this.nomNoeud2 = nomNoeud2;
+
+			this.nbPoint = nbPoint;
 		}
+
+		public void setNbPoint(int nbPoint)
+		{
+			this.nbPoint = nbPoint;
+			this.majIhm();
+		}
+
+		public void setNoeud1(int x, int y, String nom)
+		{
+			this.x1 = x;
+			this.y1 = y;
+			this.nomNoeud1 = nom;
+
+			this.majIhm();
+		}
+
+		
 
 		public void paintComponent(Graphics g)
 		{
+			super.paintComponent(g);
 			Image img = null;
 
 			Graphics2D g2d = (Graphics2D) g;
@@ -98,20 +130,26 @@ public class PanelApercuFace extends JPanel implements ActionListener
 			g2d.setStroke(new BasicStroke(5.0f));
 			g2d.drawRect(this.getWidth()/4,this.getHeight()/3,200,100);
 	
+			/*Desiner le nombre de point de la carte  */
 			g2d.fillArc(this.getWidth()/4 + 175,this.getHeight()/3-25,50,50,180,90);
 			g2d.setColor(Color.BLACK);
-	
-			//Test Affichage
-			g2d.drawString("12", this.getWidth()/4 + 185,this.getHeight()/3+15);
-	
-			g2d.fillOval(this.getWidth()/4+50, this.getHeight()/3+50, 10, 10);
+			g2d.drawString(this.nbPoint + "", this.getWidth()/4 + 185,this.getHeight()/3+15);
 			
+
+			g2d.fillOval( this.x1/4 + 50 +10, this.y2/3+50+50, 10, 10);
+
 			g2d.setColor(Color.white);
-			g2d.fillRect(this.getWidth()/4+10, this.getHeight()/3+30, 40, 15);
+			g2d.fillRect(this.x1/4 +50 + 10, this.y2/3 + 50+30, 40, 15);
 			g2d.setColor(Color.BLACK);
-			g2d.drawString("noeud1", this.getWidth()/4+10, this.getHeight()/3+40);
+			g2d.drawString(this.nomNoeud1, this.x1/4+ 50 +10, this.y2/3+ 50 +40);
 	
 
+		}
+
+		public void majIhm()
+		{
+			
+			super.repaint();
 		}
 	}
 }

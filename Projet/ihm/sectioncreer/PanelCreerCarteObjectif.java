@@ -1,5 +1,8 @@
 package ihm.sectioncreer;
 
+import javax.imageio.ImageIO;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -10,8 +13,10 @@ import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
+
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,6 +33,7 @@ import metier.Noeud;
 
 public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 {
+	private static int nbCarteObjectifCreer = 0;
 	private Controleur ctrl;
 	private JTextField txtNbPoint;
 	private PanelApercuFace panelApercuFace;
@@ -41,8 +47,16 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 
 	private JButton btnModifierMotif;
 
+	private  void initRepertoireCarteObjectif()
+	{
+		try 	{Files.createDirectories(Paths.get("donnee\\carteObjectif"));} 
+		catch (IOException e) 	{e.printStackTrace();}
+	}
+
+
 	public PanelCreerCarteObjectif(Controleur ctrl)
 	{
+		this.initRepertoireCarteObjectif();
 		/**
 		 * Création des composants
 		 */
@@ -50,10 +64,13 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		this.setLayout(new BorderLayout());
 
 		this.lstNoeud = new JList<String>();
+		
 	
 		this.lblImageArriere = new JLabel(Controleur.imageToIcon("data_user\\non_definie.png", 200, 100));
 
 		this.txtNbPoint = new JTextField(2);
+		this.txtNbPoint.setText(0 +"");
+			
 		this.btnHistoriqueCarte = new JButton("Historique des cartes");
 		this.btnCreerCarte = new JButton("Créer carte");
 		this.lblImageArriere = new JLabel("Erreur");
@@ -98,7 +115,6 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 
 			this.panelDispoArriere.add(new JLabel("Verso",JLabel.CENTER),BorderLayout.NORTH);
 			this.setImageArriere("data_user\\non_definie.png");
-			//panelDispoArriere.add(new JLabel(Controleur.imageToIcon("importe\\FortniteMappe.png", 200, 200)),BorderLayout.CENTER);
 			this.panelDispoArriere.add(this.btnModifierMotif,BorderLayout.SOUTH);
 
 		panelDispoApercu.add(this.panelDispoArriere);
@@ -127,6 +143,8 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		this.btnHistoriqueCarte.addActionListener(this);
 		this.btnCreerCarte.addActionListener(this);
 		this.btnModifierMotif.addActionListener(this);
+		this.txtNbPoint.addActionListener(this);
+		this.lstNoeud.addMouseListener(new InputSourie());
 
 	}
 
@@ -164,6 +182,24 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 
 			}
 		}
+
+		/**
+		 * Definie le nombre de point sur la carte
+		 */
+		if(e.getSource() == this.txtNbPoint){this.panelApercuFace.setNbPoint(Integer.parseInt(this.txtNbPoint.getText()));}
+
+
+		if(e.getSource() == this.btnCreerCarte)
+		{
+			try 	{Files.createDirectories(Paths.get("donnee\\carteObjectif\\"+this.ctrl.getPathImg().substring(8)));} 
+			catch (IOException a) 	{a.printStackTrace();}
+
+			File fileImg = new File("donnee\\carteObjectif\\"+this.ctrl.getPathImg().substring(8) + "\\carteObjectifN°"+ PanelCreerCarteObjectif.nbCarteObjectifCreer++ + ".png");
+			
+			try		{ImageIO.write(this.ctrl.createImage(this.panelApercuFace.getPanelGraphiqueFace()), "PNG", fileImg);} 
+			catch 	(IOException e1) {e1.printStackTrace();}
+
+		}
 	}
 
 	
@@ -174,5 +210,22 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		// //Fait un setListData
 		this.lstNoeud.setListData(arratTmp.stream().map(label -> label.getText()).toArray(String[]::new));
 		//this.lstNoeud.setListData(this.ctrl.getLstHistorique());
+	}
+
+	public class InputSourie extends MouseAdapter
+	{
+		public void mouseClicked(MouseEvent e)
+		{
+			if(e.getClickCount() == 2)
+			{
+				Noeud tmpNoeud;
+				tmpNoeud = PanelCreerCarteObjectif.this.ctrl.getLstNoeud().get(PanelCreerCarteObjectif.this.lstNoeud.getSelectedIndex());
+				
+				PanelCreerCarteObjectif.this.panelApercuFace.setNoeud1(tmpNoeud.getNomX()+15, tmpNoeud.getNomY(), tmpNoeud.getNom());
+				System.out.println(tmpNoeud.getNomX()+15);
+
+			}
+		}
+
 	}
 }
