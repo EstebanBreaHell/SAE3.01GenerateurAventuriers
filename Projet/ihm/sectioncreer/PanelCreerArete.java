@@ -261,9 +261,17 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 			//to
 			//java.awt.Color[r=238,g=238,b=238]
 			/*------------------------------------*/
-
-			Color coul = new Color(this.container.getBackground().getRGB());
-			String couleur = "[r="+coul.getRed()+",g="+coul.getGreen()+",b="+coul.getBlue()+"]";
+			String couleur = "";
+			if(this.chbNeutre.isSelected())
+			{
+				couleur = "Neutre";
+			}
+			else
+			{
+				Color coul = new Color(this.container.getBackground().getRGB());
+				couleur = "[r="+coul.getRed()+",g="+coul.getGreen()+",b="+coul.getBlue()+"]";
+			}
+			
 			this.ctrl.addArete( this.comboNoeud1.getItemAt(this.comboNoeud1.getSelectedIndex()),
 					            this.comboNoeud2.getItemAt(this.comboNoeud2.getSelectedIndex()),
 					            couleur,

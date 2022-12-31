@@ -105,7 +105,7 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 		this.lstCouleurTmp.add("Joker");
 		for(Arete a : this.lstArete)
 		{
-			if(!this.lstCouleurTmp.contains(a.getCouleur()))
+			if(!this.lstCouleurTmp.contains(a.getCouleur()) && !a.getCouleur().equals("Neutre"))
 			{
 				this.lstCouleurTmp.add(a.getCouleur());
 				this.hashCoulNbCarte.put(a.getCouleur(), 0);
@@ -146,7 +146,7 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 		this.lstCouleurTmp.add("Joker");
 		for(Arete a : this.lstArete)
 		{
-			if(!this.lstCouleurTmp.contains(a.getCouleur()))
+			if(!this.lstCouleurTmp.contains(a.getCouleur()) && !a.getCouleur().equals("Neutre"))
 			{
 				this.lstCouleurTmp.add(a.getCouleur());
 				if(!this.hashCoulNbCarte.containsKey(a.getCouleur()))

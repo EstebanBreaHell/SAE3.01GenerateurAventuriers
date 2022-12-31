@@ -195,11 +195,23 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 		// draw la valeur de l'arete
 		//System.out.print(c);
 		//from string : "java.awt.Color[r=0,g=0,b=0]" to : 0,0,0
-		String[] rgb = c.substring(1, c.length()-1).split(",");
+		
 		//now remove "r=" and "g=" and "b="
-		rgb[0] = rgb[0].substring(2);
-		rgb[1] = rgb[1].substring(2);
-		rgb[2] = rgb[2].substring(2);
+		String[] rgb;
+		if(!c.equals("Neutre"))
+		{
+			rgb = c.substring(1, c.length()-1).split(",");
+			rgb[0] = rgb[0].substring(2);
+			rgb[1] = rgb[1].substring(2);
+			rgb[2] = rgb[2].substring(2);
+		}
+		else
+		{
+			rgb = new String[3];
+			rgb[0] = "195";
+			rgb[1] = "195";
+			rgb[2] = "195";
+		}
 
 
 		g.setColor(new Color(Integer.parseInt(rgb[0]), Integer.parseInt(rgb[1]), Integer.parseInt(rgb[2])));
@@ -344,21 +356,16 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 		int x = e.getX()-15;
 		int y = e.getY()-15;
 
-		System.out.println("x : " + x + " | y : " + y);
 		for(Noeud n : this.ctrl.getLstNoeud())
 		{
-			System.out.println("x : " + n.getX() + " | y : " + n.getY());
 			if(n.getX() >= x-15 && n.getX() <= x+15 && n.getY() >= y-15 && n.getY() <= y+15)
 			{	
-				System.out.println("Noeud trouvé");
 				this.noeudActif = n;
 				return;
 			}
 			
-			System.out.println("NomX : " + n.getNomX() + " | NomY : " + n.getNomY());
 			if (n.getNomX() >= x-35 && n.getNomX() <= x+35 && n.getNomY()-30 >= y-15 && n.getNomY()-30 <= y+15)
 			{
-				System.out.println("Noeud trouvé");
 				this.noeudActif = n;
 				this.nomActif = true;
 				return;
