@@ -18,9 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-
 import main.Controleur;
 import metier.Noeud;
+import ihm.sectioncreer.PanelGraphique;
 
 public class PanelCreerNoeud extends JPanel implements ActionListener, MouseListener
 {
@@ -77,14 +77,14 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 		numberFormatter.setAllowsInvalid(false);
 		numberFormatter.setMinimum(0L);
 
-		this.txtNom			= new JTextField();
-		this.txtPosX		= new JFormattedTextField(longformat);
-		this.txtPosY		= new JFormattedTextField(longformat);
-		this.txtNomModif	= new JTextField();
-		this.txtPosXModif	= new JTextField();
-		this.txtPosYModif	= new JTextField();
-		this.txtPosXnom		= new JTextField();
-		this.txtPosYnom		= new JTextField();
+		this.txtNom		  = new JTextField();
+		this.txtPosX	  = new JFormattedTextField(longformat);
+		this.txtPosY	  = new JFormattedTextField(longformat);
+		this.txtNomModif  = new JTextField();
+		this.txtPosXModif = new JTextField();
+		this.txtPosYModif = new JTextField();
+		this.txtPosXnom	  = new JTextField();
+		this.txtPosYnom	  = new JTextField();
 
 		this.btnSupprimer      = new JButton("Supprimer"              );
 		this.btnGenererNoeud   = new JButton("Générer noeud"          );
@@ -265,14 +265,17 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 		if(e.getSource() == this.btnGenererPrefait)
 		{
 			Random random = new Random();
-			String randomNom = "Nouvelle ville";
-			int randomPosX = random.nextInt(750) + 50;
-			int randomPosY = random.nextInt(600) + 50;
+			String NomNouveauNoeud = "Nouvelle ville";
 
-			this.lstLabel.add(new JLabel("Nom : " + randomNom + " | Pos X : " + randomPosX + " | Pos Y : " + randomPosY));
+			PanelGraphique panelGraph = new PanelGraphique(ctrl);
+			
+			int aleatoirePosX = random.nextInt(panelGraph.getHauteurMoniteur());
+			int aleatoirePosY = random.nextInt(panelGraph.getLargeurMoniteur());
+
+			this.lstLabel.add(new JLabel("Nom : " + NomNouveauNoeud + " | Pos X : " + aleatoirePosX + " | Pos Y : " + aleatoirePosY));
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 
-			this.ctrl.addNoeud(randomNom,randomPosX, randomPosY);
+			this.ctrl.addNoeud(NomNouveauNoeud,aleatoirePosX, aleatoirePosY);
 
 			this.ctrl.majIHM();
 		}

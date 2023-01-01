@@ -21,20 +21,25 @@ import javax.swing.JPanel;
 import java.awt.event.MouseEvent;
 import javax.swing.filechooser.FileSystemView;
 
-
 import main.Controleur;
 import metier.Arete;
 import metier.Noeud;
 
-
 public class PanelGraphique extends JPanel implements ActionListener, MouseListener, MouseMotionListener
 {
 	private Controleur ctrl;
+
+	private static String  pathImg;
+
 	private JButton btnImportImg;
 	private JButton btnBackToMenu; 
-	private static String  pathImg;
-	private Noeud noeudActif;
-	private boolean nomActif;
+	
+	private Noeud     noeudActif;
+	private boolean   nomActif;
+
+	private Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
+	private int       hauteurMoniteur = tailleMoniteur.height - (int) (tailleMoniteur.height*0.06);
+	private int       largeurMoniteur = tailleMoniteur.height - (int) (tailleMoniteur.width *0.06);
 
 	public PanelGraphique(Controleur ctrl)
 	{
@@ -45,9 +50,6 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 		this.setLayout(new BorderLayout());
 
 		JPanel panelBtn = new JPanel(new GridLayout(1,10));
-
-		Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
-		int hauteur = tailleMoniteur.height - (int) (tailleMoniteur.height*0.06);
 
 		this.btnBackToMenu = new JButton("Retour au menu");
 		this.btnBackToMenu.setBackground(Color.WHITE);
@@ -73,6 +75,14 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 		this.btnBackToMenu.addActionListener(this);
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
+	}
+
+	public int getHauteurMoniteur() {
+		return this.hauteurMoniteur;
+	}
+
+	public int getLargeurMoniteur() {
+		return this.largeurMoniteur;
 	}
 
 	/**
