@@ -1,8 +1,12 @@
+/**
+ * @author Lefort William, Decharrois Adrien, Brea-Hell Esteban
+ * @version 1.0
+ * @date 2019-03-20
+ */
+
 package ihm.sectioncreer;
 
 import javax.imageio.ImageIO;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -24,7 +28,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 import java.awt.GridLayout;
 
@@ -94,20 +97,16 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		 */
 
 		/*Début de panelDispoListe */
-		//panelDispoListe.add(new JLabel("Liste des noeuds existant sur la mappe",JLabel.CENTER),BorderLayout.NORTH);
-		//panelDispoListe.add(this.lstNoeud,BorderLayout.CENTER);
 		this.panelLstNoeud = new JPanel();
 		this.panelLstNoeud.add(this.lstNoeud);
 		this.panelLstNoeud.setBackground(Color.WHITE);
 		this.scrollPaneNoeud = new JScrollPane(this.panelLstNoeud);
 		panelDispoListe.add(this.scrollPaneNoeud);
 
-
-			panelDispoGestionPoint.add(new JLabel("Nb points de la carte :",JLabel.CENTER),BorderLayout.WEST);
-			panelDispoGestionPoint.add(this.txtNbPoint, BorderLayout.CENTER);
-			JLabel lblPoints = new JLabel("points", JLabel.CENTER);
-			panelDispoGestionPoint.add(lblPoints, BorderLayout.EAST);
-
+		panelDispoGestionPoint.add(new JLabel("Nb points de la carte :",JLabel.CENTER),BorderLayout.WEST);
+		panelDispoGestionPoint.add(this.txtNbPoint, BorderLayout.CENTER);
+		JLabel lblPoints = new JLabel("points", JLabel.CENTER);
+		panelDispoGestionPoint.add(lblPoints, BorderLayout.EAST);
 
 		panelDispoListe.add(panelDispoGestionPoint,BorderLayout.SOUTH);
 		
@@ -127,7 +126,6 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		panelDispoListeApercu.add(panelDispoListe);
 		panelDispoListeApercu.add(panelDispoApercu);
 		/*Fin de la disposition des panel */
-
 		
 		this.add(panelDispoListeApercu,BorderLayout.CENTER);
 		this.add(panelDispoBtnCreerHistorique,BorderLayout.SOUTH);
@@ -140,12 +138,11 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		 * Activation des composants
 		 */
 
-		this.btnHistoriqueCarte.addActionListener(this);
-		this.btnCreerCarte.addActionListener(this);
-		this.btnModifierMotif.addActionListener(this);
-		this.txtNbPoint.addActionListener(this);
-		this.lstNoeud.addMouseListener(new InputSourie());
-
+		this.btnHistoriqueCarte	.addActionListener(this);
+		this.btnCreerCarte		.addActionListener(this);
+		this.btnModifierMotif	.addActionListener(this);
+		this.txtNbPoint			.addActionListener(this);
+		this.lstNoeud			.addMouseListener(new InputSourie());
 	}
 
 	public void setImageArriere(String pathImg)
@@ -153,7 +150,6 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		this.remove(this.lblImageArriere);
 		this.lblImageArriere = new JLabel(Controleur.imageToIcon(pathImg, 200, 100));
 		this.panelDispoArriere.add(this.lblImageArriere,BorderLayout.CENTER);
-		
 	}
 
 	public void actionPerformed(ActionEvent e)
@@ -179,7 +175,6 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 				this.setImageArriere("data_user/"+file.getName());	
 				
 				this.majIHM();
-
 			}
 		}
 
@@ -187,7 +182,6 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		 * Definie le nombre de point sur la carte
 		 */
 		if(e.getSource() == this.txtNbPoint){this.panelApercuFace.setNbPoint(Integer.parseInt(this.txtNbPoint.getText()));}
-
 
 		if(e.getSource() == this.btnCreerCarte)
 		{
@@ -198,7 +192,6 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 			
 			try		{ImageIO.write(this.ctrl.createImage(this.panelApercuFace.getPanelGraphiqueFace()), "PNG", fileImg);} 
 			catch 	(IOException e1) {e1.printStackTrace();}
-
 		}
 	}
 
@@ -207,9 +200,7 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 	{
 		List<JLabel> arratTmp = this.ctrl.getLstHistorique();
 
-		// //Fait un setListData
 		this.lstNoeud.setListData(arratTmp.stream().map(label -> label.getText()).toArray(String[]::new));
-		//this.lstNoeud.setListData(this.ctrl.getLstHistorique());
 	}
 
 	public class InputSourie extends MouseAdapter
@@ -226,6 +217,5 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 
 			}
 		}
-
 	}
 }

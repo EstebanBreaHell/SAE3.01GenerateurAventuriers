@@ -1,8 +1,14 @@
+/**
+ * @author Lefort William, Decharrois Adrien, Brea-Hell Esteban
+ * @version 1.0
+ * @date 2019-03-20
+ */
+
 package ihm;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
+import java.awt.*;
 import java.util.List;
 
 import ihm.sectioncreer.PanelCreer;
@@ -10,10 +16,6 @@ import ihm.sectioninit.PanelImageInfo;
 import ihm.sectioninit.PanelInit;
 
 import main.Controleur;
-
-import java.awt.*;
-
-
 
 public class Frame extends JFrame
 {
@@ -68,7 +70,6 @@ public class Frame extends JFrame
                 this.add(this.panelInit);
 
             break;
-        
         }
     }
 
@@ -89,12 +90,10 @@ public class Frame extends JFrame
         return this.panelInit.getPanelSelectionner();
     }
     
-
     public void majIHM() { this.panelCreer.majIHM();  }
 
     public String getNomNoeudPanelCreer() { return this.panelCreer.getNomNoeudPanelCreer();}
 
     public void afficherErreurPanelCreer(String text) { this.panelCreer.afficherErreurPanelCreer(text);}
     public void majPanelImporter(){this.panelInit.majPanelImporter();}
-
 }

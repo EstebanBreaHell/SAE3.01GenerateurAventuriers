@@ -1,3 +1,9 @@
+/**
+ * @author Lefort William, Decharrois Adrien, Brea-Hell Esteban
+ * @version 1.0
+ * @date 2019-03-20
+ */
+
 package ihm.sectioncreer;
 
 import java.awt.BorderLayout;
@@ -9,7 +15,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.BasicStroke;
-import java.awt.Dimension;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -19,7 +24,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import main.Controleur;
-import metier.Noeud;
 
 public class PanelApercuFace extends JPanel implements ActionListener
 {
@@ -130,7 +134,7 @@ public class PanelApercuFace extends JPanel implements ActionListener
 			g2d.setStroke(new BasicStroke(5.0f));
 			g2d.drawRect(this.getWidth()/4,this.getHeight()/3,200,100);
 	
-			/*Desiner le nombre de point de la carte  */
+			/*Dessiner le nombre de point de la carte  */
 			g2d.fillArc(this.getWidth()/4 + 175,this.getHeight()/3-25,50,50,180,90);
 			g2d.setColor(Color.BLACK);
 			g2d.drawString(this.nbPoint + "", this.getWidth()/4 + 185,this.getHeight()/3+15);

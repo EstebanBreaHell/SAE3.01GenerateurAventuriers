@@ -1,6 +1,11 @@
+/**
+ * @author Lefort William, Decharrois Adrien, Brea-Hell Esteban
+ * @version 1.0
+ * @date 2019-03-20
+ */
+
 package ihm.sectioncreer;
 
-import javax.swing.JList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
@@ -28,24 +33,13 @@ public class PanelCreer extends JPanel
 		
 		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 
-		/*
-		splitPane.setDividerLocation(1000);
-		splitPane.setEnabled(false);
-		*/
-
 		/**
 		 * Positionnement des composants
 		 */
 		splitPane.add(this.panelGraphique,JSplitPane.LEFT);
 		splitPane.add(this.panelGestionCreer,JSplitPane.RIGHT);
 
-		this.add(splitPane);
-
-		/*
-		this.add(this.panelGraphique,BorderLayout.CENTER);
-		this.add(this.panelGestionCreer, BorderLayout.EAST);
-		*/
-		
+		this.add(splitPane);		
 	}
 
 	/**
@@ -58,8 +52,6 @@ public class PanelCreer extends JPanel
 	}
 
 	public List<JLabel> getLstHistorique() { return this.panelGestionCreer.getLstHistorique(); }
-    //return this.panelGestionCreer.getLstHistoriqueNoeud();
-    
 	
 	/**
 	 * Change le chemin de l'image
@@ -92,7 +84,4 @@ public class PanelCreer extends JPanel
 		this.panelGraphique.repaint();
 
 	}
-
-
-
 }

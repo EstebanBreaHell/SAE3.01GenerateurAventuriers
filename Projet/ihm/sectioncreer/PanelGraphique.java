@@ -1,3 +1,9 @@
+/**
+ * @author Lefort William, Decharrois Adrien, Brea-Hell Esteban
+ * @version 1.0
+ * @date 2019-03-20
+ */
+
 package ihm.sectioncreer;
 
 import java.awt.*;
@@ -67,7 +73,6 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 		this.btnBackToMenu.addActionListener(this);
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
-		
 	}
 
 	/**
@@ -147,14 +152,12 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 							drawArete(fromX+5, fromY+5, toX+5, toY+5, nb, c, g);
 							drawArete(fromX-5, fromY-5, toX-5, toY-5, a.getAreteDouble().getWagon(), a.getAreteDouble().getCouleur(), g);
 						}
-						
 					}
 					else
 					{
 						if(!areteDoubleDessine.contains(a))
 							drawArete(fromX, fromY, toX, toY, nb, c, g);
 					}
-
 				}
 			}
 		}
@@ -215,13 +218,8 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 
 
 		g.setColor(new Color(Integer.parseInt(rgb[0]), Integer.parseInt(rgb[1]), Integer.parseInt(rgb[2])));
-		//g.setColor(new Color(195, 195, 195));
-		//g.drawString(String.valueOf(nbWagon), posX + 5, posY + 5);
 
-		// change la largeur de la ligne et la draw
-		//((Graphics2D) g).setStroke(new BasicStroke(20));
-		//on vas déssiné les arete découpé en fonction du nombre de wagon 
-		
+		//on vas dessiner les arêtes découpées en fonction du nombre de wagon 
 		for(int n= 0 ; n<=nbWagon-1; n++)
 		{
 
@@ -232,8 +230,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 					fromX + (toX-fromX)/nbWagon *(n+1),
 					fromY + (toY-fromY)/nbWagon *(n+1));
 				
-			//Dessine les coutour du trait en noir 
-			
+			//Dessine les contours du trait en noir 
 			((Graphics2D) g).setStroke(new BasicStroke(10));
 			g.setColor(new Color(Integer.parseInt(rgb[0]), Integer.parseInt(rgb[1]), Integer.parseInt(rgb[2])));
 			g.drawLine(fromX + (toX-fromX)/nbWagon *n,
@@ -244,7 +241,6 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 		//g.drawLine(fromX, fromY, toX, toY);
 		((Graphics2D) g).setStroke(new BasicStroke(1));
 	}
-
 
 	@Override
 	public void actionPerformed(ActionEvent e) 
@@ -280,7 +276,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 	public void mouseClicked(MouseEvent e) {
 		String nom = this.ctrl.getNomNoeudPanelCreer();
 		if(nom.equals(""))
-		{	//this.ctrl.afficherErreurPanelCreer("Il faut entrer un nom");
+		{
 			return;
 		}	
 		else
@@ -294,7 +290,6 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 			this.ctrl.majIHM();
 		}
 	}
-
 
 	public void mouseDragged(MouseEvent e) {
 		// Obtenez les coordonnées de la souris

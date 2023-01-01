@@ -1,3 +1,9 @@
+/**
+ * @author Lefort William, Decharrois Adrien, Brea-Hell Esteban
+ * @version 1.0
+ * @date 2019-03-20
+ */
+
 package ihm.sectioncreer;
 
 import java.awt.*;
@@ -58,7 +64,7 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 		JPanel panelDispoHistorique = new JPanel(new BorderLayout(0,20));
 		JPanel panelValidation		= new JPanel(new GridLayout(3,3, 10, 20));
 
-		JLabel lblNom  = new JLabel("Nom du noeud : ",        JLabel.LEFT);
+		JLabel lblNom  = new JLabel("Nom du noeud : ",JLabel.LEFT);
 		JLabel lblPosX = new JLabel("Position X : ", JLabel.LEFT);
 		JLabel lblPosY = new JLabel("Position Y : ", JLabel.LEFT);
 		JLabel lblHistorique = new JLabel("Historique ", JLabel.CENTER);
@@ -101,11 +107,6 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 		 * Mise en place d'une bordure et d'une couleur de fond aux différents éléments
 		 * Placement manuel grâce à la méthode setBounds
 		 */
-		 
-		// this.listHistorique.setPreferredSize(new Dimension(0,550));
-		// this.listHistorique.setBorder(border);
-		//this.listHistorique.setBackground(Color.WHITE);
-
 		this.btnSupprimer     .setBackground(Color.WHITE);
 		this.btnGenererNoeud  .setBackground(Color.WHITE);
 		this.btnGenererPrefait.setBackground(Color.WHITE);
@@ -116,7 +117,6 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 		this.btnSupprimer.setBorder(border);
 		this.btnGenererNoeud.setBorder(border);
 		this.btnGenererPrefait.setBorder(border);
-
 
 		/**
 		 * Ajout des composants dans différents panels
@@ -154,7 +154,6 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 		this.add(panelDispoHistorique, BorderLayout.CENTER);
 		this.add(panelValidation, BorderLayout.SOUTH);
 
-
 		/**
 		 * Activation des composants
 		 */
@@ -164,7 +163,6 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 		this.btnConfirmer.addActionListener(this);
 		this.listHistorique.addMouseListener(this);
 
-		
 		/**
 		 * Gestion des évènements clavier, on ne peut entrer que des chiffres dans les champs de texte
 		 * à optimiser
@@ -281,7 +279,6 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 
 		if(e.getSource() == this.btnConfirmer)
 		{
-			//PanelCreerNoeud.listHistorique.getSelectedIndex()
 			int index = PanelCreerNoeud.listHistorique.getSelectedIndex();
 			int x = Integer.parseInt(this.txtPosXModif.getText());
 			int y = Integer.parseInt(this.txtPosYModif.getText());
@@ -304,21 +301,11 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 			if(yNom>=25 && yNom<=670)
 				n.setNomY(yNom);
 			
-			/* 
-			this.ctrl.getLstNoeud().get(n).setNom(this.txtNomModif.getText());
-			this.ctrl.getLstNoeud().get(n).setPosX(Integer.parseInt(this.txtPosXModif.getText()));
-			this.ctrl.getLstNoeud().get(n).setPosY(Integer.parseInt(this.txtPosYModif.getText()));
-			this.ctrl.getLstNoeud().get(n).setNomX(Integer.parseInt(this.txtPosXnom.getText()));
-			this.ctrl.getLstNoeud().get(n).setNomY(Integer.parseInt(this.txtPosYnom.getText()));
-			*/
-
 			PanelCreerNoeud.lstLabel.get(index).setText("Nom : " + n.getNom() + " | Pos X : " + n.getX() + " | Pos Y : " + n.getY());
-			//this.lstLabel.add(new JLabel("Nom : " + this.txtNomModif.getText() + " | Pos X : " + this.txtPosXModif.getText() + " | Pos Y : " + this.txtPosYModif.getText()));
+			
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 			this.ctrl.majIHM();
 			jd.dispose();
-
-
 		}
 	}
 
@@ -330,11 +317,6 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 			jd.setTitle("Modification des coordonnées");
 			jd.setBounds(900, 300, 500, 400); 
 			JPanel panelPopUp = new JPanel(new GridLayout(6,2,12,12));
-			//this.txtNomModif.setText(this.lstLabel.get(PanelCreerNoeud.listHistorique.getSelectedIndex()).getText().split(" | ")[2] + " " + this.lstLabel.get(PanelCreerNoeud.listHistorique.getSelectedIndex()).getText().split(" | ")[3]);
-			//this.txtPosXModif.setText(this.lstLabel.get(PanelCreerNoeud.listHistorique.getSelectedIndex()).getText().split(" | ")[8]);
-			//this.txtPosYModif.setText(this.lstLabel.get(PanelCreerNoeud.listHistorique.getSelectedIndex()).getText().split(" | ")[13]);
-			//this.txtPosXnom.setText(/* Récupérer le X du labelNom */);
-			//this.txtPosYnom.setText(/* Récupérer le Y du labelNom */);
 
 			this.txtNomModif.setText(this.ctrl.getLstNoeud().get(PanelCreerNoeud.listHistorique.getSelectedIndex()).getNom());
 			this.txtPosXModif.setText(String.valueOf(this.ctrl.getLstNoeud().get(PanelCreerNoeud.listHistorique.getSelectedIndex()).getX()));
@@ -358,7 +340,6 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 			panelPopUp.add(this.txtPosYnom);
 
 			panelPopUp.add(this.btnConfirmer);
-			//panelPopUp.add(new JLabel());
 
 			jd.add(panelPopUp);
 			jd.setVisible(true);					
