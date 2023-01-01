@@ -104,9 +104,11 @@ public class Controleur
     {
         return this.metier.getLstArete();
     }
-    public void setNbJoueurMin( int m )
+
+
+    public void setNbJoueurMinDoubleArete( int m )
     {
-        this.metier.setNbJoueurMin(m);
+        this.metier.setNbJoueurMinDoubleArete(m);
     }
 
     public void setNbJoueurMax( int m )
@@ -114,9 +116,18 @@ public class Controleur
         this.metier.setNbJoueurMax(m);
     }
 
-    public void setNbWagonsMax(int nbWagonsMax) {
-        this.metier.setNbWagonsMax(nbWagonsMax);
+    public void setNbWagonDebutPartie(int nbWagonsDebut) {
+        this.metier.setNbWagonDebutPartie(nbWagonsDebut);
     }
+
+    public void setNbWagonFinPartie(int nbWagonsFin) {
+        this.metier.setNbWagonFinPartie(nbWagonsFin);
+    }
+
+    public void setNbPointsPlusLongChemin(int nbPoints){
+        this.metier.setNbPointsPlusLongChemin(nbPoints);
+    }
+
 
     public ArrayList<Noeud> getNoeudDispo(Noeud n)
     {
@@ -127,12 +138,20 @@ public class Controleur
         return this.metier.getNbJoueurMax();
     }
 
-    public int getNbJoueurMin() {
-        return this.metier.getNbJoueurMin();
+    public int getNbJoueurMinDoubleArete() {
+        return this.metier.getNbJoueurMinDoubleArete();
     }
 
-    public int getNbWagonsMax() {
-        return this.metier.getNbWagonsMax();
+    public int getNbWagonDebutPartie() {
+        return this.metier.getNbWagonDebutPartie();
+    }
+
+    public int getNbWagonFinPartie() {
+        return this.metier.getNbWagonFinPartie();
+    }
+
+    public int getNbPointsPlusLongChemin() {
+        return this.metier.getNbPointsPlusLongChemin();
     }
 
     public void addNoeud(String nom, int x, int y) { this.metier.creeNoeud(nom, x, y); }

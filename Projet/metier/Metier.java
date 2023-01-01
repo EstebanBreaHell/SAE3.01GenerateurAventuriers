@@ -26,7 +26,7 @@ public class Metier
     private ArrayList<CarteObjectif> lstCarteObjectif;
     private ArrayList<CarteWagon> lstCarteWagon;
 
-	private int nbJoueurMax, nbJoueurMin, nbWagonsMax;
+	private int nbJoueurMax, nbJoueurMinDoubleArete , nbWagonDebutPartie ,nbWagonFinPartie , nbPointsPlusLongChemin ;
 
     public Metier( Controleur ctrl )
     {
@@ -37,13 +37,15 @@ public class Metier
         this.lstCarteWagon = new ArrayList<CarteWagon>();
 
 		this.nbJoueurMax = 0;
-		this.nbJoueurMin = 0;
-        this.nbWagonsMax = 0;
+		this.nbJoueurMinDoubleArete = 0;
+        this.nbWagonDebutPartie = 0;
+        this.nbWagonFinPartie = 0;
+        this.nbPointsPlusLongChemin = 0;
     }
 
-    public void setNbJoueurMin( int m )
+    public void setNbJoueurMinDoubleArete( int m )
     {
-        this.nbJoueurMin = m ;
+        this.nbJoueurMinDoubleArete = m ;
     }
 
     public void setNbJoueurMax( int m )
@@ -51,20 +53,39 @@ public class Metier
         this.nbJoueurMax =  m ;
     }
 
-    public void setNbWagonsMax(int nbWagonsMax) {
-        this.nbWagonsMax = nbWagonsMax;
+    public void setNbWagonDebutPartie(int nbWagonDebutPartie) {
+        this.nbWagonDebutPartie = nbWagonDebutPartie;
     }
+
+    public void setNbWagonFinPartie(int nbWagonFinPartie) {
+        this.nbWagonFinPartie = nbWagonFinPartie;
+    }
+
+    public void setNbPointsPlusLongChemin(int nbPointsPlusLongChemin) {
+        this.nbPointsPlusLongChemin = nbPointsPlusLongChemin;
+    }
+
+
+
 
     public int getNbJoueurMax() {
         return nbJoueurMax;
     }
 
-    public int getNbJoueurMin() {
-        return nbJoueurMin;
+    public int getNbJoueurMinDoubleArete() {
+        return nbJoueurMinDoubleArete;
     }
 
-    public int getNbWagonsMax() {
-        return nbWagonsMax;
+    public int getNbWagonDebutPartie() {
+        return nbWagonDebutPartie;
+    }
+
+    public int getNbWagonFinPartie() {
+        return nbWagonFinPartie;
+    }
+
+    public int getNbPointsPlusLongChemin() {
+        return nbPointsPlusLongChemin;
     }
 
     public void ecrireXml()
@@ -127,9 +148,9 @@ public class Metier
 
             pw.println ( "\t<details>" );
 
-            pw.println ( "\t\t<nbJoueurMin>"+ this.nbJoueurMin + "</nbJoueurMin>" );
+            pw.println ( "\t\t<nbJoueurMin>"+ this.nbJoueurMinDoubleArete + "</nbJoueurMin>" );
             pw.println ( "\t\t<nbJoueurMax>"+ this.nbJoueurMax + "</nbJoueurMax>" );
-            pw.println ( "\t\t<nbWagonsMax>"+ this.nbWagonsMax + "</nbWagonsMax>" );
+            pw.println ( "\t\t<nbWagonDebutPartie>"+ this.nbWagonDebutPartie + "</nbWagonDebutPartie>" );
 
             pw.println ( "\t</details>" );
 
