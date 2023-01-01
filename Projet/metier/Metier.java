@@ -26,6 +26,7 @@ public class Metier
     private ArrayList<CarteObjectif> lstCarteObjectif;
     private ArrayList<CarteWagon> lstCarteWagon;
 
+    private ArrayList<String> lstCouleurJoueur;
 	private int nbJoueurMax, nbJoueurMinDoubleArete , nbWagonDebutPartie ,nbWagonFinPartie , nbPointsPlusLongChemin ;
 
     public Metier( Controleur ctrl )
@@ -36,12 +37,17 @@ public class Metier
         this.lstCarteObjectif = new ArrayList<CarteObjectif>();
         this.lstCarteWagon = new ArrayList<CarteWagon>();
 
-		this.nbJoueurMax = 0;
-		this.nbJoueurMinDoubleArete = 0;
-        this.nbWagonDebutPartie = 0;
-        this.nbWagonFinPartie = 0;
-        this.nbPointsPlusLongChemin = 0;
+
+        this.lstCouleurJoueur = new ArrayList<String>();
+
+		this.nbJoueurMax = 5;
+		this.nbJoueurMinDoubleArete = 4;
+        this.nbWagonDebutPartie = 45;
+        this.nbWagonFinPartie = 2;
+        this.nbPointsPlusLongChemin = 10;
     }
+
+
 
     public void setNbJoueurMinDoubleArete( int m )
     {
@@ -65,6 +71,10 @@ public class Metier
         this.nbPointsPlusLongChemin = nbPointsPlusLongChemin;
     }
 
+    public void setLstCouleurJoueur(ArrayList<String> lstCouleurJoueur) {
+        this.lstCouleurJoueur = lstCouleurJoueur;
+    }
+
 
 
 
@@ -86,6 +96,10 @@ public class Metier
 
     public int getNbPointsPlusLongChemin() {
         return nbPointsPlusLongChemin;
+    }
+
+    public ArrayList<String> getLstCouleurJoueur() {
+        return lstCouleurJoueur;
     }
 
     public void ecrireXml()
