@@ -93,12 +93,12 @@ public class PanelParametre extends JPanel implements ActionListener
 		this.arrayCouleurJoueur = new ArrayList<String>();
 		
 
-		this.txtNbJoueursMinAreteDouble = new JTextField();
-		this.txtNbJoueursMax = new JTextField();
-		this.txtNbWagonDebutPartie = new JTextField();
-		this.txtNbWagonFinDePartie = new JTextField();
+		this.txtNbJoueursMinAreteDouble = new JTextField(""+this.ctrl.getNbJoueurMinDoubleArete());
+		this.txtNbJoueursMax = new JTextField(""+this.ctrl.getNbJoueurMax());
+		this.txtNbWagonDebutPartie = new JTextField(""+this.ctrl.getNbWagonDebutPartie());
+		this.txtNbWagonFinDePartie = new JTextField(""+this.ctrl.getNbWagonFinPartie());
 		this.btnJdCouleur= new JButton("Couleur Joueur");
-		this.txtNbPlusLongChemain = new JTextField("10");
+		this.txtNbPlusLongChemain = new JTextField(""+this.ctrl.getNbPointsPlusLongChemin());
 
 
 		this.lblNbJoueursMinAreteDouble = new JLabel("Nombre de joueurs minimum pour avoir une arete double");
@@ -137,6 +137,7 @@ public class PanelParametre extends JPanel implements ActionListener
 		this.panelParametre.add(this.lblCouleurJoueur);
 		this.panelParametre.add(this.btnJdCouleur);
 
+		this.txtNbPlusLongChemain.setEnabled(false);
 
 		this.add(this.panelParametre, BorderLayout.CENTER);
 		this.add(this.btnValider, BorderLayout.SOUTH);
@@ -157,10 +158,13 @@ public class PanelParametre extends JPanel implements ActionListener
 		}
 		if(e.getSource() == this.btnValider)
 		{
-		// 	this.ctrl.setNbJoueurMinAreteDouble(Integer.parseInt(this.txtNbJoueursMinAreteDouble.getText()));
-		// 	this.ctrl.setNbJoueurMax(Integer.parseInt(this.txtNbJoueursMax.getText()));
-		// 	this.ctrl.setNbWagonDebutPartie(Integer.parseInt(this.txtNbWagonDebutPartie.getText()));
-		// 	this.ctrl.setNbWagonFinPartie(Integer.parseInt(this.txtNbWagonFinDePartie.getText()));
+			this.ctrl.setNbJoueurMax(Integer.parseInt(this.txtNbJoueursMax.getText()));
+			this.ctrl.setNbJoueurMinDoubleArete(Integer.parseInt(this.txtNbJoueursMinAreteDouble.getText()));
+			this.ctrl.setNbWagonDebutPartie(Integer.parseInt(this.txtNbWagonDebutPartie.getText()));
+			this.ctrl.setNbWagonFinPartie(Integer.parseInt(this.txtNbWagonFinDePartie.getText()));
+			this.ctrl.setNbPointsPlusLongChemin(Integer.parseInt(this.txtNbPlusLongChemain.getText()));
+			this.ctrl.setLstCouleurJoueur(this.arrayCouleurJoueur);
+
 		// 
 		}
 		else if(e.getSource() == this.btnGenereXml)
@@ -229,8 +233,8 @@ public class PanelParametre extends JPanel implements ActionListener
 
 			sColor = sColor.substring(sColor.indexOf("[") + 1, sColor.indexOf("]"));
 
-
-			this.arrayCouleurJoueur.add(sColor);
+			if(!this.arrayCouleurJoueur.contains(sColor))
+				this.arrayCouleurJoueur.add(sColor);
 			this.lstCouleurJoueur.setListData(this.arrayCouleurJoueur.toArray(new String[this.arrayCouleurJoueur.size()]));
 			this.jdCouleur.setVisible(false);
 			this.jdCouleur.setVisible(true);
