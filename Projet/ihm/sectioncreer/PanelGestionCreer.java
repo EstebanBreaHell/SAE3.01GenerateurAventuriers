@@ -41,11 +41,11 @@ public class PanelGestionCreer extends JPanel
 		this.panelParametre	 = new PanelParametre(this.ctrl);
 
 
-		this.tabbedPane.addTab("Créer Noeud",this.panelCreerNoeud);
-		this.tabbedPane.addTab("Créer Arête", this.panelCreerArete);
-		this.tabbedPane.addTab("Créer Carte Objectif",this.panelCreerCarteObjectif);
-		this.tabbedPane.addTab("Créer Carte Wagon",this.panelCreerCarteWagon);
-		this.tabbedPane.addTab("Paramètres", this.panelParametre);
+		this.tabbedPane.addTab("Créer Noeud",Controleur.imageToIcon("donnee\\noeud.png", 50, 50),this.panelCreerNoeud);
+		this.tabbedPane.addTab("Créer Arête",Controleur.imageToIcon("donnee\\arete.png", 50, 50), this.panelCreerArete);
+		this.tabbedPane.addTab("Créer Carte Objectif",Controleur.imageToIcon("donnee\\objectif.png", 50, 50),this.panelCreerCarteObjectif);
+		this.tabbedPane.addTab("Créer Carte Wagon",Controleur.imageToIcon("donnee\\cartewagon.png", 50, 50),this.panelCreerCarteWagon);
+		this.tabbedPane.addTab("Paramètres",Controleur.imageToIcon("donnee\\parametre.png", 50, 50), this.panelParametre);
 
 		/**
 		 * Ajout des composants
