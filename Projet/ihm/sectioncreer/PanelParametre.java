@@ -68,7 +68,7 @@ public class PanelParametre extends JPanel implements ActionListener
 		this.txtFinDePartie				= new JTextField();
 		this.btnValider 				= new JButton("Générer XML");
 		this.btnConfirmer 				= new JButton("Confirmer");
-		this.chbPlusLongueRoute 		= new JCheckBox("Règle chemin le plus long");
+		this.chbPlusLongueRoute 		= new JCheckBox("Chemin le plus long");
 		this.txtNbJoueursMinAreteDouble = new JTextField();
 		this.txtNbPlusLongChemin 		= new JTextField(" " + this.ctrl.getNbPointsPlusLongChemin());
 
@@ -81,7 +81,7 @@ public class PanelParametre extends JPanel implements ActionListener
 		JLabel lblNomMoyenDeTransport 		= new JLabel("Type moyen de transport :");
 		JLabel lblFinDePartie				= new JLabel("Arrêter la partie à : ");
 		JLabel lblMoyenDeTransport			= new JLabel("  " + this.txtNomMoyenDeTransport.getText() + "...");
-		JLabel lblNbJoueursMinAreteDouble	= new JLabel("Nb joueurs minimum pour arête double : ");
+		JLabel lblNbJoueursMinAreteDouble	= new JLabel("Nb joueurs arête double : ");
 
 		JTable tableau = new JTable(donnees, entetes);
 
