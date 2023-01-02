@@ -169,6 +169,9 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 	private void drawNoeud(Noeud noeud, Graphics g)
 	{
 		int size = 26;
+		Dimension testTaille = this.getSize();
+		System.out.println("Taille : " + testTaille.getWidth() + " " + testTaille.getHeight());	
+
 
 		// draw la Noeud
 		g.setColor(Color.BLACK);

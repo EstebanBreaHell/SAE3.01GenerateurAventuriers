@@ -84,14 +84,23 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 		this.lstCouleur = new JList<String>();
 		this.lstCouleurTmp = new ArrayList<String>();
 		this.hashCoulNbCarte = this.ctrl.getLstCouleurWagon();
-		this.hashCoulNbCarte.put("Joker",0);
-		this.hashCoulImage = new HashMap<String, String>();
-		this.hashCoulImage.put("Joker", null);
+		//this.hashCoulNbCarte.put("Joker",0);
+		this.hashCoulImage = this.ctrl.getHsmImageWagon();
+		
+
+		for(String s : this.hashCoulNbCarte.keySet())
+			this.lstCouleurTmp.add(s);
 		this.nomVerso = "Aucun verso choisit";
 		this.lblNomVerso = new JLabel(this.nomVerso);
 
+		System.out.println("Sheeeeesh");
+		for(String s : this.hashCoulNbCarte.keySet())
+			System.out.println(s+" : "+ this.hashCoulNbCarte.get(s));
 
+		for(String s : this.hashCoulImage.keySet())
+			System.out.println(s+" : "+ this.hashCoulImage.get(s));
 
+		System.out.println("Fin du sheeeeesh");
 		this.panelLstCouleur = new JPanel();
 		this.panelLstCouleur.setBackground(Color.WHITE);
 		
@@ -101,11 +110,11 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 		this.scrollPaneCouleur = new JScrollPane(this.panelLstCouleur);
 
 	
-
-		this.lstCouleurTmp.add("Joker");
+		if(!this.lstCouleurTmp.contains("Joker"))
+			this.lstCouleurTmp.add("Joker");
 		for(Arete a : this.lstArete)
 		{
-			if(!this.lstCouleurTmp.contains(a.getCouleur()) && !a.getCouleur().equals("Neutre"))
+			if(!this.lstCouleurTmp.contains(a.getCouleur()) && !a.getCouleur().equals("Neutre") )
 			{
 				this.lstCouleurTmp.add(a.getCouleur());
 				this.hashCoulNbCarte.put(a.getCouleur(), 0);
@@ -371,12 +380,7 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 				this.jd.add(this.panelJd);
 				this.jd.add(this.btnConfirme, BorderLayout.SOUTH);
 				/*Print la hashmap*/
-				System.out.println(couleur);
-				System.out.println("-------------------");
-				for(String key : this.hashCoulNbCarte.keySet())
-				{
-					System.out.println(key + " : " + this.hashCoulNbCarte.get(key));
-				}
+				
 				
 			
 

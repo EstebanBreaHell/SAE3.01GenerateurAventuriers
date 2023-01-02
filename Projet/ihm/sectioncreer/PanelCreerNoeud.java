@@ -158,6 +158,14 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 		/**
 		 * Activation des composants
 		 */
+
+		ArrayList<Noeud> nTmp = this.ctrl.getLstNoeud();
+
+		for(Noeud n : nTmp)
+		{
+			this.lstLabel.add(new JLabel("Nom : " + n.getNom() + " | Pos X : " + n.getX() + " | Pos Y : " + n.getY()));
+		}
+		this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 		this.btnSupprimer.addActionListener(this);
 		this.btnGenererNoeud.addActionListener(this);
 		this.btnGenererPrefait.addActionListener(this);
@@ -268,6 +276,7 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 		{
 			Random random = new Random();
 			String randomNom = "Nouvelle ville";
+			
 			int randomPosX = random.nextInt(750) + 50;
 			int randomPosY = random.nextInt(600) + 50;
 

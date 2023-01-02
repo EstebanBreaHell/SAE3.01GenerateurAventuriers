@@ -6,16 +6,8 @@
 ---------------------------------------------------------------------------------------------------------|
 Liste des choses importantes à finaliser pour le projet : [Veillez à bien respecter ceci]		 |
 ---------------------------------------------------------------------------------------------------------|
-- Pouvoir double-cliquer sur le point ou la carré blanc pour modifier ses coordonnées ou nom		 | 
-- Prévoir une couleur neutre (qui permet de prendre la voie avec n'importe quelle couleur)		 |
-- Dans le panelParamètre, intégrer un bouton permettant d'importer le recto de sa carte multicouleur	 | [Valider par Adrien]
 - Finaliser et rendre fonctionnel le panelCreerCarteObjectif						 |
-- Espacer les doubles-voies pour plus de visibilité et les rendre double cliquables (comme les noeuds)	 |
-- Dans le panelParametre, nous devons définir à partir de combien de wagons restant dans la main d’un    | 
-joueur, la fin de partie est déclenchée									 | [Valider par Adrien]
-- Pouvoir récupérer les informations dans le XML, veillez à ce qu'elles soient bonnes			 | 
 - Passer à la phase de corrections de bugs  |
-- Ajouter un scrollPane à la listeHistorique d'arête dans panelCreerArete				 |
 ---------------------------------------------------------------------------------------------------------|
 
 ---------------------------------------------------------------------------------------------------------|

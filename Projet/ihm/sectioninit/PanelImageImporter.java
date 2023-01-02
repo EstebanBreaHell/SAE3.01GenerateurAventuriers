@@ -44,9 +44,9 @@ public class PanelImageImporter extends JPanel
 
 		for (int index = 0; index < tabPanelAffichageImporte.length; index++)
 		{
-			if(!this.repertoireImage[index].equals("imageCarte"))
+			if(!this.repertoireImage[index].equals("imageCarte") &&
+			!this.repertoireImage[index].equals("xml"))
 			{
-				System.out.println(this.repertoireImage[index]);
 				tabPanelAffichageImporte[index] = new PanelImageInfo(this.ctrl,this.repertoireImage[index]);
 	
 				panelDispoAffichage.add(tabPanelAffichageImporte[index]);
@@ -101,7 +101,8 @@ public class PanelImageImporter extends JPanel
 
 		for (int index = 0; index < tabPanelAffichageImporte.length; index++)
 		{
-			if(!this.repertoireImage[index].equals("imageCarte"))
+			if(!this.repertoireImage[index].equals("imageCarte") && 
+			   !this.repertoireImage[index].equals("xml"       ))
 			{
 				tabPanelAffichageImporte[index] = new PanelImageInfo(this.ctrl,this.repertoireImage[index]);
 				panelDispoAffichage.add(tabPanelAffichageImporte[index]);
