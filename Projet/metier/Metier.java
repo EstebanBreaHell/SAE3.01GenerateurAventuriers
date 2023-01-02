@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.awt.Color;
 
@@ -27,6 +28,8 @@ public class Metier
     private ArrayList<CarteWagon> lstCarteWagon;
 
     private ArrayList<String> lstCouleurJoueur;
+    private HashMap<String, Integer> hsmCouleurWagon;
+    
 	private int nbJoueurMax, nbJoueurMinDoubleArete , nbWagonDebutPartie ,nbWagonFinPartie , nbPointsPlusLongChemin ;
 
     public Metier( Controleur ctrl )
@@ -39,6 +42,9 @@ public class Metier
 
 
         this.lstCouleurJoueur = new ArrayList<String>();
+        this.hsmCouleurWagon = new HashMap<String, Integer>();
+
+        
 
 		this.nbJoueurMax = 5;
 		this.nbJoueurMinDoubleArete = 4;
@@ -74,6 +80,10 @@ public class Metier
     public void setLstCouleurJoueur(ArrayList<String> lstCouleurJoueur) {
         this.lstCouleurJoueur = lstCouleurJoueur;
     }
+    
+    public void setHsmCouleurWagon(HashMap<String, Integer> lstCouleurWagon) {
+        this.hsmCouleurWagon = lstCouleurWagon;
+    }
 
 
 
@@ -102,6 +112,10 @@ public class Metier
         return lstCouleurJoueur;
     }
 
+    public HashMap<String, Integer> getHsmCouleurWagon() {
+        return hsmCouleurWagon;
+    }
+
     public void ecrireXml()
     {
         try
@@ -126,9 +140,9 @@ public class Metier
             {
                 pw.println ( "\t\t<arete>" );
 
-                pw.println ( "\t\t\t<noeudArr>" + a.getNoeudDep().getNom() + "</noeudArr>" );
-                pw.println ( "\t\t\t<noeudDep>" + a.getNoeudArr().getNom() + "</noeudDep>" );
-                pw.println ( "\t\t\t<couleur>" + a.getCouleur().toString() + "</couleur>" );
+                pw.println ( "\t\t\t<noeudArr>" + this.lstNoeud.indexOf(a.getNoeudDep()) + "</noeudArr>" );
+                pw.println ( "\t\t\t<noeudDep>" + this.lstNoeud.indexOf(a.getNoeudDep())+ "</noeudDep>" );
+                pw.println ( "\t\t\t<couleur>" + a.getCouleur() + "</couleur>" );
                // pw.println ( "\t\t<couleurRGB>" + a.getCouleur().getRGB() + " </couleurRGB>" );
                 pw.println ( "\t\t\t<wagons>" + a.getWagon() + "</wagons>" );
                 pw.println("\t\t\t<estDouble>"+a.getEstDouble()+"</estDouble>");
@@ -137,6 +151,7 @@ public class Metier
 
             }
 
+            /* 
             for( CarteObjectif co : lstCarteObjectif )
             {
                 pw.println ( "\t\t<carteObjectif>" );
@@ -148,7 +163,11 @@ public class Metier
                 pw.println ("\t\t</carteObjectif>");
 
             }
+            */
 
+            pw.println ( "\t\t<carteWagon>" );
+
+            /* 
             for( CarteWagon cw : lstCarteWagon )
             {
                 pw.println ( "\t\t<carteWagon>" );
@@ -158,6 +177,8 @@ public class Metier
                 pw.println ("\t\t</carteWagon>");
 
             }
+
+            */
             pw.println ( " \t</mappe>" );
 
             pw.println ( "\t<details>" );
