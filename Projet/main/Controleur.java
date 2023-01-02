@@ -84,6 +84,11 @@ public class Controleur
         return this.ihm.getLstHistorique();
     }
 
+    public void lireXml()
+    {
+        this.metier.lireXml();
+    }
+
     public Dimension getDimensionEcran()
     {
         return this.ihm.getDimensionEcran();

@@ -10,11 +10,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.awt.Color;
 
-/* 
+ 
 import java.io.*;
 import org.jdom2.*;
 import org.jdom2.input.*;
-*/
+
 
 
 public class Metier
@@ -179,7 +179,6 @@ public class Metier
                 pw.println ( "\t\t\t<couleur>" + a.getCouleur() + "</couleur>" );
                // pw.println ( "\t\t<couleurRGB>" + a.getCouleur().getRGB() + " </couleurRGB>" );
                 pw.println ( "\t\t\t<wagons>" + a.getWagon() + "</wagons>" );
-                pw.println("\t\t\t<estDouble>"+a.getEstDouble()+"</estDouble>");
 
                 pw.println ("\t\t</arete>");
 
@@ -226,7 +225,7 @@ public class Metier
             }
 
             */
-            pw.println ( " \t</mappe>" );
+           
 
             pw.println ( "\t<details>" );
 
@@ -236,9 +235,11 @@ public class Metier
             pw.println ( "\t\t<nbWagonFinPartie>"+ this.nbWagonFinPartie + "</nbWagonFinPartie>" );
             pw.println ( "\t\t<nbPointsPlusLongChemin>"+ this.nbPointsPlusLongChemin + "</nbPointsPlusLongChemin>" );
             pw.println ( "\t\t<versoCarteWagon>"+ this.versoCarteWagon + "</versoCarteWagon>" );
+            pw.println ( "\t\t<image>"+ this.ctrl.getPathImg() + "</image>" );
+            //getPathImg
 
             pw.println ( "\t</details>" );
-
+            pw.println ( "\t</mappe>" );
             pw.println("</infos>");
 
             pw.close();
@@ -249,18 +250,19 @@ public class Metier
 
     }
 
-    /* 
+    
     public void lireXml()
     {
         org.jdom2.Document document;
         Element racine;
+
 
         SAXBuilder sxb = new SAXBuilder();
         try {
             // On crée un nouveau document JDOM avec en argument le
             //fichier XML
             // Le parsing est terminé
-            document = sxb.build(new File( "./sortie/carteTest.xml" ));
+            document = sxb.build(new File( "donnee/xml/carteTest.xml" ));
         } catch (Exception e)
         {
             
@@ -272,6 +274,8 @@ public class Metier
 		this.lstArete = new ArrayList<Arete>();
         this.lstCarteObjectif = new ArrayList<CarteObjectif>();
         this.lstCarteWagon = new ArrayList<CarteWagon>();
+        this.hsmCouleurWagon = new HashMap<String, Integer>();
+        this.hsmImageWagon = new HashMap<String, String>();
 
         racine = document.getRootElement();
 
@@ -281,8 +285,10 @@ public class Metier
         // Iterator i = listVilles.iterator();
         List<Element> lstNoeud = racine.getChildren ( "mappe" ).get(0).getChildren("noeud");
         List<Element> lstArete = racine.getChildren ( "mappe" ).get(0).getChildren("arete");
-        List<Element> lstObjectif = racine.getChildren ( "mappe" ).get(0).getChildren("carteObjectif");
+        //List<Element> lstObjectif = racine.getChildren ( "mappe" ).get(0).getChildren("carteObjectif");
         List<Element> lstWagon = racine.getChildren ( "mappe" ).get(0).getChildren("carteWagon");
+        List<Element> lstInformation = racine.getChildren ( "mappe" ).get(0).getChildren("details");
+
 
         
         System.out.println("Test2");
@@ -299,19 +305,32 @@ public class Metier
             this.creeNoeud(nomVille, x, y, nomX, nomY);
         }
 
+        for(Element w : lstWagon)
+        {
+            String c = w.getChild("couleur").getText();
+            
+            this.hsmCouleurWagon.put(c, Integer.parseInt(w.getChild("nombre").getText()));
+            this.hsmImageWagon.put(c, w.getChild("recto").getText());
+
+
+            //this.creeCarteWagon(new Color(Integer.parseInt(rgb[0]), Integer.parseInt(rgb[1]), Integer.parseInt(rgb[2])));
+            
+        }
+
         for(Element a : lstArete)
         {
             String nomVille1 = a.getChild("noeudArr").getText ();
             String nomVille2 = a.getChild("noeudDep").getText ();
             String couleur = a.getChild("couleur").getText();
             int nbW = Integer.parseInt(a.getChild("wagons").getText());
-            boolean estDouble = Boolean.parseBoolean(a.getChild("estDouble").getText());
 
             //System.out.println("Arete : " + nomVille1 + " " + nomVille2 + " " + couleur + " " + nbW + " " + estDouble);
-            
-            this.creeArete(this.getNoeud(nomVille1), this.getNoeud(nomVille2), couleur, nbW, estDouble);
+            Noeud n1 = this.lstNoeud.get(Integer.parseInt(nomVille1));
+            Noeud n2 = this.lstNoeud.get(Integer.parseInt(nomVille2));
+            this.creeArete(n1, n2, couleur,nbW);
         }
 
+        /* 
         for(Element o : lstObjectif)
         {
             String nomVille1 = o.getChild("noeudArr").getText ();
@@ -323,26 +342,27 @@ public class Metier
 
             this.creeCarteObjectif(this.getNoeud(nomVille1), this.getNoeud(nomVille2), points);
         }
-
-        for(Element w : lstWagon)
+        */
+        
+        for(Element d : lstInformation)
         {
-            String c = w.getChild("couleur").getText();
-            //System.out.println("Wagon : " + couleur);
-            //from java.awt.Color[r=0,g=0,b=0] to a Color object 
-            String[] rgb = c.substring(15, c.length()-1).split(",");
-		//now remove "r=" and "g=" and "b="
-		    rgb[0] = rgb[0].substring(2);
-            rgb[1] = rgb[1].substring(2);
-            rgb[2] = rgb[2].substring(2);
-
-
-            this.creeCarteWagon(new Color(Integer.parseInt(rgb[0]), Integer.parseInt(rgb[1]), Integer.parseInt(rgb[2])));
-            
+            this.nbJoueurMinDoubleArete = Integer.parseInt(d.getChild("nbJoueurMinDoubleArete").getText());
+            this.nbJoueurMax = Integer.parseInt(d.getChild("nbJoueurMax").getText());
+            this.nbWagonDebutPartie = Integer.parseInt(d.getChild("nbWagonDebutPartie").getText());
+            this.nbWagonFinPartie = Integer.parseInt(d.getChild("nbWagonFinPartie").getText());
+            this.nbPointsPlusLongChemin = Integer.parseInt(d.getChild("nbPointsPlusLongChemin").getText());
+            System.out.println("Image : "+ d.getChild("image").getText());
+            this.ctrl.imageToPanelGraphique(d.getChild("image").getText());
         }
+
+
+
+
+        
     
 
     }
-    */
+    
     public void creeNoeud(String nom, int x, int y, int nomX , int nomY)
 	{
 		Noeud n = new Noeud( nom, x, y, nomX, nomY);

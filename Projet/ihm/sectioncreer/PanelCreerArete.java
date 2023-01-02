@@ -184,6 +184,16 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		this.btnConfirmer		.addActionListener(this);
 		this.chbNeutre			.addActionListener(this);
 
+		ArrayList<Arete> aTmp = this.ctrl.getLstArete();
+		for (Arete a : aTmp)
+		{
+			this.lstLabel.add(new JLabel("L'arête relie "    + a.getNoeudArr()  + " à " + a.getNoeudDep()
+			 				+ " de couleur" + a.getCouleur() + " et de distance " + a.getWagon()));
+			
+		}
+		this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
+
+
 		// Empêcher l'utilisateur de rentrer autre chose qu'un nombre dans les champs de texte
 		this.txtDistance.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
