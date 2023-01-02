@@ -19,6 +19,7 @@ import javax.swing.filechooser.FileSystemView;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -93,17 +94,22 @@ public class PanelDispoBtn extends JPanel implements ActionListener
 		super.paintComponent(g);
 
 		Graphics2D g2d = (Graphics2D) g;
-		
-		g2d.setColor(Color.BLACK);
-		g2d.setFont(new Font("Georgia", Font.BOLD, 30));		
-		g2d.drawString("Generateur de Mappe", this.getHeight()/3,50);
 
 		try {
-			g.drawImage(ImageIO.read(new File("donnee\\fond.png")), 0, this.getHeight()/8,null);
+			Image img = ImageIO.read(new File("donnee\\fond.png"));
+			
+			g.drawImage(img.getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_DEFAULT), 0, 0,null);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		g2d.setColor(Color.WHITE);
+		g2d.fillRect(this.getHeight()/3, 20, 350, 60);
+
+		g2d.setColor(Color.BLACK);
+		g2d.setFont(new Font("Georgia", Font.BOLD, 30));		
+		g2d.drawString("Generateur de Mappe", this.getHeight()/3,50);
 
 	}
 

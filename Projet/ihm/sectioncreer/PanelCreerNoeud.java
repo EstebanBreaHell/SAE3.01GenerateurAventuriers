@@ -8,8 +8,11 @@ package ihm.sectioncreer;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
 import java.text.NumberFormat;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.text.NumberFormatter;
@@ -324,6 +327,7 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 			jd.dispose();
 		}
 	}
+
 
 	public void mouseClicked(MouseEvent e) {
 

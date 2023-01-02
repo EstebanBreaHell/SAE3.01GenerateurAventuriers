@@ -7,8 +7,12 @@
 package ihm.sectioncreer;
 
 import java.awt.BorderLayout;
+import java.awt.Graphics;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
@@ -41,11 +45,11 @@ public class PanelGestionCreer extends JPanel
 		this.panelParametre	 = new PanelParametre(this.ctrl);
 
 
-		this.tabbedPane.addTab("Créer Noeud",Controleur.imageToIcon("donnee\\noeud.png", 50, 50),this.panelCreerNoeud);
-		this.tabbedPane.addTab("Créer Arête",Controleur.imageToIcon("donnee\\arete.png", 50, 50), this.panelCreerArete);
-		this.tabbedPane.addTab("Créer Carte Objectif",Controleur.imageToIcon("donnee\\objectif.png", 50, 50),this.panelCreerCarteObjectif);
-		this.tabbedPane.addTab("Créer Carte Wagon",Controleur.imageToIcon("donnee\\cartewagon.png", 50, 50),this.panelCreerCarteWagon);
-		this.tabbedPane.addTab("Paramètres",Controleur.imageToIcon("donnee\\parametre.png", 50, 50), this.panelParametre);
+		this.tabbedPane.addTab("Créer Noeud",Controleur.imageToIcon("donnee\\noeud.png", 25, 25),this.panelCreerNoeud);
+		this.tabbedPane.addTab("Créer Arête",Controleur.imageToIcon("donnee\\arete.png", 25, 25), this.panelCreerArete);
+		this.tabbedPane.addTab("Créer Carte Objectif",Controleur.imageToIcon("donnee\\objectif.png", 25, 25),this.panelCreerCarteObjectif);
+		this.tabbedPane.addTab("Créer Carte Wagon",Controleur.imageToIcon("donnee\\cartewagon.png", 25, 25),this.panelCreerCarteWagon);
+		this.tabbedPane.addTab("Paramètres",Controleur.imageToIcon("donnee\\parametre.png", 25, 25), this.panelParametre);
 
 		/**
 		 * Ajout des composants
