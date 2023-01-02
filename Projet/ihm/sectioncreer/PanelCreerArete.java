@@ -266,15 +266,6 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 			/*--------------------------------------*/
 
 			// Ajout de l'arête dans l'historique 
-			String couleurChoisie = new Color(this.container.getBackground().getRGB()).toString().replace("java.awt.Color", " RGB ");
-
-			this.lstLabel.add(new JLabel("L'arête relie "    + this.comboNoeud1.getSelectedItem()  + " à " + this.comboNoeud2.getSelectedItem()  
-			 				+ " de couleur" + couleurChoisie + " et de distance " + this.txtDistance.getText()));
-			
-			//From javax.swing.plaf.ColorUIResource[r=238,g=238,b=238] 
-			//to
-			//java.awt.Color[r=238,g=238,b=238]
-			/*------------------------------------*/
 			String couleur = "";
 			
 			if(this.chbNeutre.isSelected())
@@ -284,8 +275,17 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 			else
 			{
 				Color coul = new Color(this.container.getBackground().getRGB());
-				couleur = "[r="+coul.getRed()+",g="+coul.getGreen()+",b="+coul.getBlue()+"]";
+				couleur = "RGB [r="+coul.getRed()+",g="+coul.getGreen()+",b="+coul.getBlue()+"]";
 			}
+
+			this.lstLabel.add(new JLabel("L'arête relie "    + this.comboNoeud1.getSelectedItem()  + " à " + this.comboNoeud2.getSelectedItem()  
+			 				+ " de couleur " + couleur + " et de distance " + this.txtDistance.getText()));
+			
+			//From javax.swing.plaf.ColorUIResource[r=238,g=238,b=238] 
+			//to
+			//java.awt.Color[r=238,g=238,b=238]
+			/*------------------------------------*/
+			
 			
 			this.ctrl.addArete( this.comboNoeud1.getItemAt(this.comboNoeud1.getSelectedIndex()),
 					            this.comboNoeud2.getItemAt(this.comboNoeud2.getSelectedIndex()),
@@ -372,13 +372,22 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 
 			this.txtDistanceUpdate.setText("" + a.getWagon());
 			String c = a.getCouleur();
+			if(c.equals("Neutre"))
+			{
+				this.containerUpdate.setBackground(new Color(228,228,228));
 
-			String[] tabCouleur = c.split(",");
-			int r = Integer.parseInt(tabCouleur[0].substring(3));
-			int g = Integer.parseInt(tabCouleur[1].substring(2));
-			int b = Integer.parseInt(tabCouleur[2].substring(2,tabCouleur[2].length()-1));
+			}
+			else
+			{
+				String[] tabCouleur = c.split(",");
+				int r = Integer.parseInt(tabCouleur[0].substring(3));
+				int g = Integer.parseInt(tabCouleur[1].substring(2));
+				int b = Integer.parseInt(tabCouleur[2].substring(2,tabCouleur[2].length()-1));
+				this.containerUpdate.setBackground(new Color(r,g,b));
+			}
+			
 
-			this.containerUpdate.setBackground(new Color(r,g,b));
+			
 
 			panelPopUp.add(this.containerUpdate);
 			panelPopUp.add(this.txtDistanceUpdate);
