@@ -8,6 +8,7 @@ package ihm.sectioncreer;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -56,6 +57,12 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		catch (IOException e) 	{e.printStackTrace();}
 	}
 
+	private String[] getPathCartObjectifCreer()
+	{
+		String[] tmp = new File(Paths.get("donnee\\carteObjectif\\"+this.ctrl.getPathImg().substring(8)).toFile().getAbsolutePath()).list();
+		
+		return tmp;
+	}
 
 	public PanelCreerCarteObjectif(Controleur ctrl)
 	{
@@ -185,6 +192,7 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 
 		if(e.getSource() == this.btnCreerCarte)
 		{
+						
 			try 	{Files.createDirectories(Paths.get("donnee\\carteObjectif\\"+this.ctrl.getPathImg().substring(8)));} 
 			catch (IOException a) 	{a.printStackTrace();}
 
@@ -192,6 +200,28 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 			
 			try		{ImageIO.write(this.ctrl.createImage(this.panelApercuFace.getPanelGraphiqueFace()), "PNG", fileImg);} 
 			catch 	(IOException e1) {e1.printStackTrace();}
+		}
+
+		if(e.getSource() == this.btnHistoriqueCarte)
+		{
+			JDialog popUpHistoirque = new JDialog();
+			String[] repertoireCarteObjectif = this.getPathCartObjectifCreer();
+
+			popUpHistoirque.setTitle("Histoirique des carte objectif de " + this.ctrl.getPathImg().substring(8));
+			if(repertoireCarteObjectif == null)	popUpHistoirque.add(new JLabel("Le dossier carte objectif de" + this.ctrl.getPathImg().substring(8) + " est vide"),JLabel.CENTER);
+			else
+			{
+				popUpHistoirque.setLayout(new GridLayout(1,repertoireCarteObjectif.length));
+				for(int index = 0; index < repertoireCarteObjectif.length; index++)
+				{
+					System.out.println(repertoireCarteObjectif[index]);
+					popUpHistoirque.add(new JLabel(Controleur.imageToIcon("donnee\\carteObjectif\\"+this.ctrl.getPathImg().substring(8) + "\\" + repertoireCarteObjectif[index], 200, 100)));
+				}
+			}
+			popUpHistoirque.pack();
+			popUpHistoirque.setVisible(true);
+
+
 		}
 	}
 
@@ -203,6 +233,8 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		this.lstNoeud.setListData(arratTmp.stream().map(label -> label.getText()).toArray(String[]::new));
 	}
 
+
+
 	public class InputSourie extends MouseAdapter
 	{
 		public void mouseClicked(MouseEvent e)
@@ -213,8 +245,6 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 				tmpNoeud = PanelCreerCarteObjectif.this.ctrl.getLstNoeud().get(PanelCreerCarteObjectif.this.lstNoeud.getSelectedIndex());
 				
 				PanelCreerCarteObjectif.this.panelApercuFace.setNoeud1(tmpNoeud.getNomX()+15, tmpNoeud.getNomY(), tmpNoeud.getNom());
-				System.out.println(tmpNoeud.getNomX()+15);
-
 			}
 		}
 	}

@@ -55,11 +55,7 @@ public class PanelApercuFace extends JPanel implements ActionListener
 
 	public PanelGraphiqueFace getPanelGraphiqueFace(){return this.panelGraphiqueFace;}
 
-	public void setNbPoint(int nbPoint) 
-	{
-		System.out.println(nbPoint);	
-		this.panelGraphiqueFace.setNbPoint(nbPoint);
-	}
+	public void setNbPoint(int nbPoint) {this.panelGraphiqueFace.setNbPoint(nbPoint);}
 
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -99,6 +95,7 @@ public class PanelApercuFace extends JPanel implements ActionListener
 			this.nomNoeud2 = nomNoeud2;
 
 			this.nbPoint = nbPoint;
+			
 		}
 
 		public void setNbPoint(int nbPoint)
@@ -140,12 +137,12 @@ public class PanelApercuFace extends JPanel implements ActionListener
 			g2d.drawString(this.nbPoint + "", this.getWidth()/4 + 185,this.getHeight()/3+15);
 			
 
-			g2d.fillOval( this.x1/4 + 50 +10, this.y2/3+50+50, 10, 10);
+			g2d.fillOval((int)(this.x1*0.25), (int)(this.y1*0.25), 10, 10);
 
 			g2d.setColor(Color.white);
-			g2d.fillRect(this.x1/4 +50 + 10, this.y2/3 + 50+30, 40, 15);
+			g2d.fillRect(this.x1/4 +50 + 10, this.y1/3 + 50+30, 40, 15);
 			g2d.setColor(Color.BLACK);
-			g2d.drawString(this.nomNoeud1, this.x1/4+ 50 +10, this.y2/3+ 50 +40);
+			g2d.drawString(this.nomNoeud1, this.x1/4+ 50 +10, this.y1/3+ 50 +40);
 	
 
 		}
