@@ -171,6 +171,22 @@ public class Controleur
         return this.metier.getHsmCouleurWagon();
     }
 
+    public HashMap<String,String> getHsmImageWagon() {
+        return this.metier.getHsmImageWagon();
+    }
+
+    public void setHsmImageWagon(HashMap<String,String> hsmImageWagon) {
+        this.metier.setHsmImageWagon(hsmImageWagon);
+    }
+
+    public void setVersoCarteWagon(String versoCarteWagon){
+        this.metier.setVersoCarteWagon(versoCarteWagon);
+    }
+
+    public String getVersoCarteWagon(){
+        return this.metier.getVersoCarteWagon();
+    }
+
     public void addNoeud(String nom, int x, int y) { this.metier.creeNoeud(nom, x, y); }
 
     public void addArete(Noeud noeud1, Noeud noeud2,  String couleur, int longueur) { this.metier.creeArete(noeud1, noeud2, couleur, longueur ); }

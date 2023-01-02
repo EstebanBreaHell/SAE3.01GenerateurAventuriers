@@ -151,5 +151,5 @@ public class PanelApercuFace extends JPanel implements ActionListener
 			
 			super.repaint();
 		}
-	}
+	}	
 }
