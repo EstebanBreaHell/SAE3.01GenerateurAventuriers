@@ -6,6 +6,7 @@
 
 package ihm.sectioninit;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
@@ -19,12 +20,16 @@ import javax.swing.filechooser.FileSystemView;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.Color;
 import java.awt.event.*;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.BasicStroke;
 
 import java.io.File;
-
+import java.io.IOException;
 
 import main.Controleur;
 
@@ -51,26 +56,29 @@ public class PanelDispoBtn extends JPanel implements ActionListener
 		Border distanceBtn = BorderFactory.createLineBorder(Color.BLACK, 2);
 
 		this.setBorder(BorderFactory.createEmptyBorder(length, width, width, length));
+		this.setBackground(Color.WHITE);
 
-		this.btnImporter = new JButton("Importer");
-		this.btnEditer   = new JButton("Editer");
-		this.btnImportXml   = new JButton("Importer un XML");
-		this.btnQuitter  = new JButton("Quitter");
+		this.btnImporter = new JButton("Importer",Controleur.imageToIcon("donnee\\importer.png", 40, 40));
+		this.btnEditer   = new JButton("Editer",Controleur.imageToIcon("donnee\\edite.png", 40, 40));
+		this.btnImportXml   = new JButton("Importer un XML",Controleur.imageToIcon("donnee\\ouvrir.png", 40, 40));
+		this.btnQuitter  = new JButton("Quitter",Controleur.imageToIcon("donnee\\quitter.png", 40, 40));
 
 		this.btnImporter.setBorder(distanceBtn);
 		this.btnEditer.setBorder(distanceBtn);
 		this.btnQuitter.setBorder(distanceBtn);
 		this.btnImportXml.setBorder(distanceBtn);
 
-		this.btnImporter.setBackground(Color.WHITE);
-		this.btnEditer.setBackground(Color.WHITE);
-		this.btnQuitter.setBackground(Color.WHITE);
-		this.btnImportXml.setBackground(Color.WHITE);
+		this.btnImporter.setBackground(Color.GRAY);
+		this.btnEditer.setBackground(Color.GREEN);
+		this.btnQuitter.setBackground(Color.RED);
+		this.btnImportXml.setBackground(Color.ORANGE);
 
 		panelPtn.add(this.btnImporter);
-		panelPtn.add(this.btnEditer);
 		panelPtn.add(this.btnImportXml);
+		panelPtn.add(this.btnEditer);
 		panelPtn.add(this.btnQuitter);
+
+		panelPtn.setOpaque(false);
 		
 		this.add(panelPtn);
 
@@ -78,6 +86,25 @@ public class PanelDispoBtn extends JPanel implements ActionListener
 		this.btnImporter.addActionListener(this);
 		this.btnQuitter.addActionListener(this);	
 		this.btnImportXml.addActionListener(this);
+	}
+
+	public void paintComponent(Graphics g)
+	{
+		super.paintComponent(g);
+
+		Graphics2D g2d = (Graphics2D) g;
+		
+		g2d.setColor(Color.BLACK);
+		g2d.setFont(new Font("Georgia", Font.BOLD, 30));		
+		g2d.drawString("Generateur de Mappe", this.getHeight()/3,50);
+
+		try {
+			g.drawImage(ImageIO.read(new File("donnee\\fond.png")), 0, this.getHeight()/8,null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 
@@ -112,7 +139,6 @@ public class PanelDispoBtn extends JPanel implements ActionListener
 			if(res == JFileChooser.APPROVE_OPTION)
 			{
 				File file = jFileChooser.getSelectedFile();
-				
 				
 			}
 

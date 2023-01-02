@@ -42,8 +42,9 @@ public class PanelImageImporter extends JPanel
 	{		
 		this.ctrl = ctrl;
 		this.setLayout(new BorderLayout(0,10));
+		this.initRepertoireImporte();	
 		
-		this.initRepertoireImporte();		
+		this.setBackground(Color.WHITE);
 
 		PanelImageInfo[] tabPanelAffichageImporte = new PanelImageInfo[this.repertoireImage.length];
 		JPanel panelDispoAffichage =new JPanel(new GridLayout(tabPanelAffichageImporte.length-1,1));
