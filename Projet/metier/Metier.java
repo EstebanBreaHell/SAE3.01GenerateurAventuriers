@@ -29,6 +29,10 @@ public class Metier
 
     private ArrayList<String> lstCouleurJoueur;
     private HashMap<String, Integer> hsmCouleurWagon;
+    private HashMap<String, String> hsmImageWagon;
+    private String versoCarteObjectif;
+    private String versoCarteWagon;
+
     
 	private int nbJoueurMax, nbJoueurMinDoubleArete , nbWagonDebutPartie ,nbWagonFinPartie , nbPointsPlusLongChemin ;
 
@@ -43,6 +47,7 @@ public class Metier
 
         this.lstCouleurJoueur = new ArrayList<String>();
         this.hsmCouleurWagon = new HashMap<String, Integer>();
+        this.hsmImageWagon = new HashMap<String, String>();
 
         
 
@@ -85,6 +90,14 @@ public class Metier
         this.hsmCouleurWagon = lstCouleurWagon;
     }
 
+    public void setHsmImageWagon(HashMap<String, String> hsmImageWagon) {
+        this.hsmImageWagon = hsmImageWagon;
+    }
+
+    public void setVersoCarteWagon(String versoCarteWagon){
+        this.versoCarteWagon = versoCarteWagon;
+    }
+
 
 
 
@@ -116,11 +129,24 @@ public class Metier
         return hsmCouleurWagon;
     }
 
+    public HashMap<String, String> getHsmImageWagon() {
+        return hsmImageWagon;
+    }
+
+    public String getVersoCarteWagon(){
+        return this.versoCarteWagon;
+    }
+
     public void ecrireXml()
     {
+        ArrayList<String> lslTmpCouleurWagon = new ArrayList<String>();
+        for( Arete a : this.lstArete )
+        {
+            lslTmpCouleurWagon.add(a.getCouleur());
+        }
         try
         {
-            PrintWriter pw = new PrintWriter( new FileOutputStream( "./sortie/carteTest.xml") );
+            PrintWriter pw = new PrintWriter( new FileOutputStream( "./data_user/carteTest.xml") );
             pw.println("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>");
             pw.println("<infos>");
 
@@ -141,7 +167,7 @@ public class Metier
                 pw.println ( "\t\t<arete>" );
 
                 pw.println ( "\t\t\t<noeudArr>" + this.lstNoeud.indexOf(a.getNoeudDep()) + "</noeudArr>" );
-                pw.println ( "\t\t\t<noeudDep>" + this.lstNoeud.indexOf(a.getNoeudDep())+ "</noeudDep>" );
+                pw.println ( "\t\t\t<noeudDep>" + this.lstNoeud.indexOf(a.getNoeudArr())+ "</noeudDep>" );
                 pw.println ( "\t\t\t<couleur>" + a.getCouleur() + "</couleur>" );
                // pw.println ( "\t\t<couleurRGB>" + a.getCouleur().getRGB() + " </couleurRGB>" );
                 pw.println ( "\t\t\t<wagons>" + a.getWagon() + "</wagons>" );
@@ -165,7 +191,20 @@ public class Metier
             }
             */
 
-            pw.println ( "\t\t<carteWagon>" );
+            for(String c : this.hsmCouleurWagon.keySet())
+            {
+                if(lslTmpCouleurWagon.contains(c) || c.equals("Joker"))
+                {
+                    pw.println ( "\t\t<carteWagon>" );
+
+                    pw.println ( "\t\t\t<couleur>" + c + "</couleur>" );
+                    pw.println ( "\t\t\t<nombre>" + this.hsmCouleurWagon.get(c) + "</nombre>" );
+                    pw.println ( "\t\t\t<recto>" + this.hsmImageWagon.get(c) + "</recto>" );
+
+
+                    pw.println ("\t\t</carteWagon>");
+                }
+            }
 
             /* 
             for( CarteWagon cw : lstCarteWagon )
@@ -183,9 +222,12 @@ public class Metier
 
             pw.println ( "\t<details>" );
 
-            pw.println ( "\t\t<nbJoueurMin>"+ this.nbJoueurMinDoubleArete + "</nbJoueurMin>" );
+            pw.println ( "\t\t<nbJoueurMinDoubleArete>"+ this.nbJoueurMinDoubleArete + "</nbJoueurMinDoubleArete>" );
             pw.println ( "\t\t<nbJoueurMax>"+ this.nbJoueurMax + "</nbJoueurMax>" );
             pw.println ( "\t\t<nbWagonDebutPartie>"+ this.nbWagonDebutPartie + "</nbWagonDebutPartie>" );
+            pw.println ( "\t\t<nbWagonFinPartie>"+ this.nbWagonFinPartie + "</nbWagonFinPartie>" );
+            pw.println ( "\t\t<nbPointsPlusLongChemin>"+ this.nbPointsPlusLongChemin + "</nbPointsPlusLongChemin>" );
+            pw.println ( "\t\t<versoCarteWagon>"+ this.versoCarteWagon + "</versoCarteWagon>" );
 
             pw.println ( "\t</details>" );
 

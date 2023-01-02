@@ -163,6 +163,7 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 			if(couleur != null)
 			{
 				this.hashCoulNbCarte.put(couleur, Integer.parseInt(this.txtNbCarte.getText()));
+				this.ctrl.setHsmCouleurWagon(this.hashCoulNbCarte);
 				this.jd.dispose();
 			}
 		}
@@ -250,13 +251,16 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 
 			this.nomVerso = this.ctrl.getPanelSelectionner().getNomfichier();
 			this.lblNomVerso.setText(this.nomVerso);
+			this.ctrl.setVersoCarteWagon(this.nomVerso);
 			this.jdImporte.dispose();
+
 		}
 
 		if(e.getSource() == this.btnValidImporteRecto)
 		{
 			this.hashCoulImage.put(this.lstCouleur.getSelectedValue(),this.ctrl.getPanelSelectionner().getNomfichier());
 			this.lblNomRecto.setText("Recto : "+this.ctrl.getPanelSelectionner().getNomfichier());
+			this.ctrl.setHsmImageWagon(this.hashCoulImage);
 			this.jdImporte.dispose();
 		}
 		if(e.getSource() == this.btnImporte)
