@@ -20,7 +20,6 @@ import java.util.Random;
 
 import main.Controleur;
 import metier.Noeud;
-import ihm.sectioncreer.PanelGraphique;
 
 public class PanelCreerNoeud extends JPanel implements ActionListener, MouseListener
 {
@@ -195,7 +194,6 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 			}
 		});
 
-		
 		this.txtPosXModif.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();

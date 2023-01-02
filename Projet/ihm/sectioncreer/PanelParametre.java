@@ -10,67 +10,30 @@ package ihm.sectioncreer;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.util.ArrayList;
+import javax.swing.table.DefaultTableCellRenderer;
 
 import main.Controleur;
 
 public class PanelParametre extends JPanel implements ActionListener
 {
-	private JTextField txtNbJoueursMinAreteDouble;
+	private JTextField txtNbJoueursMin;	
 	private JTextField txtNbJoueursMax;
-	private JTextField txtNbWagonDebutPartie;
-	private JTextField txtNbWagonFinDePartie;
-	private JTextField txtNbPlusLongChemain;
-
-	private JLabel lblNbJoueursMinAreteDouble;
-	private JLabel lblNbJoueursMax;
-	private JLabel lblNbWagonDebutPartie;
-	private JLabel lblNbWagonFinDePartie;
-	private JLabel lblCouleurJoueur;
-	
+	private JTextField txtNbCartesJoueurs;	
+	private JTextField txtNbCouleurs;
+	private JTextField txtNbJoueursMinAreteDouble;
+	private JTextField txtNbPlusLongChemin;
+	private JTextField txtNom;
+	private JTextField txtNomMoyenDeTransport;
+	private JTextField txtFinDePartie;
 	private JButton btnValider;
-	private JButton btnGenereXml;
-	private JButton btnJdCouleur;
-	private JButton btnValiderCouleurJoueur;
-	private JButton btnAjouterCouleurJoueur;
-	private JButton btnSupprimerCouleurJoueur;
+	private JButton btnConfirmer;
 
 	private JCheckBox chbPlusLongueRoute;
-
-
-	private JDialog jdCouleur;
-	private Container container;
-	private JList<String> lstCouleurJoueur;
-	private ArrayList<String> arrayCouleurJoueur;
-	private JScrollPane scrollPaneCouleurJoueur;
-	private JPanel panelLstCouleurJoueur;
-	private JPanel panelCouleurBtn;
-
-
-
-
-	private JPanel panelParametre;
-
-	/*
-	 * 
-	 * le nombre maximum de joueurs pouvant jouer autour du plateau FAIT
-	 * le nombre minimum de joueurs pour accéder aux voies doubles  FAIT 																																																																															
-	 * le nombre de wagons attribués aux joueurs en début de partie FAIT																																									
-	 * à partir de combien de wagons restant dans la main d’un joueur, la fin de partie est déclenchée. FAIT
-	 * Faut encore reglé tout avec les couleur des joeuur FAIT
-	 * 	Géré le cas de la route la plus grande FAIT																	
-	 * 	TODO																																						
-	 * 
-	 * 
-	 * Géré le nombre de points par taille de route :) 
-	 * 
-	 */
+	private JDialog jd;
 
 	private Controleur ctrl;
 
-
-
-	private String[][] donnees = {
+	private Object[][] donnees = {
 								{"1", "1",},
 								{"2", "2",},
 								{"3", "4",},
@@ -78,7 +41,7 @@ public class PanelParametre extends JPanel implements ActionListener
 								{"5", "10",},
 								{"6", "15",},};
 
-
+	private String[] entetes = {"Longueur de la route", "Points marqués"};
 	
 	public PanelParametre(Controleur ctrl)
 	{
@@ -87,64 +50,224 @@ public class PanelParametre extends JPanel implements ActionListener
 		 */
 		this.ctrl = ctrl; 
 		this.setLayout(new BorderLayout());
-		this.panelParametre = new JPanel(new GridLayout(6,2, 15, 15));
 
-		this.lstCouleurJoueur = new JList<String>();
-		this.arrayCouleurJoueur = new ArrayList<String>();
-		
+		JPanel panelDetail 		= new JPanel(new GridLayout(11,4,0,10));
+		JPanel panelChoixCarte	= new JPanel(null);
+		JPanel panelBas			= new JPanel(new GridLayout(1,3,10,10));
+		JPanel panelTableau		= new JPanel(new BorderLayout());
 
-		this.txtNbJoueursMinAreteDouble = new JTextField(""+this.ctrl.getNbJoueurMinDoubleArete());
-		this.txtNbJoueursMax = new JTextField(""+this.ctrl.getNbJoueurMax());
-		this.txtNbWagonDebutPartie = new JTextField(""+this.ctrl.getNbWagonDebutPartie());
-		this.txtNbWagonFinDePartie = new JTextField(""+this.ctrl.getNbWagonFinPartie());
-		this.btnJdCouleur= new JButton("Couleur Joueur");
-		this.txtNbPlusLongChemain = new JTextField(""+this.ctrl.getNbPointsPlusLongChemin());
+		DefaultTableCellRenderer custom = new DefaultTableCellRenderer();
+		custom.setHorizontalAlignment(JLabel.CENTER);
 
+		this.txtNbJoueursMin 			= new JTextField("1");
+		this.txtNbJoueursMax 			= new JTextField();
+		this.txtNbCartesJoueurs 		= new JTextField("1");
+		this.txtNomMoyenDeTransport		= new JTextField("voiture,vélo,wagon");
+		this.txtNbCouleurs				= new JTextField("1");
+		this.txtNom						= new JTextField(("route,piste cyclable,rails"));
+		this.txtFinDePartie				= new JTextField();
+		this.btnValider 				= new JButton("Générer XML");
+		this.btnConfirmer 				= new JButton("Confirmer");
+		this.chbPlusLongueRoute 		= new JCheckBox("Chemin le plus long");
+		this.txtNbJoueursMinAreteDouble = new JTextField();
+		this.txtNbPlusLongChemin 		= new JTextField(" " + this.ctrl.getNbPointsPlusLongChemin());
 
-		this.lblNbJoueursMinAreteDouble = new JLabel("Nombre de joueurs minimum pour avoir une arete double");
-		this.lblNbJoueursMax = new JLabel("Nombre de joueurs maximum");
-		this.lblNbWagonDebutPartie = new JLabel("Nombre de wagon au debut de la partie");
-		this.lblNbWagonFinDePartie = new JLabel("Nombre de wagon pour déclancé la fin de partie");
-		this.lblCouleurJoueur = new JLabel("Couleur des joueurs");
-		this.chbPlusLongueRoute = new JCheckBox("Règle du chemain le plus long");
+		JLabel lblNbJoueursMin 				= new JLabel("Nb joueurs minimum : ");
+		JLabel lblNbJoueursMax 				= new JLabel("Nb joueurs maximum : ");
+		JLabel lblNbCartesJoueurs 			= new JLabel("Nb cartes / joueur : ");
+		JLabel lblPoints     				= new JLabel("Barême des points : ");
+		JLabel lblCouleur		 			= new JLabel("Nb couleurs : ");
+		JLabel lblNom 						= new JLabel("Type arête :");
+		JLabel lblNomMoyenDeTransport 		= new JLabel("Type moyen de transport :");
+		JLabel lblFinDePartie				= new JLabel("Arrêter la partie à : ");
+		JLabel lblMoyenDeTransport			= new JLabel("  " + this.txtNomMoyenDeTransport.getText() + "...");
+		JLabel lblNbJoueursMinAreteDouble	= new JLabel("Nb joueurs arête double : ");
 
+		JTable tableau = new JTable(donnees, entetes);
 
-		this.btnValider = new JButton("Valider");
-		this.btnGenereXml = new JButton("Générer le fichier XML");
+		this.jd = new JDialog();
+		jd.setTitle("Choix des couleurs pour chaque joueur");
+	
+		/**
+		 * Rendre les éléments du tableau des scores éditables
+		 */
+		for(int i = 0; i < tableau.getColumnCount(); i++)
+		{
+			tableau.getColumnModel().getColumn(i).setCellRenderer(custom);
+		}
 
+		/**
+		 * Ajout d'une bordure et d'une couleur aux éléments
+		 * Utilisation de setBounds() pour les positionner manuellement 
+		 */ 
+		this.btnValider.setBackground(Color.WHITE);
+		this.txtNom.setForeground(Color.GRAY);
+		this.txtNomMoyenDeTransport.setForeground(Color.GRAY);
 
+		this.txtNbCartesJoueurs.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.txtNbJoueursMin.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.txtNbJoueursMax.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.txtNbCouleurs.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.txtNom.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.txtNomMoyenDeTransport.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.txtFinDePartie.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.txtNbJoueursMinAreteDouble.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.txtNbPlusLongChemin.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+		lblPoints			.setBounds(  0,  -100,250, 250);
+		panelTableau		.setBounds( 50,  100,400, 117);
+		this.jd				.setBounds(900,  300,500, 400); 
+
+		/**
+		 * Ajout des composants dans chaque panel
+		 */
+		for(int i = 1; i <= 4; i++)
+			panelDetail.add(new JLabel());
+
+		panelDetail.add(lblNbJoueursMin);
+		panelDetail.add(new JLabel());
+		panelDetail.add(this.txtNbJoueursMin);
+		panelDetail.add(new JLabel());
+
+		panelDetail.add(lblNbJoueursMax);
+		panelDetail.add(new JLabel());
+		panelDetail.add(this.txtNbJoueursMax);
+		panelDetail.add(new JLabel());
+
+		panelDetail.add(lblNbCartesJoueurs);
+		panelDetail.add(new JLabel());
+		panelDetail.add(this.txtNbCartesJoueurs);
+		panelDetail.add(new JLabel());
+
+		panelDetail.add(lblCouleur);
+		panelDetail.add(new JLabel());
+		panelDetail.add(this.txtNbCouleurs);
+		panelDetail.add(new JLabel());
+	
+		panelDetail.add(lblNom);
+		panelDetail.add(new JLabel());
+		panelDetail.add(this.txtNom);
+		panelDetail.add(new JLabel());
+
+		panelDetail.add(lblNomMoyenDeTransport);
+		panelDetail.add(new JLabel());
+		panelDetail.add(this.txtNomMoyenDeTransport);
+		panelDetail.add(new JLabel());
+
+		panelDetail.add(lblFinDePartie);
+		panelDetail.add(new JLabel());
+		panelDetail.add(this.txtFinDePartie);
+		panelDetail.add(lblMoyenDeTransport);
+
+		panelDetail.add(lblNbJoueursMinAreteDouble);
+		panelDetail.add(new JLabel());
+		panelDetail.add(this.txtNbJoueursMinAreteDouble);
+		panelDetail.add(new JLabel());
+
+		panelDetail.add(this.chbPlusLongueRoute);
+		panelDetail.add(new JLabel());
+		panelDetail.add(this.txtNbPlusLongChemin);
+
+		panelChoixCarte.add(lblPoints);
+		panelChoixCarte.add(panelTableau);
+		panelTableau.add(tableau.getTableHeader(), BorderLayout.NORTH);
+		panelTableau.add(tableau, BorderLayout.CENTER);
+
+		panelBas.add(new JLabel());
+		panelBas.add(this.btnValider);
+		panelBas.add(new JLabel());
+
+		this.add(panelDetail, BorderLayout.NORTH);
+		this.add(panelChoixCarte, BorderLayout.CENTER);
+		this.add(panelBas, BorderLayout.SOUTH);
+
+		/**
+		 * Activation des composants
+		 */
 		this.btnValider.addActionListener(this);
-		this.btnGenereXml.addActionListener(this);
-		this.btnJdCouleur.addActionListener(this);
-		this.chbPlusLongueRoute.addActionListener(this);
+		this.btnConfirmer.addActionListener(this);
 
+		/**
+		 * Gestion des évènements, à optimiser
+		 */
+		this.txtNbJoueursMax.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+					e.consume();
+				}
+			}
+		});
 
-		this.panelParametre.add(this.lblNbJoueursMinAreteDouble);
-		this.panelParametre.add(this.txtNbJoueursMinAreteDouble);
+		this.txtNbJoueursMin.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+					e.consume();
+				}
+			}
+		});
 
-		this.panelParametre.add(this.lblNbJoueursMax);
-		this.panelParametre.add(this.txtNbJoueursMax);
+		this.txtNbCartesJoueurs.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+					e.consume();
+				}
+			}
+		});
 
-		this.panelParametre.add(this.lblNbWagonDebutPartie);
-		this.panelParametre.add(this.txtNbWagonDebutPartie);
+		this.txtNbCouleurs.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+					e.consume();
+				}
+			}
+		});
 
-		this.panelParametre.add(this.lblNbWagonFinDePartie);
-		this.panelParametre.add(this.txtNbWagonFinDePartie);
+		this.txtNom.addFocusListener(new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(!(txtNom.getText().isEmpty()))
+				{
+					txtNom.getText();
+				}
 
-		this.panelParametre.add(this.chbPlusLongueRoute);
-		this.panelParametre.add(this.txtNbPlusLongChemain);
+				if(txtNom.getText().equals("route,piste cyclable,rails"))
+				{
+					txtNom.setText("");
+					txtNom.setForeground(Color.BLACK);
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {}
+		});
 
-		this.panelParametre.add(this.lblCouleurJoueur);
-		this.panelParametre.add(this.btnJdCouleur);
+		this.txtNomMoyenDeTransport.addFocusListener(new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(!(txtNomMoyenDeTransport.getText().isEmpty()))
+				{
+					txtNomMoyenDeTransport.getText();
+				}
 
-		this.txtNbPlusLongChemain.setEnabled(false);
-
-		this.add(this.panelParametre, BorderLayout.CENTER);
-		this.add(this.btnValider, BorderLayout.SOUTH);
-		this.add(this.btnGenereXml, BorderLayout.NORTH);
-		
+				if(txtNomMoyenDeTransport.getText().equals("voiture,vélo,wagon"))
+				{
+					txtNomMoyenDeTransport.setText("");
+					txtNomMoyenDeTransport.setForeground(Color.BLACK);
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {}
+		});
 	}
 
+	public void actionPerformed(ActionEvent e )
+	{
+		
+	}
+	/*
 	public void actionPerformed(ActionEvent e)
 	{
 		if(this.chbPlusLongueRoute.isSelected())
@@ -255,5 +378,5 @@ public class PanelParametre extends JPanel implements ActionListener
 
 
 
-	
+	*/
 }
