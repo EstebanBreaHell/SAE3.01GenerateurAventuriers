@@ -58,7 +58,6 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 	private JPanel panelLstCouleur;
 	private JPanel panelBouton;
 	private JPanel panelJd;
-	private JPanel panelJdImporte;
 
 	private JScrollPane scrollPaneCouleur;
 
@@ -174,6 +173,7 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 				this.hashCoulNbCarte.put(couleur, Integer.parseInt(this.txtNbCarte.getText()));
 				this.ctrl.setHsmCouleurWagon(this.hashCoulNbCarte);
 				this.jd.dispose();
+
 			}
 			else
 			{
@@ -194,8 +194,6 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 			this.jdImporte = new JDialog();
 			this.jdImporte.setTitle("Modifier la carte de couleur");	
 			this.jdImporte.setBounds(900, 300, 500, 400);
-
-			this.panelJdImporte = new JPanel();
 
 			try 
 			{

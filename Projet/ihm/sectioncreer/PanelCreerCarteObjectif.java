@@ -86,7 +86,8 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		this.lblImageArriere = new JLabel(Controleur.imageToIcon("data_user\\non_definie.png", 200, 100));
 
 		this.txtNbPoint = new JTextField(2);
-		this.txtNbPoint.setText(0 +"");
+		this.txtNbPoint.setText(0 + "");
+		this.txtNbPoint.setHorizontalAlignment(JTextField.CENTER);
 			
 		this.btnHistoriqueCarte = new JButton("Historique des cartes");
 		this.btnCreerCarte = new JButton("Créer carte");
@@ -100,7 +101,7 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		JPanel panelDispoListeApercu = new JPanel(new GridLayout(2,1));
 
 		JPanel panelDispoListe = new JPanel(new BorderLayout());
-		JPanel panelDispoGestionPoint = new JPanel(new BorderLayout(0,100));
+		JPanel panelDispoGestionPoint = new JPanel(new BorderLayout(10,0));
 
 		JPanel panelDispoApercu = new JPanel(new GridLayout(1,2,10,10));
 	
@@ -159,6 +160,17 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		this.txtNbPoint			.addActionListener(this);
 		this.lstNoeud1			.addMouseListener(new InputSourie());
 		this.lstNoeud2			.addMouseListener(new InputSourie());
+
+
+		this.txtNbPoint.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) 
+				{
+					e.consume();
+				}
+			}
+		});
 	}
 
 	public void setImageArriere(String pathImg)
@@ -218,7 +230,7 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 			JDialog popUpHistoirque = new JDialog();
 			String[] repertoireCarteObjectif = this.getPathCartObjectifCreer();
 
-			popUpHistoirque.setTitle("Histoirique des carte objectif de " + this.ctrl.getPathImg().substring(8));
+			popUpHistoirque.setTitle("Historique des cartes objectif de " + this.ctrl.getPathImg().substring(8));
 			if(repertoireCarteObjectif == null)	popUpHistoirque.add(new JLabel("Le dossier carte objectif de" + this.ctrl.getPathImg().substring(8) + " est vide"),JLabel.CENTER);
 			else
 			{
