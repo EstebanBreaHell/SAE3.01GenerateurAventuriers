@@ -1,3 +1,9 @@
+/**
+ * @author Lefort William, Decharrois Adrien, Brea-Hell Esteban
+ * @version 1.0
+ * @date 2019-03-20
+ */
+
 package ihm.sectioninit;
 
 import javax.swing.Icon;
@@ -54,7 +60,5 @@ public class PanelImageInfo extends JPanel implements ActionListener
 		{
 			this.ctrl.panelSelectionner(this);
 		}
-		
 	}
-	
 }

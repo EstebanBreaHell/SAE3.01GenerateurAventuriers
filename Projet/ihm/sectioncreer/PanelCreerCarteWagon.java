@@ -1,3 +1,9 @@
+/**
+ * @author Lefort William, Decharrois Adrien, Brea-Hell Esteban
+ * @version 1.0
+ * @date 2019-03-20
+ */
+
 package ihm.sectioncreer;
 
 import javax.swing.JButton;
@@ -49,16 +55,12 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 
 	private JDialog jdImporte;
 	
-
-
 	private JPanel panelLstCouleur;
 	private JPanel panelBouton;
 	private JPanel panelJd;
 	private JPanel panelJdImporte;
 
-
 	private JScrollPane scrollPaneCouleur;
-
 
 	private JTextField txtNbCarte;
 	private JLabel lblNomRecto;
@@ -74,7 +76,9 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 	private JButton btnValidImporteVerso;
 
 	public PanelCreerCarteWagon(Controleur ctrl)
-	{
+	{dif.getText());
+303
+      int xNom = Integer.parseInt(this.txtPosXnom.getText());
 		/**
 		 * Création des composants
 		 */
@@ -93,14 +97,7 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 		this.nomVerso = "Aucun verso choisit";
 		this.lblNomVerso = new JLabel(this.nomVerso);
 
-		System.out.println("Sheeeeesh");
-		for(String s : this.hashCoulNbCarte.keySet())
-			System.out.println(s+" : "+ this.hashCoulNbCarte.get(s));
 
-		for(String s : this.hashCoulImage.keySet())
-			System.out.println(s+" : "+ this.hashCoulImage.get(s));
-
-		System.out.println("Fin du sheeeeesh");
 		this.panelLstCouleur = new JPanel();
 		this.panelLstCouleur.setBackground(Color.WHITE);
 		
@@ -109,7 +106,6 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 
 		this.scrollPaneCouleur = new JScrollPane(this.panelLstCouleur);
 
-	
 		if(!this.lstCouleurTmp.contains("Joker"))
 			this.lstCouleurTmp.add("Joker");
 		for(Arete a : this.lstArete)
@@ -127,15 +123,13 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 
 		this.lstCouleur.setListData(this.lstCouleurTmp.toArray(new String[this.lstCouleurTmp.size()]));
 
-
-		//this.lstCouleur.setListData(this.lstCouleurTmp.toArray(new String[this.lstCouleurTmp.size()]));
-		
 		this.btnModifierMotif = new JButton("Modifier le Verso");
 
 		this.btnModifierMotif.addActionListener(this);
 		this.lstCouleur.setBackground(Color.WHITE);
 		this.lstCouleur.setForeground(Color.BLACK);
 		this.lstCouleur.addMouseListener(this);
+
 		/**
 		 * Ajout des composants
 		 */
@@ -146,9 +140,6 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 
 		this.add(this.panelBouton      , BorderLayout.NORTH);
 		this.add(this.scrollPaneCouleur, BorderLayout.CENTER);
-		
-
-
 	}
 
 	public void majIHM()
@@ -196,31 +187,24 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 
 			this.panelJdImporte = new JPanel();
 
-			try 	{
+			try 
+			{
 				Files.createDirectories(Paths.get("importe/imageCarte"));
 			} 
 			catch (IOException ee) 	{ee.printStackTrace();}
 
 			this.repertoireImage = new File(Paths.get("importe/imageCarte").toFile().getAbsolutePath()).list();
 
-			
-
-			
 			PanelImageInfo[] tabPanelAffichageImporte = new PanelImageInfo[this.repertoireImage.length];
 			JPanel panelDispoAffichage =new JPanel(new GridLayout(tabPanelAffichageImporte.length,1));
 
 			for (int index = 0; index < tabPanelAffichageImporte.length; index++)
 			{
-				
-				//System.out.println(this.repertoireImage[index]);
 				tabPanelAffichageImporte[index] = new PanelImageInfo(this.ctrl,"imageCarte/"+this.repertoireImage[index]);
-	
 				panelDispoAffichage.add(tabPanelAffichageImporte[index]);
-			
 			}
 
 			this.scrollPaneImporte = new JScrollPane(panelDispoAffichage, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-			//this.scrollPaneImporte.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 
 			this.jdImporte.add(new JLabel("Liste des images de Carte importées",JLabel.CENTER),BorderLayout.NORTH);
 			this.jdImporte.add(this.scrollPaneImporte);
@@ -241,31 +225,24 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 
 			this.panelJdImporte = new JPanel();
 
-			try 	{
+			try 
+			{
 				Files.createDirectories(Paths.get("importe/imageCarte"));
 			} 
 			catch (IOException ee) 	{ee.printStackTrace();}
 
 			this.repertoireImage = new File(Paths.get("importe/imageCarte").toFile().getAbsolutePath()).list();
 
-			
-
-			
 			PanelImageInfo[] tabPanelAffichageImporte = new PanelImageInfo[this.repertoireImage.length];
 			JPanel panelDispoAffichage =new JPanel(new GridLayout(tabPanelAffichageImporte.length,1));
 
 			for (int index = 0; index < tabPanelAffichageImporte.length; index++)
 			{
-				
-				//System.out.println(this.repertoireImage[index]);
 				tabPanelAffichageImporte[index] = new PanelImageInfo(this.ctrl,"imageCarte/"+this.repertoireImage[index]);
-	
 				panelDispoAffichage.add(tabPanelAffichageImporte[index]);
-			
 			}
 
 			this.scrollPaneImporte = new JScrollPane(panelDispoAffichage, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-			//this.scrollPaneImporte.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 
 			this.jdImporte.add(new JLabel("Liste des images de Carte importées",JLabel.CENTER),BorderLayout.NORTH);
 			this.jdImporte.add(this.scrollPaneImporte);
@@ -276,14 +253,10 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 
 		if(e.getSource() == btnValidImporteVerso)
 		{
-
-			
 			//Print l'élémenet séléctionné parmis la lst des image
-
 			System.out.println(this.ctrl.getPanelSelectionner().getNomfichier());
 
 			this.nomVerso = this.ctrl.getPanelSelectionner().getNomfichier();
-			//this.ctrl.getPanelSelectionner().setNomfichier();
 			this.lblNomVerso.setText(this.nomVerso);
 			this.ctrl.setVersoCarteWagon(this.nomVerso);
 			this.jdImporte.dispose();
@@ -297,17 +270,8 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 			this.ctrl.setHsmImageWagon(this.hashCoulImage);
 			this.jdImporte.dispose();
 		}
-
-
-		
-
 		if(e.getSource() == this.btnImporte)
 		{
-			
-
-			
-
-			
 			FileNameExtensionFilter filtre = new FileNameExtensionFilter("format image(*.png; *.jpg; *.gif)", "png","jpg","gif");
 			JFileChooser jFileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 
@@ -325,9 +289,6 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 		}
 	}
 
-		
-	
-	
 	public void mouseClicked(MouseEvent e) {
 
 		if(e.getClickCount() == 2)
@@ -344,23 +305,15 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 				this.txtNbCarte = new JTextField(""+ this.hashCoulNbCarte.get(couleur));
 				String recto = this.hashCoulImage.get(couleur);
 				JButton btnCouleur = new JButton();
-				//couleur = "[r=xxx,g=xxx,b=xxx]"
+
 				if(! couleur.equals("Joker"))
 				{
 					String[] tabCouleur = couleur.split(",");
 					int r = Integer.parseInt(tabCouleur[0].substring(3));
 					int g = Integer.parseInt(tabCouleur[1].substring(2));
 					int b = Integer.parseInt(tabCouleur[2].substring(2,tabCouleur[2].length()-1));
-				
-
-
 					btnCouleur.setBackground(new Color(r,g,b));
 				}
-
-
-				
-				
-
 
 				this.modifieRecto = new JButton("Importe le recto");
 				this.btnConfirme  = new JButton("Confirme");
@@ -375,15 +328,12 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 				this.panelJd.add(this.modifieRecto);
 				this.panelJd.add(new JLabel("Nombre de carte"));
 				this.panelJd.add(this.txtNbCarte);
-				//this.panelJd.add(this.btnConfirme);
 
 				this.jd.add(this.panelJd);
 				this.jd.add(this.btnConfirme, BorderLayout.SOUTH);
 				/*Print la hashmap*/
 				
 				
-			
-
 				this.jd.setVisible(true);
 
 				//int nbCarte = this.hashCoulNbCarte.get(couleur);
@@ -392,11 +342,8 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 
 				//this.ctrl.creerCarteWagon(couleur, nbCarte);
 			}
-
-
 		}
 	}
-
 
 	public void mousePressed(MouseEvent e) {}
 	
@@ -405,7 +352,4 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 	public void mouseEntered(MouseEvent e) {}
 	
 	public void mouseExited(MouseEvent e) {}
-
-	
-
 }

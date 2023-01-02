@@ -1,3 +1,9 @@
+/**
+ * @author Lefort William, Decharrois Adrien, Brea-Hell Esteban
+ * @version 1.0
+ * @date 2019-03-20
+ */
+
 package ihm.sectioncreer;
 
 import java.awt.BorderLayout;
@@ -9,7 +15,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.BasicStroke;
-import java.awt.Dimension;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -19,7 +24,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import main.Controleur;
-import metier.Noeud;
 
 public class PanelApercuFace extends JPanel implements ActionListener
 {
@@ -51,11 +55,7 @@ public class PanelApercuFace extends JPanel implements ActionListener
 
 	public PanelGraphiqueFace getPanelGraphiqueFace(){return this.panelGraphiqueFace;}
 
-	public void setNbPoint(int nbPoint) 
-	{
-		System.out.println(nbPoint);	
-		this.panelGraphiqueFace.setNbPoint(nbPoint);
-	}
+	public void setNbPoint(int nbPoint) {this.panelGraphiqueFace.setNbPoint(nbPoint);}
 
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -95,6 +95,7 @@ public class PanelApercuFace extends JPanel implements ActionListener
 			this.nomNoeud2 = nomNoeud2;
 
 			this.nbPoint = nbPoint;
+			
 		}
 
 		public void setNbPoint(int nbPoint)
@@ -124,25 +125,31 @@ public class PanelApercuFace extends JPanel implements ActionListener
 			try   {img = ImageIO.read(new File(PanelGraphiqueFace.pathImg));} 
 			catch (IOException e) {e.printStackTrace();}
 
+			System.out.println("Avant x = " + this.getWidth() + " y = " + this.getHeight());
+			System.out.println("Après x = " + this.getWidth()/4 + " y = " + this.getHeight()/3);
+
+			System.out.println("coordonnée de " + this.nomNoeud1 + " x = " + (this.x1*0.25 + this.getWidth()/4) +" y = " + (this.y1*0.33 + this.getHeight()/3));
+
 			g.drawImage(img.getScaledInstance(200,100, Image.SCALE_DEFAULT),this.getWidth()/4,this.getHeight()/3, this);
 			
 			g2d.setColor(Color.WHITE);
 			g2d.setStroke(new BasicStroke(5.0f));
 			g2d.drawRect(this.getWidth()/4,this.getHeight()/3,200,100);
 	
-			/*Desiner le nombre de point de la carte  */
+			/*Dessiner le nombre de point de la carte  */
 			g2d.fillArc(this.getWidth()/4 + 175,this.getHeight()/3-25,50,50,180,90);
 			g2d.setColor(Color.BLACK);
 			g2d.drawString(this.nbPoint + "", this.getWidth()/4 + 185,this.getHeight()/3+15);
 			
 
-			g2d.fillOval( this.x1/4 + 50 +10, this.y2/3+50+50, 10, 10);
+			g2d.fillOval((int)((this.x1+200)*0.25) ,(int)((this.y1+100)*0.33), 10, 10);
 
 			g2d.setColor(Color.white);
-			g2d.fillRect(this.x1/4 +50 + 10, this.y2/3 + 50+30, 40, 15);
+			g2d.fillRect((int)(this.x1*0.25),(int)(this.y1*0.33), 40, 15);
 			g2d.setColor(Color.BLACK);
-			g2d.drawString(this.nomNoeud1, this.x1/4+ 50 +10, this.y2/3+ 50 +40);
+			g2d.drawString(this.nomNoeud1, (int)(this.x1*0.25),(int)(this.y1*0.33));
 	
+			
 
 		}
 

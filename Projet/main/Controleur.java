@@ -254,6 +254,7 @@ public class Controleur
         return bi;
     }
 
+
     public void supprArete(int arete)
     {
         this.metier.supprArete(arete);

@@ -1,9 +1,14 @@
+/**
+ * @author Lefort William, Decharrois Adrien, Brea-Hell Esteban
+ * @version 1.0
+ * @date 2019-03-20
+ */
+
 package ihm.sectioncreer;
 
 import java.awt.BorderLayout;
 import java.util.List;
 
-import javax.swing.JList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
@@ -62,8 +67,6 @@ public class PanelGestionCreer extends JPanel
 		return this.panelCreerNoeud.getListHistorique();
 	}
 
-
-	
 	/**
 	 * Retourne le nom du noeud du panel créer
 	 * @return String
@@ -86,5 +89,4 @@ public class PanelGestionCreer extends JPanel
 		this.panelCreerCarteWagon.majIHM();
 		this.panelCreerCarteObjectif.majIHM();
 	}
-
 }

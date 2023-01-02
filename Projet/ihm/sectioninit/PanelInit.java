@@ -1,7 +1,12 @@
+/**
+ * @author Lefort William, Decharrois Adrien, Brea-Hell Esteban
+ * @version 1.0
+ * @date 2019-03-20
+ */
+
 package ihm.sectioninit;
 
 import javax.swing.JPanel;
-
 import java.awt.BorderLayout;
 
 import main.Controleur;

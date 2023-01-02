@@ -1,3 +1,9 @@
+/**
+ * @author Lefort William, Decharrois Adrien, Brea-Hell Esteban
+ * @version 1.0
+ * @date 2019-03-20
+ */
+
 package ihm.sectioncreer;
 
 import java.awt.*;
@@ -43,7 +49,6 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 
 	public PanelCreerArete(Controleur ctrl)
 	{
-
 		/**
 		 * Création des composants
 		 */
@@ -261,7 +266,6 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 			/*--------------------------------------*/
 
 			// Ajout de l'arête dans l'historique 
-
 			String couleurChoisie = new Color(this.container.getBackground().getRGB()).toString().replace("java.awt.Color", " RGB ");
 
 			this.lstLabel.add(new JLabel("L'arête relie "    + this.comboNoeud1.getSelectedItem()  + " à " + this.comboNoeud2.getSelectedItem()  
@@ -272,6 +276,7 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 			//java.awt.Color[r=238,g=238,b=238]
 			/*------------------------------------*/
 			String couleur = "";
+			
 			if(this.chbNeutre.isSelected())
 			{
 				couleur = "Neutre";
@@ -297,8 +302,6 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		}
 		else if(e.getSource() == this.btnGenererPrefait)
 		{
-
-			//java.awt.Color[r=0,g=0,b=255]
 			int n = this.ctrl.getLstNoeud().size();
 			n = (n*(n-1));
 			if(this.ctrl.getLstArete().size() == n)
@@ -339,8 +342,6 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		{
 
 			int n = this.listHistorique.getSelectedIndex();
-			//String couleur = new Color(this.containerUpdate.getBackground().getRGB()).toString();
-			//this.ctrl.getLstArete().get(n).setCouleur(couleur);
 			this.ctrl.getLstArete().get(n).setWagon(Integer.parseInt(this.txtDistanceUpdate.getText()));
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 			this.ctrl.majIHM();
@@ -366,13 +367,10 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 			jd.setBounds(900, 300, 500, 400); 
 			JPanel panelPopUp = new JPanel(new GridLayout(6,2,12,12));
 
-			
-			//panelPopUp.add(new JLabel("Noeud 1 : "));
-			
 			Arete a = this.ctrl.getLstArete().get(this.listHistorique.getSelectedIndex());
-			//panelPopUp.add(new JLabel("Distance : "));
-			this.txtDistanceUpdate.setText(""+a.getWagon());
-			//Set la couleur du container a la couleur de l'arete
+		
+
+			this.txtDistanceUpdate.setText("" + a.getWagon());
 			String c = a.getCouleur();
 
 			String[] tabCouleur = c.split(",");
@@ -380,17 +378,14 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 			int g = Integer.parseInt(tabCouleur[1].substring(2));
 			int b = Integer.parseInt(tabCouleur[2].substring(2,tabCouleur[2].length()-1));
 
-
-			//g.setColor(new Color(Integer.parseInt(rgb[0]), Integer.parseInt(rgb[1]), Integer.parseInt(rgb[2])));
-
 			this.containerUpdate.setBackground(new Color(r,g,b));
+
 			panelPopUp.add(this.containerUpdate);
 			panelPopUp.add(this.txtDistanceUpdate);
-			//panelPopUp.add(new JLabel ("De : "+ a.getNoeudDep().getNom() + " à " + a.getNoeudArr().getNom()));
 			panelPopUp.add(this.btnConfirmer);
+
 			jd.add(panelPopUp);
 			jd.setVisible(true);
-		
 		}
 	}
 
@@ -421,8 +416,6 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 
     } 
 
-	
-
 	/**
 	 * Permet de mettre à jour l'IHM
 	 */
@@ -431,13 +424,5 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		this.comboNoeud1.removeAllItems();
 		for(Noeud noeud : this.ctrl.getLstNoeud())
 			this.comboNoeud1.addItem(noeud);
-		
-		//this.comboNoeud1.addItem(n);
-		
-		/*
-		 * getNoeudDispo
-		 */
-		//this.comboNoeud2.addItem(ctrl.getNoeudDispo(n));
-		
 	}
 }
