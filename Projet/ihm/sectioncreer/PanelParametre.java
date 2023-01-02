@@ -70,7 +70,7 @@ public class PanelParametre extends JPanel implements ActionListener
 		this.btnConfirmer 				= new JButton("Confirmer");
 		this.chbPlusLongueRoute 		= new JCheckBox("Chemin le plus long");
 		this.txtNbJoueursMinAreteDouble = new JTextField();
-		this.txtNbPlusLongChemin 		= new JTextField(" " + this.ctrl.getNbPointsPlusLongChemin());
+		this.txtNbPlusLongChemin 		= new JTextField("" + this.ctrl.getNbPointsPlusLongChemin());
 
 		JLabel lblNbJoueursMin 				= new JLabel("Nb joueurs minimum : ");
 		JLabel lblNbJoueursMax 				= new JLabel("Nb joueurs maximum : ");
@@ -87,6 +87,7 @@ public class PanelParametre extends JPanel implements ActionListener
 
 		this.jd = new JDialog();
 		jd.setTitle("Choix des couleurs pour chaque joueur");
+		this.jd.setLayout(new BorderLayout());
 	
 		/**
 		 * Rendre les éléments du tableau des scores éditables
@@ -102,21 +103,22 @@ public class PanelParametre extends JPanel implements ActionListener
 		 */ 
 		this.btnValider.setBackground(Color.WHITE);
 		this.txtNom.setForeground(Color.GRAY);
+		this.chbPlusLongueRoute.setSelected(true);
 		this.txtNomMoyenDeTransport.setForeground(Color.GRAY);
 
-		this.txtNbCartesJoueurs.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		this.txtNbJoueursMin.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		this.txtNbJoueursMax.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		this.txtNbCouleurs.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		this.txtNom.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		this.txtNomMoyenDeTransport.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		this.txtFinDePartie.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		this.txtNbJoueursMinAreteDouble.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		this.txtNbPlusLongChemin.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.txtNbCartesJoueurs			.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.txtNbJoueursMin			.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.txtNbJoueursMax			.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.txtNbCouleurs				.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.txtNom						.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.txtNomMoyenDeTransport		.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.txtFinDePartie				.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.txtNbJoueursMinAreteDouble	.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.txtNbPlusLongChemin		.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
-		lblPoints			.setBounds(  0,  -100,250, 250);
-		panelTableau		.setBounds( 50,  100,400, 117);
-		this.jd				.setBounds(900,  300,500, 400); 
+		lblPoints	.setBounds(  0, -100,250, 250);
+		panelTableau.setBounds( 50,  100,400, 117);
+		this.jd		.setBounds(900,  300,500, 400); 
 
 		/**
 		 * Ajout des composants dans chaque panel
@@ -186,6 +188,7 @@ public class PanelParametre extends JPanel implements ActionListener
 		 */
 		this.btnValider.addActionListener(this);
 		this.btnConfirmer.addActionListener(this);
+		this.chbPlusLongueRoute.addActionListener(this);
 
 		/**
 		 * Gestion des évènements, à optimiser
@@ -218,6 +221,33 @@ public class PanelParametre extends JPanel implements ActionListener
 		});
 
 		this.txtNbCouleurs.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+					e.consume();
+				}
+			}
+		});
+
+		this.txtFinDePartie.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+					e.consume();
+				}
+			}
+		});
+
+		this.txtNbPlusLongChemin.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+					e.consume();
+				}
+			}
+		});
+
+		txtNbJoueursMinAreteDouble.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
 				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
@@ -263,120 +293,74 @@ public class PanelParametre extends JPanel implements ActionListener
 		});
 	}
 
-	public void actionPerformed(ActionEvent e )
-	{
-		
-	}
-	/*
+	/**
+	 * Récupération des données
+	 * @param e
+	 */
 	public void actionPerformed(ActionEvent e)
 	{
 		if(this.chbPlusLongueRoute.isSelected())
 		{
-			this.txtNbPlusLongChemain.setEnabled(true);
+			this.txtNbPlusLongChemin.setEnabled(true);
 		}
-
 		else 
 		{
-			this.txtNbPlusLongChemain.setEnabled(false);
+			this.txtNbPlusLongChemin.setEnabled(false);
 		}
+
 		if(e.getSource() == this.btnValider)
 		{
-			this.ctrl.setNbJoueurMax(Integer.parseInt(this.txtNbJoueursMax.getText()));
-			this.ctrl.setNbJoueurMinDoubleArete(Integer.parseInt(this.txtNbJoueursMinAreteDouble.getText()));
-			this.ctrl.setNbWagonDebutPartie(Integer.parseInt(this.txtNbWagonDebutPartie.getText()));
-			this.ctrl.setNbWagonFinPartie(Integer.parseInt(this.txtNbWagonFinDePartie.getText()));
-			this.ctrl.setNbPointsPlusLongChemin(Integer.parseInt(this.txtNbPlusLongChemain.getText()));
-			this.ctrl.setLstCouleurJoueur(this.arrayCouleurJoueur);
 
-		// 
-		}
-		else if(e.getSource() == this.btnGenereXml)
-		{
-			this.ctrl.ecrireXml();
-		}
-
-		else if(e.getSource() == this.btnJdCouleur)
-		{
-			this.jdCouleur = new JDialog();
-			this.panelLstCouleurJoueur = new JPanel();
-			this.panelCouleurBtn = new JPanel(new GridLayout(1,2));
-		
-
-			this.scrollPaneCouleurJoueur = new JScrollPane(this.panelLstCouleurJoueur);
-			this.btnValiderCouleurJoueur = new JButton("Valider");
-			this.btnAjouterCouleurJoueur = new JButton("Ajouté");
-			this.btnSupprimerCouleurJoueur = new JButton("Supprimer");
-
-			this.panelCouleurBtn.add(this.btnSupprimerCouleurJoueur);
-			this.container = new Container();
-			this.container.setLayout(new FlowLayout());
-			this.container.add(this.btnAjouterCouleurJoueur);
-
-			this.panelCouleurBtn.add(this.container);
-			
-
-
-
-			this.btnValiderCouleurJoueur.addActionListener(this);
-			this.btnAjouterCouleurJoueur.addActionListener(this);
-			this.btnSupprimerCouleurJoueur.addActionListener(this);
-			
-
-			
-			this.lstCouleurJoueur.setListData(this.arrayCouleurJoueur.toArray(new String[this.arrayCouleurJoueur.size()]));
-			this.panelLstCouleurJoueur.add(this.lstCouleurJoueur);
-
-			this.jdCouleur.setTitle("Couleur des joueurs");
-			this.jdCouleur.setSize(500, 500);
-			this.jdCouleur.setLocationRelativeTo(null);
-			
-			this.jdCouleur.setLayout(new BorderLayout());
-			this.jdCouleur.add(this.panelCouleurBtn, BorderLayout.NORTH);
-			this.jdCouleur.add(this.scrollPaneCouleurJoueur, BorderLayout.CENTER);
-
-			this.jdCouleur.add(this.btnValiderCouleurJoueur, BorderLayout.SOUTH);
-			this.jdCouleur.setVisible(true);
-		}
-		
-		else if(e.getSource() == this.btnValiderCouleurJoueur)
-		{
-			this.jdCouleur.dispose();
-		}
-		
-		
-
-
-		else if(e.getSource() == this.btnAjouterCouleurJoueur)
-		{
-			Color initialcolor=Color.RED;
-			Color color=JColorChooser.showDialog(this,"Choisissez une couleur d'arête",initialcolor);
-
-			container.setBackground(color);
-			String sColor = color.toString();
-
-			sColor = sColor.substring(sColor.indexOf("[") + 1, sColor.indexOf("]"));
-
-			if(!this.arrayCouleurJoueur.contains(sColor))
-				this.arrayCouleurJoueur.add(sColor);
-			this.lstCouleurJoueur.setListData(this.arrayCouleurJoueur.toArray(new String[this.arrayCouleurJoueur.size()]));
-			this.jdCouleur.setVisible(false);
-			this.jdCouleur.setVisible(true);
-		
-		}
-
-		else if(e.getSource() == this.btnSupprimerCouleurJoueur)
-		{
-			if (this.lstCouleurJoueur.getSelectedIndex() != -1)
+			if(this.txtNbCartesJoueurs.getText().isEmpty() || this.txtNbJoueursMax.getText().isEmpty() || 
+			   this.txtNbJoueursMin.getText().isEmpty()    || this.txtNom.getText().isEmpty()		   || 
+			   this.txtNomMoyenDeTransport.getText().isEmpty() || this.txtNbCouleurs.getText().isEmpty() || this.txtFinDePartie.getText().isEmpty())
 			{
-				this.arrayCouleurJoueur.remove(this.lstCouleurJoueur.getSelectedIndex());
-				this.lstCouleurJoueur.setListData(this.arrayCouleurJoueur.toArray(new String[this.arrayCouleurJoueur.size()]));
-		
+				JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs", "Erreur", JOptionPane.ERROR_MESSAGE);
+			}
+			else
+			{
+				int nbJoueursMin = Integer.parseInt(this.txtNbJoueursMin.getText());
+				int nbJoueursMax = Integer.parseInt(this.txtNbJoueursMax.getText());
+				int nbCartesJoueurs = Integer.parseInt(this.txtNbCartesJoueurs.getText());
+				int nbFinDePartie = Integer.parseInt(this.txtFinDePartie.getText());
+
+				/*
+				     this.ctrl.setNbJoueursMin(Integer.parseInt(this.txtNbJoueursMin.getText())
+					 this.ctrl.setNbJoueursMax(Integer.parseInt(this.txtNbJoueursMax.getText())
+					 this.ctrl.setNbCartesJoueurs(Integer.parseInt(this.txtNbCartesJoueurs.getText())		
+				 */
+				this.ctrl.setNbJoueurMax(Integer.parseInt(this.txtNbJoueursMax.getText()));
+				this.ctrl.setNbJoueurMinDoubleArete(Integer.parseInt(this.txtNbJoueursMinAreteDouble.getText()));
+				this.ctrl.setNbWagonDebutPartie(Integer.parseInt(this.txtNbCartesJoueurs.getText()));
+				this.ctrl.setNbWagonFinPartie(nbFinDePartie);
+				this.ctrl.setNbPointsPlusLongChemin(Integer.parseInt(this.txtNbPlusLongChemin.getText()));
+
+				if(nbJoueursMin > nbJoueursMax || nbJoueursMin <= 0 || nbJoueursMax <= 0 || nbCartesJoueurs <= 0 || nbFinDePartie < 0)
+				{
+					JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs", "Erreur", JOptionPane.ERROR_MESSAGE);
+				} 
+
+				JPanel panelCouleur = new JPanel(new GridLayout(nbJoueursMax + 1, 2,5,5));
+				JPanel panelConfirmer = new JPanel(new GridLayout(1,3,5,5));
+				for(int i = 1; i <= nbJoueursMax; i ++)
+				{
+					panelCouleur.add(new JLabel("Couleur joueur " + i + " : "));
+					panelCouleur.add(new JTextField());
+				}
+				panelConfirmer.add(new JLabel());
+				panelConfirmer.add(this.btnConfirmer);
+				panelConfirmer.add(new JLabel());
+				
+				this.jd.add(panelCouleur, BorderLayout.NORTH);
+				this.jd.add(panelConfirmer, BorderLayout.SOUTH);
+				this.jd.setVisible(true);
+				this.ctrl.ecrireXml();
 			}
 		}
+
+		if(e.getSource() == btnConfirmer)
+		{
+			this.jd.dispose();
+		}
 	}
-
-
-
-
-	*/
 }

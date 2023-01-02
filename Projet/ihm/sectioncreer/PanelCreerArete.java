@@ -348,15 +348,6 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 			this.ctrl.majIHM();
 			jd.dispose();
 		}
-
-		if(this.chbNeutre.isSelected())
-		{
-			System.out.println("Mise en place de la couleur neutre gris");
-		}
-		else
-		{
-			System.out.println("Couleur utilisée dans le JColor Chooser");
-		}
 	}
 
 	public void mouseClicked(MouseEvent e) {
@@ -366,11 +357,10 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 			this.jd = new JDialog();
 			jd.setTitle("Modification des coordonnées");
 			jd.setBounds(900, 300, 500, 400); 
-			JPanel panelPopUp = new JPanel(new GridLayout(6,2,12,12));
+			JPanel panelPopUp = new JPanel();
 
 			Arete a = this.ctrl.getLstArete().get(this.listHistorique.getSelectedIndex());
 		
-
 			this.txtDistanceUpdate.setText("" + a.getWagon());
 			String c = a.getCouleur();
 			if(c.equals("Neutre"))
@@ -386,11 +376,8 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 				int b = Integer.parseInt(tabCouleur[2].substring(2,tabCouleur[2].length()-1));
 				this.containerUpdate.setBackground(new Color(r,g,b));
 			}
-			
-
-			
-
 			panelPopUp.add(this.containerUpdate);
+			panelPopUp.add(new JLabel("Nouvelle distance : "));
 			panelPopUp.add(this.txtDistanceUpdate);
 			panelPopUp.add(this.btnConfirmer);
 
