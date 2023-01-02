@@ -24,10 +24,6 @@ import java.awt.Color;
 import java.awt.event.*;
 
 import java.io.File;
-import java.io.IOException;
-
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 
 import main.Controleur;
@@ -58,7 +54,7 @@ public class PanelDispoBtn extends JPanel implements ActionListener
 
 		this.btnImporter = new JButton("Importer");
 		this.btnEditer   = new JButton("Editer");
-		this.btnImportXml   = new JButton("Importer un xml");
+		this.btnImportXml   = new JButton("Importer un XML");
 		this.btnQuitter  = new JButton("Quitter");
 
 		this.btnImporter.setBorder(distanceBtn);
