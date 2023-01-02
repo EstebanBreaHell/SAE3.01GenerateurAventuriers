@@ -182,8 +182,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 	private void drawNoeud(Noeud noeud, Graphics g)
 	{
 		int size = 26;
-		Dimension testTaille = this.getSize();
-		System.out.println("Taille : " + testTaille.getWidth() + " " + testTaille.getHeight());	
+		
 
 
 		// draw la Noeud
@@ -314,20 +313,26 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 			int x = e.getX();
 			int y = e.getY();
 
+			Dimension testTaille = this.getSize();
+			//System.out.println("Taille : " + testTaille.getWidth() + " " + testTaille.getHeight());	
+
+			double xMax = testTaille.getWidth() -26;
+			double yMax = testTaille.getHeight() -26;
+
 			int nomX = this.noeudActif.getNomX()-(this.noeudActif.getX() - x);
 			int nomY = this.noeudActif.getNomY()-(this.noeudActif.getY() - y);
 			// Déplacez l'objet en utilisant les coordonnées de la souris
 
-			if(x>=0 && x<=855)
+			if(x>=0 && x<=xMax)
 				this.noeudActif.setX(x);
 			
-			if(y>=25 && y<=670)
+			if(y>=25 && y<=yMax)
 				this.noeudActif.setY(y);
 
-			if(nomX>=0 && nomX<=855)
+			if(nomX>=0 && nomX<=xMax)
 				this.noeudActif.setNomX(nomX);
 			
-			if(nomY>=25 && nomY<=670)
+			if(nomY>=25 && nomY<=yMax)
 				this.noeudActif.setNomY(nomY);
 			
 			
