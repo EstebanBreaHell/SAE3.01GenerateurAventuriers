@@ -93,7 +93,6 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 		for(String s : this.hashCoulNbCarte.keySet())
 		{
 			this.lstCouleurTmp.add(s);
-			System.out.println(s + " " + this.hashCoulNbCarte.get(s));
 		}
 		this.nomVerso = "Aucun verso pour le moment.";
 		this.lblNomVerso = new JLabel(this.nomVerso);
@@ -327,7 +326,7 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 				this.jd.setBounds(900, 300, 500, 400);
 
 				this.panelJd = new JPanel(new GridLayout(6,5,5,5));
-				System.out.println(this.hashCoulNbCarte.get(couleur));
+				
 				this.txtNbCarte = new JTextField(""+this.hashCoulNbCarte.get(couleur));
 
 				btnCouleur.setBackground(Color.WHITE);
