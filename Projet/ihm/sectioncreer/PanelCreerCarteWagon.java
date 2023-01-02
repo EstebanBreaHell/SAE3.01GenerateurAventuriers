@@ -85,7 +85,7 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 
 		this.lstCouleur = new JList<String>();
 		this.lstCouleurTmp = new ArrayList<String>();
-		this.hashCoulNbCarte = new HashMap<String, Integer>();
+		this.hashCoulNbCarte = this.ctrl.getLstCouleurWagon();
 		this.hashCoulNbCarte.put("Joker",0);
 		this.hashCoulImage = new HashMap<String, String>();
 		this.hashCoulImage.put("Joker", null);
@@ -110,6 +110,9 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 				this.hashCoulImage.put(a.getCouleur(), null);
 			}
 		}
+
+		
+		
 
 		this.lstCouleur.setListData(this.lstCouleurTmp.toArray(new String[this.lstCouleurTmp.size()]));
 
@@ -149,6 +152,7 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 				}
 			}
 		}
+		this.ctrl.setHsmCouleurWagon(this.hashCoulNbCarte);
 		this.lstCouleur.setListData(this.lstCouleurTmp.toArray(new String[this.lstCouleurTmp.size()]));
 	}
 	public void actionPerformed(ActionEvent e)
