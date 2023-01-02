@@ -305,6 +305,12 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 
 	public void mouseDragged(MouseEvent e) {
 		// Obtenez les coordonnées de la souris
+		Dimension testTaille = this.getSize();
+			//System.out.println("Taille : " + testTaille.getWidth() + " " + testTaille.getHeight());	
+
+		double xMax = testTaille.getWidth() -26;
+		double yMax = testTaille.getHeight() -26;
+
 		if(this.noeudActif == null)
 			return;
 
@@ -313,12 +319,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 			int x = e.getX();
 			int y = e.getY();
 
-			Dimension testTaille = this.getSize();
-			//System.out.println("Taille : " + testTaille.getWidth() + " " + testTaille.getHeight());	
-
-			double xMax = testTaille.getWidth() -26;
-			double yMax = testTaille.getHeight() -26;
-
+			
 			int nomX = this.noeudActif.getNomX()-(this.noeudActif.getX() - x);
 			int nomY = this.noeudActif.getNomY()-(this.noeudActif.getY() - y);
 			// Déplacez l'objet en utilisant les coordonnées de la souris
@@ -346,10 +347,10 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 			int y = e.getY();
 
 			// Déplacez l'objet en utilisant les coordonnées de la souris
-			if(x>=0 && x<=855)
+			if(x>=0 && x<=xMax)
 				this.noeudActif.setNomX(x);
 			
-			if(y>=25 && y<=670)
+			if(y>=25 && y<=yMax)
 				this.noeudActif.setNomY(y);
 			
 			//this.noeudActif.setNomX(x);

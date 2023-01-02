@@ -112,6 +112,7 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 		this.btnSupprimer     .setBackground(Color.WHITE);
 		this.btnGenererNoeud  .setBackground(Color.WHITE);
 		this.btnGenererPrefait.setBackground(Color.WHITE);
+		this.btnConfirmer     .setBackground(Color.WHITE);
 
 		this.txtNom .setBorder(border);
 		this.txtPosX.setBorder(border);
@@ -274,9 +275,7 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 		if(e.getSource() == this.btnGenererPrefait)
 		{
 			Random random = new Random();
-
 			String randomNom = "Nouvelle ville";
-			
 			int randomPosX = random.nextInt(750) + 50;
 			int randomPosY = random.nextInt(600) + 50;
 
@@ -336,7 +335,9 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 			this.jd = new JDialog();
 			jd.setTitle("Modification des coordonnées");
 			jd.setBounds(900, 300, 500, 400); 
+			jd.setLayout(new BorderLayout());
 			JPanel panelPopUp = new JPanel(new GridLayout(6,2,12,12));
+			JPanel panelConfirmer = new JPanel(new GridLayout(1,3,12,12));
 
 			this.txtNomModif.setText(this.ctrl.getLstNoeud().get(PanelCreerNoeud.listHistorique.getSelectedIndex()).getNom());
 			this.txtPosXModif.setText(String.valueOf(this.ctrl.getLstNoeud().get(PanelCreerNoeud.listHistorique.getSelectedIndex()).getX()));
@@ -359,9 +360,12 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 			panelPopUp.add(new JLabel("Position Y du libellé :"));
 			panelPopUp.add(this.txtPosYnom);
 
-			panelPopUp.add(this.btnConfirmer);
+			panelConfirmer.add(new JLabel());
+			panelConfirmer.add(this.btnConfirmer);
+			panelConfirmer.add(new JLabel());
 
-			jd.add(panelPopUp);
+			jd.add(panelPopUp, BorderLayout.CENTER);
+			jd.add(panelConfirmer, BorderLayout.SOUTH);
 			jd.setVisible(true);					
 		}		
 	}

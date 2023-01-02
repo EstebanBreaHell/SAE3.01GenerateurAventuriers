@@ -99,6 +99,8 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		/**
 		 * Ajout de bordure et de couleur de fond
 		 */
+
+		this.txtDistanceUpdate.setHorizontalAlignment(JTextField.CENTER);
 		this.txtDistance.setBorder(border);
 		this.comboNoeud1.setBorder(border);
 		this.comboNoeud2.setBorder(border);
@@ -111,6 +113,7 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		this.btnSupprimer.setBackground(Color.WHITE);
 		this.btnCouleur.setBackground(Color.WHITE);
 		this.btnCouleurUpdate.setBackground(Color.WHITE);
+		this.btnConfirmer.setBackground(Color.WHITE);
 
 
 		/* Ajout du bouton dans le container */
@@ -196,6 +199,16 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 
 		// Empêcher l'utilisateur de rentrer autre chose qu'un nombre dans les champs de texte
 		this.txtDistance.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+					getToolkit().beep();
+					e.consume();
+				}
+			}
+		});
+
+		this.txtDistanceUpdate.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
 				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
@@ -356,8 +369,9 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 		{
 			this.jd = new JDialog();
 			jd.setTitle("Modification des coordonnées");
-			jd.setBounds(900, 300, 500, 400); 
-			JPanel panelPopUp = new JPanel();
+			jd.setBounds(900, 300, 500, 200); 
+			JPanel panelPopUp = new JPanel(new BorderLayout(5,5));
+			JPanel panelCentre = new JPanel(new GridLayout(3,4,5,5));
 
 			Arete a = this.ctrl.getLstArete().get(this.listHistorique.getSelectedIndex());
 		
@@ -376,10 +390,24 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 				int b = Integer.parseInt(tabCouleur[2].substring(2,tabCouleur[2].length()-1));
 				this.containerUpdate.setBackground(new Color(r,g,b));
 			}
-			panelPopUp.add(this.containerUpdate);
-			panelPopUp.add(new JLabel("Nouvelle distance : "));
-			panelPopUp.add(this.txtDistanceUpdate);
-			panelPopUp.add(this.btnConfirmer);
+
+			for (int i = 1; i <= 4; i++)
+			{
+				panelCentre.add(new JLabel());
+			}
+
+			panelCentre.add(new JLabel());
+			panelCentre.add(new JLabel("Nouvelle distance : "));
+			panelCentre.add(this.txtDistanceUpdate);
+			panelCentre.add(new JLabel());
+
+			for (int i = 1; i <= 4; i++)
+			{
+				panelCentre.add(new JLabel());
+			}
+			panelPopUp.add(this.containerUpdate, BorderLayout.NORTH);
+			panelPopUp.add(panelCentre, BorderLayout.CENTER);
+			panelPopUp.add(this.btnConfirmer, BorderLayout.SOUTH);
 
 			jd.add(panelPopUp);
 			jd.setVisible(true);
