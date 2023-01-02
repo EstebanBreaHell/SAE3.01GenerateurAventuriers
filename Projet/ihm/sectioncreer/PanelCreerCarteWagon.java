@@ -76,9 +76,8 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 	private JButton btnValidImporteVerso;
 
 	public PanelCreerCarteWagon(Controleur ctrl)
-	{dif.getText());
-303
-      int xNom = Integer.parseInt(this.txtPosXnom.getText());
+	{
+		
 		/**
 		 * Création des composants
 		 */
