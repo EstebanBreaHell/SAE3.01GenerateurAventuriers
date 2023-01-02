@@ -17,7 +17,7 @@ import main.Controleur;
 public class PanelCreer extends JPanel 
 {
 	private Controleur ctrl; 
-	private PanelGraphique panelGraphique;
+	private PanelGraphique    panelGraphique;
 	private PanelGestionCreer panelGestionCreer;
 
 	public PanelCreer(Controleur ctrl)
@@ -50,6 +50,12 @@ public class PanelCreer extends JPanel
 	{
 		this.panelGestionCreer.supprimArete(n);
 	}
+	
+	/**
+	 * Permet de renvoyer la taille de la fenêtre PanelCreer
+	 * @return
+	 */
+	public int getTaillePanelCreer() { return this.getWidth(); }
 
 	public List<JLabel> getLstHistorique() { return this.panelGestionCreer.getLstHistorique(); }
 	
