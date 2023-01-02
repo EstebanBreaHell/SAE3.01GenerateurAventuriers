@@ -275,9 +275,14 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 			else
 			{
 				Color coul = new Color(this.container.getBackground().getRGB());
-				couleur = "RGB [r="+coul.getRed()+",g="+coul.getGreen()+",b="+coul.getBlue()+"]";
+				couleur = "[r="+coul.getRed()+",g="+coul.getGreen()+",b="+coul.getBlue()+"]";
 			}
-
+			this.ctrl.addArete( this.comboNoeud1.getItemAt(this.comboNoeud1.getSelectedIndex()),
+					            this.comboNoeud2.getItemAt(this.comboNoeud2.getSelectedIndex()),
+					            couleur,
+								Integer.parseInt(this.txtDistance.getText())
+					);
+			couleur = "RGB "+couleur;
 			this.lstLabel.add(new JLabel("L'arête relie "    + this.comboNoeud1.getSelectedItem()  + " à " + this.comboNoeud2.getSelectedItem()  
 			 				+ " de couleur " + couleur + " et de distance " + this.txtDistance.getText()));
 			
@@ -287,11 +292,7 @@ public class PanelCreerArete extends JPanel implements ActionListener, ItemListe
 			/*------------------------------------*/
 			
 			
-			this.ctrl.addArete( this.comboNoeud1.getItemAt(this.comboNoeud1.getSelectedIndex()),
-					            this.comboNoeud2.getItemAt(this.comboNoeud2.getSelectedIndex()),
-					            couleur,
-								Integer.parseInt(this.txtDistance.getText())
-					);
+			
 			
 			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 			/*------------------------------------*/

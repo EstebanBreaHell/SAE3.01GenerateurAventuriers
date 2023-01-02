@@ -56,13 +56,13 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 
 	private  void initRepertoireCarteObjectif()
 	{
-		try 	{Files.createDirectories(Paths.get("donnee\\carteObjectif"));} 
+		try 	{Files.createDirectories(Paths.get("donnee/carteObjectif"));} 
 		catch (IOException e) 	{e.printStackTrace();}
 	}
 
 	private String[] getPathCartObjectifCreer()
 	{
-		String[] tmp = new File(Paths.get("donnee\\carteObjectif\\"+this.ctrl.getPathImg().substring(8)).toFile().getAbsolutePath()).list();
+		String[] tmp = new File(Paths.get("donnee/carteObjectif/"+this.ctrl.getPathImg().substring(8)).toFile().getAbsolutePath()).list();
 		
 		return tmp;
 	}
@@ -83,7 +83,7 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		this.lstNoeud2 = new JList<String>();
 		
 	
-		this.lblImageArriere = new JLabel(Controleur.imageToIcon("data_user\\non_definie.png", 200, 100));
+		this.lblImageArriere = new JLabel(Controleur.imageToIcon("data_user/non_definie.png", 200, 100));
 
 		this.txtNbPoint = new JTextField(2);
 		this.txtNbPoint.setText(0 + "");
@@ -129,7 +129,7 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		panelDispoApercu.add(this.panelApercuFace);
 
 			this.panelDispoArriere.add(new JLabel("Verso",JLabel.CENTER),BorderLayout.NORTH);
-			this.setImageArriere("data_user\\non_definie.png");
+			this.setImageArriere("data_user/non_definie.png");
 			this.panelDispoArriere.add(this.btnModifierMotif,BorderLayout.SOUTH);
 
 		panelDispoApercu.add(this.panelDispoArriere);
@@ -214,7 +214,7 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		if(e.getSource() == this.btnCreerCarte)
 		{
 						
-			try 	{Files.createDirectories(Paths.get("donnee\\carteObjectif\\"+this.ctrl.getPathImg().substring(8)));} 
+			try 	{Files.createDirectories(Paths.get("donnee/carteObjectif/"+this.ctrl.getPathImg().substring(8)));} 
 			catch (IOException a) 	{a.printStackTrace();}
 
 			File fileImg = new File("donnee\\carteObjectif\\"+this.ctrl.getPathImg().substring(8) + "\\carteObjectifN°"+ PanelCreerCarteObjectif.nbCarteObjectifCreer++ + ".png");
@@ -237,7 +237,7 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 				popUpHistoirque.setLayout(new GridLayout(1,repertoireCarteObjectif.length));
 				for(int index = 0; index < repertoireCarteObjectif.length; index++)
 				{
-					popUpHistoirque.add(new JLabel(Controleur.imageToIcon("donnee\\carteObjectif\\"+this.ctrl.getPathImg().substring(8) + "\\" + repertoireCarteObjectif[index], 200, 100)));
+					popUpHistoirque.add(new JLabel(Controleur.imageToIcon("donnee/carteObjectif/"+this.ctrl.getPathImg().substring(8) + "/" + repertoireCarteObjectif[index], 200, 100)));
 				}
 			}
 			popUpHistoirque.pack();

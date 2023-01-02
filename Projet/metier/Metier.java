@@ -248,6 +248,11 @@ public class Metier
             e.printStackTrace();
         }
 
+        for( CarteObjectif c : this.lstCarteObjectif )
+        {
+            System.out.println(c.getNoeudDep().getNom() + " " + c.getNoeudArr().getNom() + " " + c.getNbPoints());
+        }
+
     }
 
     
