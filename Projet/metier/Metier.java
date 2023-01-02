@@ -58,7 +58,15 @@ public class Metier
         this.nbPointsPlusLongChemin = 10;
     }
 
+    public void creerCarteObjectif(Noeud noeudDep, Noeud noeudArr, int nbPoints)
+    {
+        this.lstCarteObjectif.add(new CarteObjectif(noeudDep, noeudArr, nbPoints));
+    }
 
+    public void supprCarteObjectif(int index)
+    {
+        this.lstCarteObjectif.remove(index);
+    }
 
     public void setNbJoueurMinDoubleArete( int m )
     {

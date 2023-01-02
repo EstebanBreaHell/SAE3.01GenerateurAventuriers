@@ -265,6 +265,11 @@ public class Controleur
         new Controleur();
     }
 
+    public void creerCarteObjectif(Noeud noeudDep, Noeud noeudArr, int nbPoints)
+    {
+        this.metier.creerCarteObjectif(noeudDep, noeudArr, nbPoints);
+    }
+
     public Noeud getNoeud(String nom) {
         return this.metier.getNoeud(nom);
     }

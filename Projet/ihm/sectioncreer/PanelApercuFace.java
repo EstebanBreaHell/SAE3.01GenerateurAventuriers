@@ -48,10 +48,8 @@ public class PanelApercuFace extends JPanel implements ActionListener
 		this.btnVoirApercu.addActionListener(this);
 	}
 
-	public void setNoeud1(int x, int y , String nom)
-	{
-		this.panelGraphiqueFace.setNoeud1(x, y, nom);
-	}
+	public void setNoeud1(int x, int y , String nom){this.panelGraphiqueFace.setNoeud1(x, y, nom);}
+	public void setNoeud2(int x, int y , String nom){this.panelGraphiqueFace.setNoeud2(x, y, nom);}
 
 	public PanelGraphiqueFace getPanelGraphiqueFace(){return this.panelGraphiqueFace;}
 
@@ -113,6 +111,16 @@ public class PanelApercuFace extends JPanel implements ActionListener
 			this.majIhm();
 		}
 
+		public void setNoeud2(int x, int y, String nom)
+		{
+			this.x2 = x;
+			this.y2 = y;
+			this.nomNoeud2 = nom;
+
+			this.majIhm();
+		}
+
+
 		
 
 		public void paintComponent(Graphics g)
@@ -142,12 +150,19 @@ public class PanelApercuFace extends JPanel implements ActionListener
 			g2d.drawString(this.nbPoint + "", this.getWidth()/4 + 185,this.getHeight()/3+15);
 			
 
+			/*Noeud 1 */
 			g2d.fillOval((int)((this.x1+200)*0.25) ,(int)((this.y1+100)*0.33), 10, 10);
-
 			g2d.setColor(Color.white);
 			g2d.fillRect((int)(this.x1*0.25),(int)(this.y1*0.33), 40, 15);
 			g2d.setColor(Color.BLACK);
 			g2d.drawString(this.nomNoeud1, (int)(this.x1*0.25),(int)(this.y1*0.33));
+
+			/*Noeud 2 */
+			g2d.fillOval((int)((this.x2+200)*0.25) ,(int)((this.y2+100)*0.33), 10, 10);
+			g2d.setColor(Color.white);
+			g2d.fillRect((int)(this.x2*0.25),(int)(this.y2*0.33), 40, 15);
+			g2d.setColor(Color.BLACK);
+			g2d.drawString(this.nomNoeud2, (int)(this.x2*0.25),(int)(this.y2*0.33));
 	
 			
 

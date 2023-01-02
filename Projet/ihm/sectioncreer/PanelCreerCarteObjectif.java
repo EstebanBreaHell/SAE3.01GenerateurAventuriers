@@ -41,13 +41,16 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 	private Controleur ctrl;
 	private JTextField txtNbPoint;
 	private PanelApercuFace panelApercuFace;
-	private JList<String> lstNoeud;
+	private JList<String> lstNoeud1;
+	private JList<String> lstNoeud2;
 	private JScrollPane scrollPaneNoeud;
 	private JPanel panelLstNoeud;
 	private JButton btnHistoriqueCarte;
 	private JButton btnCreerCarte;
 	private JPanel panelDispoArriere;
 	private JLabel lblImageArriere;
+
+	private Noeud noeud1, noeud2;
 
 	private JButton btnModifierMotif;
 
@@ -73,7 +76,11 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		this.ctrl = ctrl; 
 		this.setLayout(new BorderLayout());
 
-		this.lstNoeud = new JList<String>();
+		this.noeud1 = null;
+		this.noeud2 = null;
+
+		this.lstNoeud1 = new JList<String>();
+		this.lstNoeud2 = new JList<String>();
 		
 	
 		this.lblImageArriere = new JLabel(Controleur.imageToIcon("data_user\\non_definie.png", 200, 100));
@@ -104,8 +111,9 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		 */
 
 		/*Début de panelDispoListe */
-		this.panelLstNoeud = new JPanel();
-		this.panelLstNoeud.add(this.lstNoeud);
+		this.panelLstNoeud = new JPanel(new GridLayout(1,2));
+		this.panelLstNoeud.add(this.lstNoeud1);
+		this.panelLstNoeud.add(this.lstNoeud2);
 		this.panelLstNoeud.setBackground(Color.WHITE);
 		this.scrollPaneNoeud = new JScrollPane(this.panelLstNoeud);
 		panelDispoListe.add(this.scrollPaneNoeud);
@@ -149,7 +157,8 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		this.btnCreerCarte		.addActionListener(this);
 		this.btnModifierMotif	.addActionListener(this);
 		this.txtNbPoint			.addActionListener(this);
-		this.lstNoeud			.addMouseListener(new InputSourie());
+		this.lstNoeud1			.addMouseListener(new InputSourie());
+		this.lstNoeud2			.addMouseListener(new InputSourie());
 	}
 
 	public void setImageArriere(String pathImg)
@@ -200,6 +209,8 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 			
 			try		{ImageIO.write(this.ctrl.createImage(this.panelApercuFace.getPanelGraphiqueFace()), "PNG", fileImg);} 
 			catch 	(IOException e1) {e1.printStackTrace();}
+
+		
 		}
 
 		if(e.getSource() == this.btnHistoriqueCarte)
@@ -229,7 +240,8 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 	{
 		List<JLabel> arratTmp = this.ctrl.getLstHistorique();
 
-		this.lstNoeud.setListData(arratTmp.stream().map(label -> label.getText()).toArray(String[]::new));
+		this.lstNoeud1.setListData(arratTmp.stream().map(label -> label.getText()).toArray(String[]::new));
+		this.lstNoeud2.setListData(arratTmp.stream().map(label -> label.getText()).toArray(String[]::new));
 	}
 
 
@@ -241,9 +253,22 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 			if(e.getClickCount() == 2)
 			{
 				Noeud tmpNoeud;
-				tmpNoeud = PanelCreerCarteObjectif.this.ctrl.getLstNoeud().get(PanelCreerCarteObjectif.this.lstNoeud.getSelectedIndex());
-				
-				PanelCreerCarteObjectif.this.panelApercuFace.setNoeud1(tmpNoeud.getNomX()+15, tmpNoeud.getNomY(), tmpNoeud.getNom());
+
+				if(e.getSource() == PanelCreerCarteObjectif.this.lstNoeud1)
+				{
+
+					tmpNoeud = PanelCreerCarteObjectif.this.ctrl.getLstNoeud().get(PanelCreerCarteObjectif.this.lstNoeud1.getSelectedIndex());
+
+					PanelCreerCarteObjectif.this.noeud1 = tmpNoeud;
+					PanelCreerCarteObjectif.this.panelApercuFace.setNoeud1(tmpNoeud.getNomX()+15, tmpNoeud.getNomY(), tmpNoeud.getNom());
+				}
+
+				if(e.getSource() == PanelCreerCarteObjectif.this.lstNoeud2)
+				{
+					tmpNoeud = PanelCreerCarteObjectif.this.ctrl.getLstNoeud().get(PanelCreerCarteObjectif.this.lstNoeud2.getSelectedIndex());
+					PanelCreerCarteObjectif.this.noeud2 = tmpNoeud;
+					PanelCreerCarteObjectif.this.panelApercuFace.setNoeud2(tmpNoeud.getNomX()+15, tmpNoeud.getNomY(), tmpNoeud.getNom());
+				}
 			}
 		}
 	}
