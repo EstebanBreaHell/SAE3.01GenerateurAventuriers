@@ -125,6 +125,11 @@ public class PanelApercuFace extends JPanel implements ActionListener
 			try   {img = ImageIO.read(new File(PanelGraphiqueFace.pathImg));} 
 			catch (IOException e) {e.printStackTrace();}
 
+			System.out.println("Avant x = " + this.getWidth() + " y = " + this.getHeight());
+			System.out.println("Après x = " + this.getWidth()/4 + " y = " + this.getHeight()/3);
+
+			System.out.println("coordonnée de " + this.nomNoeud1 + " x = " + (this.x1*0.25 + this.getWidth()/4) +" y = " + (this.y1*0.33 + this.getHeight()/3));
+
 			g.drawImage(img.getScaledInstance(200,100, Image.SCALE_DEFAULT),this.getWidth()/4,this.getHeight()/3, this);
 			
 			g2d.setColor(Color.WHITE);
@@ -137,13 +142,14 @@ public class PanelApercuFace extends JPanel implements ActionListener
 			g2d.drawString(this.nbPoint + "", this.getWidth()/4 + 185,this.getHeight()/3+15);
 			
 
-			g2d.fillOval((int)(this.x1*0.25), (int)(this.y1*0.25), 10, 10);
+			g2d.fillOval((int)((this.x1+200)*0.25) ,(int)((this.y1+100)*0.33), 10, 10);
 
 			g2d.setColor(Color.white);
-			g2d.fillRect(this.x1/4 +50 + 10, this.y1/3 + 50+30, 40, 15);
+			g2d.fillRect((int)(this.x1*0.25),(int)(this.y1*0.33), 40, 15);
 			g2d.setColor(Color.BLACK);
-			g2d.drawString(this.nomNoeud1, this.x1/4+ 50 +10, this.y1/3+ 50 +40);
+			g2d.drawString(this.nomNoeud1, (int)(this.x1*0.25),(int)(this.y1*0.33));
 	
+			
 
 		}
 

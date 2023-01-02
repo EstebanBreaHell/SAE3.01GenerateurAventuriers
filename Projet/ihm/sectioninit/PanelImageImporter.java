@@ -52,7 +52,7 @@ public class PanelImageImporter extends JPanel
 		{
 			if(!this.repertoireImage[index].equals("imageCarte"))
 			{
-				System.out.println(this.repertoireImage[index]);
+				
 				tabPanelAffichageImporte[index] = new PanelImageInfo(this.ctrl,this.repertoireImage[index]);
 	
 				panelDispoAffichage.add(tabPanelAffichageImporte[index]);

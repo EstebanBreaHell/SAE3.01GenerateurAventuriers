@@ -214,7 +214,6 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 				popUpHistoirque.setLayout(new GridLayout(1,repertoireCarteObjectif.length));
 				for(int index = 0; index < repertoireCarteObjectif.length; index++)
 				{
-					System.out.println(repertoireCarteObjectif[index]);
 					popUpHistoirque.add(new JLabel(Controleur.imageToIcon("donnee\\carteObjectif\\"+this.ctrl.getPathImg().substring(8) + "\\" + repertoireCarteObjectif[index], 200, 100)));
 				}
 			}
