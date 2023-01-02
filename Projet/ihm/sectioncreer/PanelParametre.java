@@ -175,7 +175,7 @@ public class PanelParametre extends JPanel implements ActionListener
 		}
 		else if(e.getSource() == this.btnGenereXml)
 		{
-			//this.ctrl.genererXml();
+			this.ctrl.ecrireXml();
 		}
 
 		else if(e.getSource() == this.btnJdCouleur)

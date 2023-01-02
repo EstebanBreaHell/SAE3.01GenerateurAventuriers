@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JLabel;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import javax.swing.Icon;
@@ -162,6 +163,14 @@ public class Controleur
         return this.metier.getLstCouleurJoueur();
     }
 
+    public void setHsmCouleurWagon(HashMap<String,Integer> lstCouleurWagon) {
+        this.metier.setHsmCouleurWagon(lstCouleurWagon);
+    }
+
+    public HashMap<String,Integer> getLstCouleurWagon() {
+        return this.metier.getHsmCouleurWagon();
+    }
+
     public void addNoeud(String nom, int x, int y) { this.metier.creeNoeud(nom, x, y); }
 
     public void addArete(Noeud noeud1, Noeud noeud2,  String couleur, int longueur) { this.metier.creeArete(noeud1, noeud2, couleur, longueur ); }
@@ -228,6 +237,11 @@ public class Controleur
     public void supprArete(int arete)
     {
         this.metier.supprArete(arete);
+    }
+
+    public void ecrireXml()
+    {
+        this.metier.ecrireXml();
     }
 
     public static void main(String[] args)
