@@ -91,8 +91,10 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 		
 
 		for(String s : this.hashCoulNbCarte.keySet())
+		{
 			this.lstCouleurTmp.add(s);
-			
+			System.out.println(s + " " + this.hashCoulNbCarte.get(s));
+		}
 		this.nomVerso = "Aucun verso pour le moment.";
 		this.lblNomVerso = new JLabel(this.nomVerso);
 
@@ -107,6 +109,10 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 
 		if(!this.lstCouleurTmp.contains("Joker"))
 			this.lstCouleurTmp.add("Joker");
+		
+		if(!this.hashCoulNbCarte.containsKey("Joker"))
+			this.hashCoulNbCarte.put("Joker", 0);
+			
 		for(Arete a : this.lstArete)
 		{
 			if(!this.lstCouleurTmp.contains(a.getCouleur()) && !a.getCouleur().equals("Neutre") )
@@ -271,7 +277,7 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 			this.jdImporte.setVisible(true);
 		}
 
-		if(e.getSource() == btnValidImporteVerso)
+		if(e.getSource() == this.btnValidImporteVerso)
 		{
 			this.nomVerso = this.ctrl.getPanelSelectionner().getNomfichier();
 			this.lblNomVerso.setText(this.nomVerso);
@@ -321,7 +327,8 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 				this.jd.setBounds(900, 300, 500, 400);
 
 				this.panelJd = new JPanel(new GridLayout(6,5,5,5));
-				this.txtNbCarte = new JTextField();
+				System.out.println(this.hashCoulNbCarte.get(couleur));
+				this.txtNbCarte = new JTextField(""+this.hashCoulNbCarte.get(couleur));
 
 				btnCouleur.setBackground(Color.WHITE);
 				
@@ -340,7 +347,15 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 				this.modifieRecto.setBackground(Color.WHITE);
 				this.btnConfirme.setBackground(Color.WHITE);
 
-				this.lblNomRecto = new JLabel("Recto : ");
+				if(recto != null)
+				{
+					this.lblNomRecto = new JLabel("Recto : "+recto);
+				}
+				else
+				{
+					this.lblNomRecto = new JLabel("Recto : ");
+				}
+				//this.lblNomRecto = new JLabel("Recto : ");
 
 				for(int i = 1; i <= 5; i++)
 				{
