@@ -222,12 +222,17 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 			try 	{Files.createDirectories(Paths.get("donnee/carteObjectif/"+this.ctrl.getPathImg().substring(8)));} 
 			catch (IOException a) 	{a.printStackTrace();}
 
-			File fileImg = new File("donnee\\carteObjectif\\"+this.ctrl.getPathImg().substring(8) + "\\carteObjectifN°"+ PanelCreerCarteObjectif.nbCarteObjectifCreer++ + ".png");
+			File fileImg = new File("donnee/carteObjectif/"+this.ctrl.getPathImg().substring(8) + "/carteObjectifN°"+ PanelCreerCarteObjectif.nbCarteObjectifCreer++ + ".png");
 			
 			try		{ImageIO.write(this.ctrl.createImage(this.panelApercuFace.getPanelGraphiqueFace()), "PNG", fileImg);} 
 			catch 	(IOException e1) {e1.printStackTrace();}
-
+			if(this.noeud1 == null || this.noeud2 == null)
+			{
+				JOptionPane.showMessageDialog(null, "Veuillez selectionner deux noeuds differents", "Erreur", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
 			this.panelApercuFace.creerCarte(this.noeud1,this.noeud2);
+			
 
 		
 		}
@@ -250,7 +255,7 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 				JPanel panelDispoZoom = new JPanel(new GridLayout(this.ctrl.getLstCarteObjectif().size(),1));
 
 				for(int index = 0; index < this.ctrl.getLstCarteObjectif().size(); index++)
-					panelDispoZoom.add(new BtnZoomCarte("donnee\\carteObjectif\\" +this.ctrl.getPathImg().substring(8) + "\\" + repertoireCarteObjectif[index],index));
+					panelDispoZoom.add(new BtnZoomCarte("donnee/carteObjectif/" +this.ctrl.getPathImg().substring(8) + "/" + repertoireCarteObjectif[index],index));
 				
 				popUpHistoirque.add(new JScrollPane(panelDispoZoom),BorderLayout.CENTER);
 			}
