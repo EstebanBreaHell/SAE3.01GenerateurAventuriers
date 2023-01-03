@@ -21,8 +21,6 @@ import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
-import org.w3c.dom.Text;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.*;
@@ -33,7 +31,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.security.cert.PKIXRevocationChecker.Option;
 import java.util.List;
 import java.awt.GridLayout;
 

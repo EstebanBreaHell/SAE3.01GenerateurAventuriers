@@ -297,7 +297,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 		{
 			this.ctrl.addNoeud(nom, e.getX(), e.getY());
 			/* Ajout des noeuds dans l'historique */
-			PanelCreerNoeud.lstLabel.add(new JLabel("Nom : " + nom + " | Pos X : " + e.getX()  + " | Pos Y : " + e.getY()));
+			PanelCreerNoeud.lstLabel.add(new JLabel("Nom : " + nom + " | Position X : " + e.getX()  + " | Position Y : " + e.getY()));
 			PanelCreerNoeud.listHistorique.setListData(PanelCreerNoeud.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 			/*------------------------------------*/
 
@@ -359,7 +359,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 			//this.noeudActif.setNomY(y-10);
 			this.repaint();
 		}
-		PanelCreerNoeud.lstLabel.get(this.ctrl.getPositionAreteNoeudAl(this.noeudActif)).setText("Nom : " + this.noeudActif.getNom() + " | Pos X : " + this.noeudActif.getX()  + " | Pos Y : " + this.noeudActif.getY());
+		PanelCreerNoeud.lstLabel.get(this.ctrl.getPositionAreteNoeudAl(this.noeudActif)).setText("Nom : " + this.noeudActif.getNom() + " | Position X : " + this.noeudActif.getX()  + " | Position Y : " + this.noeudActif.getY());
 		PanelCreerNoeud.listHistorique.setListData(PanelCreerNoeud.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 
 
