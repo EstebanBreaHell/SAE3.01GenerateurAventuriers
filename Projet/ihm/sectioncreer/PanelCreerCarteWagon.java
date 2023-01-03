@@ -90,6 +90,7 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 		for(String s : this.hashCoulNbCarte.keySet())
 		{
 			this.lstCouleurTmp.add(s);
+			System.out.println(s + " :ddddd " + this.hashCoulNbCarte.get(s));
 		}
 		this.nomVerso = "Aucun verso pour le moment.";
 		this.lblNomVerso = new JLabel(this.nomVerso);
@@ -160,6 +161,8 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 	public void majIHM()
 	{
 		this.lstArete = this.ctrl.getLstArete();
+		this.hashCoulNbCarte = this.ctrl.getLstCouleurWagon();
+		this.hashCoulImage = this.ctrl.getHsmImageWagon();
 		this.lstCouleurInter.clear();
 		this.lstCouleurTmp.clear();
 		this.lstCouleurTmp.add("Joker");
@@ -170,6 +173,7 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 				this.lstCouleurTmp.add(a.getCouleur());
 				if(!this.hashCoulNbCarte.containsKey(a.getCouleur()))
 				{
+					System.out.println("couleurfdpfdpfpdfpdfdpfdpfdpfdpfdp : " + a.getCouleur());
 					this.hashCoulNbCarte.put(a.getCouleur(), 0);
 					this.hashCoulImage.put(a.getCouleur(), null);
 				}
@@ -197,7 +201,7 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 	{
 		if(e.getSource() == this.btnConfirme)
 		{
-			String couleur = this.lstCouleur.getSelectedValue().toString();
+			String couleur = this.lstCouleur.getSelectedValue().getBackground().toString().substring(14);
 			if(couleur != null)
 			{
 				this.hashCoulNbCarte.put(couleur, Integer.parseInt(this.txtNbCarte.getText()));
@@ -311,7 +315,7 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 
 		if(e.getSource() == this.btnValidImporteRecto)
 		{
-			this.hashCoulImage.put(this.lstCouleur.getSelectedValue().toString(),this.ctrl.getPanelSelectionner().getNomfichier());
+			this.hashCoulImage.put(this.lstCouleur.getSelectedValue().getBackground().toString().substring(14),this.ctrl.getPanelSelectionner().getNomfichier());
 			this.lblNomRecto.setText("Recto : "+this.ctrl.getPanelSelectionner().getNomfichier());
 			this.ctrl.setHsmImageWagon(this.hashCoulImage);
 			this.jdImporte.dispose();
