@@ -29,6 +29,7 @@ public class PanelParametre extends JPanel implements ActionListener
 	private JTextField txtFinDePartie;
 	private JButton btnValider;
 	private JButton btnConfirmer;
+	private JScrollPane scrollPane;
 
 	private JCheckBox chbPlusLongueRoute;
 	private JDialog jd;
@@ -356,6 +357,7 @@ public class PanelParametre extends JPanel implements ActionListener
 					panelCouleur.add(new JLabel("Couleur joueur " + i + " : "));
 					panelCouleur.add(btnTmp);
 					btnTmp.addActionListener(this);
+					this.scrollPane = new JScrollPane(panelCouleur);
 					if(PanelParametre.allCoul[i-1] != null)
 					{
 						btnTmp.setBackground(Color.decode(PanelParametre.allCoul[i-1]));
@@ -364,17 +366,13 @@ public class PanelParametre extends JPanel implements ActionListener
 					{
 						btnTmp.setBackground(Color.WHITE);
 					}
-					
-
-
-					
 				}
 				panelConfirmer.add(new JLabel());
 				panelConfirmer.add(this.btnConfirmer);
 				this.btnConfirmer.setBackground(Color.WHITE);
 				panelConfirmer.add(new JLabel());
 				
-				this.jd.add(panelCouleur, BorderLayout.NORTH);
+				this.jd.add(scrollPane);
 				this.jd.add(panelConfirmer, BorderLayout.SOUTH);
 				this.jd.setVisible(true);
 				this.ctrl.ecrireXml();
