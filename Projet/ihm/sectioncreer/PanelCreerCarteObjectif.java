@@ -33,6 +33,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.security.cert.PKIXRevocationChecker.Option;
 import java.util.List;
 import java.awt.GridLayout;
 
@@ -336,19 +337,29 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 
 				if(e.getSource() == PanelCreerCarteObjectif.this.lstNoeud1)
 				{
-
+					
 					tmpNoeud = PanelCreerCarteObjectif.this.ctrl.getLstNoeud().get(PanelCreerCarteObjectif.this.lstNoeud1.getSelectedIndex());
 
-					PanelCreerCarteObjectif.this.noeud1 = tmpNoeud;
-					PanelCreerCarteObjectif.this.panelApercuFace.setNoeud1(tmpNoeud.getNomX()+15, tmpNoeud.getNomY(), tmpNoeud.getNom());
+					if(!tmpNoeud.equals(PanelCreerCarteObjectif.this.noeud2))
+					{
+						PanelCreerCarteObjectif.this.noeud1 = tmpNoeud;
+						PanelCreerCarteObjectif.this.panelApercuFace.setNoeud1(tmpNoeud.getNomX()+15, tmpNoeud.getNomY(), tmpNoeud.getNom());
+					}
+					else{ JOptionPane.showMessageDialog(null, "Erreur : Vous ne pouvez pas choisir le même noeud","Attention",1);}
 				}
 
 				if(e.getSource() == PanelCreerCarteObjectif.this.lstNoeud2)
 				{
 					tmpNoeud = PanelCreerCarteObjectif.this.ctrl.getLstNoeud().get(PanelCreerCarteObjectif.this.lstNoeud2.getSelectedIndex());
-					PanelCreerCarteObjectif.this.noeud2 = tmpNoeud;
-					PanelCreerCarteObjectif.this.panelApercuFace.setNoeud2(tmpNoeud.getNomX()+15, tmpNoeud.getNomY(), tmpNoeud.getNom());
+
+					if(!tmpNoeud.equals(PanelCreerCarteObjectif.this.noeud1))
+					{
+						PanelCreerCarteObjectif.this.noeud2 = tmpNoeud;
+						PanelCreerCarteObjectif.this.panelApercuFace.setNoeud2(tmpNoeud.getNomX()+15, tmpNoeud.getNomY(), tmpNoeud.getNom());
+					}
+					else{ JOptionPane.showMessageDialog(null, "Erreur : Vous ne pouvez pas choisir le même noeud","Attention",1);}
 				}
+
 			}
 		}
 	}

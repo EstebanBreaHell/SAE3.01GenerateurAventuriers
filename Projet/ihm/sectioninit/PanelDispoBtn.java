@@ -104,8 +104,6 @@ public class PanelDispoBtn extends JPanel implements ActionListener
 			e.printStackTrace();
 		}
 		
-		g2d.setColor(Color.WHITE);
-		g2d.fillRect(this.getHeight()/3, 20, 350, 60);
 
 		g2d.setColor(Color.BLACK);
 		g2d.setFont(new Font("Georgia", Font.BOLD, 30));		
