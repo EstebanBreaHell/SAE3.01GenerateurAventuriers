@@ -14,12 +14,14 @@ import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
+import org.w3c.dom.Text;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -35,7 +37,6 @@ import java.util.List;
 import java.awt.GridLayout;
 
 import main.Controleur;
-import metier.CarteObjectif;
 import metier.Noeud;
 
 public class PanelCreerCarteObjectif extends JPanel implements ActionListener

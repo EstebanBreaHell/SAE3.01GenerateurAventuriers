@@ -218,6 +218,26 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 				}
 			}
 		});
+
+		this.txtPosXnom.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) 
+				{
+					e.consume();
+				}
+			}
+		});
+
+		this.txtPosYnom.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) 
+				{
+					e.consume();
+				}
+			}
+		});
 	}
 
 	public List<JLabel> getListHistorique() {

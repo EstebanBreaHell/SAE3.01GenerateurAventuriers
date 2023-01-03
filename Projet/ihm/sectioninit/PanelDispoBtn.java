@@ -109,8 +109,6 @@ public class PanelDispoBtn extends JPanel implements ActionListener
 
 		g2d.setColor(Color.BLACK);
 		g2d.setFont(new Font("Georgia", Font.BOLD, 30));		
-		g2d.drawString("Generateur de Mappe", this.getHeight()/3,50);
-
 	}
 
 
