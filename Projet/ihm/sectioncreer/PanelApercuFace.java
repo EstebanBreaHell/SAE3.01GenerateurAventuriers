@@ -8,6 +8,7 @@ package ihm.sectioncreer;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
@@ -40,7 +41,7 @@ public class PanelApercuFace extends JPanel implements ActionListener
 		this.ctrl = ctrl;
 		this.setLayout(new BorderLayout());
 
-		this.panelGraphiqueFace = new PanelGraphiqueFace(this.ctrl.getPathImg(), 0, 0, "", 0, 0, "",0);
+		this.panelGraphiqueFace = new PanelGraphiqueFace(this.ctrl.getPathImg(), 1000, 1000, "", 1000, 1000, "",0);
 
 		this.btnVoirApercu = new JButton("Voir aperçu");
 		this.btnVoirApercu.setBackground(Color.WHITE);
@@ -126,6 +127,8 @@ public class PanelApercuFace extends JPanel implements ActionListener
 
 			this.majIhm();
 		}
+
+		public boolean isNoeudDefinie(){return this.x1 != 1000 && this.x2 != 1000 && this.y1 != 1000 && this.y2 != 1000;}
 		
 		public void creerCarte(Noeud noeudDep, Noeud noeudArr)
 		{
@@ -138,6 +141,7 @@ public class PanelApercuFace extends JPanel implements ActionListener
 			Image img = null;
 
 			Graphics2D g2d = (Graphics2D) g;
+	
 	
 			try   {img = ImageIO.read(new File(PanelGraphiqueFace.pathImg));} 
 			catch (IOException e) {e.printStackTrace();}
@@ -156,16 +160,19 @@ public class PanelApercuFace extends JPanel implements ActionListener
 			g2d.drawString(this.nbPoint + "", this.getWidth()/4 + 185,this.getHeight()/3+15);
 			
 			/*arete */
-			g2d.setColor(Color.red);
-			g2d.drawLine(this.x1 +5, this.y1 + 5, this.x2 + 5, this.y2 + 5);
+			if(this.isNoeudDefinie())
+			{
+				g2d.setColor(Color.red);
+				g2d.drawLine(this.x1 +5, this.y1 + 5, this.x2 + 5, this.y2 + 7);
+			}
 
 			/*Noeud 1 */
 			g2d.setColor(Color.black);
 			g2d.fillOval(this.x1 ,this.y1, 10, 10);
 			g2d.setColor(Color.white);
-			g2d.fillRect(this.x1 ,this.y1 -20, this.nomNoeud2.toCharArray().length * 5 , 15);
+			g2d.fillRect(this.x1 ,this.y1 -20, this.nomNoeud1.toCharArray().length * 5 , 15);
 			g2d.setColor(Color.BLACK);
-			g2d.drawString(this.nomNoeud1, this.x1,this.y1 + 10);
+			g2d.drawString(this.nomNoeud1, this.x1,this.y1 - 10);
 
 			/*Noeud 2 */
 			g2d.fillOval(this.x2 ,this.y2  , 10, 10);
