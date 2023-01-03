@@ -59,10 +59,10 @@ public class PanelDispoBtn extends JPanel implements ActionListener
 		this.setBorder(BorderFactory.createEmptyBorder(length, width, width, length));
 		this.setBackground(Color.WHITE);
 
-		this.btnImporter = new JButton("Importer",Controleur.imageToIcon("donnee\\importer.png", 40, 40));
-		this.btnEditer   = new JButton("Editer",Controleur.imageToIcon("donnee\\edite.png", 40, 40));
-		this.btnImportXml   = new JButton("Importer un XML",Controleur.imageToIcon("donnee\\ouvrir.png", 40, 40));
-		this.btnQuitter  = new JButton("Quitter",Controleur.imageToIcon("donnee\\quitter.png", 40, 40));
+		this.btnImporter = new JButton("Importer",Controleur.imageToIcon("donnee/importer.png", 40, 40));
+		this.btnEditer   = new JButton("Editer",Controleur.imageToIcon("donnee/edite.png", 40, 40));
+		this.btnImportXml   = new JButton("Importer un XML",Controleur.imageToIcon("donnee/ouvrir.png", 40, 40));
+		this.btnQuitter  = new JButton("Quitter",Controleur.imageToIcon("donnee/quitter.png", 40, 40));
 
 		this.btnImporter.setBorder(distanceBtn);
 		this.btnEditer.setBorder(distanceBtn);
@@ -96,7 +96,7 @@ public class PanelDispoBtn extends JPanel implements ActionListener
 		Graphics2D g2d = (Graphics2D) g;
 
 		try {
-			Image img = ImageIO.read(new File("donnee\\fond.png"));
+			Image img = ImageIO.read(new File("donnee/fond.png"));
 			
 			g.drawImage(img.getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_DEFAULT), 0, 0,null);
 		} catch (IOException e) {
