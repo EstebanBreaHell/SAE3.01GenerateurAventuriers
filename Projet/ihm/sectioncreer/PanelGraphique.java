@@ -121,7 +121,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 
 		// Dessiner le texte	
 		g.setFont(new Font("default", Font.BOLD, 12));
-		ArrayList<Arete> areteDoubleDessine = new ArrayList();
+		ArrayList<Arete> areteDoubleDessine = new ArrayList<Arete>();
 
 		// draw les arete
 		for (Arete a : this.ctrl.getLstArete()) {
@@ -206,9 +206,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 
 	private void drawArete(int fromX, int fromY, int toX, int toY, int nbWagon, String c , Graphics g)
 	{
-		int posX = (fromX + toX) / 2;
-		int posY = (fromY + toY) / 2;
-
+	
 		// draw la valeur de l'arete
 		//System.out.print(c);
 		//from string : "java.awt.Color[r=0,g=0,b=0]" to : 0,0,0
