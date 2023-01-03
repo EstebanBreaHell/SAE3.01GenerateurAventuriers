@@ -56,6 +56,7 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 	private JLabel lblImageArriere;
 
 	private Noeud noeud1, noeud2;
+	private int nbPoint;
 
 	private JButton btnModifierMotif;
 
@@ -83,6 +84,7 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 
 		this.noeud1 = null;
 		this.noeud2 = null;
+		this.nbPoint = 0;
 
 		this.lstNoeud1 = new JList<String>();
 		this.lstNoeud2 = new JList<String>();
@@ -223,7 +225,10 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		/**
 		 * Definie le nombre de point sur la carte
 		 */
-		if(e.getSource() == this.txtNbPoint){this.panelApercuFace.setNbPoint(Integer.parseInt(this.txtNbPoint.getText()));}
+		if(e.getSource() == this.txtNbPoint){
+			this.panelApercuFace.setNbPoint(Integer.parseInt(this.txtNbPoint.getText()));
+			this.nbPoint = Integer.parseInt(this.txtNbPoint.getText());
+		}
 
 		if(e.getSource() == this.btnCreerCarte)
 		{
@@ -240,7 +245,7 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 				JOptionPane.showMessageDialog(null, "Veuillez selectionner deux noeuds differents", "Erreur", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
-			this.panelApercuFace.creerCarte(this.noeud1,this.noeud2);
+			this.ctrl.creerCarteObjectif(this.noeud1, this.noeud2, this.nbPoint);
 			
 
 		
