@@ -2,8 +2,8 @@
 <infos>
 	<mappe>
 		<noeud nom="Nouvelle ville">
-			<coordonees x="239" y="481"/>
-			<coordoneesNom x="224" y="496"/>
+			<coordonees x="702" y="378"/>
+			<coordoneesNom x="687" y="393"/>
 		</noeud>
 		<noeud nom="Nouvelle ville">
 			<coordonees x="80" y="626"/>
@@ -18,12 +18,16 @@
 			<coordoneesNom x="209" y="92"/>
 		</noeud>
 		<noeud nom="Nouvelle ville">
-			<coordonees x="453" y="336"/>
-			<coordoneesNom x="438" y="351"/>
+			<coordonees x="632" y="635"/>
+			<coordoneesNom x="617" y="650"/>
 		</noeud>
 		<noeud nom="Nouvelle ville">
 			<coordonees x="384" y="155"/>
 			<coordoneesNom x="369" y="170"/>
+		</noeud>
+		<noeud nom="Nouvelle ville">
+			<coordonees x="362" y="89"/>
+			<coordoneesNom x="347" y="104"/>
 		</noeud>
 		<arete>
 			<noeudArr>2</noeudArr>
@@ -140,11 +144,31 @@
 			<nombre>0</nombre>
 			<recto>null</recto>
 		</carteWagon>
+		<carteObjectif>
+			<noeudArr>3</noeudArr>
+			<noeudDep>6</noeudDep>
+			<points>10</points>
+		</carteObjectif>
+		<carteObjectif>
+			<noeudArr>4</noeudArr>
+			<noeudDep>6</noeudDep>
+			<points>10</points>
+		</carteObjectif>
+		<carteObjectif>
+			<noeudArr>4</noeudArr>
+			<noeudDep>3</noeudDep>
+			<points>10</points>
+		</carteObjectif>
+		<carteObjectif>
+			<noeudArr>1</noeudArr>
+			<noeudDep>3</noeudDep>
+			<points>200</points>
+		</carteObjectif>
 	<details>
 		<nbJoueurMinDoubleArete>4</nbJoueurMinDoubleArete>
 		<nbJoueurMax>5</nbJoueurMax>
-		<nbWagonDebutPartie>45</nbWagonDebutPartie>
-		<nbWagonFinPartie>2</nbWagonFinPartie>
+		<nbWagonDebutPartie>1</nbWagonDebutPartie>
+		<nbWagonFinPartie>4</nbWagonFinPartie>
 		<nbPointsPlusLongChemin>10</nbPointsPlusLongChemin>
 		<versoCarteWagon>null</versoCarteWagon>
 		<image>importe/a_changer.png</image>
