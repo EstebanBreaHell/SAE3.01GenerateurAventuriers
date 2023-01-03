@@ -36,12 +36,12 @@ public class PanelImageInfo extends JPanel implements ActionListener
 		this.setLayout(new BorderLayout());
 
 		this.icon= Controleur.imageToIcon("importe/" + nomFichier,200,100);
-		this.setBackground(Color.ORANGE);
+		this.setBackground(Color.GRAY);
 
 		this.btnImage = new JButton();
 		this.btnImage.setIcon(icon);
 		this.btnImage.setRolloverIcon(this.icon);
-		this.btnImage.setBackground(Color.WHITE);;
+		this.btnImage.setBackground(Color.WHITE);
 
 		this.add(new JLabel(nomFichier,JLabel.CENTER),BorderLayout.NORTH);
 		this.add(this.btnImage,BorderLayout.CENTER);
