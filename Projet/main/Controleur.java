@@ -1,6 +1,5 @@
 package main;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -13,8 +12,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import javax.swing.Icon;
-import javax.swing.JList;
 import javax.swing.JPanel;
+
+import com.formdev.flatlaf.FlatLightLaf;
+
 import javax.swing.ImageIcon;
 
 import ihm.Frame;
@@ -135,6 +136,22 @@ public class Controleur
         this.metier.setNbPointsPlusLongChemin(nbPoints);
     }
 
+    public void setNomMoyenDeTransport(String nom){
+        this.metier.setNomMoyenDeTransport(nom);
+    }
+
+    public String getNomMoyenDeTransport() {
+        return this.getNomMoyenDeTransport();
+    }
+
+    public void setTxtRoute(String txtRoute) {
+        this.metier.setTxtRoute(txtRoute);
+    }
+
+    public String getTxtRoute() {
+        return this.metier.getTxtRoute();
+    }
+
 
     public ArrayList<Noeud> getNoeudDispo(Noeud n)
     {
@@ -167,6 +184,14 @@ public class Controleur
 
     public ArrayList<String> getLstCouleurJoueur() {
         return this.metier.getLstCouleurJoueur();
+    }
+
+    public void setPointsTaille(String[][] pointsTaille ){
+        this.metier.setPointsTaille(pointsTaille);
+    }
+
+    public String[][] getpointsTaille(){
+        return this.metier.getPointsTaille();
     }
 
     public ArrayList<CarteObjectif> getLstCarteObjectif()
@@ -282,6 +307,8 @@ public class Controleur
 
     public static void main(String[] args)
     {
+        FlatLightLaf.setup();
+
         new Controleur();
     }
 

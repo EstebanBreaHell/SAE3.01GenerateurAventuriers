@@ -21,16 +21,15 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.Color;
 import java.awt.event.*;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.BasicStroke;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import main.Controleur;
 
@@ -48,7 +47,7 @@ public class PanelDispoBtn extends JPanel implements ActionListener
 		this.ctrl = ctrl;
 		this.setLayout(new BorderLayout());
 
-		JPanel panelPtn = new JPanel(new GridLayout(4,1, 30, 30));
+		JPanel panelPlacementBtn = new JPanel(new GridLayout(4,1, 30, 30));
 		
 		Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
 		int width  = (int)(double)(tailleMoniteur.getWidth ()/8  );
@@ -74,14 +73,14 @@ public class PanelDispoBtn extends JPanel implements ActionListener
 		this.btnQuitter.setBackground(Color.RED);
 		this.btnImportXml.setBackground(Color.ORANGE);
 
-		panelPtn.add(this.btnImporter);
-		panelPtn.add(this.btnImportXml);
-		panelPtn.add(this.btnEditer);
-		panelPtn.add(this.btnQuitter);
+		panelPlacementBtn.add(this.btnImporter);
+		panelPlacementBtn.add(this.btnImportXml);
+		panelPlacementBtn.add(this.btnEditer);
+		panelPlacementBtn.add(this.btnQuitter);
 
-		panelPtn.setOpaque(false);
+		panelPlacementBtn.setOpaque(false);
 		
-		this.add(panelPtn);
+		this.add(panelPlacementBtn);
 
 		this.btnEditer.addActionListener(this);
 		this.btnImporter.addActionListener(this);
@@ -93,20 +92,11 @@ public class PanelDispoBtn extends JPanel implements ActionListener
 	{
 		super.paintComponent(g);
 
-		Graphics2D g2d = (Graphics2D) g;
-
 		try {
 			Image img = ImageIO.read(new File("donnee/fond.png"));
-			
 			g.drawImage(img.getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_DEFAULT), 0, 0,null);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-
-		g2d.setColor(Color.BLACK);
-		g2d.setFont(new Font("Georgia", Font.BOLD, 30));		
+		} catch (IOException e) {e.printStackTrace();}
+				
 	}
 
 
@@ -141,7 +131,8 @@ public class PanelDispoBtn extends JPanel implements ActionListener
 			if(res == JFileChooser.APPROVE_OPTION)
 			{
 				File file = jFileChooser.getSelectedFile();
-				
+				try 	{Files.copy(file.toPath(), Paths.get("importe/"+file.getName()));} 
+				catch (IOException e1) {e1.printStackTrace();}
 			}
 
 			this.ctrl.majPanelImporter();
@@ -173,7 +164,10 @@ public class PanelDispoBtn extends JPanel implements ActionListener
 
 		/* Fermeture de l'application */
 		if(e.getSource() == this.btnQuitter)
+		{
 			System.exit(0);
+			
+		}
 		/*----------------------------*/
 	}
 

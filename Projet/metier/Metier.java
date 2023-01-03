@@ -28,6 +28,14 @@ public class Metier
     private ArrayList<CarteWagon> lstCarteWagon;
 
     private ArrayList<String> lstCouleurJoueur;
+
+    private String[][] pointsTaille= {
+        {"1", "1",},
+        {"2", "2",},
+        {"3", "4",},
+        {"4", "7",},
+        {"5", "10",},
+        {"6", "15",}};
     private HashMap<String, Integer> hsmCouleurWagon;
     private HashMap<String, String> hsmImageWagon;
     private String versoCarteObjectif;
@@ -35,7 +43,7 @@ public class Metier
 
     
 	private int nbJoueurMax, nbJoueurMinDoubleArete , nbWagonDebutPartie ,nbWagonFinPartie , nbPointsPlusLongChemin ;
-    private String txtNomMoyenDeTransport;
+    private String txtNomMoyenDeTransport, txtRoute;
 
 
     public Metier( Controleur ctrl )
@@ -51,6 +59,8 @@ public class Metier
         this.hsmCouleurWagon = new HashMap<String, Integer>();
         this.hsmImageWagon = new HashMap<String, String>();
 
+
+
         
 
 		this.nbJoueurMax = 5;
@@ -59,6 +69,7 @@ public class Metier
         this.nbWagonFinPartie = 2;
         this.nbPointsPlusLongChemin = 10;
         this.txtNomMoyenDeTransport = "Wagon";
+        this.txtRoute               = "Rails";
     }
 
     public void creerCarteObjectif(Noeud noeudDep, Noeud noeudArr, int nbPoints)
@@ -74,6 +85,36 @@ public class Metier
     public void setNbJoueurMinDoubleArete( int m )
     {
         this.nbJoueurMinDoubleArete = m ;
+    }
+
+    public void setNomMoyenDeTransport(String txtNomMoyenDeTransport) {
+        this.txtNomMoyenDeTransport = txtNomMoyenDeTransport;
+    }
+
+    public String getNomMoyenDeTransport() {
+        return txtNomMoyenDeTransport;
+    }
+
+    public void setTxtRoute(String txtRoute) {
+        this.txtRoute = txtRoute;
+    }
+
+    public String getTxtRoute() {
+        return txtRoute;
+    }
+
+
+
+    public String getTxtNomMoyenDeTransport() {
+        return txtNomMoyenDeTransport;
+    }
+
+    public void setPointsTaille(String[][] pointsTaille ){
+        this.pointsTaille = pointsTaille;
+    }
+
+    public String[][] getPointsTaille(){
+        return this.pointsTaille;
     }
 
     public void setNbJoueurMax( int m )
@@ -235,10 +276,32 @@ public class Metier
             pw.println ( "\t\t<nbWagonDebutPartie>"+ this.nbWagonDebutPartie + "</nbWagonDebutPartie>" );
             pw.println ( "\t\t<nbWagonFinPartie>"+ this.nbWagonFinPartie + "</nbWagonFinPartie>" );
             pw.println ( "\t\t<nbPointsPlusLongChemin>"+ this.nbPointsPlusLongChemin + "</nbPointsPlusLongChemin>" );
+            pw.println ( "\t\t<txtNomMoyenDeTransport>"+ this.txtNomMoyenDeTransport + "</txtNomMoyenDeTransport>" );
+            pw.println ( "\t\t<txtRoute>"+ this.txtRoute + "</txtRoute>" );
+
             pw.println ( "\t\t<versoCarteWagon>"+ this.versoCarteWagon + "</versoCarteWagon>" );
+            pw.println ( "\t\t<versoCarteObjectif>"+ this.versoCarteObjectif + "</versoCarteObjectif>" );
+
             pw.println ( "\t\t<image>"+ this.ctrl.getPathImg() + "</image>" );
         
             pw.println ( "\t</details>" );
+            pw.println ("\t<CouleurJoueurList>");
+            for(String c : this.lstCouleurJoueur)
+            {
+                pw.println ( "\t\t<couleurJoueur>" + c + "</couleurJoueur>" );
+            }
+            pw.println ("\t</CouleurJoueurList>");
+
+            pw.println("\t<points>");
+            //parcours et écrire le pointsTaille
+            for(int i = 0; i < this.pointsTaille.length; i++)
+            {
+                pw.println("\t\t<pointTaille>");
+                pw.println("\t\t\t<taille>" + this.pointsTaille[i][0] + "</taille>");
+                pw.println("\t\t\t<points>" + this.pointsTaille[i][1] + "</points>");
+                pw.println("\t\t</pointTaille>");
+            }
+            pw.println("\t</points>");
             pw.println ( "\t</mappe>" );
             pw.println("</infos>");
 

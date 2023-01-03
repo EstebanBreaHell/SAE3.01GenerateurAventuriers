@@ -7,6 +7,7 @@
 package ihm.sectioncreer;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -21,8 +22,6 @@ import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
-import org.w3c.dom.Text;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.*;
@@ -33,9 +32,9 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.security.cert.PKIXRevocationChecker.Option;
 import java.util.List;
 import java.awt.GridLayout;
+
 
 import main.Controleur;
 import metier.Noeud;
@@ -52,6 +51,7 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 	private JPanel panelLstNoeud;
 	private JButton btnHistoriqueCarte;
 	private JButton btnCreerCarte;
+	private JButton btnInformation;
 	private JPanel panelDispoArriere;
 	private JLabel lblImageArriere;
 
@@ -86,6 +86,9 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 
 		this.lstNoeud1 = new JList<String>();
 		this.lstNoeud2 = new JList<String>();
+
+		this.lstNoeud1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.lstNoeud2.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
 	
 		this.lblImageArriere = new JLabel(Controleur.imageToIcon("data_user/non_definie.png", 200, 100));
@@ -94,22 +97,18 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		this.txtNbPoint.setText(0 + "");
 		this.txtNbPoint.setHorizontalAlignment(JTextField.CENTER);
 			
-		this.btnHistoriqueCarte = new JButton("Historique des cartes");
+		this.btnHistoriqueCarte = new JButton("Historique des cartes créées");
 		this.btnCreerCarte = new JButton("Créer carte");
 		this.lblImageArriere = new JLabel("Erreur");
 
-		this.btnModifierMotif = new JButton("Modifier le motif");
+		this.btnModifierMotif = new JButton("Importer une carte verso");
 
 		this.panelDispoArriere = new JPanel(new BorderLayout(10,10));
 		this.panelApercuFace = new PanelApercuFace(this.ctrl);
 		
 		JPanel panelDispoListeApercu = new JPanel(new GridLayout(2,1));
-
 		JPanel panelDispoListe = new JPanel(new BorderLayout());
-		JPanel panelDispoGestionPoint = new JPanel(new BorderLayout(10,0));
-
 		JPanel panelDispoApercu = new JPanel(new GridLayout(1,2,10,10));
-	
 		JPanel panelDispoBtnCreerHistorique = new JPanel(new GridLayout(2,1,5,5));
 
 		/**
@@ -123,13 +122,23 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		this.panelLstNoeud.setBackground(Color.WHITE);
 		this.scrollPaneNoeud = new JScrollPane(this.panelLstNoeud);
 		panelDispoListe.add(this.scrollPaneNoeud);
+		
+		JPanel panelTest = new JPanel(new GridLayout(2,3,5,5));
+		
+		this.btnInformation = new JButton("Notice d'utilisation");
+		this.btnInformation.setBackground(Color.WHITE);
+		this.btnInformation.addActionListener(this);
 
-		panelDispoGestionPoint.add(new JLabel("Nb points de la carte :",JLabel.CENTER),BorderLayout.WEST);
-		panelDispoGestionPoint.add(this.txtNbPoint, BorderLayout.CENTER);
-		JLabel lblPoints = new JLabel("points", JLabel.CENTER);
-		panelDispoGestionPoint.add(lblPoints, BorderLayout.EAST);
 
-		panelDispoListe.add(panelDispoGestionPoint,BorderLayout.SOUTH);
+		panelTest.add(new JLabel());
+		panelTest.add(this.btnInformation);
+		panelTest.add(new JLabel());
+
+		panelTest.add(new JLabel("Nb points de la carte :",JLabel.CENTER));
+		panelTest.add(this.txtNbPoint);
+		panelTest.add(new JLabel("points", JLabel.LEFT));
+
+		panelDispoListe.add(panelTest,BorderLayout.SOUTH);
 		
 		panelDispoApercu.add(this.panelApercuFace);
 
@@ -255,14 +264,33 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 				JPanel panelDispoZoom = new JPanel(new GridLayout(this.ctrl.getLstCarteObjectif().size(),1));
 
 				for(int index = 0; index < this.ctrl.getLstCarteObjectif().size(); index++)
-					panelDispoZoom.add(new BtnZoomCarte("donnee/carteObjectif/" +this.ctrl.getPathImg().substring(8) + "/" + repertoireCarteObjectif[index],index));
+				{
+					panelDispoZoom.add(new BtnZoomCarte("donnee/carteObjectif/" + this.ctrl.getPathImg().substring(8) + "/" + repertoireCarteObjectif[index],index));	
+				}
 				
 				popUpHistoirque.add(new JScrollPane(panelDispoZoom),BorderLayout.CENTER);
 			}
 			
 			popUpHistoirque.setVisible(true);
-			
-			
+		}
+
+		if(e.getSource() == this.btnInformation)
+		{
+			JDialog popUpInformation = new JDialog();
+			popUpInformation.setSize(600,400);
+			popUpInformation.setResizable(false);
+			popUpInformation.setBounds(110,200,600,400);
+			popUpInformation.setTitle("Information sur la création de carte objectif");
+
+			JPanel panelInformation = new JPanel(new GridLayout(4,1,10,10));
+			panelInformation.add(new JLabel("- Appuyez entrer après la saisie du nombre de point pour valider"));
+			panelInformation.add(new JLabel("- Pour créer une carte objectif, selectionnez un noeud en double cliquant sur la liste 1, puis sur la miniature, faites un clique gauche"));
+			panelInformation.add(new JLabel("- Pour relier le chemin, selectionnez un noeud en double cliquant sur la liste 2, puis sur la miniature, faites un clique gauche"));
+			panelInformation.add(new JLabel("- Pour importer une carte verso, cliquez sur le bouton importer"));
+
+
+			popUpInformation.add(panelInformation,BorderLayout.CENTER);
+			popUpInformation.setVisible(true);
 		}
 	}
 
@@ -287,6 +315,7 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 			this.pathImg = pathImg;
 			this.indexCarteObjectif = indexcarteObjectif;
 			this.btnZoom = new JButton(new ImageIcon(this.pathImg));
+			this.btnZoom.setBackground(Color.WHITE);
 
 			this.btnSuppr = new JButton("Supprimer");
 
@@ -295,7 +324,7 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 			this.add(this.btnZoom,BorderLayout.CENTER);
 			this.add(this.btnSuppr,BorderLayout.SOUTH);
 
-			this.setBackground(Color.BLUE);
+			this.setBackground(Color.WHITE);
 
 			this.btnZoom.addActionListener(this);
 			this.btnSuppr.addActionListener(this);
@@ -348,7 +377,7 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 					if(!tmpNoeud.equals(PanelCreerCarteObjectif.this.noeud2))
 					{
 						PanelCreerCarteObjectif.this.noeud1 = tmpNoeud;
-						PanelCreerCarteObjectif.this.panelApercuFace.setNoeud1(tmpNoeud.getNomX()+15, tmpNoeud.getNomY(), tmpNoeud.getNom());
+						PanelCreerCarteObjectif.this.panelApercuFace.setNoeud1(1000, 1000, tmpNoeud.getNom());
 					}
 					else{ JOptionPane.showMessageDialog(null, "Erreur : Vous ne pouvez pas choisir le même noeud","Attention",1);}
 				}
@@ -360,7 +389,7 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 					if(!tmpNoeud.equals(PanelCreerCarteObjectif.this.noeud1))
 					{
 						PanelCreerCarteObjectif.this.noeud2 = tmpNoeud;
-						PanelCreerCarteObjectif.this.panelApercuFace.setNoeud2(tmpNoeud.getNomX()+15, tmpNoeud.getNomY(), tmpNoeud.getNom());
+						PanelCreerCarteObjectif.this.panelApercuFace.setNoeud2(1000, 1000, tmpNoeud.getNom());
 					}
 					else{ JOptionPane.showMessageDialog(null, "Erreur : Vous ne pouvez pas choisir le même noeud","Attention",1);}
 				}

@@ -121,7 +121,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 
 		// Dessiner le texte	
 		g.setFont(new Font("default", Font.BOLD, 12));
-		ArrayList<Arete> areteDoubleDessine = new ArrayList();
+		ArrayList<Arete> areteDoubleDessine = new ArrayList<Arete>();
 
 		// draw les arete
 		for (Arete a : this.ctrl.getLstArete()) {
@@ -183,14 +183,16 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 	{
 		int size = 26;
 		
-
-
 		// draw la Noeud
 		g.setColor(Color.BLACK);
 		g.fillOval(noeud.getX(), noeud.getY(), size, size);
 		g.drawOval(noeud.getX(), noeud.getY(), size, size);
 
+		g.setColor(Color.WHITE);
+		g.fillOval(noeud.getX()+size/4, noeud.getY()+size/4, size/2, size/2);
+
 		// draw l'ID de la noeud
+		g.setColor(Color.BLACK);
 		String str = String.valueOf(noeud.getNom());
 		g.drawRect(noeud.getNomX() + size/2 - g.getFontMetrics().stringWidth(str)/2, noeud.getNomY() - size, g.getFontMetrics().stringWidth(str), 20);
 		g.setColor(Color.WHITE);
@@ -204,9 +206,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 
 	private void drawArete(int fromX, int fromY, int toX, int toY, int nbWagon, String c , Graphics g)
 	{
-		int posX = (fromX + toX) / 2;
-		int posY = (fromY + toY) / 2;
-
+	
 		// draw la valeur de l'arete
 		//System.out.print(c);
 		//from string : "java.awt.Color[r=0,g=0,b=0]" to : 0,0,0
@@ -295,7 +295,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 		{
 			this.ctrl.addNoeud(nom, e.getX(), e.getY());
 			/* Ajout des noeuds dans l'historique */
-			PanelCreerNoeud.lstLabel.add(new JLabel("Nom : " + nom + " | Pos X : " + e.getX()  + " | Pos Y : " + e.getY()));
+			PanelCreerNoeud.lstLabel.add(new JLabel("Nom : " + nom + " | Position X : " + e.getX()  + " | Position Y : " + e.getY()));
 			PanelCreerNoeud.listHistorique.setListData(PanelCreerNoeud.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 			/*------------------------------------*/
 
@@ -357,7 +357,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 			//this.noeudActif.setNomY(y-10);
 			this.repaint();
 		}
-		PanelCreerNoeud.lstLabel.get(this.ctrl.getPositionAreteNoeudAl(this.noeudActif)).setText("Nom : " + this.noeudActif.getNom() + " | Pos X : " + this.noeudActif.getX()  + " | Pos Y : " + this.noeudActif.getY());
+		PanelCreerNoeud.lstLabel.get(this.ctrl.getPositionAreteNoeudAl(this.noeudActif)).setText("Nom : " + this.noeudActif.getNom() + " | Position X : " + this.noeudActif.getX()  + " | Position Y : " + this.noeudActif.getY());
 		PanelCreerNoeud.listHistorique.setListData(PanelCreerNoeud.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 
 
