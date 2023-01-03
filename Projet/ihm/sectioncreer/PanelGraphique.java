@@ -183,14 +183,16 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 	{
 		int size = 26;
 		
-
-
 		// draw la Noeud
 		g.setColor(Color.BLACK);
 		g.fillOval(noeud.getX(), noeud.getY(), size, size);
 		g.drawOval(noeud.getX(), noeud.getY(), size, size);
 
+		g.setColor(Color.WHITE);
+		g.fillOval(noeud.getX()+size/4, noeud.getY()+size/4, size/2, size/2);
+
 		// draw l'ID de la noeud
+		g.setColor(Color.BLACK);
 		String str = String.valueOf(noeud.getNom());
 		g.drawRect(noeud.getNomX() + size/2 - g.getFontMetrics().stringWidth(str)/2, noeud.getNomY() - size, g.getFontMetrics().stringWidth(str), 20);
 		g.setColor(Color.WHITE);

@@ -50,7 +50,7 @@ public class PanelDispoBtn extends JPanel implements ActionListener
 		this.ctrl = ctrl;
 		this.setLayout(new BorderLayout());
 
-		JPanel panelPtn = new JPanel(new GridLayout(4,1, 30, 30));
+		JPanel panelPlacementBtn = new JPanel(new GridLayout(4,1, 30, 30));
 		
 		Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
 		int width  = (int)(double)(tailleMoniteur.getWidth ()/8  );
@@ -76,14 +76,14 @@ public class PanelDispoBtn extends JPanel implements ActionListener
 		this.btnQuitter.setBackground(Color.RED);
 		this.btnImportXml.setBackground(Color.ORANGE);
 
-		panelPtn.add(this.btnImporter);
-		panelPtn.add(this.btnImportXml);
-		panelPtn.add(this.btnEditer);
-		panelPtn.add(this.btnQuitter);
+		panelPlacementBtn.add(this.btnImporter);
+		panelPlacementBtn.add(this.btnImportXml);
+		panelPlacementBtn.add(this.btnEditer);
+		panelPlacementBtn.add(this.btnQuitter);
 
-		panelPtn.setOpaque(false);
+		panelPlacementBtn.setOpaque(false);
 		
-		this.add(panelPtn);
+		this.add(panelPlacementBtn);
 
 		this.btnEditer.addActionListener(this);
 		this.btnImporter.addActionListener(this);
@@ -99,16 +99,9 @@ public class PanelDispoBtn extends JPanel implements ActionListener
 
 		try {
 			Image img = ImageIO.read(new File("donnee/fond.png"));
-			
 			g.drawImage(img.getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_DEFAULT), 0, 0,null);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-
-		g2d.setColor(Color.BLACK);
-		g2d.setFont(new Font("Georgia", Font.BOLD, 30));		
+		} catch (IOException e) {e.printStackTrace();}
+				
 	}
 
 
@@ -176,7 +169,10 @@ public class PanelDispoBtn extends JPanel implements ActionListener
 
 		/* Fermeture de l'application */
 		if(e.getSource() == this.btnQuitter)
+		{
 			System.exit(0);
+			
+		}
 		/*----------------------------*/
 	}
 
