@@ -123,13 +123,18 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		this.panelLstNoeud.setBackground(Color.WHITE);
 		this.scrollPaneNoeud = new JScrollPane(this.panelLstNoeud);
 		panelDispoListe.add(this.scrollPaneNoeud);
+		
+		JPanel panelTest = new JPanel(new GridLayout(1,2));
 
 		panelDispoGestionPoint.add(new JLabel("Nb points de la carte :",JLabel.CENTER),BorderLayout.WEST);
 		panelDispoGestionPoint.add(this.txtNbPoint, BorderLayout.CENTER);
-		JLabel lblPoints = new JLabel("points", JLabel.CENTER);
-		panelDispoGestionPoint.add(lblPoints, BorderLayout.EAST);
+		panelDispoGestionPoint.add(new JLabel("points", JLabel.CENTER), BorderLayout.EAST);
 
-		panelDispoListe.add(panelDispoGestionPoint,BorderLayout.SOUTH);
+		
+		panelTest.add(new JLabel("Note d'utilisation : ",JLabel.CENTER),BorderLayout.NORTH);
+		panelTest.add(panelDispoGestionPoint);
+
+		panelDispoListe.add(panelTest,BorderLayout.SOUTH);
 		
 		panelDispoApercu.add(this.panelApercuFace);
 
@@ -348,7 +353,7 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 					if(!tmpNoeud.equals(PanelCreerCarteObjectif.this.noeud2))
 					{
 						PanelCreerCarteObjectif.this.noeud1 = tmpNoeud;
-						PanelCreerCarteObjectif.this.panelApercuFace.setNoeud1(tmpNoeud.getNomX()+15, tmpNoeud.getNomY(), tmpNoeud.getNom());
+						PanelCreerCarteObjectif.this.panelApercuFace.setNoeud1(1000, 1000, tmpNoeud.getNom());
 					}
 					else{ JOptionPane.showMessageDialog(null, "Erreur : Vous ne pouvez pas choisir le même noeud","Attention",1);}
 				}
@@ -360,7 +365,7 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 					if(!tmpNoeud.equals(PanelCreerCarteObjectif.this.noeud1))
 					{
 						PanelCreerCarteObjectif.this.noeud2 = tmpNoeud;
-						PanelCreerCarteObjectif.this.panelApercuFace.setNoeud2(tmpNoeud.getNomX()+15, tmpNoeud.getNomY(), tmpNoeud.getNom());
+						PanelCreerCarteObjectif.this.panelApercuFace.setNoeud2(1000, 1000, tmpNoeud.getNom());
 					}
 					else{ JOptionPane.showMessageDialog(null, "Erreur : Vous ne pouvez pas choisir le même noeud","Attention",1);}
 				}

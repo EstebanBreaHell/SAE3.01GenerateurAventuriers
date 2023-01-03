@@ -15,6 +15,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.BasicStroke;
+import java.awt.event.MouseEvent;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -22,6 +23,8 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+
 
 import main.Controleur;
 import metier.Noeud;
@@ -37,7 +40,7 @@ public class PanelApercuFace extends JPanel implements ActionListener
 		this.ctrl = ctrl;
 		this.setLayout(new BorderLayout());
 
-		this.panelGraphiqueFace = new PanelGraphiqueFace(this.ctrl.getPathImg(), 0, 0, "no", 0, 0, "yes",0);
+		this.panelGraphiqueFace = new PanelGraphiqueFace(this.ctrl.getPathImg(), 0, 0, "", 0, 0, "",0);
 
 		this.btnVoirApercu = new JButton("Voir aperçu");
 		this.btnVoirApercu.setBackground(Color.WHITE);
@@ -96,6 +99,7 @@ public class PanelApercuFace extends JPanel implements ActionListener
 			this.nomNoeud2 = nomNoeud2;
 
 			this.nbPoint = nbPoint;
+
 			this.addMouseListener(new InputSouris());
 		}
 
@@ -128,7 +132,6 @@ public class PanelApercuFace extends JPanel implements ActionListener
 			PanelApercuFace.this.ctrl.creerCarteObjectif(noeudDep, noeudArr, this.nbPoint);
 		}
 		
-
 		public void paintComponent(Graphics g)
 		{
 			super.paintComponent(g);
@@ -139,8 +142,7 @@ public class PanelApercuFace extends JPanel implements ActionListener
 			try   {img = ImageIO.read(new File(PanelGraphiqueFace.pathImg));} 
 			catch (IOException e) {e.printStackTrace();}
 
-			//System.out.println("Avant x = " + this.getWidth() + " y = " + this.getHeight());
-			//System.out.println("Après x = " + this.getWidth()/4 + " y = " + this.getHeight()/3);
+		
 
 			g.drawImage(img.getScaledInstance(200,100, Image.SCALE_DEFAULT),this.getWidth()/4,this.getHeight()/3, this);
 			
@@ -153,20 +155,26 @@ public class PanelApercuFace extends JPanel implements ActionListener
 			g2d.setColor(Color.BLACK);
 			g2d.drawString(this.nbPoint + "", this.getWidth()/4 + 185,this.getHeight()/3+15);
 			
+			/*arete */
+			g2d.setColor(Color.red);
+			g2d.drawLine(this.x1 +5, this.y1 + 5, this.x2 + 5, this.y2 + 5);
 
 			/*Noeud 1 */
+			g2d.setColor(Color.black);
 			g2d.fillOval(this.x1 ,this.y1, 10, 10);
 			g2d.setColor(Color.white);
-			//g2d.fillRect(this.x1 ,this.y1, 40, 15);
+			g2d.fillRect(this.x1 ,this.y1 -20, this.nomNoeud2.toCharArray().length * 5 , 15);
 			g2d.setColor(Color.BLACK);
-			//g2d.drawString(this.nomNoeud1, this.x1 ,this.y1);
+			g2d.drawString(this.nomNoeud1, this.x1,this.y1 + 10);
 
 			/*Noeud 2 */
-			g2d.fillOval((int)(this.x2*0.6),(int)(this.y2 * 0.446), 10, 10);
+			g2d.fillOval(this.x2 ,this.y2  , 10, 10);
 			g2d.setColor(Color.white);
-			//g2d.fillRect(this.x2/4,this.y2/3, 40, 15);
+			g2d.fillRect(this.x2 ,this.y2 -20, this.nomNoeud2.toCharArray().length *5 , 15);
 			g2d.setColor(Color.BLACK);
-			//g2d.drawString(this.nomNoeud2, this.x2/4,this.y2/3);
+			g2d.drawString(this.nomNoeud2, this.x2,this.y2 - 10);
+
+			
 	
 			
 
@@ -176,8 +184,11 @@ public class PanelApercuFace extends JPanel implements ActionListener
 		{
 			public void mouseClicked(MouseEvent e)
 			{
-				System.out.println(e.getX() + "|" +e.getY());
-				PanelApercuFace.this.setNoeud1(e.getX(), e.getY(), "ClickSouris");
+				if(e.getButton() == MouseEvent.BUTTON1) 
+					PanelApercuFace.this.setNoeud1(e.getX(), e.getY(), PanelGraphiqueFace.this.nomNoeud1);
+				
+				if(e.getButton() == MouseEvent.BUTTON3 )
+					PanelApercuFace.this.setNoeud2(e.getX(), e.getY(), PanelGraphiqueFace.this.nomNoeud2);
 			}
 			
 		}

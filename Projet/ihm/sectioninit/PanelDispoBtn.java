@@ -31,6 +31,8 @@ import java.awt.BasicStroke;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import main.Controleur;
 
@@ -141,7 +143,8 @@ public class PanelDispoBtn extends JPanel implements ActionListener
 			if(res == JFileChooser.APPROVE_OPTION)
 			{
 				File file = jFileChooser.getSelectedFile();
-				
+				try 	{Files.copy(file.toPath(), Paths.get("importe/"+file.getName()));} 
+				catch (IOException e1) {e1.printStackTrace();}
 			}
 
 			this.ctrl.majPanelImporter();
