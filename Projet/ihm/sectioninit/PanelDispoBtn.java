@@ -158,8 +158,24 @@ public class PanelDispoBtn extends JPanel implements ActionListener
 
 			this.ctrl.majPanelImporter();
 			*/
-			this.ctrl.lireXml();
-			this.ctrl.changerPanel("editer");
+			FileNameExtensionFilter filtre = new FileNameExtensionFilter("format xml", "xml");
+			JFileChooser jFileChooser = new JFileChooser(new File("donnee/xml"));
+
+			jFileChooser.setAcceptAllFileFilterUsed(false);
+			jFileChooser.setFileFilter(filtre);
+
+			int res = jFileChooser.showOpenDialog(null);
+			if(res == JFileChooser.APPROVE_OPTION)
+			{
+				File file = jFileChooser.getSelectedFile();
+				try 	{Files.copy(file.toPath(), Paths.get("donnee/xml/"+file.getName()));} 
+				catch (IOException e1) {e1.printStackTrace();}
+
+				this.ctrl.lireXml("donnee/xml/"+file.getName());
+				this.ctrl.changerPanel("editer");
+			}
+
+	
 		}
 
 		/* Fermeture de l'application */

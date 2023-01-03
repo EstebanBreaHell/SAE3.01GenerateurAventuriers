@@ -69,6 +69,8 @@ public class Controleur
 	{
         this.ihm.supprimArete(n);
     }
+    
+
 
     public int getPositionAreteNoeudAl(Noeud n )
     {
@@ -85,9 +87,9 @@ public class Controleur
         return this.ihm.getLstHistorique();
     }
 
-    public void lireXml()
+    public void lireXml(String pathXml)
     {
-        this.metier.lireXml();
+        this.metier.lireXml(pathXml);
     }
 
     public Dimension getDimensionEcran()
