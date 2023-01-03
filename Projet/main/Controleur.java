@@ -15,6 +15,10 @@ import java.util.Optional;
 import javax.swing.Icon;
 import javax.swing.JList;
 import javax.swing.JPanel;
+
+import com.formdev.flatlaf.FlatDarculaLaf;
+import com.formdev.flatlaf.FlatLightLaf;
+
 import javax.swing.ImageIcon;
 
 import ihm.Frame;
@@ -282,6 +286,8 @@ public class Controleur
 
     public static void main(String[] args)
     {
+        FlatLightLaf.setup();
+
         new Controleur();
     }
 
