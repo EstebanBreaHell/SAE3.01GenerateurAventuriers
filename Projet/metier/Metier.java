@@ -320,10 +320,7 @@ public class Metier
             e.printStackTrace();
         }
 
-        for( CarteObjectif c : this.lstCarteObjectif )
-        {
-            System.out.println(c.getNoeudDep().getNom() + " " + c.getNoeudArr().getNom() + " " + c.getNbPoints());
-        }
+       
 
     }
 
@@ -388,9 +385,15 @@ public class Metier
             this.hsmCouleurWagon.put(c, Integer.parseInt(w.getChild("nombre").getText()));
             this.hsmImageWagon.put(c, w.getChild("recto").getText());
 
+            System.out.println("couleur : " + c + " nombre : " + w.getChild("nombre").getText() + " recto : " + w.getChild("recto").getText());
 
             //this.creeCarteWagon(new Color(Integer.parseInt(rgb[0]), Integer.parseInt(rgb[1]), Integer.parseInt(rgb[2])));
             
+        }
+
+        for(String key : this.hsmCouleurWagon.keySet())
+        {
+            System.out.println(key + "  ahasdasa  : " + this.hsmCouleurWagon.get(key));
         }
 
         for(Element a : lstArete)

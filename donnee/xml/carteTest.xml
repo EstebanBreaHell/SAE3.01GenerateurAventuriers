@@ -95,8 +95,8 @@
 		</arete>
 		<carteWagon>
 			<couleur>[r=102,g=123,b=55]</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
+			<nombre>100</nombre>
+			<recto>imageCarte/Capture d’écran du 2022-02-03 09-04-48.png</recto>
 		</carteWagon>
 		<carteWagon>
 			<couleur>[r=47,g=86,b=149]</couleur>
@@ -115,7 +115,7 @@
 		</carteWagon>
 		<carteWagon>
 			<couleur>[r=3,g=90,b=93]</couleur>
-			<nombre>20</nombre>
+			<nombre>0</nombre>
 			<recto>imageCarte/Capture d’écran du 2022-02-03 09-04-48.png</recto>
 		</carteWagon>
 		<carteWagon>
@@ -176,8 +176,8 @@
 		<image>importe/FortniteMappe.png</image>
 	</details>
 	<CouleurJoueurList>
-		<couleurJoueur>[r=255,g=153,b=153</couleurJoueur>
-		<couleurJoueur>[r=51,g=51,b=255</couleurJoueur>
+		<couleurJoueur>null</couleurJoueur>
+		<couleurJoueur>null</couleurJoueur>
 	</CouleurJoueurList>
 	<points>
 		<pointTaille>
@@ -198,7 +198,7 @@
 		</pointTaille>
 		<pointTaille>
 			<taille>5</taille>
-			<points>100</points>
+			<points>10</points>
 		</pointTaille>
 		<pointTaille>
 			<taille>6</taille>
