@@ -342,6 +342,9 @@ public class PanelParametre extends JPanel implements ActionListener
 
 				JPanel panelCouleur = new JPanel(new GridLayout(nbJoueursMax + 1, 2,5,5));
 				JPanel panelConfirmer = new JPanel(new GridLayout(1,3,5,5));
+
+				
+
 				for(int i = 1; i <= nbJoueursMax; i ++)
 				{
 					panelCouleur.add(new JLabel("Couleur joueur " + i + " : "));

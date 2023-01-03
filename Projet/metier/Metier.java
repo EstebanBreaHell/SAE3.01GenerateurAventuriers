@@ -159,7 +159,7 @@ public class Metier
         }
         try
         {
-            PrintWriter pw = new PrintWriter( new FileOutputStream( "./data_user/carteTest.xml") );
+            PrintWriter pw = new PrintWriter( new FileOutputStream( "donnee/xml/carteTest.xml") );
             pw.println("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>");
             pw.println("<infos>");
 
@@ -216,6 +216,17 @@ public class Metier
 
                     pw.println ("\t\t</carteWagon>");
                 }
+            }
+
+            for(CarteObjectif c  :this.lstCarteObjectif)
+            {
+                pw.println ( "\t\t<carteObjectif>" );
+
+                pw.println ( "\t\t\t<noeudArr>"+ this.lstNoeud.indexOf(c.getNoeudDep()) + "</noeudArr>" );
+                pw.println ( "\t\t\t<noeudDep>"+ this.lstNoeud.indexOf(c.getNoeudArr()) + "</noeudDep>" );
+                pw.println ( "\t\t\t<points>"+ c.getNbPoints() + "</points>" );
+
+                pw.println ("\t\t</carteObjectif>");
             }
 
             /* 
