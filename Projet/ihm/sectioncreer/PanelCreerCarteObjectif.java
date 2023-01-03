@@ -321,7 +321,7 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 
 		private void majIHM()
 		{
-			this.repaint();
+			this.setVisible(false);
 		}
 	}
 
