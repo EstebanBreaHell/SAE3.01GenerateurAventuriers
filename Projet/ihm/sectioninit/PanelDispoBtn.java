@@ -21,13 +21,10 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.Color;
 import java.awt.event.*;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.BasicStroke;
 
 import java.io.File;
 import java.io.IOException;
@@ -94,8 +91,6 @@ public class PanelDispoBtn extends JPanel implements ActionListener
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
-
-		Graphics2D g2d = (Graphics2D) g;
 
 		try {
 			Image img = ImageIO.read(new File("donnee/fond.png"));

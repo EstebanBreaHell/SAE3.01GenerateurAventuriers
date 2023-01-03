@@ -8,11 +8,8 @@ package ihm.sectioncreer;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-import java.io.IOException;
 import java.text.NumberFormat;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.text.NumberFormatter;
@@ -59,7 +56,7 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 		 */
 		this.ctrl = ctrl;
 		this.setLayout(new BorderLayout());
-		this.lstLabel = new ArrayList<JLabel>();
+		PanelCreerNoeud.lstLabel = new ArrayList<JLabel>();
 		this.panelGraphique = new PanelGraphique(this.ctrl);
 		
 		JPanel panelCoordonnees 	= new JPanel(new GridLayout(5,3,10, 10));
@@ -94,11 +91,11 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 		this.btnConfirmer      = new JButton("Confirmer"              );
 		
 
-		this.listHistorique = new JList<String>();
+		PanelCreerNoeud.listHistorique = new JList<String>();
 		panelHisto = new JPanel();
 		this.scrollPane = new JScrollPane(this.panelHisto);
 
-		this.panelHisto.add(this.listHistorique);
+		this.panelHisto.add(PanelCreerNoeud.listHistorique);
 		this.panelHisto.setBackground(Color.WHITE);
 		
 		this.jd = new JDialog();
@@ -165,14 +162,14 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 
 		for(Noeud n : nTmp)
 		{
-			this.lstLabel.add(new JLabel("Nom : " + n.getNom() + " | Position X : " + n.getX() + " | Position Y : " + n.getY()));
+			PanelCreerNoeud.lstLabel.add(new JLabel("Nom : " + n.getNom() + " | Position X : " + n.getX() + " | Position Y : " + n.getY()));
 		}
-		this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
+		PanelCreerNoeud.listHistorique.setListData(PanelCreerNoeud.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 		this.btnSupprimer.addActionListener(this);
 		this.btnGenererNoeud.addActionListener(this);
 		this.btnGenererPrefait.addActionListener(this);
 		this.btnConfirmer.addActionListener(this);
-		this.listHistorique.addMouseListener(this);
+		PanelCreerNoeud.listHistorique.addMouseListener(this);
 
 		/**
 		 * Gestion des évènements clavier, on ne peut entrer que des chiffres dans les champs de texte
@@ -285,8 +282,8 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 			this.ctrl.addNoeud(nom,x,y);
 
 			/* Ajout du noeud ajouté dans l'histoirque */
-			this.lstLabel.add(new JLabel("Nom : " + nom + " | Position X : " + x + " | Position Y : " + y));
-			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
+			PanelCreerNoeud.lstLabel.add(new JLabel("Nom : " + nom + " | Position X : " + x + " | Position Y : " + y));
+			PanelCreerNoeud.listHistorique.setListData(PanelCreerNoeud.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 			/*-----------------------------------------*/
 
 			this.ctrl.majIHM();
@@ -302,8 +299,8 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 			int aleatoirePosX = random.nextInt(panelGraph.getHauteurMoniteur());
 			int aleatoirePosY = random.nextInt(panelGraph.getLargeurMoniteur());
 
-			this.lstLabel.add(new JLabel("Nom : " + NomNouveauNoeud + " | Position X : " + aleatoirePosX + " | Position Y : " + aleatoirePosY));
-			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
+			PanelCreerNoeud.lstLabel.add(new JLabel("Nom : " + NomNouveauNoeud + " | Position X : " + aleatoirePosX + " | Position Y : " + aleatoirePosY));
+			PanelCreerNoeud.listHistorique.setListData(PanelCreerNoeud.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 
 			this.ctrl.addNoeud(NomNouveauNoeud,aleatoirePosX, aleatoirePosY);
 
@@ -336,7 +333,7 @@ public class PanelCreerNoeud extends JPanel implements ActionListener, MouseList
 			
 			PanelCreerNoeud.lstLabel.get(index).setText("Nom : " + n.getNom() + " | Position X : " + n.getX() + " | Position Y : " + n.getY());
 			
-			this.listHistorique.setListData(this.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
+			PanelCreerNoeud.listHistorique.setListData(PanelCreerNoeud.lstLabel.stream().map(label -> label.getText()).toArray(String[]::new));
 			this.ctrl.majIHM();
 			jd.dispose();
 		}
