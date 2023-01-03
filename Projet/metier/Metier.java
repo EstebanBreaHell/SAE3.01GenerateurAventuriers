@@ -5,6 +5,8 @@ import main.Controleur;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -45,9 +47,16 @@ public class Metier
 	private int nbJoueurMax, nbJoueurMinDoubleArete , nbWagonDebutPartie ,nbWagonFinPartie , nbPointsPlusLongChemin ;
     private String txtNomMoyenDeTransport, txtRoute;
 
+    private  void initRepertoireXml()
+	{
+		try 	{Files.createDirectories(Paths.get("donnee/xml"));} 
+		catch (IOException e) 	{e.printStackTrace();}
+	}
+
 
     public Metier( Controleur ctrl )
     {
+        this.initRepertoireXml();
         this.ctrl = ctrl;
 		this.lstNoeud = new ArrayList<Noeud>();
 		this.lstArete = new ArrayList<Arete>();
@@ -319,18 +328,17 @@ public class Metier
     }
 
     
-    public void lireXml()
+    public void lireXml(String pathXml)
     {
         org.jdom2.Document document;
         Element racine;
-
 
         SAXBuilder sxb = new SAXBuilder();
         try {
             // On crée un nouveau document JDOM avec en argument le
             //fichier XML
             // Le parsing est terminé
-            document = sxb.build(new File( "donnee/xml/carteTest.xml" ));
+            document = sxb.build(pathXml);
         } catch (Exception e)
         {
             
