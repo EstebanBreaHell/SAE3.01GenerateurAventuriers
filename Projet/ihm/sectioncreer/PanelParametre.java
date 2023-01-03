@@ -9,6 +9,8 @@ package ihm.sectioncreer;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -30,6 +32,11 @@ public class PanelParametre extends JPanel implements ActionListener
 
 	private JCheckBox chbPlusLongueRoute;
 	private JDialog jd;
+
+	private static ArrayList<JButton> allButton = new ArrayList<JButton>();
+	private static  String[] allCoul;
+	private static int indexBtn = -1;
+
 
 	private Controleur ctrl;
 
@@ -340,14 +347,31 @@ public class PanelParametre extends JPanel implements ActionListener
 				JPanel panelConfirmer = new JPanel(new GridLayout(1,3,5,5));
 
 				
+				PanelParametre.allCoul = new String[nbJoueursMax];
 
 				for(int i = 1; i <= nbJoueursMax; i ++)
 				{
+					JButton btnTmp = new JButton("Choisir Couleur ");
+					PanelParametre.allButton.add(btnTmp);
 					panelCouleur.add(new JLabel("Couleur joueur " + i + " : "));
-					panelCouleur.add(new JTextField());
+					panelCouleur.add(btnTmp);
+					btnTmp.addActionListener(this);
+					if(PanelParametre.allCoul[i-1] != null)
+					{
+						btnTmp.setBackground(Color.decode(PanelParametre.allCoul[i-1]));
+					}
+					else
+					{
+						btnTmp.setBackground(Color.WHITE);
+					}
+					
+
+
+					
 				}
 				panelConfirmer.add(new JLabel());
 				panelConfirmer.add(this.btnConfirmer);
+				this.btnConfirmer.setBackground(Color.WHITE);
 				panelConfirmer.add(new JLabel());
 				
 				this.jd.add(panelCouleur, BorderLayout.NORTH);
@@ -360,6 +384,30 @@ public class PanelParametre extends JPanel implements ActionListener
 		if(e.getSource() == btnConfirmer)
 		{
 			this.jd.dispose();
+		}
+
+		if(PanelParametre.allButton.contains(e.getSource()))
+		{
+			JButton btnTmp = (JButton) e.getSource();
+			int index = PanelParametre.allButton.indexOf(btnTmp);
+			Color couleur = JColorChooser.showDialog(this, "Choisir une couleur", Color.WHITE);
+			btnTmp.setBackground(couleur);
+			//From java.awt.Color[r=xx,g=xx,b=xxx]
+			//to [r=xx,g=xx,b=xxx]
+
+			JDialog jdColor = new JDialog();
+			JPanel panelBtn = new JPanel();
+
+			//jdColor.add
+			jdColor.add(panelBtn);
+			this.jd.setVisible(true);
+
+
+			String c = couleur.toString().substring(14,couleur.toString().length()-1);
+			PanelParametre.allCoul[index] = (c);
+
+
+
 		}
 	}
 }
