@@ -21,7 +21,6 @@ public class PanelParametre extends JPanel implements ActionListener
 	private JTextField txtNbJoueursMin;	
 	private JTextField txtNbJoueursMax;
 	private JTextField txtNbCartesJoueurs;	
-	private JTextField txtNbCouleurs;
 	private JTextField txtNbJoueursMinAreteDouble;
 	private JTextField txtNbPlusLongChemin;
 	private JTextField txtNom;
@@ -33,22 +32,15 @@ public class PanelParametre extends JPanel implements ActionListener
 
 	private JCheckBox chbPlusLongueRoute;
 	private JDialog jd;
+	private JTable tableau;
 
 	private static ArrayList<JButton> allButton = new ArrayList<JButton>();
-	private static  String[] allCoul;
-	private static int indexBtn = -1;
+	private static  ArrayList<String>  allCoul;
 
 
 	private Controleur ctrl;
 
-	private Object[][] donnees = {
-								{"1", "1",},
-								{"2", "2",},
-								{"3", "4",},
-								{"4", "7",},
-								{"5", "10",},
-								{"6", "15",},};
-
+	private Object[][] donnees;
 	private String[] entetes = {"Longueur de la route", "Points marqués"};
 	
 	public PanelParametre(Controleur ctrl)
@@ -58,7 +50,8 @@ public class PanelParametre extends JPanel implements ActionListener
 		 */
 		this.ctrl = ctrl; 
 		this.setLayout(new BorderLayout());
-
+		this.donnees = this.ctrl.getpointsTaille();
+		PanelParametre.allCoul = this.ctrl.getLstCouleurJoueur();
 		JPanel panelDetail 		= new JPanel(new GridLayout(11,4,0,10));
 		JPanel panelChoixCarte	= new JPanel(null);
 		JPanel panelBas			= new JPanel(new GridLayout(1,3,10,10));
@@ -71,7 +64,6 @@ public class PanelParametre extends JPanel implements ActionListener
 		this.txtNbJoueursMax 			= new JTextField();
 		this.txtNbCartesJoueurs 		= new JTextField("1");
 		this.txtNomMoyenDeTransport		= new JTextField("voiture,vélo,wagon");
-		this.txtNbCouleurs				= new JTextField("1");
 		this.txtNom						= new JTextField(("route,piste cyclable,rails"));
 		this.txtFinDePartie				= new JTextField();
 		this.btnValider 				= new JButton("Générer XML");
@@ -84,25 +76,22 @@ public class PanelParametre extends JPanel implements ActionListener
 		JLabel lblNbJoueursMax 				= new JLabel("Nb joueurs maximum : ");
 		JLabel lblNbCartesJoueurs 			= new JLabel("Nb cartes / joueur : ");
 		JLabel lblPoints     				= new JLabel("Barême des points : ");
-		JLabel lblCouleur		 			= new JLabel("Nb couleurs : ");
 		JLabel lblNom 						= new JLabel("Type arête :");
 		JLabel lblNomMoyenDeTransport 		= new JLabel("Type moyen de transport :");
 		JLabel lblFinDePartie				= new JLabel("Arrêter la partie à : ");
 		JLabel lblMoyenDeTransport			= new JLabel("  " + this.txtNomMoyenDeTransport.getText() + "...");
 		JLabel lblNbJoueursMinAreteDouble	= new JLabel("Nb joueurs arête double : ");
 
-		JTable tableau = new JTable(donnees, entetes);
+		this.tableau = new JTable(donnees, entetes);
 
-		this.jd = new JDialog();
-		jd.setTitle("Choix des couleurs pour chaque joueur");
-		this.jd.setLayout(new BorderLayout());
+		
 	
 		/**
 		 * Rendre les éléments du tableau des scores éditables
 		 */
 		for(int i = 0; i < tableau.getColumnCount(); i++)
 		{
-			tableau.getColumnModel().getColumn(i).setCellRenderer(custom);
+			this.tableau.getColumnModel().getColumn(i).setCellRenderer(custom);
 		}
 
 		/**
@@ -117,7 +106,6 @@ public class PanelParametre extends JPanel implements ActionListener
 		this.txtNbCartesJoueurs			.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		this.txtNbJoueursMin			.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		this.txtNbJoueursMax			.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		this.txtNbCouleurs				.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		this.txtNom						.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		this.txtNomMoyenDeTransport		.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		this.txtFinDePartie				.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -126,7 +114,7 @@ public class PanelParametre extends JPanel implements ActionListener
 
 		lblPoints	.setBounds(  0, -100,250, 250);
 		panelTableau.setBounds( 50,  150,400, 120);
-		this.jd		.setBounds(900,  300,500, 400); 
+		 
 
 		/**
 		 * Ajout des composants dans chaque panel
@@ -149,10 +137,6 @@ public class PanelParametre extends JPanel implements ActionListener
 		panelDetail.add(this.txtNbCartesJoueurs);
 		panelDetail.add(new JLabel());
 
-		panelDetail.add(lblCouleur);
-		panelDetail.add(new JLabel());
-		panelDetail.add(this.txtNbCouleurs);
-		panelDetail.add(new JLabel());
 	
 		panelDetail.add(lblNom);
 		panelDetail.add(new JLabel());
@@ -228,14 +212,7 @@ public class PanelParametre extends JPanel implements ActionListener
 			}
 		});
 
-		this.txtNbCouleurs.addKeyListener(new KeyAdapter() {
-			public void keyTyped(KeyEvent e) {
-				char c = e.getKeyChar();
-				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
-					e.consume();
-				}
-			}
-		});
+		
 
 		this.txtFinDePartie.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
@@ -318,10 +295,13 @@ public class PanelParametre extends JPanel implements ActionListener
 
 		if(e.getSource() == this.btnValider)
 		{
-
+			this.jd = new JDialog();
+			this.jd.setTitle("Choix des couleurs pour chaque joueur");
+			this.jd.setLayout(new BorderLayout());
+			this.jd		.setBounds(900,  300,500, 400);
 			if(this.txtNbCartesJoueurs.getText().isEmpty() || this.txtNbJoueursMax.getText().isEmpty() || 
 			   this.txtNbJoueursMin.getText().isEmpty()    || this.txtNom.getText().isEmpty()		   || 
-			   this.txtNomMoyenDeTransport.getText().isEmpty() || this.txtNbCouleurs.getText().isEmpty() || this.txtFinDePartie.getText().isEmpty())
+			   this.txtNomMoyenDeTransport.getText().isEmpty() || this.txtFinDePartie.getText().isEmpty())
 			{
 				JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs", "Erreur", JOptionPane.ERROR_MESSAGE);
 			}
@@ -338,18 +318,45 @@ public class PanelParametre extends JPanel implements ActionListener
 				this.ctrl.setNbWagonDebutPartie(Integer.parseInt(this.txtNbCartesJoueurs.getText()));
 				this.ctrl.setNbWagonFinPartie(nbFinDePartie);
 				this.ctrl.setNbPointsPlusLongChemin(Integer.parseInt(this.txtNbPlusLongChemin.getText()));
+				this.ctrl.setNomMoyenDeTransport(this.txtNomMoyenDeTransport.getText());
+				this.ctrl.setTxtRoute(this.txtNom.getText());
+
+
+				
 
 				if(nbJoueursMin > nbJoueursMax || nbJoueursMin <= 0 || nbJoueursMax <= 0 || nbCartesJoueurs <= 0 || nbFinDePartie < 0)
 				{
 					JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs", "Erreur", JOptionPane.ERROR_MESSAGE);
 				} 
 
+				//Regarde les modification qui on était apporté au JTable 
+				
+				String[][] tmpNbPoints = new String[tableau.getRowCount()][tableau.getColumnCount()];
+				//Récupération des données du JTable nommé tableau
+				for(int i = 0; i < tableau.getRowCount(); i++)
+				{
+					//Récupération des données de la ligne i
+					for(int j = 0; j < tableau.getColumnCount(); j++)
+					{
+						//Récupération des données de la colonne j
+						if(tableau.getValueAt(i, j) != null)
+						{
+							tmpNbPoints[i][j] = (String) tableau.getValueAt(i, j);
+							
+						}
+						else
+						{
+							tmpNbPoints[i][j] = "0";
+						}
+					}
+				}
+
+				this.ctrl.setPointsTaille(tmpNbPoints);
+
 				JPanel panelCouleur = new JPanel(new GridLayout(nbJoueursMax + 1, 2,5,5));
 				JPanel panelConfirmer = new JPanel(new GridLayout(1,3,5,5));
 
 				
-				PanelParametre.allCoul = new String[nbJoueursMax];
-
 				for(int i = 1; i <= nbJoueursMax; i ++)
 				{
 					JButton btnTmp = new JButton("Choisir Couleur ");
@@ -358,9 +365,20 @@ public class PanelParametre extends JPanel implements ActionListener
 					panelCouleur.add(btnTmp);
 					btnTmp.addActionListener(this);
 					this.scrollPane = new JScrollPane(panelCouleur);
-					if(PanelParametre.allCoul[i-1] != null)
+					if(PanelParametre.allCoul.size()< nbJoueursMax)
 					{
-						btnTmp.setBackground(Color.decode(PanelParametre.allCoul[i-1]));
+						PanelParametre.allCoul.add(null);
+					}
+					
+					if(PanelParametre.allCoul.get(i-1) != null)
+					{
+						String tmp = PanelParametre.allCoul.get(i-1);
+						//tmp = [r=255,g=125;b=0]
+						int r= Integer.parseInt(tmp.split(",")[0].substring(3));
+
+						int g= Integer.parseInt(tmp.split(",")[1].substring(2));
+						int b =Integer.parseInt(tmp.split(",")[2].substring(2));
+						btnTmp.setBackground(new Color(r,g,b));
 					}
 					else
 					{
@@ -382,6 +400,7 @@ public class PanelParametre extends JPanel implements ActionListener
 		if(e.getSource() == btnConfirmer)
 		{
 			this.jd.dispose();
+			this.ctrl.ecrireXml();
 		}
 
 		if(PanelParametre.allButton.contains(e.getSource()))
@@ -402,7 +421,10 @@ public class PanelParametre extends JPanel implements ActionListener
 
 
 			String c = couleur.toString().substring(14,couleur.toString().length()-1);
-			PanelParametre.allCoul[index] = (c);
+
+			PanelParametre.allCoul.set(index, c);
+
+			this.ctrl.setLstCouleurJoueur(PanelParametre.allCoul);
 
 
 

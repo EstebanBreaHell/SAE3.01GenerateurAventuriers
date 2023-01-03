@@ -1,19 +1,265 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <infos>
 	<mappe>
+		<noeud nom="Nouvelle ville">
+			<coordonees x="340" y="119"/>
+			<coordoneesNom x="325" y="134"/>
+		</noeud>
+		<noeud nom="Nouvelle ville">
+			<coordonees x="386" y="755"/>
+			<coordoneesNom x="371" y="770"/>
+		</noeud>
+		<noeud nom="Nouvelle ville">
+			<coordonees x="37" y="231"/>
+			<coordoneesNom x="22" y="246"/>
+		</noeud>
+		<noeud nom="Nouvelle ville">
+			<coordonees x="183" y="146"/>
+			<coordoneesNom x="168" y="161"/>
+		</noeud>
+		<noeud nom="Nouvelle ville">
+			<coordonees x="347" y="166"/>
+			<coordoneesNom x="332" y="181"/>
+		</noeud>
+		<noeud nom="Nouvelle ville">
+			<coordonees x="209" y="263"/>
+			<coordoneesNom x="194" y="278"/>
+		</noeud>
+		<noeud nom="Nouvelle ville">
+			<coordonees x="645" y="794"/>
+			<coordoneesNom x="499" y="502"/>
+		</noeud>
+		<noeud nom="Nouvelle ville">
+			<coordonees x="167" y="806"/>
+			<coordoneesNom x="152" y="821"/>
+		</noeud>
+		<arete>
+			<noeudArr>1</noeudArr>
+			<noeudDep>0</noeudDep>
+			<couleur>[r=14,g=108,b=133]</couleur>
+			<wagons>3</wagons>
+		</arete>
+		<arete>
+			<noeudArr>5</noeudArr>
+			<noeudDep>6</noeudDep>
+			<couleur>[r=240,g=29,b=178]</couleur>
+			<wagons>4</wagons>
+		</arete>
+		<arete>
+			<noeudArr>0</noeudArr>
+			<noeudDep>2</noeudDep>
+			<couleur>[r=139,g=242,b=244]</couleur>
+			<wagons>3</wagons>
+		</arete>
+		<arete>
+			<noeudArr>6</noeudArr>
+			<noeudDep>5</noeudDep>
+			<couleur>[r=247,g=162,b=115]</couleur>
+			<wagons>4</wagons>
+		</arete>
+		<arete>
+			<noeudArr>3</noeudArr>
+			<noeudDep>6</noeudDep>
+			<couleur>[r=39,g=74,b=174]</couleur>
+			<wagons>8</wagons>
+		</arete>
+		<arete>
+			<noeudArr>7</noeudArr>
+			<noeudDep>2</noeudDep>
+			<couleur>[r=246,g=151,b=125]</couleur>
+			<wagons>2</wagons>
+		</arete>
+		<arete>
+			<noeudArr>3</noeudArr>
+			<noeudDep>1</noeudDep>
+			<couleur>[r=52,g=65,b=137]</couleur>
+			<wagons>7</wagons>
+		</arete>
+		<arete>
+			<noeudArr>4</noeudArr>
+			<noeudDep>7</noeudDep>
+			<couleur>[r=87,g=180,b=62]</couleur>
+			<wagons>2</wagons>
+		</arete>
+		<arete>
+			<noeudArr>4</noeudArr>
+			<noeudDep>2</noeudDep>
+			<couleur>[r=132,g=140,b=62]</couleur>
+			<wagons>8</wagons>
+		</arete>
+		<arete>
+			<noeudArr>1</noeudArr>
+			<noeudDep>6</noeudDep>
+			<couleur>[r=83,g=242,b=127]</couleur>
+			<wagons>7</wagons>
+		</arete>
+		<arete>
+			<noeudArr>5</noeudArr>
+			<noeudDep>2</noeudDep>
+			<couleur>[r=200,g=83,b=59]</couleur>
+			<wagons>3</wagons>
+		</arete>
+		<arete>
+			<noeudArr>6</noeudArr>
+			<noeudDep>7</noeudDep>
+			<couleur>[r=167,g=126,b=140]</couleur>
+			<wagons>7</wagons>
+		</arete>
+		<arete>
+			<noeudArr>5</noeudArr>
+			<noeudDep>1</noeudDep>
+			<couleur>[r=180,g=5,b=65]</couleur>
+			<wagons>4</wagons>
+		</arete>
+		<arete>
+			<noeudArr>3</noeudArr>
+			<noeudDep>5</noeudDep>
+			<couleur>[r=66,g=23,b=110]</couleur>
+			<wagons>7</wagons>
+		</arete>
+		<arete>
+			<noeudArr>7</noeudArr>
+			<noeudDep>4</noeudDep>
+			<couleur>[r=234,g=11,b=104]</couleur>
+			<wagons>2</wagons>
+		</arete>
 		<carteWagon>
-			<couleur>Joker</couleur>
+			<couleur>[r=14,g=108,b=133]</couleur>
+			<nombre>0</nombre>
+			<recto>imageCarte/Capture d’écran du 2022-02-03 09-04-48.png</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=132,g=140,b=62]</couleur>
 			<nombre>0</nombre>
 			<recto>null</recto>
 		</carteWagon>
+		<carteWagon>
+			<couleur>[r=180,g=5,b=65]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=66,g=23,b=110]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=139,g=242,b=244]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=52,g=65,b=137]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=234,g=11,b=104]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=200,g=83,b=59]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=39,g=74,b=174]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=87,g=180,b=62]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>Joker</couleur>
+			<nombre>0</nombre>
+			<recto>imageCarte/téléchargement.png</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=240,g=29,b=178]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=247,g=162,b=115]</couleur>
+			<nombre>0</nombre>
+			<recto>imageCarte/mer.jpg</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=83,g=242,b=127]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=167,g=126,b=140]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=246,g=151,b=125]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteObjectif>
+			<noeudArr>4</noeudArr>
+			<noeudDep>3</noeudDep>
+			<points>0</points>
+		</carteObjectif>
+		<carteObjectif>
+			<noeudArr>4</noeudArr>
+			<noeudDep>3</noeudDep>
+			<points>0</points>
+		</carteObjectif>
+		<carteObjectif>
+			<noeudArr>6</noeudArr>
+			<noeudDep>3</noeudDep>
+			<points>0</points>
+		</carteObjectif>
 	<details>
-		<nbJoueurMinDoubleArete>40</nbJoueurMinDoubleArete>
-		<nbJoueurMax>120</nbJoueurMax>
+		<nbJoueurMinDoubleArete>3</nbJoueurMinDoubleArete>
+		<nbJoueurMax>3</nbJoueurMax>
 		<nbWagonDebutPartie>1</nbWagonDebutPartie>
-		<nbWagonFinPartie>40</nbWagonFinPartie>
+		<nbWagonFinPartie>33</nbWagonFinPartie>
 		<nbPointsPlusLongChemin>10</nbPointsPlusLongChemin>
+		<txtNomMoyenDeTransport>33</txtNomMoyenDeTransport>
+		<txtRoute>3</txtRoute>
 		<versoCarteWagon>null</versoCarteWagon>
-		<image>importe/FortniteMappe.png</image>
+		<versoCarteObjectif>null</versoCarteObjectif>
+		<image>importe/Aventurier_du_rail.png</image>
 	</details>
+	<CouleurJoueurList>
+		<couleurJoueur>[r=255,g=43,b=127</couleurJoueur>
+		<couleurJoueur>[r=153,g=0,b=0</couleurJoueur>
+		<couleurJoueur>[r=102,g=0,b=102</couleurJoueur>
+	</CouleurJoueurList>
+	<points>
+		<pointTaille>
+			<taille>1</taille>
+			<points>1</points>
+		</pointTaille>
+		<pointTaille>
+			<taille>2</taille>
+			<points>2</points>
+		</pointTaille>
+		<pointTaille>
+			<taille>3</taille>
+			<points>4</points>
+		</pointTaille>
+		<pointTaille>
+			<taille>4</taille>
+			<points>7</points>
+		</pointTaille>
+		<pointTaille>
+			<taille>5</taille>
+			<points>10</points>
+		</pointTaille>
+		<pointTaille>
+			<taille>6</taille>
+			<points>15</points>
+		</pointTaille>
+	</points>
 	</mappe>
 </infos>
