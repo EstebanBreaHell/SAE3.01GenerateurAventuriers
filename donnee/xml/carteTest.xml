@@ -2,260 +2,264 @@
 <infos>
 	<mappe>
 		<noeud nom="Nouvelle ville">
-			<coordonees x="787" y="930"/>
-			<coordoneesNom x="772" y="945"/>
+			<coordonees x="340" y="119"/>
+			<coordoneesNom x="325" y="134"/>
 		</noeud>
 		<noeud nom="Nouvelle ville">
-			<coordonees x="113" y="210"/>
-			<coordoneesNom x="98" y="225"/>
+			<coordonees x="386" y="755"/>
+			<coordoneesNom x="371" y="770"/>
 		</noeud>
 		<noeud nom="Nouvelle ville">
-			<coordonees x="94" y="683"/>
-			<coordoneesNom x="156" y="639"/>
+			<coordonees x="37" y="231"/>
+			<coordoneesNom x="22" y="246"/>
 		</noeud>
 		<noeud nom="Nouvelle ville">
-			<coordonees x="592" y="606"/>
-			<coordoneesNom x="577" y="621"/>
+			<coordonees x="183" y="146"/>
+			<coordoneesNom x="168" y="161"/>
 		</noeud>
 		<noeud nom="Nouvelle ville">
-			<coordonees x="580" y="104"/>
-			<coordoneesNom x="565" y="119"/>
+			<coordonees x="347" y="166"/>
+			<coordoneesNom x="332" y="181"/>
 		</noeud>
 		<noeud nom="Nouvelle ville">
-			<coordonees x="362" y="89"/>
-			<coordoneesNom x="347" y="104"/>
+			<coordonees x="209" y="263"/>
+			<coordoneesNom x="194" y="278"/>
 		</noeud>
 		<noeud nom="Nouvelle ville">
-			<coordonees x="858" y="68"/>
-			<coordoneesNom x="843" y="83"/>
+			<coordonees x="645" y="794"/>
+			<coordoneesNom x="499" y="502"/>
 		</noeud>
 		<noeud nom="Nouvelle ville">
-			<coordonees x="585" y="125"/>
-			<coordoneesNom x="570" y="140"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="521" y="241"/>
-			<coordoneesNom x="506" y="256"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="462" y="57"/>
-			<coordoneesNom x="447" y="72"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="285" y="160"/>
-			<coordoneesNom x="270" y="175"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="344" y="253"/>
-			<coordoneesNom x="329" y="268"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="172" y="627"/>
-			<coordoneesNom x="157" y="642"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="763" y="2"/>
-			<coordoneesNom x="748" y="17"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="853" y="496"/>
-			<coordoneesNom x="838" y="511"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="160" y="904"/>
-			<coordoneesNom x="145" y="919"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="389" y="603"/>
-			<coordoneesNom x="374" y="618"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="1008" y="513"/>
-			<coordoneesNom x="993" y="528"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="35" y="67"/>
-			<coordoneesNom x="20" y="82"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="479" y="197"/>
-			<coordoneesNom x="464" y="212"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="811" y="210"/>
-			<coordoneesNom x="796" y="225"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="588" y="830"/>
-			<coordoneesNom x="573" y="845"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="365" y="165"/>
-			<coordoneesNom x="350" y="180"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="894" y="400"/>
-			<coordoneesNom x="879" y="415"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="778" y="458"/>
-			<coordoneesNom x="763" y="473"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="394" y="854"/>
-			<coordoneesNom x="379" y="869"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="383" y="780"/>
-			<coordoneesNom x="368" y="795"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="452" y="647"/>
-			<coordoneesNom x="437" y="662"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="923" y="392"/>
-			<coordoneesNom x="908" y="407"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="404" y="404"/>
-			<coordoneesNom x="389" y="419"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="145" y="607"/>
-			<coordoneesNom x="130" y="622"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="1011" y="262"/>
-			<coordoneesNom x="996" y="277"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="319" y="649"/>
-			<coordoneesNom x="304" y="664"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="301" y="565"/>
-			<coordoneesNom x="286" y="580"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="628" y="927"/>
-			<coordoneesNom x="613" y="942"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="700" y="11"/>
-			<coordoneesNom x="685" y="26"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="838" y="853"/>
-			<coordoneesNom x="823" y="868"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="268" y="615"/>
-			<coordoneesNom x="253" y="630"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="476" y="367"/>
-			<coordoneesNom x="461" y="382"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="177" y="421"/>
-			<coordoneesNom x="162" y="436"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="480" y="354"/>
-			<coordoneesNom x="465" y="369"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="588" y="637"/>
-			<coordoneesNom x="573" y="652"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="760" y="853"/>
-			<coordoneesNom x="745" y="868"/>
-		</noeud>
-		<noeud nom="Nouvelle ville">
-			<coordonees x="735" y="809"/>
-			<coordoneesNom x="720" y="824"/>
+			<coordonees x="167" y="806"/>
+			<coordoneesNom x="152" y="821"/>
 		</noeud>
 		<arete>
 			<noeudArr>1</noeudArr>
-			<noeudDep>4</noeudDep>
-			<couleur>[r=19,g=80,b=186]</couleur>
-			<wagons>6</wagons>
+			<noeudDep>0</noeudDep>
+			<couleur>[r=14,g=108,b=133]</couleur>
+			<wagons>3</wagons>
 		</arete>
 		<arete>
-			<noeudArr>2</noeudArr>
-			<noeudDep>1</noeudDep>
-			<couleur>[r=111,g=98,b=138]</couleur>
-			<wagons>7</wagons>
-		</arete>
-		<arete>
-			<noeudArr>3</noeudArr>
-			<noeudDep>2</noeudDep>
-			<couleur>[r=129,g=123,b=15]</couleur>
+			<noeudArr>5</noeudArr>
+			<noeudDep>6</noeudDep>
+			<couleur>[r=240,g=29,b=178]</couleur>
 			<wagons>4</wagons>
 		</arete>
 		<arete>
-			<noeudArr>4</noeudArr>
-			<noeudDep>1</noeudDep>
-			<couleur>[r=53,g=114,b=196]</couleur>
-			<wagons>6</wagons>
+			<noeudArr>0</noeudArr>
+			<noeudDep>2</noeudDep>
+			<couleur>[r=139,g=242,b=244]</couleur>
+			<wagons>3</wagons>
+		</arete>
+		<arete>
+			<noeudArr>6</noeudArr>
+			<noeudDep>5</noeudDep>
+			<couleur>[r=247,g=162,b=115]</couleur>
+			<wagons>4</wagons>
 		</arete>
 		<arete>
 			<noeudArr>3</noeudArr>
-			<noeudDep>0</noeudDep>
-			<couleur>[r=249,g=154,b=48]</couleur>
-			<wagons>5</wagons>
+			<noeudDep>6</noeudDep>
+			<couleur>[r=39,g=74,b=174]</couleur>
+			<wagons>8</wagons>
+		</arete>
+		<arete>
+			<noeudArr>7</noeudArr>
+			<noeudDep>2</noeudDep>
+			<couleur>[r=246,g=151,b=125]</couleur>
+			<wagons>2</wagons>
+		</arete>
+		<arete>
+			<noeudArr>3</noeudArr>
+			<noeudDep>1</noeudDep>
+			<couleur>[r=52,g=65,b=137]</couleur>
+			<wagons>7</wagons>
+		</arete>
+		<arete>
+			<noeudArr>4</noeudArr>
+			<noeudDep>7</noeudDep>
+			<couleur>[r=87,g=180,b=62]</couleur>
+			<wagons>2</wagons>
+		</arete>
+		<arete>
+			<noeudArr>4</noeudArr>
+			<noeudDep>2</noeudDep>
+			<couleur>[r=132,g=140,b=62]</couleur>
+			<wagons>8</wagons>
 		</arete>
 		<arete>
 			<noeudArr>1</noeudArr>
-			<noeudDep>3</noeudDep>
-			<couleur>[r=62,g=74,b=130]</couleur>
+			<noeudDep>6</noeudDep>
+			<couleur>[r=83,g=242,b=127]</couleur>
 			<wagons>7</wagons>
 		</arete>
+		<arete>
+			<noeudArr>5</noeudArr>
+			<noeudDep>2</noeudDep>
+			<couleur>[r=200,g=83,b=59]</couleur>
+			<wagons>3</wagons>
+		</arete>
+		<arete>
+			<noeudArr>6</noeudArr>
+			<noeudDep>7</noeudDep>
+			<couleur>[r=167,g=126,b=140]</couleur>
+			<wagons>7</wagons>
+		</arete>
+		<arete>
+			<noeudArr>5</noeudArr>
+			<noeudDep>1</noeudDep>
+			<couleur>[r=180,g=5,b=65]</couleur>
+			<wagons>4</wagons>
+		</arete>
+		<arete>
+			<noeudArr>3</noeudArr>
+			<noeudDep>5</noeudDep>
+			<couleur>[r=66,g=23,b=110]</couleur>
+			<wagons>7</wagons>
+		</arete>
+		<arete>
+			<noeudArr>7</noeudArr>
+			<noeudDep>4</noeudDep>
+			<couleur>[r=234,g=11,b=104]</couleur>
+			<wagons>2</wagons>
+		</arete>
 		<carteWagon>
-			<couleur>[r=129,g=123,b=15]</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
-		</carteWagon>
-		<carteWagon>
-			<couleur>[r=53,g=114,b=196]</couleur>
+			<couleur>[r=14,g=108,b=133]</couleur>
 			<nombre>0</nombre>
 			<recto>imageCarte/Capture d’écran du 2022-02-03 09-04-48.png</recto>
 		</carteWagon>
 		<carteWagon>
-			<couleur>[r=19,g=80,b=186]</couleur>
+			<couleur>[r=132,g=140,b=62]</couleur>
 			<nombre>0</nombre>
 			<recto>null</recto>
 		</carteWagon>
 		<carteWagon>
-			<couleur>[r=62,g=74,b=130]</couleur>
+			<couleur>[r=180,g=5,b=65]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=66,g=23,b=110]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=139,g=242,b=244]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=52,g=65,b=137]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=234,g=11,b=104]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=200,g=83,b=59]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=39,g=74,b=174]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=87,g=180,b=62]</couleur>
 			<nombre>0</nombre>
 			<recto>null</recto>
 		</carteWagon>
 		<carteWagon>
 			<couleur>Joker</couleur>
 			<nombre>0</nombre>
-			<recto>imageCarte/mer.jpg</recto>
+			<recto>imageCarte/téléchargement.png</recto>
 		</carteWagon>
 		<carteWagon>
-			<couleur>[r=249,g=154,b=48]</couleur>
+			<couleur>[r=240,g=29,b=178]</couleur>
 			<nombre>0</nombre>
 			<recto>null</recto>
 		</carteWagon>
 		<carteWagon>
-			<couleur>[r=111,g=98,b=138]</couleur>
+			<couleur>[r=247,g=162,b=115]</couleur>
 			<nombre>0</nombre>
-			<recto>imageCarte/Capture d’écran du 2022-02-03 09-04-48.png</recto>
+			<recto>imageCarte/mer.jpg</recto>
 		</carteWagon>
+		<carteWagon>
+			<couleur>[r=83,g=242,b=127]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=167,g=126,b=140]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=246,g=151,b=125]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteObjectif>
+			<noeudArr>4</noeudArr>
+			<noeudDep>3</noeudDep>
+			<points>0</points>
+		</carteObjectif>
+		<carteObjectif>
+			<noeudArr>4</noeudArr>
+			<noeudDep>3</noeudDep>
+			<points>0</points>
+		</carteObjectif>
+		<carteObjectif>
+			<noeudArr>6</noeudArr>
+			<noeudDep>3</noeudDep>
+			<points>0</points>
+		</carteObjectif>
 	<details>
-		<nbJoueurMinDoubleArete>10</nbJoueurMinDoubleArete>
-		<nbJoueurMax>10</nbJoueurMax>
+		<nbJoueurMinDoubleArete>3</nbJoueurMinDoubleArete>
+		<nbJoueurMax>3</nbJoueurMax>
 		<nbWagonDebutPartie>1</nbWagonDebutPartie>
-		<nbWagonFinPartie>101</nbWagonFinPartie>
+		<nbWagonFinPartie>33</nbWagonFinPartie>
 		<nbPointsPlusLongChemin>10</nbPointsPlusLongChemin>
+		<txtNomMoyenDeTransport>33</txtNomMoyenDeTransport>
+		<txtRoute>3</txtRoute>
 		<versoCarteWagon>null</versoCarteWagon>
-		<image>importe/a_changer.png</image>
+		<versoCarteObjectif>null</versoCarteObjectif>
+		<image>importe/Aventurier_du_rail.png</image>
 	</details>
+	<CouleurJoueurList>
+		<couleurJoueur>[r=255,g=43,b=127</couleurJoueur>
+		<couleurJoueur>[r=153,g=0,b=0</couleurJoueur>
+		<couleurJoueur>[r=102,g=0,b=102</couleurJoueur>
+	</CouleurJoueurList>
+	<points>
+		<pointTaille>
+			<taille>1</taille>
+			<points>1</points>
+		</pointTaille>
+		<pointTaille>
+			<taille>2</taille>
+			<points>2</points>
+		</pointTaille>
+		<pointTaille>
+			<taille>3</taille>
+			<points>4</points>
+		</pointTaille>
+		<pointTaille>
+			<taille>4</taille>
+			<points>7</points>
+		</pointTaille>
+		<pointTaille>
+			<taille>5</taille>
+			<points>10</points>
+		</pointTaille>
+		<pointTaille>
+			<taille>6</taille>
+			<points>15</points>
+		</pointTaille>
+	</points>
 	</mappe>
 </infos>

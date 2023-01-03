@@ -136,6 +136,22 @@ public class Controleur
         this.metier.setNbPointsPlusLongChemin(nbPoints);
     }
 
+    public void setNomMoyenDeTransport(String nom){
+        this.metier.setNomMoyenDeTransport(nom);
+    }
+
+    public String getNomMoyenDeTransport() {
+        return this.getNomMoyenDeTransport();
+    }
+
+    public void setTxtRoute(String txtRoute) {
+        this.metier.setTxtRoute(txtRoute);
+    }
+
+    public String getTxtRoute() {
+        return this.metier.getTxtRoute();
+    }
+
 
     public ArrayList<Noeud> getNoeudDispo(Noeud n)
     {
@@ -168,6 +184,14 @@ public class Controleur
 
     public ArrayList<String> getLstCouleurJoueur() {
         return this.metier.getLstCouleurJoueur();
+    }
+
+    public void setPointsTaille(String[][] pointsTaille ){
+        this.metier.setPointsTaille(pointsTaille);
+    }
+
+    public String[][] getpointsTaille(){
+        return this.metier.getPointsTaille();
     }
 
     public ArrayList<CarteObjectif> getLstCarteObjectif()
