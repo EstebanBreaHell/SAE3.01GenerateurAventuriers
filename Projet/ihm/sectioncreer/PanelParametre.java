@@ -324,11 +324,7 @@ public class PanelParametre extends JPanel implements ActionListener
 				int nbCartesJoueurs = Integer.parseInt(this.txtNbCartesJoueurs.getText());
 				int nbFinDePartie = Integer.parseInt(this.txtFinDePartie.getText());
 
-				/*
-				     this.ctrl.setNbJoueursMin(Integer.parseInt(this.txtNbJoueursMin.getText())
-					 this.ctrl.setNbJoueursMax(Integer.parseInt(this.txtNbJoueursMax.getText())
-					 this.ctrl.setNbCartesJoueurs(Integer.parseInt(this.txtNbCartesJoueurs.getText())		
-				 */
+				
 				this.ctrl.setNbJoueurMax(Integer.parseInt(this.txtNbJoueursMax.getText()));
 				this.ctrl.setNbJoueurMinDoubleArete(Integer.parseInt(this.txtNbJoueursMinAreteDouble.getText()));
 				this.ctrl.setNbWagonDebutPartie(Integer.parseInt(this.txtNbCartesJoueurs.getText()));

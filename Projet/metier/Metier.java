@@ -35,6 +35,8 @@ public class Metier
 
     
 	private int nbJoueurMax, nbJoueurMinDoubleArete , nbWagonDebutPartie ,nbWagonFinPartie , nbPointsPlusLongChemin ;
+    private String txtNomMoyenDeTransport;
+
 
     public Metier( Controleur ctrl )
     {
@@ -56,6 +58,7 @@ public class Metier
         this.nbWagonDebutPartie = 45;
         this.nbWagonFinPartie = 2;
         this.nbPointsPlusLongChemin = 10;
+        this.txtNomMoyenDeTransport = "Wagon";
     }
 
     public void creerCarteObjectif(Noeud noeudDep, Noeud noeudArr, int nbPoints)
@@ -189,19 +192,6 @@ public class Metier
 
             }
 
-            /* 
-            for( CarteObjectif co : lstCarteObjectif )
-            {
-                pw.println ( "\t\t<carteObjectif>" );
-
-                pw.println ( "\t\t\t<noeudArr>"+ co.getNoeudDep().getNom() + "</noeudArr>" );
-                pw.println ( "\t\t\t<noeudDep>"+ co.getNoeudArr().getNom() + "</noeudDep>" );
-                pw.println ( "\t\t\t<points>"+ co.getNbPoints() + "</points>" );
-
-                pw.println ("\t\t</carteObjectif>");
-
-            }
-            */
 
             for(String c : this.hsmCouleurWagon.keySet())
             {
@@ -229,19 +219,6 @@ public class Metier
                 pw.println ("\t\t</carteObjectif>");
             }
 
-            /* 
-            for( CarteWagon cw : lstCarteWagon )
-            {
-                pw.println ( "\t\t<carteWagon>" );
-
-                pw.println ( "\t\t\t<couleur>" + cw.getCouleur() + "</couleur>" );
-
-                pw.println ("\t\t</carteWagon>");
-
-            }
-
-            */
-           
 
             pw.println ( "\t<details>" );
 
@@ -252,8 +229,7 @@ public class Metier
             pw.println ( "\t\t<nbPointsPlusLongChemin>"+ this.nbPointsPlusLongChemin + "</nbPointsPlusLongChemin>" );
             pw.println ( "\t\t<versoCarteWagon>"+ this.versoCarteWagon + "</versoCarteWagon>" );
             pw.println ( "\t\t<image>"+ this.ctrl.getPathImg() + "</image>" );
-            //getPathImg
-
+        
             pw.println ( "\t</details>" );
             pw.println ( "\t</mappe>" );
             pw.println("</infos>");
@@ -419,6 +395,7 @@ public class Metier
                 a.setEstDouble(true);
                 b.setAreteDouble(a);
                 a.setAreteDouble(b);
+                a.setWagon(b.getWagon());
             }
         }
 
