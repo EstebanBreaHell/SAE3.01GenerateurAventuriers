@@ -286,8 +286,11 @@ public class Metier
         
             pw.println ( "\t</details>" );
             pw.println ("\t<CouleurJoueurList>");
+
+            
             for(String c : this.lstCouleurJoueur)
             {
+                System.out.println(c);
                 pw.println ( "\t\t<couleurJoueur>" + c + "</couleurJoueur>" );
             }
             pw.println ("\t</CouleurJoueurList>");
@@ -353,6 +356,8 @@ public class Metier
         List<Element> lstObjectif = racine.getChildren ( "mappe" ).get(0).getChildren("carteObjectif");
         List<Element> lstWagon = racine.getChildren ( "mappe" ).get(0).getChildren("carteWagon");
         List<Element> lstInformation = racine.getChildren ( "mappe" ).get(0).getChildren("details");
+        List<Element> lstCouleurJoueur = racine.getChildren ( "mappe" ).get(0).getChildren("CouleurJoueurList");
+        List<Element> lstPoints = racine.getChildren ( "mappe" ).get(0).getChildren("points").get(0).getChildren("pointTaille");
 
 
         
@@ -377,16 +382,12 @@ public class Metier
             this.hsmCouleurWagon.put(c, Integer.parseInt(w.getChild("nombre").getText()));
             this.hsmImageWagon.put(c, w.getChild("recto").getText());
 
-            System.out.println("couleur : " + c + " nombre : " + w.getChild("nombre").getText() + " recto : " + w.getChild("recto").getText());
 
             //this.creeCarteWagon(new Color(Integer.parseInt(rgb[0]), Integer.parseInt(rgb[1]), Integer.parseInt(rgb[2])));
             
         }
 
-        for(String key : this.hsmCouleurWagon.keySet())
-        {
-            System.out.println(key + "  ahasdasa  : " + this.hsmCouleurWagon.get(key));
-        }
+      
 
         for(Element a : lstArete)
         {
@@ -422,7 +423,6 @@ public class Metier
             this.nbWagonDebutPartie = Integer.parseInt(d.getChild("nbWagonDebutPartie").getText());
             this.nbWagonFinPartie = Integer.parseInt(d.getChild("nbWagonFinPartie").getText());
             this.nbPointsPlusLongChemin = Integer.parseInt(d.getChild("nbPointsPlusLongChemin").getText());
-            System.out.println("Image : "+ d.getChild("image").getText());
             this.ctrl.imageToPanelGraphique(d.getChild("image").getText());
         }
 
@@ -434,6 +434,29 @@ public class Metier
 
             this.creeCarteObjectif(n1, n2, points);
 
+        }
+
+
+        int n =0;
+        for(Element p  : lstPoints)
+        {
+            int taille = Integer.parseInt(p.getChild("taille").getText());
+            int point = Integer.parseInt(p.getChild("points").getText());
+
+            this.pointsTaille[n][0] = ""+ taille;
+            this.pointsTaille[n][1] = ""+ point;
+            n++;
+        }
+
+        for(Element c : lstCouleurJoueur)
+        {
+            String couleur = c.getChild("couleurJoueur").getText();
+            this.lstCouleurJoueur.add(couleur);
+        }
+
+        for(String couelu : this.lstCouleurJoueur)
+        {
+            System.out.println("codddduleur : " + couelu);
         }
 
 

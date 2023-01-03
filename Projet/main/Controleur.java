@@ -140,7 +140,7 @@ public class Controleur
     }
 
     public String getNomMoyenDeTransport() {
-        return this.getNomMoyenDeTransport();
+        return this.metier.getNomMoyenDeTransport();
     }
 
     public void setTxtRoute(String txtRoute) {

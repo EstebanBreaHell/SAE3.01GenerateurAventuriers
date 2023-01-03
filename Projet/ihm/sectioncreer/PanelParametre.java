@@ -12,6 +12,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
 import javax.swing.table.DefaultTableCellRenderer;
 
 import main.Controleur;
@@ -48,6 +49,8 @@ public class PanelParametre extends JPanel implements ActionListener
 		/**
 		 * Création des éléments de la fenêtre
 		 */
+
+		ArrayList<String> lstCouleurTest = new ArrayList<String>();
 		this.ctrl = ctrl; 
 		this.setLayout(new BorderLayout());
 		this.donnees = this.ctrl.getpointsTaille();
@@ -61,15 +64,15 @@ public class PanelParametre extends JPanel implements ActionListener
 		custom.setHorizontalAlignment(JLabel.CENTER);
 
 		this.txtNbJoueursMin 			= new JTextField("1");
-		this.txtNbJoueursMax 			= new JTextField();
-		this.txtNbCartesJoueurs 		= new JTextField("1");
-		this.txtNomMoyenDeTransport		= new JTextField("voiture,vélo,wagon");
-		this.txtNom						= new JTextField(("route,piste cyclable,rails"));
-		this.txtFinDePartie				= new JTextField();
+		this.txtNbJoueursMax 			= new JTextField(this.ctrl.getNbJoueurMax()+"");
+		this.txtNbCartesJoueurs 		= new JTextField(this.ctrl.getNbWagonDebutPartie() + "");
+		this.txtNomMoyenDeTransport		= new JTextField(this.ctrl.getNomMoyenDeTransport()+"");
+		this.txtNom						= new JTextField(this.ctrl.getTxtRoute());
+		this.txtFinDePartie				= new JTextField(this.ctrl.getNbWagonFinPartie() + "");
 		this.btnValider 				= new JButton("Générer XML");
 		this.btnConfirmer 				= new JButton("Confirmer");
 		this.chbPlusLongueRoute 		= new JCheckBox("Chemin le plus long");
-		this.txtNbJoueursMinAreteDouble = new JTextField();
+		this.txtNbJoueursMinAreteDouble = new JTextField(this.ctrl.getNbJoueurMinDoubleArete()+"");
 		this.txtNbPlusLongChemin 		= new JTextField("" + this.ctrl.getNbPointsPlusLongChemin());
 
 		JLabel lblNbJoueursMin 				= new JLabel("Nb joueurs minimum : ");
@@ -352,6 +355,7 @@ public class PanelParametre extends JPanel implements ActionListener
 				}
 
 				this.ctrl.setPointsTaille(tmpNbPoints);
+				PanelParametre.allCoul = this.ctrl.getLstCouleurJoueur();
 
 				JPanel panelCouleur = new JPanel(new GridLayout(nbJoueursMax + 1, 2,5,5));
 				JPanel panelConfirmer = new JPanel(new GridLayout(1,3,5,5));
@@ -365,6 +369,9 @@ public class PanelParametre extends JPanel implements ActionListener
 					panelCouleur.add(btnTmp);
 					btnTmp.addActionListener(this);
 					this.scrollPane = new JScrollPane(panelCouleur);
+
+
+
 					if(PanelParametre.allCoul.size()< nbJoueursMax)
 					{
 						PanelParametre.allCoul.add(null);
@@ -377,7 +384,7 @@ public class PanelParametre extends JPanel implements ActionListener
 						int r= Integer.parseInt(tmp.split(",")[0].substring(3));
 
 						int g= Integer.parseInt(tmp.split(",")[1].substring(2));
-						int b =Integer.parseInt(tmp.split(",")[2].substring(2));
+						int b =Integer.parseInt(tmp.split(",")[2].substring(2, tmp.split(",")[2].length()-1));
 						btnTmp.setBackground(new Color(r,g,b));
 					}
 					else
@@ -405,6 +412,8 @@ public class PanelParametre extends JPanel implements ActionListener
 
 		if(PanelParametre.allButton.contains(e.getSource()))
 		{
+
+			
 			JButton btnTmp = (JButton) e.getSource();
 			int index = PanelParametre.allButton.indexOf(btnTmp);
 			Color couleur = JColorChooser.showDialog(this, "Choisir une couleur", Color.WHITE);
@@ -420,14 +429,18 @@ public class PanelParametre extends JPanel implements ActionListener
 			this.jd.setVisible(true);
 
 
-			String c = couleur.toString().substring(14,couleur.toString().length()-1);
+			String c = couleur.toString().substring(14,couleur.toString().length());
 
 			PanelParametre.allCoul.set(index, c);
-
+			
+			System.out.println("------------");
+			
 			this.ctrl.setLstCouleurJoueur(PanelParametre.allCoul);
+			
 
 
 
 		}
+		//this.ctrl.setLstCouleurJoueur(PanelParametre.allCoul);
 	}
 }

@@ -173,7 +173,6 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 				this.lstCouleurTmp.add(a.getCouleur());
 				if(!this.hashCoulNbCarte.containsKey(a.getCouleur()))
 				{
-					System.out.println("couleurfdpfdpfpdfpdfdpfdpfdpfdpfdp : " + a.getCouleur());
 					this.hashCoulNbCarte.put(a.getCouleur(), 0);
 					this.hashCoulImage.put(a.getCouleur(), null);
 				}
@@ -184,7 +183,6 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 		for(String s : lstCouleurTmp )
 		{
 			if(!(s.equals("Joker"))) {
-				System.out.println(s);
 				String[] tabCouleur = s.split(",");
 				int r = Integer.parseInt(tabCouleur[0].substring(3));
 				int g = Integer.parseInt(tabCouleur[1].substring(2));
@@ -192,6 +190,14 @@ public class PanelCreerCarteWagon extends JPanel implements ActionListener , Mou
 				JLabel lblInter = new JLabel();
 				lblInter.setBackground(new Color(r, g, b));
 				lstCouleurInter.add(lblInter);
+			}
+			else{
+				int r =225;
+				int g =225; 
+				int b = 225;
+				JLabel lblInter = new JLabel();
+				lblInter.setBackground(new Color(r, g, b));
+				lstCouleurInter.add(lblInter); 
 			}
 		}
 
