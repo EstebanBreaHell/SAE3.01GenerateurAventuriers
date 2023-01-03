@@ -124,7 +124,7 @@ public class PanelParametre extends JPanel implements ActionListener
 		this.txtNbPlusLongChemin		.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
 		lblPoints	.setBounds(  0, -100,250, 250);
-		panelTableau.setBounds( 50,  150,400, 120);
+		panelTableau.setBounds( 50,  150,400, 130);
 		this.jd		.setBounds(900,  300,500, 400); 
 
 		/**

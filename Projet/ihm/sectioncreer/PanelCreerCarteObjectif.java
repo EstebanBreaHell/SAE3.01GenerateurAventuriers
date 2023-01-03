@@ -7,6 +7,7 @@
 package ihm.sectioncreer;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -85,6 +86,9 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 
 		this.lstNoeud1 = new JList<String>();
 		this.lstNoeud2 = new JList<String>();
+
+		this.lstNoeud1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.lstNoeud2.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
 	
 		this.lblImageArriere = new JLabel(Controleur.imageToIcon("data_user/non_definie.png", 200, 100));
