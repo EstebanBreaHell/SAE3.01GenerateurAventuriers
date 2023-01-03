@@ -1,0 +1,21 @@
+I – Introduction
+	Nous avons mis dans notre mail plusieurs extensions pour lancer nos programmes 
+	(.jar, .tar, .zip et pour terminer une compile liste). Dans cette notice d’utilisation,
+	nous allons vous expliquer comment lancer nos différents programmes.
+
+II – Lancer l’application via un fichier .jar
+	A travers un terminal, il est possible de compiler un fichier jar sans pour autant l’exporter. 
+	Lancez donc en un, puis mettez la commande : java -jar le_nom_du_fichier.jar
+
+III – Lancer l’application via un fichier .tar et .zip
+	Concernant ces deux extensions, il est nécessaire de les exporter à l’emplacement de votre choix,
+	de lancer un terminal, d’inscrire la commande suivante dans le répertoire où 
+	la compile liste est présente : javac @compile.list
+
+Nota Bene : Cela ne fonctionne pas si vous exécutez la commande dans un terminal shell.
+	Ensuite, il vous suffit de sortir du répertoire précédent,
+	puis de taper la commande : java nom_du_fichier_parent.Controleur. 
+
+Vous pourrez donc tester notre application.
+
+Pour toutes suggestions, veuillez contacter da213040@etu.univ-lehavre.fr, du service antApp.
