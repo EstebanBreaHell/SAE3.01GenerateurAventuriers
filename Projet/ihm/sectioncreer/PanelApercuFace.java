@@ -72,6 +72,7 @@ public class PanelApercuFace extends JPanel implements ActionListener
 
 			popupApercu.setResizable(false);
 			popupApercu.setVisible(true);
+
 		}	
 	}
 
@@ -95,7 +96,7 @@ public class PanelApercuFace extends JPanel implements ActionListener
 			this.nomNoeud2 = nomNoeud2;
 
 			this.nbPoint = nbPoint;
-			
+			this.addMouseListener(new InputSouris());
 		}
 
 		public void setNbPoint(int nbPoint)
@@ -138,10 +139,8 @@ public class PanelApercuFace extends JPanel implements ActionListener
 			try   {img = ImageIO.read(new File(PanelGraphiqueFace.pathImg));} 
 			catch (IOException e) {e.printStackTrace();}
 
-			System.out.println("Avant x = " + this.getWidth() + " y = " + this.getHeight());
-			System.out.println("Après x = " + this.getWidth()/4 + " y = " + this.getHeight()/3);
-
-			System.out.println("coordonnée de " + this.nomNoeud1 + " x = " + (this.x1*0.25 + this.getWidth()/4) +" y = " + (this.y1*0.33 + this.getHeight()/3));
+			//System.out.println("Avant x = " + this.getWidth() + " y = " + this.getHeight());
+			//System.out.println("Après x = " + this.getWidth()/4 + " y = " + this.getHeight()/3);
 
 			g.drawImage(img.getScaledInstance(200,100, Image.SCALE_DEFAULT),this.getWidth()/4,this.getHeight()/3, this);
 			
@@ -156,21 +155,31 @@ public class PanelApercuFace extends JPanel implements ActionListener
 			
 
 			/*Noeud 1 */
-			g2d.fillOval((int)((this.x1+200)*0.25) ,(int)((this.y1+100)*0.33), 10, 10);
+			g2d.fillOval(this.x1 ,this.y1, 10, 10);
 			g2d.setColor(Color.white);
-			g2d.fillRect((int)(this.x1*0.25),(int)(this.y1*0.33), 40, 15);
+			//g2d.fillRect(this.x1 ,this.y1, 40, 15);
 			g2d.setColor(Color.BLACK);
-			g2d.drawString(this.nomNoeud1, (int)(this.x1*0.25),(int)(this.y1*0.33));
+			//g2d.drawString(this.nomNoeud1, this.x1 ,this.y1);
 
 			/*Noeud 2 */
-			g2d.fillOval((int)((this.x2+200)*0.25) ,(int)((this.y2+100)*0.33), 10, 10);
+			g2d.fillOval((int)(this.x2*0.6),(int)(this.y2 * 0.446), 10, 10);
 			g2d.setColor(Color.white);
-			g2d.fillRect((int)(this.x2*0.25),(int)(this.y2*0.33), 40, 15);
+			//g2d.fillRect(this.x2/4,this.y2/3, 40, 15);
 			g2d.setColor(Color.BLACK);
-			g2d.drawString(this.nomNoeud2, (int)(this.x2*0.25),(int)(this.y2*0.33));
+			//g2d.drawString(this.nomNoeud2, this.x2/4,this.y2/3);
 	
 			
 
+		}
+
+		public class InputSouris extends MouseAdapter
+		{
+			public void mouseClicked(MouseEvent e)
+			{
+				System.out.println(e.getX() + "|" +e.getY());
+				PanelApercuFace.this.setNoeud1(e.getX(), e.getY(), "ClickSouris");
+			}
+			
 		}
 
 		public void majIhm()
