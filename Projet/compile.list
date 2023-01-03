@@ -1,10 +1,8 @@
-
-
 ./metier/Arete.java
 ./metier/CarteObjectif.java
 ./metier/CarteWagon.java
-./metier/Metier.java
 ./metier/Noeud.java
+./metier/Metier.java
 
 ./ihm/sectioninit/PanelDispoBtn.java
 ./ihm/sectioninit/PanelImageImporter.java
