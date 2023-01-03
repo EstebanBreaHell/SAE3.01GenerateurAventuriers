@@ -1,6 +1,5 @@
 package main;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -13,8 +12,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import javax.swing.Icon;
-import javax.swing.JList;
 import javax.swing.JPanel;
+
+import com.formdev.flatlaf.FlatLightLaf;
+
 import javax.swing.ImageIcon;
 
 import ihm.Frame;
@@ -194,6 +195,10 @@ public class Controleur
         this.metier.setVersoCarteWagon(versoCarteWagon);
     }
 
+    public void setVersoCarteObjectif(String versoCarteObjectif){
+        this.metier.setVersoCarteObjectif(versoCarteObjectif);
+    }
+
     public String getVersoCarteWagon(){
         return this.metier.getVersoCarteWagon();
     }
@@ -278,6 +283,8 @@ public class Controleur
 
     public static void main(String[] args)
     {
+        FlatLightLaf.setup();
+
         new Controleur();
     }
 

@@ -105,6 +105,10 @@ public class Metier
         this.hsmImageWagon = hsmImageWagon;
     }
 
+    public void setVersoCarteObjectif(String versoCarteObjectif){
+        this.versoCarteObjectif = versoCarteObjectif;
+    }
+
     public void setVersoCarteWagon(String versoCarteWagon){
         this.versoCarteWagon = versoCarteWagon;
     }
@@ -151,6 +155,10 @@ public class Metier
 
     public String getVersoCarteWagon(){
         return this.versoCarteWagon;
+    }
+
+    public String getVersoCarteObjectif(){
+        return this.versoCarteObjectif;
     }
 
     public void ecrireXml()
