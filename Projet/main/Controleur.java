@@ -194,6 +194,10 @@ public class Controleur
         this.metier.setVersoCarteWagon(versoCarteWagon);
     }
 
+    public void setVersoCarteObjectif(String versoCarteObjectif){
+        this.metier.setVersoCarteObjectif(versoCarteObjectif);
+    }
+
     public String getVersoCarteWagon(){
         return this.metier.getVersoCarteWagon();
     }
