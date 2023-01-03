@@ -220,7 +220,7 @@ public class Metier
         }
         try
         {
-            PrintWriter pw = new PrintWriter( new OutputStreamWriter(new FileOutputStream( "donnee/xml/carteTest.xml"),"UTF-8") );
+            PrintWriter pw = new PrintWriter( new OutputStreamWriter(new FileOutputStream( "donnee/xml/carte"+ this.ctrl.getPathImg().substring(8) +".xml"),"UTF-8") );
             pw.println("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>");
             pw.println("<infos>");
 
