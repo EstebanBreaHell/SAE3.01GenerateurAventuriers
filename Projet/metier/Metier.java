@@ -306,7 +306,7 @@ public class Metier
         // Iterator i = listVilles.iterator();
         List<Element> lstNoeud = racine.getChildren ( "mappe" ).get(0).getChildren("noeud");
         List<Element> lstArete = racine.getChildren ( "mappe" ).get(0).getChildren("arete");
-        //List<Element> lstObjectif = racine.getChildren ( "mappe" ).get(0).getChildren("carteObjectif");
+        List<Element> lstObjectif = racine.getChildren ( "mappe" ).get(0).getChildren("carteObjectif");
         List<Element> lstWagon = racine.getChildren ( "mappe" ).get(0).getChildren("carteWagon");
         List<Element> lstInformation = racine.getChildren ( "mappe" ).get(0).getChildren("details");
 
@@ -376,12 +376,22 @@ public class Metier
             this.ctrl.imageToPanelGraphique(d.getChild("image").getText());
         }
 
+        for(Element o : lstObjectif)
+        {
+            Noeud n1 = this.lstNoeud.get(Integer.parseInt(o.getChild("noeudDep").getText()));
+            Noeud n2 = this.lstNoeud.get(Integer.parseInt(o.getChild("noeudArr").getText()));
+            int points = Integer.parseInt(o.getChild("points").getText());
+
+            this.creeCarteObjectif(n1, n2, points);
+
+        }
+
 
 
 
         
     
-
+        this.ctrl.majIHM();
     }
     
     public void creeNoeud(String nom, int x, int y, int nomX , int nomY)
