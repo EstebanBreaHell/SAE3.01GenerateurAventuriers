@@ -24,6 +24,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import main.Controleur;
+import metier.Noeud;
 
 public class PanelApercuFace extends JPanel implements ActionListener
 {
@@ -50,6 +51,7 @@ public class PanelApercuFace extends JPanel implements ActionListener
 
 	public void setNoeud1(int x, int y , String nom){this.panelGraphiqueFace.setNoeud1(x, y, nom);}
 	public void setNoeud2(int x, int y , String nom){this.panelGraphiqueFace.setNoeud2(x, y, nom);}
+	public void creerCarte(Noeud noeudDep, Noeud noeudArr){this.panelGraphiqueFace.creerCarte(noeudDep,noeudArr);}
 
 	public PanelGraphiqueFace getPanelGraphiqueFace(){return this.panelGraphiqueFace;}
 
@@ -119,8 +121,11 @@ public class PanelApercuFace extends JPanel implements ActionListener
 
 			this.majIhm();
 		}
-
-
+		
+		public void creerCarte(Noeud noeudDep, Noeud noeudArr)
+		{
+			PanelApercuFace.this.ctrl.creerCarteObjectif(noeudDep, noeudArr, this.nbPoint);
+		}
 		
 
 		public void paintComponent(Graphics g)

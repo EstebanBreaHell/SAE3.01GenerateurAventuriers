@@ -7,6 +7,8 @@
 package ihm.sectioncreer;
 
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
@@ -33,6 +35,7 @@ import java.util.List;
 import java.awt.GridLayout;
 
 import main.Controleur;
+import metier.CarteObjectif;
 import metier.Noeud;
 
 public class PanelCreerCarteObjectif extends JPanel implements ActionListener
@@ -222,6 +225,8 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 			try		{ImageIO.write(this.ctrl.createImage(this.panelApercuFace.getPanelGraphiqueFace()), "PNG", fileImg);} 
 			catch 	(IOException e1) {e1.printStackTrace();}
 
+			this.panelApercuFace.creerCarte(this.noeud1,this.noeud2);
+
 		
 		}
 
@@ -229,21 +234,28 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		{
 			JDialog popUpHistoirque = new JDialog();
 			String[] repertoireCarteObjectif = this.getPathCartObjectifCreer();
+			
+			popUpHistoirque.setSize(600,400);
+			popUpHistoirque.setResizable(false);
 
+			popUpHistoirque.setLayout(new BorderLayout());
 			popUpHistoirque.setTitle("Historique des cartes objectif de " + this.ctrl.getPathImg().substring(8));
+
+
 			if(repertoireCarteObjectif == null)	popUpHistoirque.add(new JLabel("Le dossier carte objectif de" + this.ctrl.getPathImg().substring(8) + " est vide"),JLabel.CENTER);
 			else
 			{
-				popUpHistoirque.setLayout(new GridLayout(1,repertoireCarteObjectif.length));
-				for(int index = 0; index < repertoireCarteObjectif.length; index++)
-				{
-					popUpHistoirque.add(new JLabel(Controleur.imageToIcon("donnee/carteObjectif/"+this.ctrl.getPathImg().substring(8) + "/" + repertoireCarteObjectif[index], 200, 100)));
-				}
+				JPanel panelDispoZoom = new JPanel(new GridLayout(this.ctrl.getLstCarteObjectif().size(),1));
+
+				for(int index = 0; index < this.ctrl.getLstCarteObjectif().size(); index++)
+					panelDispoZoom.add(new BtnZoomCarte("donnee\\carteObjectif\\" +this.ctrl.getPathImg().substring(8) + "\\" + repertoireCarteObjectif[index],index));
+				
+				popUpHistoirque.add(new JScrollPane(panelDispoZoom),BorderLayout.CENTER);
 			}
-			popUpHistoirque.pack();
+			
 			popUpHistoirque.setVisible(true);
-
-
+			
+			
 		}
 	}
 
@@ -256,7 +268,62 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 		this.lstNoeud2.setListData(arratTmp.stream().map(label -> label.getText()).toArray(String[]::new));
 	}
 
+	public class BtnZoomCarte extends JPanel implements ActionListener
+	{
+		private JButton btnZoom;
+		private JButton btnSuppr;
+		private String pathImg;
+		private int indexCarteObjectif;
 
+		public BtnZoomCarte(String pathImg, int indexcarteObjectif)
+		{			
+			this.pathImg = pathImg;
+			this.indexCarteObjectif = indexcarteObjectif;
+			this.btnZoom = new JButton(new ImageIcon(this.pathImg));
+
+			this.btnSuppr = new JButton("Supprimer");
+
+			this.setLayout(new BorderLayout());
+			this.add(new JLabel(this.pathImg.substring(20)),BorderLayout.NORTH);
+			this.add(this.btnZoom,BorderLayout.CENTER);
+			this.add(this.btnSuppr,BorderLayout.SOUTH);
+
+			this.setBackground(Color.BLUE);
+
+			this.btnZoom.addActionListener(this);
+			this.btnSuppr.addActionListener(this);
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e)
+		{
+			if(e.getSource() == this.btnZoom)
+			{
+				Icon icon = new ImageIcon(this.pathImg);
+				JDialog popZoom = new JDialog();
+
+				popZoom.setSize(icon.getIconWidth(),icon.getIconHeight());
+				popZoom.setTitle("Zoom sur " + this.pathImg.substring(20));
+				popZoom.setResizable(false);
+
+				popZoom.add(new JLabel(icon));
+
+				popZoom.setVisible(true);
+			}
+
+			if(e.getSource() == this.btnSuppr)
+			{
+				PanelCreerCarteObjectif.this.ctrl.supprCarteObjectif(this.indexCarteObjectif);
+				System.out.println("supprimé");
+				this.majIHM();
+			}
+		}
+
+		private void majIHM()
+		{
+			this.repaint();
+		}
+	}
 
 	public class InputSourie extends MouseAdapter
 	{

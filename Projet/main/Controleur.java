@@ -20,6 +20,7 @@ import javax.swing.ImageIcon;
 import ihm.Frame;
 import ihm.sectioninit.PanelImageInfo;
 import metier.Arete;
+import metier.CarteObjectif;
 import metier.Metier;
 import metier.Noeud;
 
@@ -168,6 +169,11 @@ public class Controleur
         return this.metier.getLstCouleurJoueur();
     }
 
+    public ArrayList<CarteObjectif> getLstCarteObjectif()
+    {
+        return this.metier.getListCarteObjectif();
+    }
+
     public void setHsmCouleurWagon(HashMap<String,Integer> lstCouleurWagon) {
         this.metier.setHsmCouleurWagon(lstCouleurWagon);
     }
@@ -241,6 +247,11 @@ public class Controleur
     public void supprNoeud(int noeud)
     {
         this.metier.supprNoeud(noeud);
+    }
+
+    public void supprCarteObjectif(int index)
+    {
+        this.metier.supprCarteObjectif(index);
     }
 
     public BufferedImage createImage(JPanel panel) {

@@ -133,6 +133,11 @@ public class Metier
         return lstCouleurJoueur;
     }
 
+    public ArrayList<CarteObjectif> getListCarteObjectif()
+    {
+        return this.lstCarteObjectif;
+    }
+
     public HashMap<String, Integer> getHsmCouleurWagon() {
         return hsmCouleurWagon;
     }
