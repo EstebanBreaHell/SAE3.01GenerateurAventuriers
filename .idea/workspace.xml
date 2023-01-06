@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a57fa951-b129-497d-80ae-ce30243bf994" name="Changes" comment="Petit avance pas piquer des hannetons">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donnee/xml/carteFrance.jpg.xml" beforeDir="false" />
-    </list>
+    <list default="true" id="a57fa951-b129-497d-80ae-ce30243bf994" name="Changes" comment="Petit avance pas piquer des hannetons" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,6 +50,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/donnee/carteObjectif/France.jpg" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ludiw\Desktop\TP\s3\s3.01_dev_application\SAE3.01GenerateurAventuriers\Projet" />
     </key>
