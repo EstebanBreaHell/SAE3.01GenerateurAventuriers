@@ -217,6 +217,8 @@ public class PanelCreerCarteObjectif extends JPanel implements ActionListener
 
 				this.panelDispoArriere.remove(this.lblImageArriere);
 				this.setImageArriere("data_user/"+file.getName());	
+
+				this.ctrl.setVersoCarteObjectif(file.getName());
 				
 				this.majIHM();
 			}

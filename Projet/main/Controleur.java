@@ -153,6 +153,26 @@ public class Controleur
         return this.metier.getTxtRoute();
     }
 
+    public double getWidthPanel()
+    {
+        return this.metier.getWidthPanel();
+    }
+
+    public double getHeightPanel()
+    {
+        return this.metier.getHeightPanel();
+    }
+
+    public void setWidthPanel(double witdhPanel)
+    {
+        this.metier.setWidthPanel(witdhPanel);
+    }
+
+    public void setHeightPanel(double heightPanel)
+    {
+        this.metier.setHeightPanel(heightPanel);
+    }
+
 
     public ArrayList<Noeud> getNoeudDispo(Noeud n)
     {

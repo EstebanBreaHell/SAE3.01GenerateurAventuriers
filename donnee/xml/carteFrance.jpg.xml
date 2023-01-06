@@ -224,59 +224,9 @@
 			<wagons>7</wagons>
 		</arete>
 		<carteWagon>
-			<couleur>[r=153,g=153,b=153]</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
-		</carteWagon>
-		<carteWagon>
-			<couleur>[r=153,g=204,b=255]</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
-		</carteWagon>
-		<carteWagon>
-			<couleur>[r=255,g=102,b=102]</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
-		</carteWagon>
-		<carteWagon>
-			<couleur>[r=102,g=102,b=255]</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
-		</carteWagon>
-		<carteWagon>
-			<couleur>[r=0,g=0,b=102]</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
-		</carteWagon>
-		<carteWagon>
-			<couleur>Joker</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
-		</carteWagon>
-		<carteWagon>
-			<couleur>[r=102,g=204,b=255]</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
-		</carteWagon>
-		<carteWagon>
-			<couleur>[r=204,g=102,b=255]</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
-		</carteWagon>
-		<carteWagon>
-			<couleur>[r=153,g=51,b=0]</couleur>
+			<couleur>[r=153,g=153,b=255]</couleur>
 			<nombre>10</nombre>
 			<recto>imageCarte/voiture.jpg</recto>
-		</carteWagon>
-		<carteWagon>
-			<couleur>[r=204,g=204,b=204]</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
-		</carteWagon>
-		<carteWagon>
-			<couleur>[r=153,g=153,b=255]</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
 		</carteWagon>
 		<carteWagon>
 			<couleur>[r=51,g=255,b=255]</couleur>
@@ -295,11 +245,31 @@
 		</carteWagon>
 		<carteWagon>
 			<couleur>[r=204,g=0,b=0]</couleur>
+			<nombre>200</nombre>
+			<recto>imageCarte/voiture.jpg</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=153,g=153,b=153]</couleur>
+			<nombre>100</nombre>
+			<recto>imageCarte/voiture.jpg</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=153,g=204,b=255]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=255,g=102,b=102]</couleur>
 			<nombre>0</nombre>
 			<recto>null</recto>
 		</carteWagon>
 		<carteWagon>
 			<couleur>[r=153,g=0,b=153]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=102,g=102,b=255]</couleur>
 			<nombre>0</nombre>
 			<recto>null</recto>
 		</carteWagon>
@@ -314,14 +284,24 @@
 			<recto>null</recto>
 		</carteWagon>
 		<carteWagon>
+			<couleur>[r=0,g=0,b=102]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
 			<couleur>[r=255,g=51,b=0]</couleur>
 			<nombre>0</nombre>
 			<recto>null</recto>
 		</carteWagon>
 		<carteWagon>
-			<couleur>[r=102,g=255,b=255]</couleur>
+			<couleur>Joker</couleur>
 			<nombre>0</nombre>
 			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=102,g=255,b=255]</couleur>
+			<nombre>100</nombre>
+			<recto>imageCarte/voiture.jpg</recto>
 		</carteWagon>
 		<carteWagon>
 			<couleur>[r=51,g=204,b=255]</couleur>
@@ -334,8 +314,28 @@
 			<recto>null</recto>
 		</carteWagon>
 		<carteWagon>
+			<couleur>[r=102,g=204,b=255]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
 			<couleur>[r=51,g=51,b=255]</couleur>
 			<nombre>10</nombre>
+			<recto>imageCarte/voiture.jpg</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=204,g=102,b=255]</couleur>
+			<nombre>10</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=153,g=51,b=0]</couleur>
+			<nombre>10</nombre>
+			<recto>imageCarte/voiture.jpg</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=204,g=204,b=204]</couleur>
+			<nombre>0</nombre>
 			<recto>imageCarte/voiture.jpg</recto>
 		</carteWagon>
 		<carteWagon>
@@ -394,16 +394,18 @@
 		<nbWagonDebutPartie>30</nbWagonDebutPartie>
 		<nbWagonFinPartie>1</nbWagonFinPartie>
 		<nbPointsPlusLongChemin>10</nbPointsPlusLongChemin>
-		<txtNomMoyenDeTransport>Voiture</txtNomMoyenDeTransport>
-		<txtRoute>Route</txtRoute>
+		<txtNomMoyenDeTransport>Wagon</txtNomMoyenDeTransport>
+		<txtRoute>Rails</txtRoute>
 		<versoCarteWagon>null</versoCarteWagon>
-		<versoCarteObjectif>null</versoCarteObjectif>
+		<versoCarteObjectif>billet-cartonne-sncf.jpg</versoCarteObjectif>
+		<heightPanel>958.0</heightPanel>
+		<witdhPanel>772.0</witdhPanel>
 		<image>importe/France.jpg</image>
 	</details>
 	<CouleurJoueurList>
-		<couleurJoueur>[r=153,g=0,b=0]</couleurJoueur>
-		<couleurJoueur>[r=0,g=102,b=0]</couleurJoueur>
-		<couleurJoueur>[r=102,g=102,b=102]</couleurJoueur>
+		<couleurJoueur>[r=153,g=153,b=255]</couleurJoueur>
+		<couleurJoueur>[r=255,g=255,b=255]</couleurJoueur>
+		<couleurJoueur>[r=255,g=51,b=51]</couleurJoueur>
 	</CouleurJoueurList>
 	<points>
 		<pointTaille>

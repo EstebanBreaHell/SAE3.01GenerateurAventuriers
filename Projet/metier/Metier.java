@@ -31,6 +31,9 @@ public class Metier
 
     private ArrayList<String> lstCouleurJoueur;
 
+    private double witdhPanel;
+    private double heightPanel;
+
     private String[][] pointsTaille= {
         {"1", "1",},
         {"2", "2",},
@@ -163,6 +166,26 @@ public class Metier
         this.versoCarteWagon = versoCarteWagon;
     }
 
+    public double getWidthPanel()
+    {
+        return this.witdhPanel;
+    }
+
+    public double getHeightPanel()
+    {
+        return this.heightPanel;
+    }
+
+    public void setWidthPanel(double witdhPanel)
+    {
+        this.witdhPanel = witdhPanel;
+    }
+
+    public void setHeightPanel(double heightPanel)
+    {
+        this.heightPanel = heightPanel;
+    }
+
 
 
 
@@ -290,6 +313,8 @@ public class Metier
 
             pw.println ( "\t\t<versoCarteWagon>"+ this.versoCarteWagon + "</versoCarteWagon>" );
             pw.println ( "\t\t<versoCarteObjectif>"+ this.versoCarteObjectif + "</versoCarteObjectif>" );
+            pw.println ( "\t\t<heightPanel>"+ this.heightPanel + "</heightPanel>" );
+            pw.println ( "\t\t<witdhPanel>"+ this.witdhPanel + "</witdhPanel>" );
 
             pw.println ( "\t\t<image>"+ this.ctrl.getPathImg() + "</image>" );
         
@@ -364,7 +389,7 @@ public class Metier
         List<Element> lstObjectif = racine.getChildren ( "mappe" ).get(0).getChildren("carteObjectif");
         List<Element> lstWagon = racine.getChildren ( "mappe" ).get(0).getChildren("carteWagon");
         List<Element> lstInformation = racine.getChildren ( "mappe" ).get(0).getChildren("details");
-        List<Element> lstCouleurJoueur = racine.getChildren ( "mappe" ).get(0).getChildren("CouleurJoueurList");
+        Element lstCouleurJoueur = racine.getChildren ( "mappe" ).get(0).getChild("CouleurJoueurList");
         List<Element> lstPoints = racine.getChildren ( "mappe" ).get(0).getChildren("points").get(0).getChildren("pointTaille");
 
 
@@ -431,6 +456,9 @@ public class Metier
             this.nbWagonDebutPartie = Integer.parseInt(d.getChild("nbWagonDebutPartie").getText());
             this.nbWagonFinPartie = Integer.parseInt(d.getChild("nbWagonFinPartie").getText());
             this.nbPointsPlusLongChemin = Integer.parseInt(d.getChild("nbPointsPlusLongChemin").getText());
+
+            this.witdhPanel = Double.parseDouble(d.getChild("witdhPanel").getText());
+            this.heightPanel = Double.parseDouble(d.getChild("heightPanel").getText());
             this.ctrl.imageToPanelGraphique(d.getChild("image").getText());
         }
 
@@ -456,9 +484,9 @@ public class Metier
             n++;
         }
 
-        for(Element c : lstCouleurJoueur)
+        for(Element c : lstCouleurJoueur.getChildren("couleurJoueur"))
         {
-            String couleur = c.getChild("couleurJoueur").getText();
+            String couleur = c.getText();
             this.lstCouleurJoueur.add(couleur);
         }
 

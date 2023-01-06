@@ -119,6 +119,15 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 	{
 		super.paint(g);
 
+		Dimension testTaille = this.getSize();
+			//System.out.println("Taille : " + testTaille.getWidth() + " " + testTaille.getHeight());	
+
+		double xMax = testTaille.getWidth() -26;
+		double yMax = testTaille.getHeight() -26;
+
+		this.ctrl.setWidthPanel(xMax);
+		this.ctrl.setHeightPanel(yMax);
+
 		// Dessiner le texte	
 		g.setFont(new Font("default", Font.BOLD, 12));
 		ArrayList<Arete> areteDoubleDessine = new ArrayList<Arete>();
