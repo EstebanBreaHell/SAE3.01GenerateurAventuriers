@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<infos>
+	<mappe>
+		<noeud nom="Paris">
+			<coordonees x="382" y="190"/>
+			<coordoneesNom x="367" y="205"/>
+		</noeud>
+		<noeud nom="Rouen">
+			<coordonees x="314" y="140"/>
+			<coordoneesNom x="299" y="155"/>
+		</noeud>
+		<noeud nom="Caen">
+			<coordonees x="241" y="159"/>
+			<coordoneesNom x="226" y="174"/>
+		</noeud>
+		<noeud nom="Brest">
+			<coordonees x="35" y="199"/>
+			<coordoneesNom x="20" y="214"/>
+		</noeud>
+		<noeud nom="Rennes">
+			<coordonees x="176" y="225"/>
+			<coordoneesNom x="161" y="240"/>
+		</noeud>
+		<noeud nom="Nantes">
+			<coordonees x="184" y="281"/>
+			<coordoneesNom x="169" y="296"/>
+		</noeud>
+		<noeud nom="La Rochelle">
+			<coordonees x="218" y="360"/>
+			<coordoneesNom x="203" y="375"/>
+		</noeud>
+		<noeud nom="Anger">
+			<coordonees x="246" y="250"/>
+			<coordoneesNom x="231" y="265"/>
+		</noeud>
+		<noeud nom="Tours">
+			<coordonees x="326" y="260"/>
+			<coordoneesNom x="311" y="275"/>
+		</noeud>
+		<noeud nom="Bordeaux">
+			<coordonees x="239" y="432"/>
+			<coordoneesNom x="224" y="447"/>
+		</noeud>
+		<noeud nom="Toulouse">
+			<coordonees x="332" y="498"/>
+			<coordoneesNom x="317" y="513"/>
+		</noeud>
+		<carteWagon>
+			<couleur>Joker</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+	<details>
+		<nbJoueurMinDoubleArete>4</nbJoueurMinDoubleArete>
+		<nbJoueurMax>5</nbJoueurMax>
+		<nbWagonDebutPartie>45</nbWagonDebutPartie>
+		<nbWagonFinPartie>2</nbWagonFinPartie>
+		<nbPointsPlusLongChemin>10</nbPointsPlusLongChemin>
+		<txtNomMoyenDeTransport>Wagon</txtNomMoyenDeTransport>
+		<txtRoute>Rails</txtRoute>
+		<versoCarteWagon>null</versoCarteWagon>
+		<versoCarteObjectif>null</versoCarteObjectif>
+		<image>importe/France.jpg</image>
+	</details>
+	<CouleurJoueurList>
+		<couleurJoueur>null</couleurJoueur>
+		<couleurJoueur>null</couleurJoueur>
+		<couleurJoueur>null</couleurJoueur>
+		<couleurJoueur>null</couleurJoueur>
+		<couleurJoueur>null</couleurJoueur>
+	</CouleurJoueurList>
+	<points>
+		<pointTaille>
+			<taille>1</taille>
+			<points>1</points>
+		</pointTaille>
+		<pointTaille>
+			<taille>2</taille>
+			<points>2</points>
+		</pointTaille>
+		<pointTaille>
+			<taille>3</taille>
+			<points>4</points>
+		</pointTaille>
+		<pointTaille>
+			<taille>4</taille>
+			<points>7</points>
+		</pointTaille>
+		<pointTaille>
+			<taille>5</taille>
+			<points>10</points>
+		</pointTaille>
+		<pointTaille>
+			<taille>6</taille>
+			<points>15</points>
+		</pointTaille>
+	</points>
+	</mappe>
+</infos>

@@ -37,7 +37,7 @@ public class PanelGraphique extends JPanel implements ActionListener, MouseListe
 	private Noeud     noeudActif;
 	private boolean   nomActif;
 
-	private Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
+	private Dimension tailleMoniteur  = Toolkit.getDefaultToolkit().getScreenSize();
 	private int       hauteurMoniteur = tailleMoniteur.height - (int) (tailleMoniteur.height*0.06);
 	private int       largeurMoniteur = tailleMoniteur.height - (int) (tailleMoniteur.width *0.06);
 
