@@ -294,6 +294,7 @@ public class PanelParametre extends JPanel implements ActionListener
 		else 
 		{
 			this.txtNbPlusLongChemin.setEnabled(false);
+			this.txtNbPlusLongChemin.setText("0");
 		}
 
 		if(e.getSource() == this.btnValider)
